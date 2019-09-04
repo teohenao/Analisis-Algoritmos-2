@@ -3,10 +3,12 @@ package co.edu.uniquindio.prueba.entidades;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.*;
 
 /**
+ * @author Mateo Henao R
  * Entity implementation class for Entity: Persona
  *
  */
@@ -20,12 +22,19 @@ public class Persona implements Serializable {
 	private String nombre;
 	private String apellido;
 	
+	//enum de genero de la persona	
+	private Genero genero;
+	
 	//ElementCollectionse crea una tabla auxiliar por la cantidad de numeros que guarda
 	@ElementCollection
-	private List <String> numerosTelefono;
+	//el Map es para asignar una clave los atributos de una lista	
+	private Map <String, String> numerosTelefono;
+	
 	
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	public Persona() {
 		super();
 	}   
@@ -53,12 +62,7 @@ public class Persona implements Serializable {
 	
 //	Generar HastCode and Equals
 
-	public List<String> getNumerosTelefono() {
-		return numerosTelefono;
-	}
-	public void setNumerosTelefono(List<String> numerosTelefono) {
-		this.numerosTelefono = numerosTelefono;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,6 +98,19 @@ public class Persona implements Serializable {
 			return false;
 		return true;
 	}
+	public Genero getGenero() {
+		return genero;
+	}
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+	public Map<String, String> getNumerosTelefono() {
+		return numerosTelefono;
+	}
+	public void setNumerosTelefono(Map<String, String> numerosTelefono) {
+		this.numerosTelefono = numerosTelefono;
+	}
+	
 	
 	
    
