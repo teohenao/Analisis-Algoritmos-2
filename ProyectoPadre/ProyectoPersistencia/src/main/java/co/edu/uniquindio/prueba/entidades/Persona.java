@@ -2,10 +2,12 @@ package co.edu.uniquindio.prueba.entidades;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * @author Mateo Henao R
@@ -16,25 +18,31 @@ import javax.persistence.*;
 
 public class Persona implements Serializable {
 
-	   
+
 	@Id
 	private String cedula;
+	//restricciones o caracteristicas del campo en la table
+	@Column(name = "nombre", nullable = false, length = 100)
 	private String nombre;
 	private String apellido;
-	
+
+	//campo de fecha el cual usa un atributo temporal que es necesario para capturar la fecha con TIMESTAMP
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaNacimiento;
+
 	//enum de genero de la persona	
 	private Genero genero;
-	
+
 	//ElementCollectionse crea una tabla auxiliar por la cantidad de numeros que guarda
 	@ElementCollection
 	//el Map es para asignar una clave los atributos de una lista	
 	private Map <String, String> numerosTelefono;
-	
-	
+
+
 	private static final long serialVersionUID = 1L;
 
-	
-	
+
+
 	public Persona() {
 		super();
 	}   
@@ -59,10 +67,10 @@ public class Persona implements Serializable {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	
-//	Generar HastCode and Equals
 
-	
+	//	Generar HastCode and Equals
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,8 +118,14 @@ public class Persona implements Serializable {
 	public void setNumerosTelefono(Map<String, String> numerosTelefono) {
 		this.numerosTelefono = numerosTelefono;
 	}
-	
-	
-	
-   
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+
+
+
 }

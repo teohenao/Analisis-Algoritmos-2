@@ -13,8 +13,8 @@
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="335"/>
-		<item key="DIALOG_Y_ORIGIN" value="50"/>
+		<item key="DIALOG_X_ORIGIN" value="52"/>
+		<item key="DIALOG_Y_ORIGIN" value="78"/>
 	</section>
 	<section name="NewWizardAction">
 		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.xml.ui.internal.wizards.NewXMLWizard"/>
