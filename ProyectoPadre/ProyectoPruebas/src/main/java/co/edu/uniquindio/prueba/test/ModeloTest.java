@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 //imports de arquillan
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -45,8 +47,12 @@ public class ModeloTest {
 	 * punto 5 de la guia 5, primer metodo para probar persistencia de datos
 	 */
 	@Test
+	@Transactional(value = TransactionMode.COMMIT)
 	public void probarPersistencia() {
+		
+		//crear objeto tipo persona
 		Persona p = new Persona();
+		//asignamos atributos que deseamos 
 		p.setCedula("1094952608");
 		p.setNombre("Mateo");
 		p.setApellido("Henao Rodriguez");
@@ -54,6 +60,9 @@ public class ModeloTest {
 		p.setFechaNacimiento(new Date());
 		//se hace uso del enum correspondiente para relacionarlo con la variable de genero
 		p.setGenero(Genero.Masculino);
+		
+		//para persistirlo (guardar en la base de datos
+		entityManager.persist(p);
 		
 		
 		

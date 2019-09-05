@@ -21,6 +21,7 @@ public class DocumentoIdentidad implements Serializable {
 	private String cedula;
 	@Column(name = "nombres",unique = false,nullable = false)
 	private String nombres;
+	
 	private String apellidos;
 	private String ciudadNacimiento;
 	@Temporal(TemporalType.TIMESTAMP)

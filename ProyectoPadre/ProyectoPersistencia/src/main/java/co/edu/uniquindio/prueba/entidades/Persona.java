@@ -3,19 +3,26 @@ package co.edu.uniquindio.prueba.entidades;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 /**
  * @author Mateo Henao R
  * Entity implementation class for Entity: Persona
  *
  */
-@Entity
+//para generar la tabla de persona sin duplicar datos, osea ver la tabla de personas como entidad sin que afecte
+//se usa el JOINED, @Entity @Inheritance(strategy = InheritanceType.JOINED) 
 
+//@MappedSuperclass, no existira como tabla pero si los hijos, lleva el inheritance, table_per_class
+//Inheritance es para que esta clase se pueda extender desde otra y crear la tabla, table_per_CLASE generar tabla
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//opcionales
+@DiscriminatorValue("Persona")
+@DiscriminatorColumn(name="tipo")
+// no la marco como entidad para que no se genere  la tabla pero los hijos si tengan los atributos @Entity
 public class Persona implements Serializable {
 
 
