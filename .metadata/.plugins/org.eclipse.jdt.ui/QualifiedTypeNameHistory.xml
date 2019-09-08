@@ -23,4 +23,5 @@
 <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
 <fullyQualifiedTypeName name="javax.persistence.DiscriminatorValue"/>
 <fullyQualifiedTypeName name="javax.persistence.DiscriminatorColumn"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Persona"/>
 </qualifiedTypeNameHistroy>

@@ -36,13 +36,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="org.ProyectoPruebas"/>
+			<item value="org.Pruebas"/>
 		</list>
 		<list key="groupId">
-			<item value="co.edu.uniquindio.grid"/>
+			<item value="co.edu.uniquindio.hela.co"/>
 		</list>
 		<list key="artifactId">
-			<item value="ProyectoPruebas"/>
+			<item value="Pruebas"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -58,14 +58,20 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="co.edu.uniquindio.hela.co"/>
 			<item value="co.edu.uniquindio.grid"/>
 		</list>
 		<list key="name">
-			<item value="Proyecto Pruebas"/>
+			<item value="Pruebas"/>
 			<item value="Proyecto de persistencia"/>
+			<item value="uniMarket"/>
+			<item value="Proyecto Pruebas"/>
 			<item value="Proyecto Padre"/>
 		</list>
 		<list key="artifactId">
+			<item value="Pruebas"/>
+			<item value="uniMarket"/>
+			<item value="Persistencia"/>
 			<item value="ProyectoPruebas"/>
 			<item value="ProyectoPadre"/>
 			<item value="ProyectoPersistencia"/>
@@ -84,6 +90,8 @@
 	</section>
 	<section name="MavenModuleWizardParentPage">
 		<list key="moduleName">
+			<item value="Pruebas"/>
+			<item value="Persistencia"/>
 			<item value="ProyectoPruebas"/>
 			<item value="ProyectoPersistencia"/>
 		</list>

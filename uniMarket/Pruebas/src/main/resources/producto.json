@@ -1,0 +1,9 @@
+{
+	"PRODUCTO":[
+	{
+		"nombre" : "celular1",
+		"descripcion" : "esta melo caramelo este celular",
+		"disponibilidad" : 19	
+		}
+	]
+}
