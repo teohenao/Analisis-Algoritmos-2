@@ -1,9 +1,14 @@
 {
 	"PRODUCTO":[
-	{
+		{
 		"nombre" : "celular1",
 		"descripcion" : "esta melo caramelo este celular",
 		"disponibilidad" : 19	
+		},
+		{
+		"nombre" : "celular2",
+		"descripcion" : "esta melo caramelo este celular2",
+		"disponibilidad" : 12	
 		}
 	]
 }

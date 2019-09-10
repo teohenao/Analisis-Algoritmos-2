@@ -1,9 +1,13 @@
 package co.edu.uniquindio.hela.prueba.test;
 
+import java.util.List;
+
 //lo que nos permite acceder a las tablas a nivel de base de datos
 import javax.persistence.EntityManager;
 //hace parte del persistence manager
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 //imports de arquillan
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -35,6 +39,7 @@ import co.edu.uniquindio.hela.entidades.Producto;
 public class EntidadesTest {
 	
 	@PersistenceContext
+	//nos permite hacer las consultas con la base de datos
 	private EntityManager entityManager;
 
 	// metodo de despliegue al cual le indicamos la entidad Relacionada
@@ -45,47 +50,69 @@ public class EntidadesTest {
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 	
-	/*
-	 * pruebas de Jsons
-	 */
+
 	@Test
-	//ROCKBALL es usado por si es necesario revertir cambios mas adelante
-	@Transactional(value=TransactionMode.ROLLBACK)
-	@UsingDataSet({"persona.json","producto.json"})
-	public void jsonTest(){
+	@Transactional(value=TransactionMode.COMMIT)
+	@UsingDataSet({"persona.json"})
+	public void jsonTestPersona(){
+		
+		Administrador administrador = entityManager.find(Administrador.class, "1");
+		Assert.assertEquals("mateohenao@gmail.com", administrador.getEmail());
+		
 	}
 	
-	/**
-	 * punto 5 de la guia 5, primer metodo para probar persistencia de datos
-	 */
 	@Test
-	//TransactionMode commit es para confirmar como permanentes las modificaciones
+	@Transactional(value=TransactionMode.COMMIT)
+	@UsingDataSet({"producto.json"})
+	public void jsonTestProducto(){
+		
+		Query q = entityManager.createNativeQuery("select * from producto", Producto.class);
+		List<Producto> l = q.getResultList();
+		
+		System.out.println(l);
+		
+		Producto p = entityManager.find(Producto.class, 1);
+		System.out.println(p);
+		
+	}
+	
+	@Test
 	@Transactional(value = TransactionMode.COMMIT)
-	public void probarPersistencia() {
+	public void testRegistroAdministrador() {
 		
-		//crear objeto tipo persona
-		Administrador p = new Administrador();
-		p.setCedula("1094952608");
-		p.setNombre_completo("Mateo");
-		p.setEmail("mateohr880@gmail.com");
-		p.setDireccion("Calarca carrera 24");
-		p.setNumero_telefonico("3176996558");
-		p.setClave("12345");
-		//para persistirlo (guardar en la base de datos)
-		entityManager.persist(p);
+		Administrador administrador = new Administrador();
+		administrador.setCedula("1094952608");
+		administrador.setNombre_completo("Mateo");
+		administrador.setEmail("mateohr880@gmail.com");
+		administrador.setDireccion("Calarca carrera 24");
+		administrador.setNumero_telefonico("3176996558");
+		administrador.setClave("12345");
+		entityManager.persist(administrador);
 		
-		Administrador registrado = entityManager.find(Administrador.class, p.getCedula());
-		Assert.assertEquals(p, registrado);
+		Administrador registrado = entityManager.find(Administrador.class, administrador.getCedula());
+		Assert.assertEquals(administrador, registrado);
 		
 	}
 	@Test
-	@Transactional(value = TransactionMode.COMMIT)
-	public void probarProducto() {
-		Producto p = new Producto();
-		p.setNombre("computador");
-		p.setDisponibilidad(23);
-		p.setDescripcion("esta melo caramelo");	
-		entityManager.persist(p);
+	@Transactional(value = TransactionMode.ROLLBACK)
+	public void testRegistroProducto() {
+		Producto producto = new Producto();
+		
+		producto.setNombre("computador");
+		producto.setDisponibilidad(23);
+		producto.setDescripcion("esta melo caramelo");
+		
+		entityManager.persist(producto);
+		
+		Query q = entityManager.createNativeQuery("select * from producto", Producto.class);
+		List<Producto> l = q.getResultList();
+		
+		System.out.println(l);
+		
+		System.out.println(producto);
+		
+		Producto registrado = entityManager.find(Producto.class, producto.getId());
+		Assert.assertEquals(producto, registrado);
 	}
 	
 

@@ -12,13 +12,12 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//columna la cual identifica el tipo de relacion al hijo
 @DiscriminatorColumn(name="tipo")
 public class Persona implements Serializable {
 
 	   
 	@Id
-	@Column(unique = true, length = 30, nullable = false)
+	@Column(name = "cedula", unique = true, length = 30, nullable = false)
 	private String cedula;
 	@Column(name = "nombre_completo")
 	private String nombre_completo;
