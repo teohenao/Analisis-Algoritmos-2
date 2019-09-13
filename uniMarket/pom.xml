@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>co.edu.uniquindio.hela.co</groupId>
-	<artifactId>uniMarket</artifactId>
+	<artifactId>UniMarket</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>uniMarket</name>
-	<description>proyecto principal que alberga otros subproyectos</description>
+	<name>Proyecto padre UniMarket</name>
+	<description>Proyecto que contiene todos los demas subproyectos</description>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -61,4 +61,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-</project>
+	</project>
