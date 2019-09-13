@@ -26,7 +26,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
+import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Categoria;
+import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Compra;
+import co.edu.uniquindio.hela.entidades.Favorito;
+import co.edu.uniquindio.hela.entidades.FormaPago;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -43,6 +48,8 @@ public class EntidadesTest {
 				.addAsResource("persistenceForTest.xml","META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
+
+
 	//*************************************************************************************************************************************
 	//*****************************************************ADMINISTRADOR*******************************************************************
 	//*************************************************************************************************************************************
@@ -51,9 +58,9 @@ public class EntidadesTest {
 	 * Insertar en la tabla "ADMINISTRADOR"
 	 */
 	@Test
-	@Transactional(value = TransactionMode.COMMIT)
+	@Transactional(value = TransactionMode.ROLLBACK)
 	public void insertarAdministradorTest() {
-		
+
 		Administrador administrador = new Administrador();
 		administrador.setCedula("123");
 		administrador.setNombreCompleto("pepito pinares");
@@ -86,7 +93,7 @@ public class EntidadesTest {
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"persona.json"})
-	public void actualizarDireccionTest() {
+	public void actualizarAdministradorTest() {
 
 		Administrador administrador = entityManager.find(Administrador.class, "2");
 
@@ -112,61 +119,419 @@ public class EntidadesTest {
 		Assert.assertNull(administrador);
 	}
 
-	
-	
-	
+	//*************************************************************************************************************************************
+	//********************************************************USUARIO**********************************************************************
+	//*************************************************************************************************************************************
+
+	/**
+	 * Insertar en la tabla "USUARIO"
+	 */
 	@Test
-	@Transactional(value = TransactionMode.COMMIT)
-	public void crearProductoTest() throws ParseException {
-		
+	@Transactional(value = TransactionMode.ROLLBACK)
+	public void insertarUsuarioTest() {
+
 		Usuario u = new Usuario();
-		u.setCedula("1");
+		u.setCedula("111");
+		u.setNombreCompleto("oskar alejandro ortiz");
+		u.setDireccion("cucuta");
+		u.setNumeroTelefonico("31769543557");
+		u.setEmail("oskar@gmail.com");
 		u.setClave("123");
-		u.setDireccion("calarca caldas");
-		u.setEmail("usuario1.gmail.com");
-		u.setNombreCompleto("usuario1");
-		u.setNumeroTelefonico("31765412122");
-		
+
 		entityManager.persist(u);
-		
+
+		Usuario registrado = entityManager.find(Usuario.class, u.getCedula());
+		Assert.assertEquals(u, registrado);
+	}
+
+	/**
+	 * Buscar en la la tabla "USUARIO" utilizando JSON
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json"})
+	public void buscarUsuarioTest() {
+
+		Usuario registrado = entityManager.find(Usuario.class, "6");
+		Assert.assertEquals("andrea@gmail.com", registrado.getEmail());
+	}
+
+	/**
+	 * Actualizar en la tabla "USUARIO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json"})
+	public void actualizarUsuarioTest() {
+
+		Usuario u = entityManager.find(Usuario.class, "6");
+		u.setDireccion("direccion actualizada");
+		entityManager.merge(u);
+
+	}
+
+	/**
+	 *Eliminar de la tabla "USUARIO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json"})
+	public void eliminarUsuarioTest() {
+
+		Usuario user = entityManager.find(Usuario.class, "7");
+
+		entityManager.remove(user);
+
+		user = entityManager.find(Usuario.class, "7");
+		Assert.assertNull(user);
+	}
+
+	//*************************************************************************************************************************************
+	//*****************************************************PRODUCTO*******************************************************************
+	//*************************************************************************************************************************************
+
+	/**
+	 * Insertar en la tabla "PRODUCTO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json"})
+	public void insertarProductoTest() throws ParseException {
+
 		Producto p = new Producto();
-		p.setNombre("articulo1");
+		p.setId(1);
 		p.setCategoria(Categoria.tecnologia);
 		p.setDescripcion("descripcion1");
 		p.setDisponibilidad(31);
-		p.setPrecio(12.400);
-
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date d = sdf.parse("2019-10-02");
 		p.setFechaLimite(d);
-		
-		//List <String> img = new ArrayList<String>();
-		//img.add("imagen1.pbg");
-		//p.setImagenes(img);	
-		
+		p.setNombre("articulo1");
+		p.setPrecio(12.400);
 		p.getImagenes().add("imagen1.png");
 		p.getImagenes().add("imagen2.png");
 
-		Usuario user = entityManager.find(Usuario.class, "1");
+		//List <String> img = new ArrayList<String>();
+		//img.add("imagen1.pbg");
+		//p.setImagenes(img);	
+
+		Usuario user = entityManager.find(Usuario.class, "7");
 		p.setUsuario(user);
-		
+
 		entityManager.persist(p);
-		
+
 		Producto registrado = entityManager.find(Producto.class, p.getId());
 		Assert.assertEquals(p, registrado);
-		
 	}
-	
+
+	/**
+	 * Buscar en la la tabla "PRODUCTO" utilizando JSON
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json"})
+	public void buscarProductoTest() {
+
+		Producto registrado = entityManager.find(Producto.class , 3);
+		Assert.assertEquals("moda", registrado.getCategoria().toString());
+	}
+
+	/**
+	 * Actualizar en la tabla "PRODUCTO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json"})
+	public void actualizarProductoTest() {
+
+		Producto p = entityManager.find(Producto.class, 2);
+		p.setDisponibilidad(100);
+		entityManager.merge(p);
+	}
+
+	/**
+	 *Eliminar de la tabla "Producto"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json"})
+	public void eliminarProductoTest() {
+
+		Producto p = entityManager.find(Producto.class, 3);
+		entityManager.remove(p);
+
+		p = entityManager.find(Producto.class, 3);
+		Assert.assertNull(p);
+	}
+
+	//*************************************************************************************************************************************
+	//*****************************************************CALIFICACION*******************************************************************
+	//*************************************************************************************************************************************
+
+	/**
+	 * Insertar en la tabla "CALIFICACION"
+	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"persona.json","producto.json"})
-	public void productoJson(){
-		
-	}
-	
-	
-	
-	
-	
+	public void insertarCalificacionTest() {
 
+		Usuario u = entityManager.find(Usuario.class, "9");
+		Producto p = entityManager.find(Producto.class, 3 );
+
+		Calificacion c = new Calificacion();
+		c.setId(1);
+		c.setProducto(p);
+		c.setUsuario(u);
+		c.setValor(5);
+
+		entityManager.persist(c);
+
+		Calificacion registrado = entityManager.find(Calificacion.class, c.getId());
+		Assert.assertEquals(c, registrado);
+	}
+
+	/**
+	 * Buscar en la la tabla "CALIFICACION" utilizando JSON
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"calificacion.json"})
+	public void buscarCalificacionTest() {
+
+		Calificacion registrado = entityManager.find(Calificacion.class, 1);
+		Assert.assertEquals(5, registrado.getValor());
+	}
+
+	/**
+	 * Actualizar en la tabla "CALIFICACION"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"calificacion.json"})
+	public void actualizarCalificacionTest() {
+
+		Calificacion c = entityManager.find(Calificacion.class, 2);
+		c.setValor(3);
+		entityManager.merge(c);
+	}
+
+	/**
+	 *Eliminar de la tabla "CALIFICACION"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"calificacion.json"})
+	public void eliminarCalificacionTest() {
+
+		Calificacion c = entityManager.find(Calificacion.class, 2);
+		entityManager.remove(c);
+
+		c = entityManager.find(Calificacion.class, 2);
+		Assert.assertNull(c);
+	}
+	//*************************************************************************************************************************************
+	//*****************************************************COMENTARIO*******************************************************************
+	//*************************************************************************************************************************************
+
+	/**
+	 * Insertar en la tabla "COMENTARIO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json","producto.json"})
+	public void insertarComentarioTest() {
+
+		Usuario u = entityManager.find(Usuario.class, "9");
+		Producto p = entityManager.find(Producto.class, 3 );
+
+		Comentario c = new Comentario();
+		c.setId(1);
+		c.setProducto(p);
+		c.setUsuario(u);
+		c.setComentario("este es el comentario de prueba");
+
+		entityManager.persist(c);
+
+		Comentario registrado = entityManager.find(Comentario.class, c.getId());
+		Assert.assertEquals(c, registrado);
+	}
+
+	/**
+	 * Buscar en la la tabla "COMENTARIO" utilizando JSON
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"comentario.json"})
+	public void buscarComentarioTest() {
+
+		Comentario registrado = entityManager.find(Comentario.class, 3);
+		Assert.assertEquals("comentario 3", registrado.getComentario());
+	}
+
+	/**
+	 * Actualizar en la tabla "COMENTARIO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"comentario.json"})
+	public void actualizarComentarioTest() {
+
+		Comentario c = entityManager.find(Comentario.class, 2);
+		c.setComentario("comentario actualizado");
+		entityManager.merge(c);
+	}
+
+	/**
+	 *Eliminar de la tabla "COMENTARIO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"comentario.json"})
+	public void eliminarComentarioTest() {
+
+		Comentario c = entityManager.find(Comentario.class, 2);
+		entityManager.remove(c);
+
+		c = entityManager.find(Comentario.class, 2);
+		Assert.assertNull(c);
+	}
+
+	//*************************************************************************************************************************************
+	//*****************************************************FAVORITO*******************************************************************
+	//*************************************************************************************************************************************
+
+	/**
+	 * Insertar en la tabla "FAVORITO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json","producto.json"})
+	public void insertarFavoritoTest() {
+
+		Usuario u = entityManager.find(Usuario.class, "6");
+		Producto p = entityManager.find(Producto.class, 2 );
+
+		Favorito f = new Favorito();
+		f.setId(1);
+		f.setProducto(p);
+		f.setUsuario(u);
+
+		entityManager.persist(f);
+
+		Favorito registrado = entityManager.find(Favorito.class, f.getId());
+		Assert.assertEquals(f, registrado);
+	}
+
+	/**
+	 * Buscar en la la tabla "FAVORITO" utilizando JSON
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"favorito.json"})
+	public void buscarFavoritoTest() {
+
+		Favorito registrado = entityManager.find(Favorito.class, 3);
+		Assert.assertEquals("7" , registrado.getUsuario().getCedula().toString());
+	}
+
+	/**
+	 * Actualizar en la tabla "FAVORITO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"favorito.json"})
+	public void actualizarFavoritoTest() {
+
+		Usuario u = entityManager.find(Usuario.class, "9");
+
+		Favorito f = entityManager.find(Favorito.class, 2);
+		f.setUsuario(u);
+		entityManager.merge(f);
+	}
+
+	/**
+	 *Eliminar de la tabla "FAVORITO"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"favorito.json"})
+	public void eliminarFavoritoTest() {
+
+		Favorito f = entityManager.find(Favorito.class, 3);
+		entityManager.remove(f);
+
+		f = entityManager.find(Favorito.class, 3);
+		Assert.assertNull(f);
+	}
+
+	//*************************************************************************************************************************************
+	//*******************************************************COMPRAS***********************************************************************
+	//*************************************************************************************************************************************
+
+	/**
+	 * Insertar en la tabla "COMPRA"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.COMMIT)
+	@UsingDataSet({"persona.json","producto.json"})
+	public void insertarCompraTest() {
+
+		Usuario u = entityManager.find(Usuario.class, "7");
+		Producto p = entityManager.find(Producto.class, 3 );
+
+		Compra c = new Compra();
+		c.setRef(1);
+		c.setMetodo_pago(FormaPago.paypal);
+		c.setFechaCompra(new Date());
+		c.setProducto(p);
+		c.setUsuario(u);
+
+		entityManager.persist(c);
+
+		Compra registrado = entityManager.find(Compra.class, c.getRef());
+		Assert.assertEquals(c, registrado);
+	}
+
+	/**
+	 * Buscar en la la tabla "COMPRA" utilizando JSON
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"compra.json",})
+	public void buscarCompraTest() {
+
+		Compra registrado = entityManager.find(Compra.class, 2);
+		Assert.assertEquals("paypal" , registrado.getMetodo_pago().toString());
+	}
+
+	/**
+	 * Actualizar en la tabla "COMPRA"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"compra.json"})
+	public void actualizarCompraTest() throws ParseException {
+
+		Compra c = entityManager.find(Compra.class, 2);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date d = sdf.parse("2019-10-02");
+		c.setFechaCompra(d);
+		entityManager.merge(c);
+	}
+
+	/**
+	 *Eliminar de la tabla "COMPRA"
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"compra.json"})
+	public void eliminarCompraTest() {
+
+		Compra c = entityManager.find(Compra.class, 2);
+		entityManager.remove(c);
+
+		c = entityManager.find(Compra.class, 2);
+		Assert.assertNull(c);
+	}
 }

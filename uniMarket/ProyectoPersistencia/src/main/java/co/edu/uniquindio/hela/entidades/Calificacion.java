@@ -25,11 +25,13 @@ public class Calificacion implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id",nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id",nullable = false, unique = true)
 	private int id;
+	
 	@Column(name = "valor")
 	private int valor;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Calificacion() {
@@ -60,5 +62,30 @@ public class Calificacion implements Serializable {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Calificacion other = (Calificacion) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Calificacion [usuario=" + usuario + ", producto=" + producto + ", id=" + id + ", valor=" + valor + "]";
+	}
+	
    
 }

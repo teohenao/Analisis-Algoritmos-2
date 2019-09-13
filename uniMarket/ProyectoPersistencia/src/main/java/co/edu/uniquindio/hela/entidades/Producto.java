@@ -42,8 +42,9 @@ public class Producto implements Serializable {
 
 	   
 	@Id
-	@Column(name = "id",nullable = false,unique = true)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id",nullable = false)
+	private int id;
 	
 	@Column(name = "nombre",nullable = false)
 	private String nombre;
@@ -54,6 +55,7 @@ public class Producto implements Serializable {
 	@Column(name = "disponibilidad",nullable = false)
 	private int disponibilidad;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "categoria",nullable = false)
 	private Categoria categoria;
 	
@@ -185,15 +187,9 @@ public class Producto implements Serializable {
 		return "Producto [compras=" + compras + ", usuario=" + usuario + ", Calificaciones=" + Calificaciones
 				+ ", Comentarios=" + Comentarios + ", Favoritos=" + Favoritos + ", id=" + id + ", nombre=" + nombre
 				+ ", descripcion=" + descripcion + ", disponibilidad=" + disponibilidad + ", categoria=" + categoria
-				+ ", precio=" + precio + ", fechaLimite=" + fechaLimite + ", imagenes=" + imagenes + ", getId()="
-				+ getId() + ", getNombre()=" + getNombre() + ", getDescripcion()=" + getDescripcion()
-				+ ", getDisponibilidad()=" + getDisponibilidad() + ", getImagenes()=" + getImagenes()
-				+ ", getCategoria()=" + getCategoria() + ", getCompras()=" + getCompras() + ", getUsuario()="
-				+ getUsuario() + ", getCalificaciones()=" + getCalificaciones() + ", getComentarios()="
-				+ getComentarios() + ", getFavoritos()=" + getFavoritos() + ", getPrecio()=" + getPrecio()
-				+ ", getFechaLimite()=" + getFechaLimite() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", precio=" + precio + ", fechaLimite=" + fechaLimite + ", imagenes=" + imagenes + "]";
 	}
+	
 	
 	
 	

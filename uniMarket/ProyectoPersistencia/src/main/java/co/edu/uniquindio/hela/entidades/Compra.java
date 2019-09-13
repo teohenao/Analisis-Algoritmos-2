@@ -29,7 +29,7 @@ public class Compra implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ref",nullable = false,unique = true )
 	private int ref;
 	
@@ -37,14 +37,11 @@ public class Compra implements Serializable {
 	@Column(name = "fechaCompra",nullable = false)
 	private Date fechaCompra;
 	
-	//@Id????
-	@ElementCollection
-	@Column(name = "carritoCompras")
-	private List<Producto> carritoCompras = new ArrayList<Producto>();
-	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "metodo_pago",nullable = false)
 	private FormaPago metodo_pago;
 	private static final long serialVersionUID = 1L;
+	
 
 	public Compra() {
 		super();
@@ -67,6 +64,38 @@ public class Compra implements Serializable {
 	}
 	public void setRef(int ref) {
 		this.ref = ref;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public Producto getProducto() {
+		return producto;
+	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ref;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Compra other = (Compra) obj;
+		if (ref != other.ref)
+			return false;
+		return true;
 	}
    
 }
