@@ -5,7 +5,6 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.*;
 
@@ -14,7 +13,16 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS, query = "select producto from Producto producto"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria like CONCAT('', :c, '')")
+	
+})
 public class Producto implements Serializable {
+	
+	public static final String LISTAR_PRODUCTOS = "ListarProductos";
+	public static final String LISTAR_PRODUCTOS_CATEGORIA = "ListarProductosCategoria";
+
 	
 	/**
 	 * Relaciones de la entidad Producto

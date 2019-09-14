@@ -45,9 +45,11 @@
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Usuario"/>
 <fullyQualifiedTypeName name="javax.persistence.ElementCollection"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.jboss.arquillian.persistence.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.jboss.arquillian.persistence.UsingDataSet"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Compra"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.FormaPago"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

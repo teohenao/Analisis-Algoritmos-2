@@ -11,7 +11,11 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
+@NamedQueries({
+	
+})
 public class Persona implements Serializable {
+	
 
 	   
 	@Id
