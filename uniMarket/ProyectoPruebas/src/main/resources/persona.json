@@ -17,6 +17,30 @@
 			"clave": "12345",
 			"numeroTelefonico":"3171112223",
 			"email": "daniel@gmail.com"
+		},{
+			"cedula": "3",
+			"tipo": "Administrador",
+			"nombreCompleto": "Ernesto fausto mendoza",
+			"direccion": "Calle 21 35-10",
+			"clave": "12345",
+			"numeroTelefonico":"31711554423",
+			"email": "ernesto@gmail.com"
+		},{
+			"cedula": "4",
+			"tipo": "Administrador",
+			"nombreCompleto": "Daniel Gonzales vallejo",
+			"direccion": "Las americas 12-9",
+			"clave": "12345",
+			"numeroTelefonico":"313311223",
+			"email": "danielg@gmail.com"
+		},{
+			"cedula": "5",
+			"tipo": "Administrador",
+			"nombreCompleto": "Gabriel hernandez ortiz",
+			"direccion": "Colinas 78-2",
+			"clave": "12345",
+			"numeroTelefonico":"3171112223",
+			"email": "gabriel@gmail.com"
 		},
 		{
 			"cedula": "6",

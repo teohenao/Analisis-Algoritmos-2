@@ -8,8 +8,15 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	
+	@NamedQuery(name = Calificacion.LISTAR_CALIFICACIONES_PRODUCTO, query = "select c from Calificacion c WHERE c.producto.id = :id")
 
+})
 public class Calificacion implements Serializable {
+	
+	public static final String LISTAR_CALIFICACIONES_PRODUCTO = "ListarCalificacionesProducto";
+
 	
 	/**
 	 * Relaciones de la entidad Calificacion

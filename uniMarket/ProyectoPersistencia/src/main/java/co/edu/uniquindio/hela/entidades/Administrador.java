@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
+ * @author Mateo Henao R
  * Entity implementation class for Entity: Administrador
  *
  */

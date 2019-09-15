@@ -10,8 +10,16 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	
+	@NamedQuery(name = Favorito.LISTAR_FAVORITOS_USUARIO, query = "select f from Favorito f WHERE f.usuario.cedula = CONCAT('', :cc, '')")
+
+})
 
 public class Favorito implements Serializable {
+	
+	public static final String LISTAR_FAVORITOS_USUARIO = "ListarFavoritosUsuario";
+
 
 	   
 	@Id

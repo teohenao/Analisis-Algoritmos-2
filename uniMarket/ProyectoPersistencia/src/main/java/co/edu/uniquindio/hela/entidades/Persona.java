@@ -16,7 +16,6 @@ import javax.persistence.*;
 })
 public class Persona implements Serializable {
 	
-
 	   
 	@Id
 	@Column(name = "cedula")

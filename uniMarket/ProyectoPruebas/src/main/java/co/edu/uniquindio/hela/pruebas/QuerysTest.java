@@ -21,6 +21,9 @@ import javax.persistence.TypedQuery;
 
 
 import co.edu.uniquindio.hela.entidades.Administrador;
+import co.edu.uniquindio.hela.entidades.Calificacion;
+import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -50,7 +53,7 @@ public class QuerysTest {
 		TypedQuery<Administrador> query = entityManager.createNamedQuery(Administrador.LISTAR_ADMINISTRADORES,Administrador.class);
 		List<Administrador> administrador = query.getResultList();
 		
-		Assert.assertEquals(administrador.size(), 2);
+		Assert.assertEquals(administrador.size(), 5);
 
 		System.out.println("----Listado de administradores-----\n");
 		for (Administrador a : administrador ) {
@@ -89,7 +92,7 @@ public class QuerysTest {
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS,Producto.class);
 		List<Producto> producto = query.getResultList();
 		
-		//Assert.assertEquals(producto.size(), 3);
+		Assert.assertEquals(producto.size(), 15);
 
 		System.out.println("----Listado de productos-----\n");
 		for (Producto p : producto ) {
@@ -98,7 +101,7 @@ public class QuerysTest {
 	}
 	
 	/**
-	 * Metodo de consulta que permite listar todos los productos con categoria tecnologia de la base de datos
+	 * Test de consulta que permite listar todos los productos con categoria tecnologia de la base de datos
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -109,13 +112,74 @@ public class QuerysTest {
 		query.setParameter("c", "moda");
 		List<Producto> producto = query.getResultList();
 
-		//Assert.assertEquals(producto.size(), 3);
+		Assert.assertEquals(producto.size(), 3);
 
-		System.out.println("----productos de tecnologia-----\n");
+		System.out.println("----productos de la categoria moda-----\n");
 		for (Producto p : producto ) {
 			System.out.println(p.getNombre());
 		}
 	}
+	
+	/**
+	 * Test de consulta que permite listar todos los comentarios de determinado producto
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "comentario.json","producto.json","persona.json" })
+	public void listarComentariosProductoTest() {
+
+		TypedQuery<Comentario> query = entityManager.createNamedQuery(Comentario.LISTAR_COMENTARIOS_PRODUCTO,Comentario.class);
+		query.setParameter("id", 4);
+		List<Comentario> comentarios = query.getResultList();
+
+		Assert.assertEquals(comentarios.size(), 2);
+
+		System.out.println("----comentarios del producto-----\n");
+		for (Comentario c : comentarios ) {
+			System.out.println(c.getId()+" comentario realizado por: " + c.getUsuario().getNombreCompleto());
+		}
+	}
+	
+	/**
+	 * Test de consulta que permite listar todos las calificaciones de determinado producto
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "calificacion.json","producto.json","persona.json" })
+	public void listarCalificacionesProductoTest() {
+
+		TypedQuery<Calificacion> query = entityManager.createNamedQuery(Calificacion.LISTAR_CALIFICACIONES_PRODUCTO,Calificacion.class);
+		query.setParameter("id", 3);
+		List<Calificacion> calificaciones = query.getResultList();
+
+		Assert.assertEquals(calificaciones.size(), 3);
+
+		System.out.println("----comentarios del producto-----\n");
+		for (Calificacion c : calificaciones ) {
+			System.out.println(c.getId()+" calificaion: "+ c.getValor() +"  realizado por: " + c.getUsuario().getNombreCompleto());
+		}
+	}
+	
+	/**
+	 * Test de consulta que permite listar todos las favoritos de determinada persona
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "favorito.json","producto.json","persona.json" })
+	public void listarFavoritosUsuarioTest() {
+
+		TypedQuery<Favorito> query = entityManager.createNamedQuery(Favorito.LISTAR_FAVORITOS_USUARIO,Favorito.class);
+		query.setParameter("cc", "6");
+		List<Favorito> favoritos = query.getResultList();
+
+		Assert.assertEquals(favoritos.size(), 5);
+
+		System.out.println("----productos favoritos de usuario -----\n");
+		for (Favorito f : favoritos ) {
+			System.out.println(" usuario: "+f.getUsuario().getNombreCompleto()+" favorito : "+f.getProducto().getNombre());
+		}
+	}
+	
 	
 	
 	

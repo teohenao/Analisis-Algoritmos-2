@@ -10,8 +10,15 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@NamedQueries({
+	
+	@NamedQuery(name = Comentario.LISTAR_COMENTARIOS_PRODUCTO, query = "select c from Comentario c WHERE c.producto.id = :id")
+	
+})
 public class Comentario implements Serializable {
+	
+	public static final String LISTAR_COMENTARIOS_PRODUCTO = "ListarComentariosProducto";
+
 	
 	/**
 	 * Relaciones de la entidad Comentario
@@ -63,6 +70,26 @@ public class Comentario implements Serializable {
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comentario other = (Comentario) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
    
 }

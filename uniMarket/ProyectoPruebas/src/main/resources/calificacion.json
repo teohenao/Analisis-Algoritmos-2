@@ -10,6 +10,21 @@
 		"PRODUCTO_id" : 3 ,
 		"USUARIO_cedula" : "8",
 		"Valor" : 4
+		},{
+		"id" : 3,
+		"PRODUCTO_id" : 1 ,
+		"USUARIO_cedula" : "8",
+		"Valor" : 4
+		},{
+		"id" : 4,
+		"PRODUCTO_id" : 3 ,
+		"USUARIO_cedula" : "10",
+		"Valor" : 3
+		},{
+		"id" : 5,
+		"PRODUCTO_id" : 3 ,
+		"USUARIO_cedula" : "6",
+		"Valor" : 1
 		}
 	]
 }
