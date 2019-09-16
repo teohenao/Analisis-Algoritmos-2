@@ -6,11 +6,12 @@ import java.util.Date;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Compras
- *
+ * @author Mateo Henao R
+ * Entidad Compra la cual contiene todo lo relevante a las compras realizadas por los usuarios
+ * @version 1.0
  */
-@Entity
 
+@Entity
 public class Compra implements Serializable {
 	
 	/**
@@ -24,20 +25,35 @@ public class Compra implements Serializable {
 	//Relacion de muchos a uno con producto
 	@ManyToOne
 	private Producto producto;
-
+	
+	/**
+	 * Atributos de la entidad Compra
+	 */
 	   
+	/**
+	 * Ref autoincrementable el cual identifica cada compra registrada en la base de datos
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ref",nullable = false,unique = true )
 	private int ref;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	/**
+	 * fechaCompra la cual guarda la fecha en la que fue realizada una compra en la aplicacion
+	 */
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaCompra",nullable = false)
 	private Date fechaCompra;
 	
+	/**
+	 * metodo_pago enum, el cual contiene los distintos metodos de pago que acepta la plataforma
+	 */
 	@Enumerated(EnumType.STRING)
 	@Column(name = "metodo_pago",nullable = false)
 	private FormaPago metodo_pago;
+	
+	
+	
 	private static final long serialVersionUID = 1L;
 	
 

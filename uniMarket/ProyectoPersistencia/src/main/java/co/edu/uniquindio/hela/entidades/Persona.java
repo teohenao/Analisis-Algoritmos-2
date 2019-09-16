@@ -5,31 +5,58 @@ import java.lang.String;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Persona
- *
+ * @author Mateo Henao R
+ * Clase padre de usuario y administrador
+ * @version 1.0
  */
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
-@NamedQueries({
-	
-})
 public class Persona implements Serializable {
 	
-	   
+	/**
+	 * Atributos de la clase Persona
+	 */
+	
+	/**
+	 * Cedula que identifica a cada persona registrada en la aplicacion 
+	 */
 	@Id
 	@Column(name = "cedula")
 	private String cedula;
+	
+	/**
+	 * nombre completo
+	 */
 	@Column(name = "nombreCompleto")
 	private String nombreCompleto;
+	
+	/**
+	 * Correo electronico
+	 */
 	@Column(name = "email")
 	private String email;
+	
+	/**
+	 * Contraseña con la cual ingresara a la aplicacion
+	 */
 	@Column(name = "clave")
 	private String clave;
+	
+	/**
+	 * Direccion de la persona 
+	 */
 	@Column(name = "direccion")
 	private String direccion;
+	
+	/**
+	 * numero telefonico de la persona registrada
+	 */
 	@Column(name="numeroTelefonico")
 	private String numeroTelefonico;
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	public Persona() {

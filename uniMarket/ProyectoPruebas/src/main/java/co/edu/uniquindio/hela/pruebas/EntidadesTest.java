@@ -30,6 +30,11 @@ import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 
+/**
+ * @author Mateo Henao R
+ * Clase de pruebas para el CRUD de entidades identificacdas en el proyecto unimarket
+ * @version 1.0
+ */
 @RunWith(Arquillian.class)
 public class EntidadesTest {
 
@@ -49,7 +54,7 @@ public class EntidadesTest {
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "ADMINISTRADOR"
+	 * Insertar en la tabla "ADMINISTRADOR"-----------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -62,15 +67,14 @@ public class EntidadesTest {
 		administrador.setNumeroTelefonico("31769965557");
 		administrador.setEmail("epa@gmail.com");
 		administrador.setClave("123");
-
 		entityManager.persist(administrador);
-
 		Administrador registrado = entityManager.find(Administrador.class, administrador.getCedula());
+		
 		Assert.assertEquals(administrador, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "ADMINISTRADOR" utilizando JSON
+	 * Buscar en la la tabla "ADMINISTRADOR" utilizando JSON-------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -78,11 +82,12 @@ public class EntidadesTest {
 	public void buscarAdministradorTest() {
 
 		Administrador registrado = entityManager.find(Administrador.class, "1");
+		
 		Assert.assertEquals("mateohenao@gmail.com", registrado.getEmail());
 	}
 
 	/**
-	 * Actualizar en la tabla "ADMINISTRADOR"
+	 * Actualizar en la tabla "ADMINISTRADOR"----------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -90,15 +95,16 @@ public class EntidadesTest {
 	public void actualizarAdministradorTest() {
 
 		Administrador administrador = entityManager.find(Administrador.class, "2");
-
 		administrador.setDireccion("direccion actualizada");
-
-		//merge sincroniza los datos a la tabla destino
 		entityManager.merge(administrador);
+		administrador = entityManager.find(Administrador.class, "2");
+		
+		Assert.assertEquals("direccion actualizada", administrador.getDireccion());
+
 	}
 
 	/**
-	 *Eliminar de la tabla "ADMINISTRADOR"
+	 *Eliminar de la tabla "ADMINISTRADOR"-------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -106,19 +112,20 @@ public class EntidadesTest {
 	public void eliminarAdministradorTest() {
 
 		Administrador administrador = entityManager.find(Administrador.class, "1");
-
 		entityManager.remove(administrador);
-
 		administrador = entityManager.find(Administrador.class, "1");
+		
 		Assert.assertNull(administrador);
 	}
 
+	
+	
 	//*************************************************************************************************************************************
 	//********************************************************USUARIO**********************************************************************
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "USUARIO"
+	 * Insertar en la tabla "USUARIO"------------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -131,15 +138,14 @@ public class EntidadesTest {
 		u.setNumeroTelefonico("31769543557");
 		u.setEmail("oskar@gmail.com");
 		u.setClave("123");
-
 		entityManager.persist(u);
-
 		Usuario registrado = entityManager.find(Usuario.class, u.getCedula());
+		
 		Assert.assertEquals(u, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "USUARIO" utilizando JSON
+	 * Buscar en la la tabla "USUARIO" utilizando JSON-------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -147,11 +153,12 @@ public class EntidadesTest {
 	public void buscarUsuarioTest() {
 
 		Usuario registrado = entityManager.find(Usuario.class, "6");
+		
 		Assert.assertEquals("andrea@gmail.com", registrado.getEmail());
 	}
 
 	/**
-	 * Actualizar en la tabla "USUARIO"
+	 * Actualizar en la tabla "USUARIO"----------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -161,11 +168,14 @@ public class EntidadesTest {
 		Usuario u = entityManager.find(Usuario.class, "6");
 		u.setDireccion("direccion actualizada");
 		entityManager.merge(u);
+		u = entityManager.find(Usuario.class, "6");
+		
+		Assert.assertEquals("direccion actualizada", u.getDireccion());
 
 	}
 
 	/**
-	 *Eliminar de la tabla "USUARIO"
+	 *Eliminar de la tabla "USUARIO"-------------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -173,19 +183,19 @@ public class EntidadesTest {
 	public void eliminarUsuarioTest() {
 
 		Usuario user = entityManager.find(Usuario.class, "7");
-
 		entityManager.remove(user);
-
 		user = entityManager.find(Usuario.class, "7");
+		
 		Assert.assertNull(user);
 	}
 
+	
 	//*************************************************************************************************************************************
-	//*****************************************************PRODUCTO*******************************************************************
+	//*****************************************************PRODUCTO************************************************************************
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "PRODUCTO"
+	 * Insertar en la tabla "PRODUCTO"-----------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -204,22 +214,16 @@ public class EntidadesTest {
 		p.setPrecio(12.400);
 		p.getImagenes().add("imagen1.png");
 		p.getImagenes().add("imagen2.png");
-
-		//List <String> img = new ArrayList<String>();
-		//img.add("imagen1.pbg");
-		//p.setImagenes(img);	
-
 		Usuario user = entityManager.find(Usuario.class, "7");
 		p.setUsuario(user);
-
 		entityManager.persist(p);
-
 		Producto registrado = entityManager.find(Producto.class, p.getId());
+		
 		Assert.assertEquals(p, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "PRODUCTO" utilizando JSON
+	 * Buscar en la la tabla "PRODUCTO" utilizando JSON------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -227,11 +231,12 @@ public class EntidadesTest {
 	public void buscarProductoTest() {
 
 		Producto registrado = entityManager.find(Producto.class , 3);
+		
 		Assert.assertEquals("moda", registrado.getCategoria().toString());
 	}
 
 	/**
-	 * Actualizar en la tabla "PRODUCTO"
+	 * Actualizar en la tabla "PRODUCTO"---------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -241,10 +246,14 @@ public class EntidadesTest {
 		Producto p = entityManager.find(Producto.class, 2);
 		p.setDisponibilidad(100);
 		entityManager.merge(p);
+		p = entityManager.find(Producto.class, 2);
+		
+		Assert.assertEquals(100, p.getDisponibilidad());
+
 	}
 
 	/**
-	 *Eliminar de la tabla "Producto"
+	 *Eliminar de la tabla "Producto"------------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -253,17 +262,20 @@ public class EntidadesTest {
 
 		Producto p = entityManager.find(Producto.class, 3);
 		entityManager.remove(p);
-
 		p = entityManager.find(Producto.class, 3);
+		
 		Assert.assertNull(p);
 	}
 
+	
+	
+	
 	//*************************************************************************************************************************************
-	//*****************************************************CALIFICACION*******************************************************************
+	//*****************************************************CALIFICACION********************************************************************
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "CALIFICACION"
+	 * Insertar en la tabla "CALIFICACION"-------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -272,21 +284,19 @@ public class EntidadesTest {
 
 		Usuario u = entityManager.find(Usuario.class, "9");
 		Producto p = entityManager.find(Producto.class, 3 );
-
 		Calificacion c = new Calificacion();
 		c.setId(1);
 		c.setProducto(p);
 		c.setUsuario(u);
 		c.setValor(5);
-
 		entityManager.persist(c);
-
 		Calificacion registrado = entityManager.find(Calificacion.class, c.getId());
+		
 		Assert.assertEquals(c, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "CALIFICACION" utilizando JSON
+	 * Buscar en la la tabla "CALIFICACION" utilizando JSON--------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -298,7 +308,7 @@ public class EntidadesTest {
 	}
 
 	/**
-	 * Actualizar en la tabla "CALIFICACION"
+	 * Actualizar en la tabla "CALIFICACION"-----------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -308,10 +318,13 @@ public class EntidadesTest {
 		Calificacion c = entityManager.find(Calificacion.class, 2);
 		c.setValor(3);
 		entityManager.merge(c);
+		c = entityManager.find(Calificacion.class, 2);
+		
+		Assert.assertEquals(3, c.getValor());
 	}
 
 	/**
-	 *Eliminar de la tabla "CALIFICACION"
+	 *Eliminar de la tabla "CALIFICACION"--------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -320,16 +333,19 @@ public class EntidadesTest {
 
 		Calificacion c = entityManager.find(Calificacion.class, 2);
 		entityManager.remove(c);
-
 		c = entityManager.find(Calificacion.class, 2);
+		
 		Assert.assertNull(c);
 	}
+	
+	
+	
 	//*************************************************************************************************************************************
-	//*****************************************************COMENTARIO*******************************************************************
+	//*****************************************************COMENTARIO**********************************************************************
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "COMENTARIO"
+	 * Insertar en la tabla "COMENTARIO"---------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -338,21 +354,19 @@ public class EntidadesTest {
 
 		Usuario u = entityManager.find(Usuario.class, "9");
 		Producto p = entityManager.find(Producto.class, 3 );
-
 		Comentario c = new Comentario();
 		c.setId(1);
 		c.setProducto(p);
 		c.setUsuario(u);
 		c.setComentario("este es el comentario de prueba");
-
 		entityManager.persist(c);
-
 		Comentario registrado = entityManager.find(Comentario.class, c.getId());
+		
 		Assert.assertEquals(c, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "COMENTARIO" utilizando JSON
+	 * Buscar en la la tabla "COMENTARIO" utilizando JSON----------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -360,11 +374,12 @@ public class EntidadesTest {
 	public void buscarComentarioTest() {
 
 		Comentario registrado = entityManager.find(Comentario.class, 3);
+		
 		Assert.assertEquals("comentario 3", registrado.getComentario());
 	}
 
 	/**
-	 * Actualizar en la tabla "COMENTARIO"
+	 * Actualizar en la tabla "COMENTARIO"-------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -374,10 +389,14 @@ public class EntidadesTest {
 		Comentario c = entityManager.find(Comentario.class, 2);
 		c.setComentario("comentario actualizado");
 		entityManager.merge(c);
+		c = entityManager.find(Comentario.class, 2);
+		
+		Assert.assertEquals("comentario actualizado", c.getComentario());
+		
 	}
 
 	/**
-	 *Eliminar de la tabla "COMENTARIO"
+	 *Eliminar de la tabla "COMENTARIO"----------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -386,17 +405,20 @@ public class EntidadesTest {
 
 		Comentario c = entityManager.find(Comentario.class, 2);
 		entityManager.remove(c);
-
 		c = entityManager.find(Comentario.class, 2);
+		
 		Assert.assertNull(c);
 	}
 
+	
+	
+	
 	//*************************************************************************************************************************************
-	//*****************************************************FAVORITO*******************************************************************
+	//*****************************************************FAVORITO************************************************************************
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "FAVORITO"
+	 * Insertar en la tabla "FAVORITO"-----------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -405,20 +427,18 @@ public class EntidadesTest {
 
 		Usuario u = entityManager.find(Usuario.class, "6");
 		Producto p = entityManager.find(Producto.class, 2 );
-
 		Favorito f = new Favorito();
 		f.setId(1);
 		f.setProducto(p);
 		f.setUsuario(u);
-
 		entityManager.persist(f);
-
 		Favorito registrado = entityManager.find(Favorito.class, f.getId());
+		
 		Assert.assertEquals(f, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "FAVORITO" utilizando JSON
+	 * Buscar en la la tabla "FAVORITO" utilizando JSON------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -426,26 +446,30 @@ public class EntidadesTest {
 	public void buscarFavoritoTest() {
 
 		Favorito registrado = entityManager.find(Favorito.class, 3);
+		
 		Assert.assertEquals("7" , registrado.getUsuario().getCedula().toString());
 	}
 
 	/**
-	 * Actualizar en la tabla "FAVORITO"
+	 * Actualizar en la tabla "FAVORITO"---------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"favorito.json"})
+	@UsingDataSet({"favorito.json","persona.json"})
 	public void actualizarFavoritoTest() {
 
 		Usuario u = entityManager.find(Usuario.class, "9");
-
 		Favorito f = entityManager.find(Favorito.class, 2);
 		f.setUsuario(u);
 		entityManager.merge(f);
+		u = entityManager.find(Usuario.class, "9");
+		
+		Assert.assertEquals("9" , f.getUsuario().getCedula().toString());
+
 	}
 
 	/**
-	 *Eliminar de la tabla "FAVORITO"
+	 *Eliminar de la tabla "FAVORITO"------------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -454,17 +478,19 @@ public class EntidadesTest {
 
 		Favorito f = entityManager.find(Favorito.class, 3);
 		entityManager.remove(f);
-
 		f = entityManager.find(Favorito.class, 3);
+		
 		Assert.assertNull(f);
 	}
 
+	
+	
 	//*************************************************************************************************************************************
 	//*******************************************************COMPRAS***********************************************************************
 	//*************************************************************************************************************************************
 
 	/**
-	 * Insertar en la tabla "COMPRA"
+	 * Insertar en la tabla "COMPRA"------------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.COMMIT)
@@ -473,22 +499,20 @@ public class EntidadesTest {
 
 		Usuario u = entityManager.find(Usuario.class, "7");
 		Producto p = entityManager.find(Producto.class, 3 );
-
 		Compra c = new Compra();
 		c.setRef(1);
 		c.setMetodo_pago(FormaPago.paypal);
 		c.setFechaCompra(new Date());
 		c.setProducto(p);
 		c.setUsuario(u);
-
 		entityManager.persist(c);
-
 		Compra registrado = entityManager.find(Compra.class, c.getRef());
+		
 		Assert.assertEquals(c, registrado);
 	}
 
 	/**
-	 * Buscar en la la tabla "COMPRA" utilizando JSON
+	 * Buscar en la la tabla "COMPRA" utilizando JSON--------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -496,26 +520,29 @@ public class EntidadesTest {
 	public void buscarCompraTest() {
 
 		Compra registrado = entityManager.find(Compra.class, 2);
+		
 		Assert.assertEquals("paypal" , registrado.getMetodo_pago().toString());
 	}
 
 	/**
-	 * Actualizar en la tabla "COMPRA"
+	 * Actualizar en la tabla "COMPRA"-----------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"compra.json"})
-	public void actualizarCompraTest() throws ParseException {
+	public void actualizarCompraTest(){
 
 		Compra c = entityManager.find(Compra.class, 2);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date d = sdf.parse("2019-10-02");
-		c.setFechaCompra(d);
+		c.setMetodo_pago(FormaPago.bitcoin);
 		entityManager.merge(c);
+		c = entityManager.find(Compra.class, 2);
+		
+		Assert.assertEquals("bitcoin" ,c.getMetodo_pago().toString() );
+
 	}
 
 	/**
-	 *Eliminar de la tabla "COMPRA"
+	 *Eliminar de la tabla "COMPRA"--------------------------------------------------------------------------------------------------------
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -524,8 +551,10 @@ public class EntidadesTest {
 
 		Compra c = entityManager.find(Compra.class, 2);
 		entityManager.remove(c);
-
 		c = entityManager.find(Compra.class, 2);
+		
 		Assert.assertNull(c);
+		
 	}
+	
 }

@@ -4,17 +4,21 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Calificacion
- *
+ * @author Mateo Henao R
+ * Entidad calificacion que contiene las calificaciones que le dan los usuarios a cierto producto
+ * @version 1.0
  */
 @Entity
 @NamedQueries({
-	
+	/**
+	 * Consulta que nos permite listar todas las calificaciones que los usuarios le han dado a determinado producto
+	 */
 	@NamedQuery(name = Calificacion.LISTAR_CALIFICACIONES_PRODUCTO, query = "select c from Calificacion c WHERE c.producto.id = :id")
 
 })
 public class Calificacion implements Serializable {
 	
+	//Constante que identifica la consulta de listar las calificaciones de cierto producto
 	public static final String LISTAR_CALIFICACIONES_PRODUCTO = "ListarCalificacionesProducto";
 
 	
@@ -30,14 +34,25 @@ public class Calificacion implements Serializable {
 	@ManyToOne
 	private Producto producto;
 
+	/**
+	 * Atributos de la entidad Calificacion
+	 */
 	   
+	/**
+	 * Id autoincrementable de cada calificacion registrada en la base de datos
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id",nullable = false, unique = true)
 	private int id;
 	
+	/**
+	 * valor de la calificacion que el usuario le dio a cierto producto seleccionado
+	 */
 	@Column(name = "valor")
 	private int valor;
+	
+	
 	
 	private static final long serialVersionUID = 1L;
 

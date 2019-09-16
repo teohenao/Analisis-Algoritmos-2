@@ -9,19 +9,79 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Producto
- *
+ * @author Mateo Henao R
+ * Entidad producto la cual contiene todo lo relevante a los productos de la plataforma
+ * @version 1.0
  */
 @Entity
 @NamedQueries({
+	/**
+	 * Consulta la cual permite listar todos los productos registrados en la base de datos
+	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS, query = "select producto from Producto producto"),
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria like CONCAT('', :c, '')")
+	/**
+	 * Consulta la cual permite listar todos los productos que se encuentran con fecha activa en la base de datos
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS, query = "select p from Producto p where p.fechaLimite >=  CONCAT('', :fechaActual, '')"),
+	/**
+	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por categoria
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  CONCAT('', :fechaActual, '')) AND (p.categoria like CONCAT('', :c, ''))"),
+	/**
+	 * Consulta la cual permite listar todos los productos que se encuentran vencidos "su fecha ya paso" registrados en la base de datos
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS, query = "select p from Producto p where p.fechaLimite <  CONCAT('', :fechaActual, '')"),
+	/**
+	 * Consulta la cual nos permite listar todos los productos registrados en la base de datos, por categoria esten o no activos
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria like CONCAT('', :c, '')"),
+	/**
+	 * Consulta la cual nos permite listar los productos que ha insertado cierto usuario
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_USUARIO, query = "select p from Producto p where p.usuario.cedula =:cc"),
+	/**
+	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por categoria
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite <  CONCAT('', :fechaActual, '')) AND (p.categoria like CONCAT('', :c, ''))"),
+	/**
+	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por el usuario creador
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_USUARIO, query = "select p from Producto p where (p.fechaLimite >=  CONCAT('', :fechaActual, '')) AND (p.usuario.cedula =:cc)"),
+	/**
+	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por usuario creador
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_USUARIO, query = "select p from Producto p where (p.fechaLimite <  CONCAT('', :fechaActual, '')) AND (p.usuario.cedula =:cc)")
+	
+	
+	
+
 	
 })
 public class Producto implements Serializable {
 	
+	//Constante que identifica la consulta que lista todos los productos registrados
 	public static final String LISTAR_PRODUCTOS = "ListarProductos";
+	//Constante que identifica la consulta que lista todos los productos que se encuentran con fecha activa en la plataforma
+	public static final String LISTAR_PRODUCTOS_ACTIVOS = "ListarProductosActivos";
+	//Constante que identifica la consulta que lista todos los productos vencidos de la base de datos
+	public static final String LISTAR_PRODUCTOS_VENCIDOS = "ListarProductosVencidos";
+	//Constante que identifica la consulta que lista todos los productos de cierta categoria
 	public static final String LISTAR_PRODUCTOS_CATEGORIA = "ListarProductosCategoria";
+	//Constante que identifica la consulta que lista todos los productos activos de cierta categoria
+	public static final String LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA = "ListarProductosActivosCategoria";
+	//Constante que identifica la consulta que lista todos los productos vencidos de cierta categoria
+	public static final String LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA = "ListarProductosVencidosCategoria";
+	//Constante que identifica la consulta que lista todos los productos de determinado usuario
+	public static final String LISTAR_PRODUCTOS_USUARIO = "ListarProductosUsuario";
+	//Constante que identifica la consulta que lista todos los productos activos de cierto Usuario
+	public static final String LISTAR_PRODUCTOS_ACTIVOS_USUARIO = "ListarProductosActivosUsuario";
+	//Constante que identifica la consulta que lista todos los productos vencidos de cierto Usuario
+	public static final String LISTAR_PRODUCTOS_VENCIDOS_USUARIO = "ListarProductosVencidosUsuario";
+
+	
+	
+
+
 
 	
 	/**
@@ -48,36 +108,63 @@ public class Producto implements Serializable {
 	@OneToMany(mappedBy = "producto")
 	private List<Favorito> Favoritos;
 
+	/**
+	 * Atributos de Producto
+	 */
 	   
+	/**
+	 * Id autoincrementable el cual identifica cada producto registrado en la base de datos
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id",nullable = false)
 	private int id;
 	
+	/**
+	 * Nombre del producto
+	 */
 	@Column(name = "nombre",nullable = false)
 	private String nombre;
 	
+	/**
+	 * Descripcion del producto
+	 */
 	@Column(name = "descripcion",nullable = false)
 	private String descripcion;
 	
+	/**
+	 * Disponibilidad del producto
+	 */
 	@Column(name = "disponibilidad",nullable = false)
 	private int disponibilidad;
 	
+	/**
+	 * Categorida del producto
+	 */
 	@Enumerated(EnumType.STRING)
 	@Column(name = "categoria",nullable = false)
 	private Categoria categoria;
 	
+	/**
+	 * Precio del producto
+	 */
 	@Column(name = "precio",nullable = false)
 	private Double precio;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	/**
+	 * Fecha limite del producto, la cual define si esta activo o no
+	 */
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaLimite")
 	private Date fechaLimite;
 	
-	
+	/**
+	 * Lista de imagenes de un producto, Crea tabla con las imagenes
+	 */
 	@ElementCollection
 	@Column(name = "imagenes")
 	private List<String> imagenes = new ArrayList<String>();
+	
 	
 	
 	private static final long serialVersionUID = 1L;

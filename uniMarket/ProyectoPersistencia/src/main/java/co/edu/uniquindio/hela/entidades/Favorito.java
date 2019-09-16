@@ -6,32 +6,50 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Favorito
- *
+ * @author Mateo Henao R
+ * Entidad Favorito la cual contiene todo lo relevante a los productos favoritos de un usuario
+ * @version 1.0
  */
 @Entity
 @NamedQueries({
-	
+	/**
+	 * Consulta la cual nos permite listar todos los productos favoritos de un usuario
+	 */
 	@NamedQuery(name = Favorito.LISTAR_FAVORITOS_USUARIO, query = "select f from Favorito f WHERE f.usuario.cedula = CONCAT('', :cc, '')")
 
 })
 
 public class Favorito implements Serializable {
 	
+	//constante que nos permite identificar la consulta de listar favoritos de un usuario
 	public static final String LISTAR_FAVORITOS_USUARIO = "ListarFavoritosUsuario";
 
-
+	
+	/**
+	 * Relaciones de la entidad Favorito
+	 */
 	   
+	//Relacion de muchos a uno con la entidad usuario
+	@ManyToOne
+	private Usuario usuario;
+	
+	//Relacion de muchos a uno con la entidad de producto
+	@ManyToOne
+	private Producto producto;
+	
+	/**
+	 * Atributos de la entidad Favorito
+	 */
+	
+	/**
+	 * Id autoincrementable el cual identifica cada favorito agregado en la base de datos
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id",nullable = false, unique = false)
 	private int id;
 	
-	@ManyToOne
-	private Usuario usuario;
 	
-	@ManyToOne
-	private Producto producto;
 	private static final long serialVersionUID = 1L;
 
 	public Favorito() {

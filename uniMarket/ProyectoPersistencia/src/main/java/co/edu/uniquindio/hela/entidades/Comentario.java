@@ -6,17 +6,21 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Comentario
- *
+ * @author Mateo Henao R
+ * Entidad comentario la cual contiene todo lo relevante a los comentarios que realizan los usuarios sobre determinado producto
+ * @version 1.0
  */
 @Entity
 @NamedQueries({
-	
+	/**
+	 * Consulta que permite listar todos los comentarios que ha recibido un producto por medio de los usuarios
+	 */
 	@NamedQuery(name = Comentario.LISTAR_COMENTARIOS_PRODUCTO, query = "select c from Comentario c WHERE c.producto.id = :id")
 	
 })
 public class Comentario implements Serializable {
 	
+	//constante que identifica la consulta de listar los comentarios de un producto
 	public static final String LISTAR_COMENTARIOS_PRODUCTO = "ListarComentariosProducto";
 
 	
@@ -32,14 +36,24 @@ public class Comentario implements Serializable {
 	@ManyToOne
 	private Producto producto;
 
-	   
+	/**
+	 * Atributos de la entidad Comentario 
+	 */
+	
+	/**
+	 * Id autoincrementable que identifica cada comentario registrado en la base de datos
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id",nullable = false)
 	private int id;
 	
+	/**
+	 * comentario que el usuario realiza a algun producto
+	 */
 	@Column(name = "comentario",nullable = false)
 	private String comentario;
+	
 	
 	private static final long serialVersionUID = 1L;
 
