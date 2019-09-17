@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.persistence.Temporal"/>
-<fullyQualifiedTypeName name="javax.persistence.TemporalType"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.prueba.entidades.Genero"/>
 <fullyQualifiedTypeName name="javax.validation.constraints.Size.List"/>
 <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
@@ -28,11 +27,8 @@
 <fullyQualifiedTypeName name="org.junit.Assert"/>
 <fullyQualifiedTypeName name="javax.persistence.DiscriminatorColumn"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Administrador"/>
-<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Producto"/>
 <fullyQualifiedTypeName name="javax.persistence.Column"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Categoria"/>
-<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="org.apache.poi.hssf.record.formula.functions.Usdollar"/>
 <fullyQualifiedTypeName name="javax.persistence.Query"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Persona"/>
@@ -50,6 +46,15 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.jboss.arquillian.persistence.UsingDataSet"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Compra"/>
-<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.FormaPago"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Comentario"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Calificacion"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Favorito"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Producto"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="javax.persistence.TemporalType"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.FormaPago"/>
 </qualifiedTypeNameHistroy>

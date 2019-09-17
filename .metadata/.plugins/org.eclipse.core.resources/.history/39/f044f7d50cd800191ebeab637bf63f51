@@ -1,0 +1,10 @@
+package co.edu.uniquindio.hela.entidades;
+/**
+ * 
+ * @author Mateo Henao R
+ *
+ */
+
+public enum FormaPago {
+	efectivo,tarjeta,paypal,bitcoin
+}

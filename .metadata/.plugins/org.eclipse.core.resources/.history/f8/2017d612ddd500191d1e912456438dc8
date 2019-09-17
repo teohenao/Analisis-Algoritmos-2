@@ -1,0 +1,21 @@
+{
+	"COMENTARIO":[
+		{
+		"id" : 1,
+		"comentario" : "este es el primer comentario del producto",
+		"PRODUCTO_id" : 1,
+		"USUARIO_cedula" : "8"
+		},{
+		"id" : 2,
+		"comentario" : "este es el segundo comentario del producto",
+		"PRODUCTO_id" : 3,
+		"USUARIO_cedula" : "9"
+		},{
+		"id" : 1,
+		"comentario" : "este es el primer comentario del producto",
+		"PRODUCTO_id" : 1,
+		"USUARIO_cedula" : "8"
+		}
+		
+	]
+}

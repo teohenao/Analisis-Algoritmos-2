@@ -354,7 +354,7 @@ public class QuerysTest {
 		Assert.assertEquals(productos.size(), 1);
 
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("----productos activos por usuario -----\n");
+		System.out.println("----productos vencidos por usuario -----\n");
 		for (Producto p: productos ) {
 			System.out.println("producto "+p.getNombre()+" con fecha que se vencio en "+dateFormat.format(p.getFechaLimite()));
 		}		System.out.println("\n");

@@ -1,0 +1,13 @@
+{
+	"CALIFICACION":[
+		{
+		"PRODUCTO_id" : 1 ,
+		"USUARIO_cedula" : "7",
+		"Valor" : 5
+		},{
+		"PRODUCTO_id" : 3 ,
+		"USUARIO_cedula" : "8",
+		"Valor" : 5
+		}
+	]
+}

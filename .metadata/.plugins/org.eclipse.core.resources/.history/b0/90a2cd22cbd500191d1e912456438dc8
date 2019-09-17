@@ -1,0 +1,13 @@
+{
+	"PRODUCTO":[
+		{
+		"nombre" : "celular1",
+		"descripcion" : "esta melo caramelo este celular",
+		"fechaLimite" : "2019-10-12",
+		"categoria" : "tecnologia",
+		"precio" : 12.000,
+		"USUARIO_CEDULA" :"6",
+		"disponibilidad" : 19
+		}
+	]
+}

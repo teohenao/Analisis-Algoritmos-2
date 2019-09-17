@@ -1,0 +1,56 @@
+{
+	"PRODUCTO":[
+		{
+		"id" : 1,
+		"nombre" : "celular1",
+		"descripcion" : "esta melo caramelo este celular",
+		"fechaLimite" : "2019-10-12",
+		"categoria" : "tecnologia",
+		"precio" : 12.000,
+		"USUARIO_CEDULA" :"6",
+		"disponibilidad" : 19
+		},{
+		"id" : 2,
+		"nombre" : "balon1",
+		"descripcion" : "esta melo caramelo este balon",
+		"fechaLimite" : "2019-11-12",
+		"categoria" : "deporte",
+		"precio" : 12.000,
+		"USUARIO_CEDULA" :"8",
+		"disponibilidad" : 12
+		},{
+		"id" : 3,
+		"nombre" : "vestido1",
+		"descripcion" : "esta melo caramelo este vestido",
+		"fechaLimite" : "2019-11-20",
+		"categoria" : "moda",
+		"precio" : 120.000,
+		"USUARIO_CEDULA" :"10",
+		"disponibilidad" : 100
+		}{
+		"id" : 4,
+		"nombre" : "celular2",
+		"descripcion" : "esta melo caramelo este celular2",
+		"fechaLimite" : "2019-10-11",
+		"categoria" : "tecnologia",
+		"precio" : 12.900,
+		"USUARIO_CEDULA" :"8",
+		"disponibilidad" : 19
+		},{
+		"id" : 5,
+		"nombre" : "celular3",
+		"descripcion" : "esta melo caramelo este celular3",
+		"fechaLimite" : "2019-10-13",
+		"categoria" : "tecnologia",
+		"precio" : 13.000,
+		"USUARIO_CEDULA" :"7",
+		"disponibilidad" : 20
+		},
+	],
+	"PRODUCTO_IMAGENES" : [
+		{
+		"Producto_id" : 1,
+		"imagenes" : "ruta/imagenJson1.png"
+		}
+	]
+}

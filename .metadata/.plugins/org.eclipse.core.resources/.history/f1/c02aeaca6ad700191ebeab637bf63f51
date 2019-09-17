@@ -1,0 +1,37 @@
+{
+	"FAVORITO":[
+		{
+		"id" : 1,
+		"PRODUCTO_id" : 1,
+		"USUARIO_cedula" : "8"
+		},{
+		"id" : 2,
+		"PRODUCTO_id" : 2,
+		"USUARIO_cedula" : "8"
+		},{
+		"id" : 3,
+		"PRODUCTO_id" : 9,
+		"USUARIO_cedula" : "7"
+		},{
+		"id" : 4,
+		"PRODUCTO_id" : 10,
+		"USUARIO_cedula" : "7"
+		},{
+		"id" : 5,
+		"PRODUCTO_id" : 8,
+		"USUARIO_cedula" : "6"
+		},{
+		"id" : 6,
+		"PRODUCTO_id" : 9,
+		"USUARIO_cedula" : "6"
+		},{
+		"id" : 7,
+		"PRODUCTO_id" : 10,
+		"USUARIO_cedula" : "6"
+		},{
+		"id" : 8,
+		"PRODUCTO_id" : 11,
+		"USUARIO_cedula" : "6"
+		}
+	]
+}

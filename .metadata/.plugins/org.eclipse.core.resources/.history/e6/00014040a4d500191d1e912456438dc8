@@ -1,0 +1,8 @@
+package co.edu.uniquindio.hela.entidades;
+
+public class FavoritoPK {
+
+	private Usuario usuario;
+	private Producto producto;
+	
+}

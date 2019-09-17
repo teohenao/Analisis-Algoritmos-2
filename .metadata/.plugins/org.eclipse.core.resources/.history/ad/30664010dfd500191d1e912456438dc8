@@ -1,0 +1,12 @@
+{
+	"FAVORITO":[
+		{
+		"PRODUCTO_id" : 1,
+		"USUARIO_cedula" : "8"
+		},
+		{
+		"PRODUCTO_id" : 2,
+		"USUARIO_cedula" : "8"
+		}
+	]
+}

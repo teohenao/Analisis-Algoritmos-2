@@ -1,0 +1,114 @@
+package co.edu.uniquindio.hela.entidades;
+
+import java.io.Serializable;
+import java.lang.String;
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Persona
+ *
+ */
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo")
+@NamedQueries({
+	
+	@NamedQuery(name = Persona.LISTAR_ADMINISTRADORES, query = "select COUNT(ADMINISTRADOR) from Administrador administrador")
+	
+})
+public class Persona implements Serializable {
+	
+	public static final String LISTAR_ADMINISTRADORES = "ListarAdministradores";
+
+	   
+	@Id
+	@Column(name = "cedula")
+	private String cedula;
+	@Column(name = "nombreCompleto")
+	private String nombreCompleto;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "clave")
+	private String clave;
+	@Column(name = "direccion")
+	private String direccion;
+	@Column(name="numeroTelefonico")
+	private String numeroTelefonico;
+	private static final long serialVersionUID = 1L;
+
+	public Persona() {
+		super();
+	}   
+	public String getCedula() {
+		return this.cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}   
+	public String getNombreCompleto() {
+		return this.nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}   
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}   
+	public String getClave() {
+		return this.clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
+	}   
+	public String getDireccion() {
+		return this.direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}   
+	public String getNumeroTelefonico() {
+		return this.numeroTelefonico;
+	}
+
+	public void setNumeroTelefonico(String numeroTelefonico) {
+		this.numeroTelefonico = numeroTelefonico;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cedula == null) ? 0 : cedula.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		if (cedula == null) {
+			if (other.cedula != null)
+				return false;
+		} else if (!cedula.equals(other.cedula))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Persona [cedula=" + cedula + ", nombreCompleto=" + nombreCompleto + ", email=" + email + ", clave="
+				+ clave + ", direccion=" + direccion + ", numeroTelefonico=" + numeroTelefonico + "]";
+	}
+   
+}

@@ -1,0 +1,5 @@
+package co.edu.uniquindio.hela.entidades;
+
+public class FormaPago {
+
+}

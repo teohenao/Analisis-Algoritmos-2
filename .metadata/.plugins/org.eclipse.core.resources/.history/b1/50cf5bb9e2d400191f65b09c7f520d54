@@ -1,0 +1,9 @@
+{
+	"COMPRA":[
+		{
+		"comentario" : "este es el primer comentario del producto",
+		"PRODUCTO_id" : 1,
+		"USUARIO_cedula" : "8"
+		}
+	]
+}

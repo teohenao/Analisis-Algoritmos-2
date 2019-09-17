@@ -1,0 +1,14 @@
+{
+	"CALIFICACION":[
+		{
+		"nombre" : "celular1",
+		"descripcion" : "esta melo caramelo este celular",
+		"fechaLimite" : "2019-10-12",
+		"categoria" : "deporte",
+		"precio" : "12.000",
+		"imagen" : "/documentos/imagenes/celular1.png",
+		"USUARIO_cedula" :"6",
+		"disponibilidad" : 19
+		}
+	]
+}
