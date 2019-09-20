@@ -1,0 +1,54 @@
+package co.edu.uniquindio.hela.entidades;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: DetalleCompra
+ *
+ */
+@Entity
+
+public class DetalleCompra implements Serializable {
+	
+	//Relacion de muchos a uno con producto
+	@ManyToOne
+	private Producto producto;
+	
+	//Relacion de muchos a uno con producto
+	@ManyToOne
+	private Producto producto;
+
+	   
+	@Id
+	private int id;
+	private int cantidad;
+	private Double precio;
+	private static final long serialVersionUID = 1L;
+
+	public DetalleCompra() {
+		super();
+	}   
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}   
+	public int getCantidad() {
+		return this.cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}   
+	public Double getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+   
+}

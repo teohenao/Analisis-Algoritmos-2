@@ -1,0 +1,25 @@
+{
+	"COMPRA":[
+		{
+		"ref": 1,
+		"fechaCompra" : "2019-10-09",
+		"metodo_pago" : "bitcoin",
+		"USUARIO_cedula" : "8"
+		},{
+		"ref": 2,
+		"fechaCompra" : "2019-11-03",
+		"metodo_pago" : "paypal",
+		"USUARIO_cedula" : "7"
+		},{
+		"ref": 3,
+		"fechaCompra" : "2019-11-06",
+		"metodo_pago" : "bitcoin",
+		"USUARIO_cedula" : "7"
+		},{
+		"ref": 4,
+		"fechaCompra" : "2019-10-03",
+		"metodo_pago" : "bitcoin",
+		"USUARIO_cedula" : "10"
+		}
+	]
+}

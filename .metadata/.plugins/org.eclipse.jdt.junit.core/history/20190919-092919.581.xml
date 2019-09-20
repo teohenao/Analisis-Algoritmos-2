@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="QuerysTest" project="ProyectoPruebas" tests="18" started="18" failures="0" errors="0" ignored="0">
+  <testsuite name="co.edu.uniquindio.hela.pruebas.QuerysTest" time="39.972">
+    <testcase name="listarProductosVencidosCategoriaTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="3.589"/>
+    <testcase name="listarDetallesCompraTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="2.311"/>
+    <testcase name="listarComprasTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="0.689"/>
+    <testcase name="listarProductosUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="2.857"/>
+    <testcase name="listarCalificacionFinalProductoTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="0.455"/>
+    <testcase name="listarUsuariosTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.728"/>
+    <testcase name="listarCategoriaProductoTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.782"/>
+    <testcase name="listarComprasUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.662"/>
+    <testcase name="listarProductosTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.073"/>
+    <testcase name="listarProductosVencidosTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.343"/>
+    <testcase name="listarAdministradoresTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.783"/>
+    <testcase name="listarProductosActivosCategoriaTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.168"/>
+    <testcase name="listarProductosActivosUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.204"/>
+    <testcase name="listarComentariosProductoTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="3.318"/>
+    <testcase name="listarProductosVencidosUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.048"/>
+    <testcase name="listarFavoritosUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="2.705"/>
+    <testcase name="listarProductosActivosTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="1.228"/>
+    <testcase name="listarCalificacionesProductoTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="10.029"/>
+  </testsuite>
+</testrun>

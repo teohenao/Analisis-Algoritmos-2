@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="QuerysTest.listarComprasUsuarioTest" project="ProyectoPruebas" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="listarComprasUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.QuerysTest" time="14.928"/>
+</testrun>

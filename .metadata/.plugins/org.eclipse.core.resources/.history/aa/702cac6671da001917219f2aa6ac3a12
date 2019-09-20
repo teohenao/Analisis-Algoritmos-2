@@ -1,0 +1,35 @@
+{
+	"DETALLECOMPRA":[
+		{
+		"id": 1,
+		"cantidad" : 10,
+		"precio" : 12.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 1
+		},{
+		"id": 2,
+		"cantidad" : 4,
+		"precio" : 14.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 2
+		},{
+		"id": 3,
+		"cantidad" : 9,
+		"precio" : 15.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 3
+		},{
+		"id": 4,
+		"cantidad" : 20,
+		"precio" : 16.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 5
+		},{
+		"id": 5,
+		"cantidad" : 8,
+		"precio" : 19.000,
+		"COMPRA_ref" : 2,
+		"PRODUCTO_id" : 5
+		}
+	]
+}

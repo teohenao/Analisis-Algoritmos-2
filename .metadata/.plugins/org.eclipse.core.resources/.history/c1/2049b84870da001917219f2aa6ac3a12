@@ -1,0 +1,94 @@
+package co.edu.uniquindio.hela.entidades;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: DetalleCompra
+ *
+ */
+@Entity
+
+public class DetalleCompra implements Serializable {
+	
+	//Relacion de muchos a uno con producto
+	@ManyToOne
+	private Producto producto;
+	
+	//Relacion de muchos a uno con compra
+	@ManyToOne
+	private Compra compra;
+
+	   
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id",nullable = false,unique = true )
+	private int id;
+	private int cantidad;
+	private Double precio;
+	private static final long serialVersionUID = 1L;
+
+	public DetalleCompra() {
+		super();
+	}   
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}   
+	public int getCantidad() {
+		return this.cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}   
+	public Double getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+	public Producto getProducto() {
+		return producto;
+	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+	public Compra getCompra() {
+		return compra;
+	}
+	public void setCompra(Compra compra) {
+		this.compra = compra;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DetalleCompra other = (DetalleCompra) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "DetalleCompra [producto=" + producto + ", compra=" + compra + ", id=" + id + ", cantidad=" + cantidad
+				+ ", precio=" + precio + "]";
+	}
+	
+   
+}

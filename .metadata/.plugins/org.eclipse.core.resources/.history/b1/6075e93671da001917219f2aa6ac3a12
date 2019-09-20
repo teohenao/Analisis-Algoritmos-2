@@ -1,0 +1,28 @@
+{
+	"DETALLECOMPRA":[
+		{
+		"id": 1,
+		"cantidad" : 10,
+		"precio" : 12.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 1
+		},{
+		"id": 2,
+		"cantidad" : 4,
+		"precio" : 14.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 2
+		},{
+		"id": 3,
+		"cantidad" : 9,
+		"precio" : 15.000,
+		"COMPRA_ref" : 1,
+		"PRODUCTO_id" : 3
+		},{
+		"ref": 4,
+		"fechaCompra" : "2019-10-03",
+		"metodo_pago" : "bitcoin",
+		"USUARIO_cedula" : "9"
+		}
+	]
+}

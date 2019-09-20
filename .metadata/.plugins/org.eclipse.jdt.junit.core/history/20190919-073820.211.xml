@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="EntidadesTest (2)" project="ProyectoPruebas" tests="32" started="32" failures="0" errors="0" ignored="0">
+  <testsuite name="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="48.672">
+    <testcase name="actualizarCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="4.043"/>
+    <testcase name="actualizarFavoritoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="2.177"/>
+    <testcase name="insertarFavoritoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="2.573"/>
+    <testcase name="insertarDetalleCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.678"/>
+    <testcase name="eliminarCalificacionTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.687"/>
+    <testcase name="insertarComentarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="4.836"/>
+    <testcase name="buscarCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.489"/>
+    <testcase name="actualizarProductoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.298"/>
+    <testcase name="insertarProductoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="2.102"/>
+    <testcase name="insertarUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.148"/>
+    <testcase name="buscarCalificacionTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.544"/>
+    <testcase name="eliminarAdministradorTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.246"/>
+    <testcase name="actualizarAdministradorTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="2.151"/>
+    <testcase name="actualizarUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="2.624"/>
+    <testcase name="buscarComentarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.466"/>
+    <testcase name="insertarCalificacionTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="2.63"/>
+    <testcase name="eliminarDetalleCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.451"/>
+    <testcase name="buscarUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.336"/>
+    <testcase name="eliminarComentarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.519"/>
+    <testcase name="eliminarCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.348"/>
+    <testcase name="actualizarDetalleCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.491"/>
+    <testcase name="buscarAdministradorTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.26"/>
+    <testcase name="buscarFavoritoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.53"/>
+    <testcase name="eliminarFavoritoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.552"/>
+    <testcase name="actualizarCalificacionTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.385"/>
+    <testcase name="buscarProductoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.026"/>
+    <testcase name="buscarDetalleCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.637"/>
+    <testcase name="actualizarComentarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.565"/>
+    <testcase name="insertarCompraTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.335"/>
+    <testcase name="eliminarProductoTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="1.114"/>
+    <testcase name="insertarAdministradorTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="0.108"/>
+    <testcase name="eliminarUsuarioTest" classname="co.edu.uniquindio.hela.pruebas.EntidadesTest" time="8.322"/>
+  </testsuite>
+</testrun>
