@@ -13,17 +13,24 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual nos permite listar los detalles que tiene determinada compra
 	 */
-	@NamedQuery(name = DetalleCompra.LISTAR_DETALLES_COMPRA, query = "select dc from DetalleCompra dc where dc.compra.ref =:ref")
-	
+	@NamedQuery(name = DetalleCompra.LISTAR_DETALLES_COMPRA, query = "select dc from DetalleCompra dc where dc.compra.ref =:ref"),
+	/**
+	 * Consulta la cual nos permite listar los 5 productos mas vendidos en unimarket
+	 */
+	@NamedQuery(name = DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, query = "select dc.producto.id ,SUM(dc.cantidad) AS total from DetalleCompra dc GROUP BY dc.producto.id ORDER BY total DESC")
+
 })
 public class DetalleCompra implements Serializable {
-	
+
 	/**
 	 * Constantes que identifican las consultas de DetalleCompra
 	 */
 
 	//Constante que identifica la consulta que lista todos los detalles de una compra
 	public static final String LISTAR_DETALLES_COMPRA = "ListarDetallesCompra";
+
+	//Constante que identifica la consulta que listar los 5 productos mas vendidos
+	public static final String LISTAR_5PRODUCTOS_MAS_VENDIDOS = "Listar5ProductosMasVendidos";
 
 	/**
 	 * Relaciones de la entidad Detalle Compra

@@ -75,12 +75,6 @@ public class Compra implements Serializable {
 	@Column(name = "metodo_pago",nullable = false)
 	private FormaPago metodo_pago;
 
-	/**
-	 * Total de toda la compra realizada por el ususario 
-	 */
-	@Column(name = "totalPago",nullable = false)
-	private Double totalPago;
-
 
 	private static final long serialVersionUID = 1L;
 
@@ -120,12 +114,7 @@ public class Compra implements Serializable {
 	public void setDetalleCompras(List<DetalleCompra> detalleCompras) {
 		DetalleCompras = detalleCompras;
 	}
-	public Double getTotalPago() {
-		return totalPago;
-	}
-	public void setTotalPago(Double totalPago) {
-		this.totalPago = totalPago;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,7 +138,7 @@ public class Compra implements Serializable {
 	@Override
 	public String toString() {
 		return "Compra [usuario=" + usuario + ", DetalleCompras=" + DetalleCompras + ", ref=" + ref + ", fechaCompra="
-				+ fechaCompra + ", metodo_pago=" + metodo_pago + ", totalPago=" + totalPago + "]";
+				+ fechaCompra + ", metodo_pago=" + metodo_pago + "]";
 	}
 
 }

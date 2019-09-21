@@ -66,7 +66,8 @@ public class QuerysTest {
 		query.setParameter("clave", "123456789");
 		Object registrado = query.getSingleResult();
 
-		System.out.println(registrado);
+		Assert.assertNotNull(registrado);
+
 	}
 	
 	
@@ -155,7 +156,7 @@ public class QuerysTest {
 	public void listarCategoriaProductoTest() {
 
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CATEGORIA,Producto.class);
-		query.setParameter("c", "moda");
+		query.setParameter("c", Categoria.moda);
 		List<Producto> producto = query.getResultList();
 
 		Assert.assertEquals(producto.size(), 3);
@@ -306,7 +307,7 @@ public class QuerysTest {
 		
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA,Producto.class);
 		query.setParameter("fechaActual",new Date());
-		query.setParameter("c", Categoria.moda.toString());
+		query.setParameter("c", Categoria.moda);
 		List<Producto> productos = query.getResultList();
 
 		Assert.assertEquals(productos.size(), 2);
@@ -324,7 +325,7 @@ public class QuerysTest {
 		
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA,Producto.class);
 		query.setParameter("fechaActual",new Date());
-		query.setParameter("c",Categoria.tecnologia.toString());
+		query.setParameter("c",Categoria.tecnologia);
 		List<Producto> productos = query.getResultList();
 
 		Assert.assertEquals(productos.size(), 2);
@@ -413,6 +414,24 @@ public class QuerysTest {
 
 		Assert.assertEquals(detallesCompra.size(), 4);
 
+		
+	}
+	
+	/**
+	 * Test de consulta que permite listar 5 productos mas vendidos de unimarket
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"detalleCompra.json", "compra.json", "producto.json", "persona.json"})
+	public void listar5MasVendidos() {
+		
+		TypedQuery<Object[]> query = entityManager.createNamedQuery(DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, Object[].class);
+		query.setMaxResults(3);
+		Assert.assertEquals(5,query.getResultList().get(0)[0]);
+		
+//		for (Object[] objeto : query.getResultList()) {
+//			System.out.println( objeto[0]+" "+objeto[1] );
+//		}
 		
 	}
 	

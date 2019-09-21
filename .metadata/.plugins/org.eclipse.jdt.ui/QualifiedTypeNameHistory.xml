@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.persistence.Temporal"/>
-<fullyQualifiedTypeName name="co.edu.uniquindio.prueba.entidades.Genero"/>
-<fullyQualifiedTypeName name="javax.validation.constraints.Size.List"/>
-<fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
-<fullyQualifiedTypeName name="javax.validation.constraints.Size"/>
 <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
 <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.prueba.entidades.Persona"/>
@@ -16,7 +11,6 @@
 <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
 <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
 <fullyQualifiedTypeName name="org.eclipse.persistence.jpa.jpql.Assert"/>
-<fullyQualifiedTypeName name="javax.persistence.TypedQuery"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Compras"/>
 <fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
 <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
@@ -28,7 +22,6 @@
 <fullyQualifiedTypeName name="javax.persistence.DiscriminatorColumn"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Administrador"/>
 <fullyQualifiedTypeName name="javax.persistence.Column"/>
-<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Categoria"/>
 <fullyQualifiedTypeName name="org.apache.poi.hssf.record.formula.functions.Usdollar"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Persona"/>
 <fullyQualifiedTypeName name="org.junit.Before"/>
@@ -44,8 +37,6 @@
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.jboss.arquillian.persistence.UsingDataSet"/>
-<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Compra"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Comentario"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Favorito"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Producto"/>
@@ -58,4 +49,15 @@
 <fullyQualifiedTypeName name="org.apache.derby.impl.sql.catalog.SYSPERMSRowFactory"/>
 <fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Calificacion"/>
 <fullyQualifiedTypeName name="javax.persistence.Query"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Compra"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.DetalleCompra"/>
+<fullyQualifiedTypeName name="co.edu.uniquindio.hela.entidades.Categoria"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="java.math.RoundingMode"/>
+<fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.persistence.NamedQuery"/>
+<fullyQualifiedTypeName name="java.text.NumberFormat"/>
+<fullyQualifiedTypeName name="javax.persistence.TypedQuery"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
 </qualifiedTypeNameHistroy>

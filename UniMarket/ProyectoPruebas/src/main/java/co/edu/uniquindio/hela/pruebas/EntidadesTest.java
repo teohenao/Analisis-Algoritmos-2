@@ -504,7 +504,6 @@ public class EntidadesTest {
 		c.setRef(1);
 		c.setMetodo_pago(FormaPago.paypal);
 		c.setFechaCompra(new Date());
-		c.setTotalPago(120.000);
 		c.setUsuario(u);
 		entityManager.persist(c);
 		Compra registrado = entityManager.find(Compra.class, c.getRef());

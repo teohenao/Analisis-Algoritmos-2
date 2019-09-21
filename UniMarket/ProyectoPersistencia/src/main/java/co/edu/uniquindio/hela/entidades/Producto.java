@@ -26,7 +26,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por categoria
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  :fechaActual ) AND (p.categoria like CONCAT('', :c, '') )"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  :fechaActual ) AND (p.categoria =:c)"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos "su fecha ya paso" registrados en la base de datos
 	 */
@@ -34,7 +34,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual nos permite listar todos los productos registrados en la base de datos, por categoria esten o no activos
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria like CONCAT('', :c, '')"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria =:c"),
 	/**
 	 * Consulta la cual nos permite listar los productos que ha insertado cierto usuario
 	 */
@@ -42,7 +42,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por categoria
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.categoria like CONCAT('', :c, ''))"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.categoria = :c)"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por el usuario creador
 	 */
