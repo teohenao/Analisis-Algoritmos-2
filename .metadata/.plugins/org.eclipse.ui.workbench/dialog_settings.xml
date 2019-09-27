@@ -17,14 +17,10 @@
 		<item key="DIALOG_Y_ORIGIN" value="8"/>
 	</section>
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.file"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.folder"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.ui.Basic"/>
 			<item value="org.eclipse.jdt.ui.java"/>
-			<item value="org.eclipse.jdt.ui.java/org.eclipse.jdt.debug.ui.java"/>
-			<item value="org.eclipse.wst.jsdt.ui.java"/>
-			<item value="org.eclipse.jpt.jaxb"/>
-			<item value="org.eclipse.jpt.jpa"/>
 		</list>
 	</section>
 	<section name="ImportExportAction">
@@ -41,6 +37,7 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\Mateo Henao R\Desktop\UnimarketHeLa.zip"/>
 			<item value="C:\Users\Mateo Henao R\Desktop\hela.zip"/>
 			<item value="D:\UniMarket\unimerketa.zip"/>
 		</list>

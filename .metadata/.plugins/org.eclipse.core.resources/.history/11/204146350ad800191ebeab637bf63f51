@@ -1,9 +1,0 @@
-package co.edu.uniquindio.hela.entidades;
-/**
- * 
- * @author Mateo Henao R
- *
- */
-public enum Categoria {
-	tecnologia,deporte,moda,libros,joyas
-}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:controller="co.edu.uniquindio.hela.controlador.InicioSesionController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="545.0" stylesheets="@../utilidades/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="351.0" prefWidth="294.0">
+         <children>
+            <Label layoutX="6.0" prefHeight="42.0" prefWidth="255.0" text="UniMarket" textFill="#651515">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="105.0" text="INICIO SESIÓN" textFill="#2c1b1b">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelUsuario" layoutX="7.0" layoutY="147.0" style="-fx-color: #FDFEFE;" text="Administrador">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAdministrador" layoutX="3.0" layoutY="167.0" prefHeight="25.0" prefWidth="186.0" promptText="Numero de documento" />
+            <Label fx:id="LabelContrasena" layoutX="5.0" layoutY="198.0" text="Contraseña" textFill="#0a0a0a" />
+            <PasswordField fx:id="txtClave" layoutX="3.0" layoutY="215.0" prefHeight="25.0" prefWidth="186.0" promptText="Contraseña" />
+            <Button fx:id="btnIniciarSesion" layoutX="3.0" layoutY="252.0" mnemonicParsing="false" onAction="#IniciarSesion" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: #FFFFFF;" text="Iniciar Sesion" textFill="#171616" />
+            <Hyperlink fx:id="recuperarContrasena" layoutX="14.0" layoutY="285.0" onAction="#RecuperarContrasena" text="¿Has olvidado tu contraseña?" textFill="#141313" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

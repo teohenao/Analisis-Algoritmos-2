@@ -16,25 +16,35 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los usuarios registrados en la base de datos
 	 */
-	@NamedQuery(name = Usuario.LISTAR_USUARIOS, query = "select USUARIO from Usuario usuario")
+	@NamedQuery(name = Usuario.LISTAR_USUARIOS, query = "select USUARIO from Usuario usuario"),
+	@NamedQuery(name = Usuario.BUSCAR_POR_CEDULA, query = "select usuario from Usuario usuario where usuario.cedula = :cedula"),
+	/**
+	 * Consulta que nos permite obtener usuario al cual le pertenecen el email y clave
+	 */
+	@NamedQuery(name = Usuario.OBTENER_USER_EMAIL_CLAVE, query = "select user from Usuario user where user.email=:email and user.clave =:clave")
 
 })
 public class Usuario extends Persona implements Serializable {
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Calificacion> calificaciones;
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Compra> compras;
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Favorito> favoritos;
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Producto> productos;
-	
+
 	//constante que identifica la consulta que lista todos los usuarios
 	public static final String LISTAR_USUARIOS = "ListarUsuarios";
+
+	//constante que identifica la consulta de usuario por email y clave
+	public static final String OBTENER_USER_EMAIL_CLAVE = "ObtenerUserEmailClave";
+	//constante que identifica la consulta de buscar un usuario por cedula
+	public static final String BUSCAR_POR_CEDULA = "BuscarUserCedula";
 
 
 	private static final long serialVersionUID = 1L;
@@ -80,8 +90,8 @@ public class Usuario extends Persona implements Serializable {
 		return "Usuario [calificaciones=" + calificaciones + ", compras=" + compras + ", favoritos=" + favoritos
 				+ ", productos=" + productos + "]";
 	}
-	
-	
-	
-   
+
+
+
+
 }

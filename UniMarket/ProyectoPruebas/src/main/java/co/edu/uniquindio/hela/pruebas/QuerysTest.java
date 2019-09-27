@@ -1,6 +1,8 @@
 package co.edu.uniquindio.hela.pruebas;
 
 
+import static org.junit.Assert.assertEquals;
+
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +54,21 @@ public class QuerysTest {
 				.addAsResource("persistenceForTest.xml","META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
+	/**
+	 * Test de consulta que permite encontrar a una persona por medio del email.
+	 */
+	@Test
+ 	@Transactional(value = TransactionMode.ROLLBACK)
+ 	@UsingDataSet({ "persona.json"})
+ 	public void obtenerPersonaEmail() {
+ 
+		TypedQuery<Persona> query = entityManager.createNamedQuery(Persona.PERSONA_POR_EMAIL,Persona.class);
+ 		query.setParameter("email", "andrea@gmail.com");
+ 		Persona persona = query.getSingleResult();
+
+ 		assertEquals(persona.getCedula(), "6");
+	}
+	
 	
 	/**
 	 * Test de consulta que permite obtener la persona con email y clave
@@ -64,6 +81,39 @@ public class QuerysTest {
 		Query query = entityManager.createNamedQuery(Persona.OBTENER_PERSONA_EMAIL_CLAVE);
 		query.setParameter("email", "gabriel@gmail.com");
 		query.setParameter("clave", "123456789");
+		Object registrado = query.getSingleResult();
+
+		Assert.assertNotNull(registrado);
+
+	}
+
+	/**
+	 * Test de consulta que permite obtener la administrador con email y clave
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "persona.json" })
+	public void obtenerAdministradorEmailClaveTest() {
+
+		Query query = entityManager.createNamedQuery(Administrador.OBTENER_ADMIN_EMAIL_CLAVE);
+		query.setParameter("email", "danielg@gmail.com");
+		query.setParameter("clave", "12345");
+		Object registrado = query.getSingleResult();
+
+		Assert.assertNotNull(registrado);
+
+	}
+	/**
+	 * Test de consulta que permite obtener usuario con email y clave
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "persona.json" })
+	public void obtenerUsuarioEmailClaveTest() {
+
+		Query query = entityManager.createNamedQuery(Usuario.OBTENER_USER_EMAIL_CLAVE);
+		query.setParameter("email", "andrea@gmail.com");
+		query.setParameter("clave", "12345");
 		Object registrado = query.getSingleResult();
 
 		Assert.assertNotNull(registrado);
@@ -385,7 +435,7 @@ public class QuerysTest {
 
 
 	/**
-	 * Test de consulta que permite listar todos los productos de determinado Usuario
+	 * Test de consulta que permite listar las compras de determinado usuario
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -401,7 +451,7 @@ public class QuerysTest {
 	}
 	
 	/**
-	 * Test de consulta que permite listar todos los productos de determinado Usuario
+	 * Test de consulta que permite listar todos los detalles qued eterminada compra
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
@@ -423,10 +473,11 @@ public class QuerysTest {
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"detalleCompra.json", "compra.json", "producto.json", "persona.json"})
-	public void listar5MasVendidos() {
+	public void listarTopProductosTest() {
 		
 		TypedQuery<Object[]> query = entityManager.createNamedQuery(DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, Object[].class);
 		query.setMaxResults(3);
+		
 		Assert.assertEquals(5,query.getResultList().get(0)[0]);
 		
 //		for (Object[] objeto : query.getResultList()) {
@@ -435,24 +486,6 @@ public class QuerysTest {
 		
 	}
 	
-	/**
-	 * Punto 3 del taller, obtener informacion de persona
-	 */
-	@Test
-	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"persona.json"})
-	public void obtenerPersonaTallerTest() {
 		
-		Query query = entityManager.createQuery("select p from Persona p where p.cedula=:cc ");
-		query.setParameter("cc", "2");
-		Object resultado = query.getSingleResult();
-
-		Assert.assertNotNull(resultado);
-		
-	}
-		
-	
-
-
 
 }

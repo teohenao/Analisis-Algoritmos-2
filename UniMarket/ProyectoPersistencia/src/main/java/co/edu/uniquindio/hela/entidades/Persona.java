@@ -19,7 +19,13 @@ import javax.persistence.*;
 	/**
 	 * Consulta que nos permite obtener la persona a la cual le pertenecen el email y clave
 	 */
-	@NamedQuery(name = Persona.OBTENER_PERSONA_EMAIL_CLAVE, query = "select p from Persona p where p.email =:email and p.clave =:clave")
+	@NamedQuery(name = Persona.OBTENER_PERSONA_EMAIL_CLAVE, query = "select p from Persona p where p.email =:email and p.clave =:clave"),
+	/**
+	 * Consulta que nos permite obtener una persona por medio del email
+	 */
+	@NamedQuery(name = Persona.PERSONA_POR_EMAIL, query = "select persona from Persona persona where persona.email=:email"),
+	@NamedQuery(name = Persona.PERSONAS_EMAIL_EN_USO, query = "select persona from Persona persona where persona.email=:email AND persona.cedula !=:cedula ")
+
 
 })
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -30,8 +36,9 @@ public class Persona implements Serializable {
 	public static final String LISTAR_PERSONAS = "ListarPersonas";
 	//constante que identifica la consulta que obtiene persona por email y clave
 	public static final String OBTENER_PERSONA_EMAIL_CLAVE = "ObtenerPersonaEmailClave";
-
-
+	//constante que identifica la consulta que obtiene una persona por medio del email
+	public static final String PERSONA_POR_EMAIL = "PersonaEmail";
+	public static final String PERSONAS_EMAIL_EN_USO = "PersonasEmailEnUso";
 	/**
 	 * Atributos de la clase Persona
 	 */
@@ -52,19 +59,19 @@ public class Persona implements Serializable {
 	/**
 	 * Correo electronico
 	 */
-	@Column(name = "email",length = 20,nullable = false)
+	@Column(name = "email",length = 50,nullable = false,unique = true)
 	private String email;
 
 	/**
 	 * Contraseña con la cual ingresara a la aplicacion
 	 */
-	@Column(name = "clave",length = 10,nullable = false)
+	@Column(name = "clave",length = 20,nullable = false)
 	private String clave;
 
 	/**
 	 * Direccion de la persona 
 	 */
-	@Column(name = "direccion",length = 20,nullable = false)
+	@Column(name = "direccion",length = 80,nullable = false)
 	private String direccion;
 
 	/**

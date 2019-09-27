@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\Mateo Henao R\eclipse-workspace\UniMarket"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">
-		<list key="ciManagementUrl">
-		</list>
-		<list key="ciManagementSystem">
-		</list>
-		<list key="issueManagementSystem">
-		</list>
-		<list key="issueManagementUrl">
-		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.dependencies">
 	</section>
-	<section name="MavenProjectWizardLocationPage">
-		<list key="location">
+	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
+		<item key="width" value="480"/>
+		<item key="height" value="531"/>
+		<item key="x" value="443"/>
+		<item key="y" value="17"/>
+	</section>
+	<section name="MavenModuleWizardParentPage">
+		<list key="moduleName">
+			<item value="ProyectoWeb"/>
+			<item value="ProyectoEscritorio"/>
+			<item value="ProyectoNegocio"/>
+			<item value="ProyectoEAR"/>
+			<item value="ProyectoPruebas"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -25,6 +41,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -36,13 +53,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="org.ProyectoPruebas"/>
+			<item value="org.ProyectoWeb"/>
 		</list>
 		<list key="groupId">
-			<item value="co.edu.uniquindio.hela.co"/>
+			<item value="co.edu.uniquindio.hela"/>
 		</list>
 		<list key="artifactId">
-			<item value="ProyectoPruebas"/>
+			<item value="ProyectoWeb"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -58,19 +75,13 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="co.edu.uniquindio.hela.co"/>
+			<item value="co.edu.uniquindio.hela"/>
 		</list>
 		<list key="name">
-			<item value="Proyecto Pruebas"/>
-			<item value="Persistencia"/>
-			<item value="Proyecto padre UniMarket"/>
 		</list>
 		<list key="artifactId">
-			<item value="ProyectoPruebas"/>
+			<item value="ProyectoWeb"/>
 			<item value="UniMarket"/>
-			<item value="ProyectoPersistencia"/>
-			<item value="Persistencia"/>
-			<item value="uniMarket"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -82,41 +93,6 @@
 		</list>
 		<list key="version">
 			<item value="0.0.1-SNAPSHOT"/>
-		</list>
-	</section>
-	<section name="MavenModuleWizardParentPage">
-		<list key="moduleName">
-			<item value="ProyectoPruebas"/>
-			<item value="ProyectoPersistencia"/>
-			<item value="Persistencia"/>
-			<item value="Pruebas"/>
-		</list>
-		<list key="projectNameTemplate">
-			<item value="[artifactId]"/>
-			<item value="[artifactId]-TRUNK"/>
-			<item value="[artifactId]-[version]"/>
-			<item value="[groupId].[artifactId]"/>
-			<item value="[groupId].[artifactId]-[version]"/>
-			<item value="[name]"/>
-		</list>
-	</section>
-	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
-		<item key="width" value="480"/>
-		<item key="height" value="531"/>
-		<item key="x" value="676"/>
-		<item key="y" value="18"/>
-	</section>
-	<section name="MavenProjectImportWizardPage">
-		<list key="rootDirectory">
-			<item value="C:\Users\Mateo Henao R\eclipse-workspace\uniMarket"/>
-		</list>
-		<list key="projectNameTemplate">
-			<item value="[artifactId]"/>
-			<item value="[artifactId]-TRUNK"/>
-			<item value="[artifactId]-[version]"/>
-			<item value="[groupId].[artifactId]"/>
-			<item value="[groupId].[artifactId]-[version]"/>
-			<item value="[name]"/>
 		</list>
 	</section>
 </section>
