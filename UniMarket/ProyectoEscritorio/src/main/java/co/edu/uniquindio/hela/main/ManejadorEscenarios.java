@@ -1,6 +1,7 @@
 package co.edu.uniquindio.hela.main;
 import java.io.IOException;
 
+import co.edu.uniquindio.hela.controlador.DetalleProductoController;
 import co.edu.uniquindio.hela.controlador.GestionController;
 import co.edu.uniquindio.hela.controlador.ProductosController;
 import co.edu.uniquindio.hela.controlador.UsuariosController;
@@ -9,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -111,7 +114,7 @@ public class ManejadorEscenarios {
 			e.printStackTrace();
 		}
 	}
-	
+
 	
 	/**
 	 * Se encarga de mostrar el escenario de Productos registrados en la base de datos para el administrador
@@ -136,6 +139,9 @@ public class ManejadorEscenarios {
 			e.printStackTrace();
 		}
 	}
+	
+	
+
 
 
 

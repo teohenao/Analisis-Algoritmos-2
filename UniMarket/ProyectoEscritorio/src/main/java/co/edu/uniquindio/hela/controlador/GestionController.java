@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class GestionController implements Initializable {
 
@@ -42,6 +43,8 @@ public class GestionController implements Initializable {
 
 	@FXML
 	void salir(ActionEvent event) {
+	Stage stage = (Stage) btnSalir.getScene().getWindow();
+	stage.close();
 		
 	}
 
