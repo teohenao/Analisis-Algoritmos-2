@@ -1,5 +1,6 @@
 package co.edu.uniquindio.hela.ejb;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -202,6 +203,63 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
+	
+	/**
+	 * Listar todos los productos vencidos de la base de datos
+	 * @return List Productos Vencidos
+	 */
+	public List<Producto> listarProductosVencidos() {
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS, Producto.class);
+		query.setParameter("fechaActual",new Date());
+		return query.getResultList();
+	}
+	
+	/**
+	 * Listar todos los productos activos de la base de datos
+	 * @return List Productos Vencidos
+	 */
+	public List<Producto> listarProductosActivos() {
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS, Producto.class);
+		query.setParameter("fechaActual",new Date());
+		return query.getResultList();
+	}
+	
+	public List<Producto> listarProductosActivosCategoria(String categoria){
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, Producto.class);
+		query.setParameter("fechaActual",new Date());
+		query.setParameter("c", categoria);
+		
+		return query.getResultList();
+	}
+	public List<Producto> listarProductosVencidosCategoria(String categoria){
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, Producto.class);
+		query.setParameter("fechaActual",new Date());
+		query.setParameter("c", categoria);
+		
+		return query.getResultList();
+	}
+	
+	public List<Producto> listarProductosCategoria(String categoria){
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CATEGORIA, Producto.class);
+		query.setParameter("c", categoria);
+		
+		return query.getResultList();
+	}
+	
+	public List<Producto> listarProductosNombre(String nombreProducto){
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE, Producto.class);
+		query.setParameter("nombre","%"+nombreProducto+"%");	
+		
+		return query.getResultList();
+	}
+	
+	public List<Producto> listarProductosUsuario(String ccUsuario){
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_USUARIO, Producto.class);
+		query.setParameter("cc",ccUsuario);	
+		
+		return query.getResultList();
+	}
+	
 
 
 

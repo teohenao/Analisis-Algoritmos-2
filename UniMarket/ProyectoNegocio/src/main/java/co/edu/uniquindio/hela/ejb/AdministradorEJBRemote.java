@@ -45,6 +45,13 @@ public interface AdministradorEJBRemote {
 	public Administrador buscarAdministradorEnvioCorreo(String cedula) throws InformacionInexistenteExcepcion;	
 	
 	public List<Producto> listarProductos() ;
+	public List<Producto> listarProductosActivos();
+	public List<Producto> listarProductosVencidos();
+	public List<Producto> listarProductosVencidosCategoria(String categoria);
+	public List<Producto> listarProductosActivosCategoria(String categoria);
+	public List<Producto> listarProductosCategoria(String categoria);
+	public List<Producto> listarProductosNombre(String nombreProducto);
+	public List<Producto> listarProductosUsuario(String ccUsuario);
 
 
 }

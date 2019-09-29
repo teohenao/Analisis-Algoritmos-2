@@ -29,8 +29,8 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: C6D4CC;">
                            <children>
-                              <ComboBox fx:id="comboEstado" layoutX="476.0" layoutY="7.0" onAction="#comboEstadoProducto" prefHeight="25.0" prefWidth="112.0" promptText="ESTADO" />
-                              <ComboBox fx:id="comboCategoria" layoutX="358.0" layoutY="7.0" onAction="#comboCategoriaProducto" prefHeight="25.0" prefWidth="112.0" promptText="CATEGORIA" />
+                              <ComboBox fx:id="comboEstado" layoutX="476.0" layoutY="7.0" prefHeight="25.0" prefWidth="112.0" promptText="estado" />
+                              <ComboBox fx:id="comboCategoria" layoutX="358.0" layoutY="7.0" prefHeight="25.0" prefWidth="112.0" promptText="categoria" />
                               <TextField fx:id="txtBuscarUsuario" layoutX="188.0" layoutY="7.0" prefHeight="25.0" prefWidth="104.0" promptText="Cedula Usuario" />
                               <Button fx:id="btnBuscarProductoUsuario" layoutX="298.0" layoutY="7.0" mnemonicParsing="false" onAction="#buscarProductoUsuario" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #61a493;" text="Buscar" textFill="WHITE">
                                  <font>

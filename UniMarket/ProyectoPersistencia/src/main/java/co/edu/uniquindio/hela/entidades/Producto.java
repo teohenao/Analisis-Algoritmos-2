@@ -16,6 +16,10 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	/**
+	 * Consulta la cual permite listar los productos por medio del nombre 
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE, query = "select producto from Producto producto where producto.nombre LIKE :nombre "),
+	/**
 	 * Consulta la cual permite listar todos los productos registrados en la base de datos
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS, query = "select producto from Producto producto"),
@@ -26,7 +30,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por categoria
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  :fechaActual ) AND (p.categoria =:c)"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  :fechaActual ) AND (p.categoria =CONCAT ('',:c,''))"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos "su fecha ya paso" registrados en la base de datos
 	 */
@@ -34,7 +38,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual nos permite listar todos los productos registrados en la base de datos, por categoria esten o no activos
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria =:c"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CATEGORIA, query = "select p from Producto p where p.categoria = CONCAT ('',:c,'')"),
 	/**
 	 * Consulta la cual nos permite listar los productos que ha insertado cierto usuario
 	 */
@@ -42,7 +46,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por categoria
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.categoria = :c)"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.categoria = CONCAT ('',:c,''))"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por el usuario creador
 	 */
@@ -58,7 +62,6 @@ public class Producto implements Serializable {
 	/**
 	 * Constantes que identifican las consultas de Producto
 	 */
-	
 	//Constante que identifica la consulta que lista todos los productos registrados
 	public static final String LISTAR_PRODUCTOS = "ListarProductos";
 	//Constante que identifica la consulta que lista todos los productos que se encuentran con fecha activa en la plataforma
@@ -77,6 +80,8 @@ public class Producto implements Serializable {
 	public static final String LISTAR_PRODUCTOS_ACTIVOS_USUARIO = "ListarProductosActivosUsuario";
 	//Constante que identifica la consulta que lista todos los productos vencidos de cierto Usuario
 	public static final String LISTAR_PRODUCTOS_VENCIDOS_USUARIO = "ListarProductosVencidosUsuario";
+	
+	public static final String LISTAR_PRODUCTOS_NOMBRE = "ListarProductosNombres";
 
 	/**
 	 * Relaciones de la entidad Producto

@@ -79,6 +79,35 @@ public static AdministradorDelegado administradorDelegado = instancia();
 		return administradorEJB.listarProductos();
 	}
 
+	public List<Producto> listarProductosActivos() {
+		return administradorEJB.listarProductosActivos();
+	}
+
+	public List<Producto> listarProductosVencidos() {
+		return administradorEJB.listarProductosVencidos();
+	}
+
+	public List<Producto> listarProductosVencidosCategoria(String categoria) {
+		return administradorEJB.listarProductosVencidosCategoria(categoria);
+	}
+
+	public List<Producto> listarProductosActivosCategoria(String categoria) {
+		return administradorEJB.listarProductosActivosCategoria(categoria);
+	}
+
+	public List<Producto> listarProductosCategoria(String categoria) {
+		return administradorEJB.listarProductosCategoria(categoria);
+	}
+
+	public List<Producto> listarProductosNombre(String nombreProducto) {
+		return administradorEJB.listarProductosNombre(nombreProducto);
+	}
+
+	public List<Producto> listarProductosUsuario(String ccUsuario) {
+		return administradorEJB.listarProductosUsuario(ccUsuario);
+	}
+	
+
 	
 
 

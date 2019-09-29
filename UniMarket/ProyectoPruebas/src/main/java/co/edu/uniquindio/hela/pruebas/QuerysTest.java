@@ -206,7 +206,7 @@ public class QuerysTest {
 	public void listarCategoriaProductoTest() {
 
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CATEGORIA,Producto.class);
-		query.setParameter("c", Categoria.moda);
+		query.setParameter("c", "moda");
 		List<Producto> producto = query.getResultList();
 
 		Assert.assertEquals(producto.size(), 3);
@@ -357,10 +357,26 @@ public class QuerysTest {
 		
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA,Producto.class);
 		query.setParameter("fechaActual",new Date());
-		query.setParameter("c", Categoria.moda);
+		query.setParameter("c", "moda");
 		List<Producto> productos = query.getResultList();
 
 		Assert.assertEquals(productos.size(), 2);
+
+	}
+	
+
+
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "producto.json"})
+	public void listarProductosNombreTest() {
+
+		
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE,Producto.class);
+		query.setParameter("nombre","%"+"celular"+"%");
+		List<Producto> productos = query.getResultList();
+
+		Assert.assertEquals(productos.size(), 3);
 
 	}
 
@@ -375,7 +391,7 @@ public class QuerysTest {
 		
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA,Producto.class);
 		query.setParameter("fechaActual",new Date());
-		query.setParameter("c",Categoria.tecnologia);
+		query.setParameter("c","tecnologia");
 		List<Producto> productos = query.getResultList();
 
 		Assert.assertEquals(productos.size(), 2);
