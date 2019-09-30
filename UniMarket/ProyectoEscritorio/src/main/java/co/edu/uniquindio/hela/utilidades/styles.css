@@ -17,3 +17,7 @@
 	-fx-background-image:url('fondoP.jpg');
 	-fx-background-size:cover,auto;
 }
+.paneDT{
+	-fx-background-image:url('fondoDP.jpg');
+	-fx-background-size:cover,auto;
+}

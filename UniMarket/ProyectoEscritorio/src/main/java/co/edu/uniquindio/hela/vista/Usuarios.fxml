@@ -64,6 +64,7 @@
                                     <TextField fx:id="txtNombre" layoutX="112.0" layoutY="44.0" prefHeight="21.0" prefWidth="109.0" style="-fx-background-color: #cddef4;" />
                                     <TextField fx:id="txtEmail" layoutX="306.0" layoutY="44.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #cddef4;" />
                                     <TextField fx:id="txtClave" layoutX="306.0" layoutY="73.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #cddef4;" />
+                                    <Button fx:id="btnLimpiar" layoutX="369.0" layoutY="115.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #61a493;" text="LIMPIAR" textFill="#fffdfd" />
                                  </children>
                               </Pane>
                               <Button fx:id="btnRegistrar" layoutX="476.0" layoutY="41.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #61a493;" text="REGISTRAR" textFill="#fffdfd" />

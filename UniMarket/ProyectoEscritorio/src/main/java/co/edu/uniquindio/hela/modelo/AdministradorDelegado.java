@@ -2,6 +2,7 @@ package co.edu.uniquindio.hela.modelo;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJBRemote;
 import co.edu.uniquindio.hela.entidades.Administrador;
+import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -105,6 +106,10 @@ public static AdministradorDelegado administradorDelegado = instancia();
 
 	public List<Producto> listarProductosUsuario(String ccUsuario) {
 		return administradorEJB.listarProductosUsuario(ccUsuario);
+	}
+
+	public List<Comentario> listarComentariosProducto(int idProducto) {
+		return administradorEJB.listarComentariosProducto(idProducto);
 	}
 	
 

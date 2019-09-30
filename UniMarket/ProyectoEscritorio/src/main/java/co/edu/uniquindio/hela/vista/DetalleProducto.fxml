@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" fx:controller="co.edu.uniquindio.hela.controlador.DetalleProductoController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="453.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="453.0" styleClass="paneDT" stylesheets="@../utilidades/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.hela.controlador.DetalleProductoController">
    <children>
-      <Label fx:id="labelPrueba" layoutX="189.0" layoutY="60.0" text="Label" />
+      <Label fx:id="labelNombre" layoutX="23.0" layoutY="14.0" text="Nombre Producto" textFill="WHITE">
+         <font>
+            <Font name="Stencil" size="30.0" />
+         </font></Label>
+      <Pane layoutX="23.0" layoutY="59.0" prefHeight="508.0" prefWidth="409.0" styleClass="panel" stylesheets="@../utilidades/styles.css">
+         <children>
+            <Label layoutX="17.0" layoutY="163.0" prefHeight="26.0" prefWidth="114.0" text="Disponibles : ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="189.0" prefHeight="26.0" prefWidth="66.0" text="Precio : ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="205.0" layoutY="163.0" text="Creador :">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="215.0" text="Fecha Limite : ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="241.0" text="Categoria : ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDisponibles" layoutX="131.0" layoutY="163.0" prefHeight="26.0" prefWidth="55.0" text="#####" textFill="#ebebeb">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPrecio" layoutX="131.0" layoutY="189.0" prefHeight="26.0" prefWidth="107.0" text="##########" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelFecha" layoutX="131.0" layoutY="215.0" prefHeight="26.0" prefWidth="126.0" text="##########" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCategoria" layoutX="131.0" layoutY="241.0" prefHeight="26.0" prefWidth="126.0" text="###########" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelUsuario" layoutX="288.0" layoutY="163.0" prefHeight="26.0" prefWidth="107.0" text="##########" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelUsuarioNombre" layoutX="241.0" layoutY="189.0" prefHeight="26.0" prefWidth="155.0" text="##########" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="267.0" text="Calificacion : ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="17.0" layoutY="301.0" prefHeight="164.0" prefWidth="373.0" stylesheets="@../utilidades/DarkTheme.css">
+               <children>
+                  <TableView fx:id="tablaComentarios" prefHeight="186.0" prefWidth="373.0">
+                    <columns>
+                      <TableColumn fx:id="comentariosProducto" prefWidth="245.0" text="comentarios" />
+                      <TableColumn fx:id="comentariosProductosUsuario" prefWidth="127.0" text="usuario" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Label fx:id="labelId" layoutX="376.0" layoutY="10.0" prefHeight="45.0" prefWidth="55.0" text="ID" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

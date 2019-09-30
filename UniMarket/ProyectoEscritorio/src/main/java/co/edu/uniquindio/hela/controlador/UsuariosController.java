@@ -79,8 +79,10 @@ public class UsuariosController implements Initializable{
 
 	@FXML
 	private Button btnActualizar;
-
-
+	
+	@FXML
+	private Button btnLimpiar;
+	
 	private ManejadorEscenarios manejador = new ManejadorEscenarios();
 	private AdministradorDelegado delegado = manejador.getDelegado();
 	private Usuario UsuarioSeleccionado;
@@ -103,6 +105,10 @@ public class UsuariosController implements Initializable{
 			txtTelefono.setText(user.getNumeroTelefonico());
 		}
 
+	}
+	@FXML
+	void limpiarCampos(ActionEvent event) {
+		reiniciarCampos();
 	}
 
 	@FXML

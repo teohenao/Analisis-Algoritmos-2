@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.hela.entidades.Categoria;
 import co.edu.uniquindio.hela.entidades.Producto;
-import co.edu.uniquindio.hela.entidades.Usuario;
 import co.edu.uniquindio.hela.main.ManejadorEscenarios;
 import co.edu.uniquindio.hela.modelo.AdministradorDelegado;
 import co.edu.uniquindio.hela.utilidades.Utilidades;
@@ -30,7 +29,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -102,7 +100,7 @@ public class ProductosController implements Initializable{
 	}
 	//instanciamos el controlador para poder pasar parametros al detalle producto
 	ProductosController productosController;
-	public int idSeleccionado;
+	public Producto idSeleccionado;
 
 	
 
@@ -246,7 +244,7 @@ public class ProductosController implements Initializable{
 		ProductoSeleccionado = obtenerFilaSeleccionada();
 
 		if(ProductoSeleccionado!=null) {
-			idSeleccionado = ProductoSeleccionado.getId();
+			idSeleccionado = ProductoSeleccionado;
 		}
 	}
 

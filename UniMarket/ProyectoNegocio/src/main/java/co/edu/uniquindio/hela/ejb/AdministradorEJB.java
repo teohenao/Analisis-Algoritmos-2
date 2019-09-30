@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
+import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -261,6 +262,13 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	}
 	
 
+	public List<Comentario> listarComentariosProducto(int idProducto){
+		TypedQuery<Comentario> query = entityManager.createNamedQuery(Comentario.LISTAR_COMENTARIOS_PRODUCTO, Comentario.class);
+		query.setParameter("id",idProducto);	
+		
+		return query.getResultList();
+	}
+	
 
 
 

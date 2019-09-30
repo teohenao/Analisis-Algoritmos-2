@@ -55,7 +55,7 @@ import javax.persistence.*;
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por usuario creador
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_USUARIO, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.usuario.cedula =:cc)")
-		
+	
 })
 public class Producto implements Serializable {
 	
@@ -82,6 +82,7 @@ public class Producto implements Serializable {
 	public static final String LISTAR_PRODUCTOS_VENCIDOS_USUARIO = "ListarProductosVencidosUsuario";
 	
 	public static final String LISTAR_PRODUCTOS_NOMBRE = "ListarProductosNombres";
+	
 
 	/**
 	 * Relaciones de la entidad Producto
