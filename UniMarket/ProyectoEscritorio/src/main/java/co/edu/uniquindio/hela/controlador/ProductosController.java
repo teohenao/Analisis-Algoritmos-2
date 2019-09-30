@@ -258,12 +258,12 @@ public class ProductosController implements Initializable{
 	
 	@FXML
 	private void detalles(ActionEvent event){
+		if(idSeleccionado != null) {
 		try {
 		Stage detalleProducto = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/DetalleProducto.fxml"));	
 		Parent root = (Parent) loader.load();
 		
-		//root.getStylesheets().add(getClass().getResource("../utilidades/styles.css").toString());
 		DetalleProductoController detalleProductoController = loader.getController();
 		detalleProductoController.detallesProducto(idSeleccionado);
 		Scene scene = new Scene(root);
@@ -273,6 +273,9 @@ public class ProductosController implements Initializable{
 		detalleProducto.show();
 		}catch (IOException e) {
 			e.printStackTrace();
+		}
+		}else {
+			Utilidades.mostrarMensaje("ERROR", "por favor seleccione un producto para mostrar los detalles");
 		}
 
 	}

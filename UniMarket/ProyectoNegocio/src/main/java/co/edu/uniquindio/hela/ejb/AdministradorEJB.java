@@ -1,5 +1,6 @@
 package co.edu.uniquindio.hela.ejb;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -8,10 +9,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
+
 import co.edu.uniquindio.hela.entidades.Administrador;
+import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
@@ -269,6 +273,29 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 	
+	public double calificacionFinalProducto(int idProducto){
+		if(listarCalificacionesProducto(idProducto)) {
+		Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_FINAL_PRODUCTO);
+		query.setParameter("id", idProducto);
+		Object resultado = query.getSingleResult();
+		double promedio = (double)resultado;
+		//DecimalFormat formato = new DecimalFormat("#.0");
+
+		return promedio;
+		}else {
+			return 0;
+		}
+		
+	}	
+	
+	public Boolean listarCalificacionesProducto(int id) {
+		
+		TypedQuery<Calificacion> query = entityManager.createNamedQuery(Calificacion.LISTAR_CALIFICACIONES_PRODUCTO,Calificacion.class);
+		query.setParameter("id", id);
+		
+		return query.getResultList().size() > 0;
+
+	}
 
 
 

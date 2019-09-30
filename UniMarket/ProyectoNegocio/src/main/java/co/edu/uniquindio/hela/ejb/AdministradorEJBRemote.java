@@ -54,6 +54,8 @@ public interface AdministradorEJBRemote {
 	public List<Producto> listarProductosNombre(String nombreProducto);
 	public List<Producto> listarProductosUsuario(String ccUsuario);
 	public List<Comentario> listarComentariosProducto(int idProducto);
+	public double calificacionFinalProducto(int idProducto);
+	public Boolean listarCalificacionesProducto(int id);
 
 
 }

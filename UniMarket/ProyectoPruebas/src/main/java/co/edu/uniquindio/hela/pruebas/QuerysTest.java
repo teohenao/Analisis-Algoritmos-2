@@ -258,7 +258,7 @@ public class QuerysTest {
 		Object resultado = query.getSingleResult();
 		double promedio = (double)resultado;
 		DecimalFormat formato = new DecimalFormat("#.0");
-		
+
 		Assert.assertEquals("2,7",formato.format(promedio));
 	}
 	

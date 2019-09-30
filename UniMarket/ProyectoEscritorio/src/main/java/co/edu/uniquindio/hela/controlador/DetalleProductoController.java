@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.Rating;
+
 import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.main.ManejadorEscenarios;
@@ -25,12 +27,12 @@ import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 public class DetalleProductoController implements Initializable{
-	
+
 	private ManejadorEscenarios manejador = new ManejadorEscenarios();
 	public int idProductoMostrar;
 	private AdministradorDelegado delegado = manejador.getDelegado();
 	private ObservableList<Comentario> listaComentarios;
-	
+
 	@FXML
 	private TableView<Comentario> tablaComentarios;
 
@@ -43,7 +45,7 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private Label labelNombre;
-	
+
 	@FXML
 	private Label labelId;
 
@@ -52,27 +54,30 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private Label labelPrecio;
-	
+
 	@FXML
 	private Label labelFecha;
-	
+
 	@FXML
 	private Label labelCategoria;
-	
+
 	@FXML
 	private Label labelUsuario;
-	
+
 	@FXML
 	private Label labelUsuarioNombre;
+
+	@FXML
+	private Rating estrellas;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
-	
+
 	public void detallesProducto(Producto p) {
-		
+
 		idProductoMostrar = p.getId();
-		
+
 		labelNombre.setText(p.getNombre());
 		labelId.setText(Integer.toString(p.getId()));
 		labelDisponibles.setText(Integer.toString(p.getDisponibilidad()));
@@ -82,7 +87,7 @@ public class DetalleProductoController implements Initializable{
 		labelUsuarioNombre.setText(p.getUsuario().getNombreCompleto());
 		String d = new SimpleDateFormat("dd-MM-yyyy").format(p.getFechaLimite());
 		labelFecha.setText(d);
-		
+
 		comentariosProducto.setCellValueFactory(new PropertyValueFactory<Comentario,String>("comentario"));		
 		comentariosProductosUsuario.setCellValueFactory(new Callback<CellDataFeatures<Comentario,String>, ObservableValue<String>>() {
 			@Override
@@ -92,11 +97,11 @@ public class DetalleProductoController implements Initializable{
 		} );
 		inicializarListaComentarios();
 		verificarEstado(p.getFechaLimite());
-		
-		
+		calificacionProducto();
+
 	}
 
-	
+
 	public void inicializarListaComentarios() {
 		listaComentarios = FXCollections.observableArrayList(obtenerLista());
 		llenarTablaComentarios(listaComentarios);
@@ -107,7 +112,7 @@ public class DetalleProductoController implements Initializable{
 	public void llenarTablaComentarios(ObservableList<Comentario> listaComeentarios) {
 		tablaComentarios.setItems(listaComentarios);
 	}
-	
+
 	public void verificarEstado(Date fecha){
 		Date fechaActual = new Date();
 		//Date tiene un Compareto que compara fechas, devuelve 1 si esta activo o -1 si esta inactivo
@@ -117,11 +122,22 @@ public class DetalleProductoController implements Initializable{
 		}else {
 			labelNombre.setTextFill(Color.web("#00FF40"));
 		}
-		}
-		
-	
+	}
 
-	
-	
-	
+	public void calificacionProducto() {
+
+		double resultado = delegado.calificacionFinalProducto(idProductoMostrar);
+		resultado = Math.round(resultado * 10) / 10d;
+
+		estrellas.setPartialRating(true);
+		estrellas.setRating(resultado);
+		estrellas.setDisable(false);	
+
+	}
+
+
+
+
+
+
 }
