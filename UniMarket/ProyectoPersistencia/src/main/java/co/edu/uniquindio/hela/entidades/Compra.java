@@ -22,7 +22,11 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual nos permite listar las compras que ha realizado cierto usuario
 	 */
-	@NamedQuery(name = Compra.LISTAR_COMPRAS_USUARIO, query = "select c from Compra c where c.usuario.cedula = :cc")
+	@NamedQuery(name = Compra.LISTAR_COMPRAS_USUARIO, query = "select c from Compra c where c.usuario.cedula = :cc"),
+	
+	@NamedQuery(name = Compra.LISTAR_COMPRAS_FECHA, query = "select c from Compra c where c.fechaCompra = :fecha"),
+	
+	@NamedQuery(name = Compra.CONTAR_COMPRAS, query = "select COUNT(c.ref) from Compra c ")
 	
 })
 public class Compra implements Serializable {
@@ -36,6 +40,9 @@ public class Compra implements Serializable {
 	//Constante que identifica la consulta que lista todos las compras de determinado usuario
 	public static final String LISTAR_COMPRAS_USUARIO = "ListarComprasUsuario";
 
+	public static final String LISTAR_COMPRAS_FECHA = "ListarComprasFecha";
+	
+	public static final String CONTAR_COMPRAS = "ContarCompras";
 
 	/**
 	 * Relaciones de la entidad Compra

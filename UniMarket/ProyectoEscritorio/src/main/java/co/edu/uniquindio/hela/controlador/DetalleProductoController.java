@@ -3,6 +3,7 @@ package co.edu.uniquindio.hela.controlador;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -18,7 +19,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -32,6 +35,7 @@ public class DetalleProductoController implements Initializable{
 	public int idProductoMostrar;
 	private AdministradorDelegado delegado = manejador.getDelegado();
 	private ObservableList<Comentario> listaComentarios;
+	
 
 	@FXML
 	private TableView<Comentario> tablaComentarios;
@@ -41,7 +45,9 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private TableColumn<Comentario, String> comentariosProductosUsuario;
-
+	
+	@FXML
+	private ListView<String> listImagenes;
 
 	@FXML
 	private Label labelNombre;
@@ -66,6 +72,9 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private Label labelUsuarioNombre;
+	
+	@FXML
+	private Label labelCalificacion;
 
 	@FXML
 	private Rating estrellas;
@@ -73,6 +82,8 @@ public class DetalleProductoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
+	
+	private ObservableList<String> listaImagenes;
 
 	public void detallesProducto(Producto p) {
 
@@ -98,6 +109,13 @@ public class DetalleProductoController implements Initializable{
 		inicializarListaComentarios();
 		verificarEstado(p.getFechaLimite());
 		calificacionProducto();
+		
+		
+		listaImagenes = FXCollections.observableArrayList();
+		listarImagenes();
+        listImagenes.setItems(listaImagenes);
+        listImagenes.setOrientation(Orientation.HORIZONTAL);
+		
 
 	}
 
@@ -132,8 +150,28 @@ public class DetalleProductoController implements Initializable{
 		estrellas.setPartialRating(true);
 		estrellas.setRating(resultado);
 		estrellas.setDisable(false);	
+		
+		labelCalificacion.setText(Double.toString(resultado));
+		
+		if(resultado <= 2) {
+			labelCalificacion.setTextFill(Color.web("#FA2525"));
+		}else if(resultado > 2 && resultado <= 4) {
+			labelCalificacion.setTextFill(Color.web("#F0B30B"));
+		}else if(resultado > 4) {
+			labelCalificacion.setTextFill(Color.web("#08ED82"));
+		}
 
 	}
+	
+	public void listarImagenes() {
+		if(delegado.listarImageneProducto(idProductoMostrar)!=null) {
+			List<Producto> imagenes = delegado.listarImageneProducto(idProductoMostrar);
+			for (int i = 0; i < imagenes.size(); i++) {
+				listaImagenes.add(""+imagenes.get(i)+"");
+			}
+		}
+	}
+
 
 
 

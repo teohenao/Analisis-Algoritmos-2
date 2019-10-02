@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -46,7 +47,9 @@ public class ProductosController implements Initializable{
 
 	@FXML
 	private TableColumn<Producto, String> usuarioProducto;
-
+	
+	@FXML
+	private Label labelNombreSeleccionado;
 
 	@FXML
 	private TextField txtBuscarProducto;
@@ -244,6 +247,7 @@ public class ProductosController implements Initializable{
 		ProductoSeleccionado = obtenerFilaSeleccionada();
 
 		if(ProductoSeleccionado!=null) {
+			labelNombreSeleccionado.setText(ProductoSeleccionado.getNombre());
 			idSeleccionado = ProductoSeleccionado;
 		}
 	}
@@ -263,7 +267,6 @@ public class ProductosController implements Initializable{
 		Stage detalleProducto = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/DetalleProducto.fxml"));	
 		Parent root = (Parent) loader.load();
-		
 		DetalleProductoController detalleProductoController = loader.getController();
 		detalleProductoController.detallesProducto(idSeleccionado);
 		Scene scene = new Scene(root);

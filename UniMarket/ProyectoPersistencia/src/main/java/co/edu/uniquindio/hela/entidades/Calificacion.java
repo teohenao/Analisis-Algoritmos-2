@@ -17,7 +17,8 @@ import javax.persistence.*;
 	/**
 	 * Consulta que nos permite obtener el promedio de calificaciones de un producto y darle una calificacion definitiva
 	 */
-	@NamedQuery(name = Calificacion.CALIFICACION_FINAL_PRODUCTO,query = "select AVG(c.valor) from Calificacion c WHERE c.producto.id = :id")
+	@NamedQuery(name = Calificacion.CALIFICACION_FINAL_PRODUCTO,query = "select AVG(c.valor) from Calificacion c WHERE c.producto.id = :id"),
+	@NamedQuery(name = Calificacion.CALIFICACION_PROMEDIO_PRODUCTOS, query = "select AVG(c.valor),c.producto.id from Calificacion c GROUP BY c.producto.id")
 
 })
 public class Calificacion implements Serializable {
@@ -30,6 +31,8 @@ public class Calificacion implements Serializable {
 	public static final String LISTAR_CALIFICACIONES_PRODUCTO = "ListarCalificacionesProducto";
 	//Constante que identifica la consulta de la calificacion final del producto
 	public static final String CALIFICACION_FINAL_PRODUCTO = "CalificacionFinalProducto";
+	
+	public static final String CALIFICACION_PROMEDIO_PRODUCTOS = "CalificacionPromedioProductos";
 
 	
 	/**

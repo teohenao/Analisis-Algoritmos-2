@@ -208,7 +208,7 @@ public class EntidadesTest {
 		p.setCategoria(Categoria.tecnologia);
 		p.setDescripcion("descripcion1");
 		p.setDisponibilidad(31);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = sdf.parse("2019-10-02");
 		p.setFechaLimite(d);
 		p.setNombre("articulo1");

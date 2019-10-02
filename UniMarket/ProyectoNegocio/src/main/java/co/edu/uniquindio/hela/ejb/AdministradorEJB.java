@@ -1,6 +1,5 @@
 package co.edu.uniquindio.hela.ejb;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +64,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
-	
+
 	/**
 	 * Buscar un usuario por el correo electronico en la base de datos
 	 * @param email
@@ -93,7 +92,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return false;
 	}
 
-	
+
 	/**
 	 * Busca un administrador por cedula
 	 * @param cedula
@@ -126,14 +125,17 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @return
 	 */
 	public boolean eliminarUsuario(String cedula){
-
-		if (entityManager.find(Usuario.class, cedula) != null) {
-			entityManager.remove(buscarUsuarioPorCedula(cedula));
-			return true;
-		}else {
-			JOptionPane.showMessageDialog(null, "no se pudo eliminar, confirme que exista :P ");
+		try {
+			if (entityManager.find(Usuario.class, cedula) != null) {
+				entityManager.remove(buscarUsuarioPorCedula(cedula));
+				return true;
+			}else {
+				JOptionPane.showMessageDialog(null, "no se pudo eliminar, confirme que exista :P ");
+				return false;
+			} 
+		} catch (NoResultException e) {
 			return false;
-		} 
+		}
 	}
 
 
@@ -181,7 +183,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList().size() > 0;
 	}
 
-	
+
 	public Administrador buscarAdministradorEnvioCorreo(String cedula) throws InformacionInexistenteExcepcion {
 
 		try {
@@ -198,7 +200,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 
 	}
-	
+
 	/**
 	 * Listar todos los productos de la base de datos
 	 * @return List Productos
@@ -208,7 +210,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
-	
+
 	/**
 	 * Listar todos los productos vencidos de la base de datos
 	 * @return List Productos Vencidos
@@ -218,7 +220,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		query.setParameter("fechaActual",new Date());
 		return query.getResultList();
 	}
-	
+
 	/**
 	 * Listar todos los productos activos de la base de datos
 	 * @return List Productos Vencidos
@@ -228,75 +230,85 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		query.setParameter("fechaActual",new Date());
 		return query.getResultList();
 	}
-	
+
 	public List<Producto> listarProductosActivosCategoria(String categoria){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, Producto.class);
 		query.setParameter("fechaActual",new Date());
 		query.setParameter("c", categoria);
-		
+
 		return query.getResultList();
 	}
 	public List<Producto> listarProductosVencidosCategoria(String categoria){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, Producto.class);
 		query.setParameter("fechaActual",new Date());
 		query.setParameter("c", categoria);
-		
+
 		return query.getResultList();
 	}
-	
+
 	public List<Producto> listarProductosCategoria(String categoria){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CATEGORIA, Producto.class);
 		query.setParameter("c", categoria);
-		
+
 		return query.getResultList();
 	}
-	
+
 	public List<Producto> listarProductosNombre(String nombreProducto){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE, Producto.class);
 		query.setParameter("nombre","%"+nombreProducto+"%");	
-		
+
 		return query.getResultList();
 	}
-	
+
 	public List<Producto> listarProductosUsuario(String ccUsuario){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_USUARIO, Producto.class);
 		query.setParameter("cc",ccUsuario);	
-		
+
 		return query.getResultList();
 	}
-	
+
 
 	public List<Comentario> listarComentariosProducto(int idProducto){
 		TypedQuery<Comentario> query = entityManager.createNamedQuery(Comentario.LISTAR_COMENTARIOS_PRODUCTO, Comentario.class);
 		query.setParameter("id",idProducto);	
-		
+
 		return query.getResultList();
 	}
-	
+
 	public double calificacionFinalProducto(int idProducto){
 		if(listarCalificacionesProducto(idProducto)) {
-		Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_FINAL_PRODUCTO);
-		query.setParameter("id", idProducto);
-		Object resultado = query.getSingleResult();
-		double promedio = (double)resultado;
-		//DecimalFormat formato = new DecimalFormat("#.0");
+			Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_FINAL_PRODUCTO);
+			query.setParameter("id", idProducto);
+			Object resultado = query.getSingleResult();
+			double promedio = (double)resultado;
+			//DecimalFormat formato = new DecimalFormat("#.0");
 
-		return promedio;
+			return promedio;
 		}else {
 			return 0;
 		}
-		
+
 	}	
-	
+
 	public Boolean listarCalificacionesProducto(int id) {
-		
+
 		TypedQuery<Calificacion> query = entityManager.createNamedQuery(Calificacion.LISTAR_CALIFICACIONES_PRODUCTO,Calificacion.class);
 		query.setParameter("id", id);
-		
+
 		return query.getResultList().size() > 0;
 
 	}
 
+	public List<Producto> listarImageneProducto(int id) {
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_IMAGENES_PRODUCTO,Producto.class);
+		query.setParameter("id", id);
+		
+		List<Producto> productos = query.getResultList();
+		
+		return productos;
+		
+		//else return null
+	}
 
 
 

@@ -4,6 +4,8 @@ package co.edu.uniquindio.hela.pruebas;
 import static org.junit.Assert.assertEquals;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +30,6 @@ import javax.persistence.TypedQuery;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
-import co.edu.uniquindio.hela.entidades.Categoria;
 import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Compra;
 import co.edu.uniquindio.hela.entidades.DetalleCompra;
@@ -36,6 +37,8 @@ import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
+import co.edu.uniquindio.hela.logica.ConsultaProductosDTO;
+import co.edu.uniquindio.hela.logica.ConsultaUsuariosDTO;
 
 /**
  * @author Mateo Henao R
@@ -502,6 +505,97 @@ public class QuerysTest {
 		
 	}
 	
+	
 		
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json","compra.json","persona.json"})
+	public void listarComprasFechaTest() throws ParseException {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = sdf.parse("2019-10-10");
+		TypedQuery<Compra> query = entityManager.createNamedQuery(Compra.LISTAR_COMPRAS_FECHA,Compra.class);
+		query.setParameter("fecha",d);
+		List<Compra> compra = query.getResultList();
+		
+		for(Compra c : compra) {
+			System.out.println("id compra: "+c.getRef()+" metodo pago "+c.getMetodo_pago()+" cedula de la persona "+c.getUsuario().getCedula()
+					+" email "+c.getUsuario().getEmail());
+		}
+
+		Assert.assertEquals(compra.size(), 2);	
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "calificacion.json","producto.json","persona.json" })
+	public void listarCalificacionesPromedioProductosTest() {
+		
+		TypedQuery<Object[]> query = entityManager.createNamedQuery(Calificacion.CALIFICACION_PROMEDIO_PRODUCTOS, Object[].class);
+		
+		for (Object[] objeto : query.getResultList()) {
+			System.out.println( objeto[0]+" calificacion promedio del producto "+objeto[1] );
+			}
+
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "calificacion.json","producto.json","persona.json" })
+	public void listarCalificacionesPromedioProductosConSinTest() {
+		
+		TypedQuery<Object[]> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CON_SIN_CALIFICACIONES, Object[].class);
+		Object result = query.getResultList();
+		System.out.println(result);
+		for (Object[] objeto : query.getResultList()) {
+			System.out.println( objeto );
+			}
+
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json"})
+	public void productoDTOTest() {
+		TypedQuery<ConsultaProductosDTO> resultados = entityManager.createNamedQuery(Producto.CONSULTA_DTO_PRODUCTO,ConsultaProductosDTO.class);
+		List<ConsultaProductosDTO> resultDto = resultados.getResultList();
+		
+		for(ConsultaProductosDTO p : resultDto) {
+			System.out.println("nombre producto: "+p.getNombre()+" descripcion "+p.getDescripcion());
+		}
+
+		
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json"})
+	public void usuarioDTOTest() {
+		TypedQuery<ConsultaUsuariosDTO> resultados = entityManager.createNamedQuery(Usuario.CONSULTA_DTO_USUARIO,ConsultaUsuariosDTO.class);
+		List<ConsultaUsuariosDTO> resultDto = resultados.getResultList();
+		
+		for(ConsultaUsuariosDTO u : resultDto) {
+			System.out.println("nombre usuario: "+u.getNombreCompleto()+" email : "+u.getEmail());
+		}
+	}
+	
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json"})
+	public void listarImagenesProductoTest() {
+
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_IMAGENES_PRODUCTO,Producto.class);
+		query.setParameter("id", 1);
+		
+		List<Producto> productos = query.getResultList();
+		for (int i = 0; i < productos.size(); i++) {
+			System.out.println(productos.get(i));
+		}
+		
+		Assert.assertEquals(productos.size(), 2);	
+		
+	}
+			
+	
 
 }

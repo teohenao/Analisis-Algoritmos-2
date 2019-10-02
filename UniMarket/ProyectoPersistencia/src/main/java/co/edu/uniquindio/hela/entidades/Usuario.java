@@ -21,7 +21,9 @@ import javax.persistence.*;
 	/**
 	 * Consulta que nos permite obtener usuario al cual le pertenecen el email y clave
 	 */
-	@NamedQuery(name = Usuario.OBTENER_USER_EMAIL_CLAVE, query = "select user from Usuario user where user.email=:email and user.clave =:clave")
+	@NamedQuery(name = Usuario.OBTENER_USER_EMAIL_CLAVE, query = "select user from Usuario user where user.email=:email and user.clave =:clave"),
+	@NamedQuery(name = Usuario.CONSULTA_DTO_USUARIO , query = "select new co.edu.uniquindio.hela.logica.ConsultaUsuariosDTO(usuario.nombreCompleto,usuario.email) from Usuario usuario"),
+	@NamedQuery(name = Usuario.USUARIOS_GMAIL, query = "select u from Usuario u")
 
 })
 public class Usuario extends Persona implements Serializable {
@@ -45,6 +47,9 @@ public class Usuario extends Persona implements Serializable {
 	public static final String OBTENER_USER_EMAIL_CLAVE = "ObtenerUserEmailClave";
 	//constante que identifica la consulta de buscar un usuario por cedula
 	public static final String BUSCAR_POR_CEDULA = "BuscarUserCedula";
+	public static final String CONSULTA_DTO_USUARIO = "ConsultaDtoUsuario";
+	
+	public static final String USUARIOS_GMAIL = "UsuariosGmail";
 
 
 	private static final long serialVersionUID = 1L;

@@ -115,6 +115,15 @@ public static AdministradorDelegado administradorDelegado = instancia();
 	public double calificacionFinalProducto(int idProducto) {
 		return administradorEJB.calificacionFinalProducto(idProducto);
 	}
+
+	public Boolean listarCalificacionesProducto(int id) {
+		return administradorEJB.listarCalificacionesProducto(id);
+	}
+
+	public List<Producto> listarImageneProducto(int id) {
+		return administradorEJB.listarImageneProducto(id);
+	}
+	
 	
 
 	

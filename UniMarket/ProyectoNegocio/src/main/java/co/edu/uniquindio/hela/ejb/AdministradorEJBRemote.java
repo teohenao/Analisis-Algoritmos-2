@@ -36,15 +36,10 @@ public interface AdministradorEJBRemote {
 	 * @return true si lo elimino, de lo contrario false
 	 */
 	public boolean eliminarUsuario(String cedula);
-	
 	public Usuario buscarUsuarioPorCedula(String cedula);
-	
 	public Usuario actualizarUsuario(Usuario usuario);
-
 	public boolean buscarPorEmail(String email);
-	
 	public Administrador buscarAdministradorEnvioCorreo(String cedula) throws InformacionInexistenteExcepcion;	
-	
 	public List<Producto> listarProductos() ;
 	public List<Producto> listarProductosActivos();
 	public List<Producto> listarProductosVencidos();
@@ -56,6 +51,7 @@ public interface AdministradorEJBRemote {
 	public List<Comentario> listarComentariosProducto(int idProducto);
 	public double calificacionFinalProducto(int idProducto);
 	public Boolean listarCalificacionesProducto(int id);
+	public List<Producto> listarImageneProducto(int id);
 
 
 }

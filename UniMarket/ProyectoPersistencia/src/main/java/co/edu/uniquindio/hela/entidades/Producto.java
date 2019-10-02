@@ -54,7 +54,14 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por usuario creador
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_USUARIO, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.usuario.cedula =:cc)")
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_USUARIO, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.usuario.cedula =:cc)"),
+	
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CON_SIN_CALIFICACIONES, query = "SELECT producto.id , AVG(calificacion.valor) FROM Producto producto LEFT JOIN Calificacion calificacion ON calificacion.producto.id = producto.id GROUP BY producto.id"),
+	@NamedQuery(name = Producto.CONSULTA_DTO_PRODUCTO , query = "select new co.edu.uniquindio.hela.logica.ConsultaProductosDTO(producto.nombre,producto.descripcion) from Producto producto"),
+	@NamedQuery(name = Producto.CONTAR_PRODUCTOS_CATEGORIAS, query = "select COUNT(p.categoria) from Producto p GROUP BY p.categoria"),
+	@NamedQuery(name = Producto.PRODUCTOS_SIN_COMENTARIOS, query ="select p from Producto p WHERE p.Comentarios IS EMPTY"),
+	@NamedQuery(name = Producto.LISTAR_IMAGENES_PRODUCTO, query ="select p.imagenes from Producto p where p.id =:id ")
+
 	
 })
 public class Producto implements Serializable {
@@ -82,6 +89,15 @@ public class Producto implements Serializable {
 	public static final String LISTAR_PRODUCTOS_VENCIDOS_USUARIO = "ListarProductosVencidosUsuario";
 	
 	public static final String LISTAR_PRODUCTOS_NOMBRE = "ListarProductosNombres";
+	
+	public static final String LISTAR_PRODUCTOS_CON_SIN_CALIFICACIONES = "ListarProductosConSinCalificaciones"; 
+	public static final String CONSULTA_DTO_PRODUCTO = "ConsultaDtoProducto";
+	
+	public static final String CONTAR_PRODUCTOS_CATEGORIAS = "ContarProductosCategorias";
+	
+	public static final String PRODUCTOS_SIN_COMENTARIOS = "ProductosSinComentarios";
+	
+	public static final String LISTAR_IMAGENES_PRODUCTO = "ListarImagenesProducto";
 	
 
 	/**
@@ -123,13 +139,13 @@ public class Producto implements Serializable {
 	/**
 	 * Nombre del producto
 	 */
-	@Column(name = "nombre",nullable = false ,length = 15)
+	@Column(name = "nombre",nullable = false ,length = 30)
 	private String nombre;
 	
 	/**
 	 * Descripcion del producto
 	 */
-	@Column(name = "descripcion",nullable = false,length = 100)
+	@Column(name = "descripcion",nullable = false,length = 200)
 	private String descripcion;
 	
 	/**
@@ -162,8 +178,8 @@ public class Producto implements Serializable {
 	 * Lista de imagenes de un producto, Crea tabla con todas las imagenes registradas y su relacion con el producto
 	 */
 	@ElementCollection
-	@Column(name = "imagenes")
 	private List<String> imagenes = new ArrayList<String>();
+	
 	
 	
 	

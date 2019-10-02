@@ -53,13 +53,13 @@ public class Persona implements Serializable {
 	/**
 	 * nombre completo
 	 */
-	@Column(name = "nombreCompleto",length = 50,nullable = false)
+	@Column(name = "nombreCompleto",length = 60,nullable = false)
 	private String nombreCompleto;
 
 	/**
 	 * Correo electronico
 	 */
-	@Column(name = "email",length = 50,nullable = false,unique = true)
+	@Column(name = "email",length = 60,nullable = false,unique = true)
 	private String email;
 
 	/**
