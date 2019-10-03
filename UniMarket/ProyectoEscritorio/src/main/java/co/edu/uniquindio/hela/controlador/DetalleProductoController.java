@@ -1,6 +1,11 @@
 package co.edu.uniquindio.hela.controlador;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -26,6 +31,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
@@ -35,7 +42,7 @@ public class DetalleProductoController implements Initializable{
 	public int idProductoMostrar;
 	private AdministradorDelegado delegado = manejador.getDelegado();
 	private ObservableList<Comentario> listaComentarios;
-	
+
 
 	@FXML
 	private TableView<Comentario> tablaComentarios;
@@ -45,9 +52,9 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private TableColumn<Comentario, String> comentariosProductosUsuario;
-	
+
 	@FXML
-	private ListView<String> listImagenes;
+	private ListView<ImageView> listImagenes;
 
 	@FXML
 	private Label labelNombre;
@@ -72,7 +79,7 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private Label labelUsuarioNombre;
-	
+
 	@FXML
 	private Label labelCalificacion;
 
@@ -82,10 +89,12 @@ public class DetalleProductoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
-	
-	private ObservableList<String> listaImagenes;
 
-	public void detallesProducto(Producto p) {
+	private ObservableList<ImageView> listaImagenes;
+
+	ObservableList<Path> imageFiles;
+
+	public void detallesProducto(Producto p) throws FileNotFoundException {
 
 		idProductoMostrar = p.getId();
 
@@ -109,13 +118,13 @@ public class DetalleProductoController implements Initializable{
 		inicializarListaComentarios();
 		verificarEstado(p.getFechaLimite());
 		calificacionProducto();
-		
-		
+
+		imageFiles = FXCollections.observableArrayList();
 		listaImagenes = FXCollections.observableArrayList();
 		listarImagenes();
-        listImagenes.setItems(listaImagenes);
-        listImagenes.setOrientation(Orientation.HORIZONTAL);
-		
+		listImagenes.setItems(listaImagenes);
+		listImagenes.setOrientation(Orientation.HORIZONTAL);
+
 
 	}
 
@@ -150,9 +159,9 @@ public class DetalleProductoController implements Initializable{
 		estrellas.setPartialRating(true);
 		estrellas.setRating(resultado);
 		estrellas.setDisable(false);	
-		
+
 		labelCalificacion.setText(Double.toString(resultado));
-		
+
 		if(resultado <= 2) {
 			labelCalificacion.setTextFill(Color.web("#FA2525"));
 		}else if(resultado > 2 && resultado <= 4) {
@@ -162,14 +171,32 @@ public class DetalleProductoController implements Initializable{
 		}
 
 	}
-	
-	public void listarImagenes() {
-		if(delegado.listarImageneProducto(idProductoMostrar)!=null) {
-			List<Producto> imagenes = delegado.listarImageneProducto(idProductoMostrar);
-			for (int i = 0; i < imagenes.size(); i++) {
-				listaImagenes.add(""+imagenes.get(i)+"");
+
+
+	public void listarImagenes() throws FileNotFoundException {
+
+		List<Producto> imagenes = delegado.listarImageneProducto(idProductoMostrar);
+		for (int i = 0; i < imagenes.size(); i++) {
+			if(imagenes.get(0)==null) {
+				FileInputStream imageStream = new FileInputStream("C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\hela.jpg");
+				Image image = new Image (imageStream );
+				ImageView img = new ImageView(image);
+				img.setFitWidth(150);
+				img.setFitHeight(150);
+				listaImagenes.add(img);
+			}else {
+				String rutaImg = ""+imagenes.get(i)+"";
+				FileInputStream imageStream = new FileInputStream(rutaImg);
+				Image image = new Image (imageStream );
+				ImageView img = new ImageView(image);
+				img.setFitWidth(176);
+				img.setFitHeight(176);
+				listaImagenes.add(img);
 			}
+			
+			
 		}
+
 	}
 
 

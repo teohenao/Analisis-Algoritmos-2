@@ -17,17 +17,17 @@
          </font></Label>
       <Pane layoutX="23.0" layoutY="59.0" prefHeight="508.0" prefWidth="409.0" styleClass="panel" stylesheets="@../utilidades/styles.css">
          <children>
-            <Label layoutX="17.0" layoutY="163.0" prefHeight="26.0" prefWidth="114.0" text="Disponibles : ">
+            <Label layoutX="200.0" layoutY="14.0" prefHeight="26.0" prefWidth="114.0" text="Disponibles : ">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="189.0" prefHeight="26.0" prefWidth="66.0" text="Precio : ">
+            <Label layoutX="200.0" layoutY="46.0" prefHeight="26.0" prefWidth="66.0" text="Precio : ">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="205.0" layoutY="163.0" text="Creador :">
+            <Label layoutX="197.0" layoutY="76.0" text="Creador :">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -42,12 +42,12 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="labelDisponibles" layoutX="131.0" layoutY="163.0" prefHeight="26.0" prefWidth="55.0" text="#####" textFill="#ebebeb">
+            <Label fx:id="labelDisponibles" layoutX="314.0" layoutY="14.0" prefHeight="26.0" prefWidth="55.0" text="#####" textFill="#ebebeb">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="labelPrecio" layoutX="83.0" layoutY="189.0" prefHeight="26.0" prefWidth="107.0" text="##########" textFill="WHITE">
+            <Label fx:id="labelPrecio" layoutX="266.0" layoutY="46.0" prefHeight="26.0" prefWidth="107.0" text="##########" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -62,12 +62,12 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="labelUsuario" layoutX="288.0" layoutY="163.0" prefHeight="26.0" prefWidth="107.0" text="##########" textFill="WHITE">
+            <Label fx:id="labelUsuario" layoutX="278.0" layoutY="76.0" prefHeight="26.0" prefWidth="107.0" text="##########" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="labelUsuarioNombre" layoutX="211.0" layoutY="189.0" prefHeight="26.0" prefWidth="190.0" text="##########" textFill="WHITE">
+            <Label fx:id="labelUsuarioNombre" layoutX="197.0" layoutY="110.0" prefHeight="26.0" prefWidth="190.0" text="##########" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -94,7 +94,7 @@
                   <Font name="Arial Bold" size="27.0" />
                </font>
             </Label>
-            <ListView fx:id="listImagenes" layoutX="95.0" layoutY="14.0" prefHeight="146.0" prefWidth="190.0" />
+            <ListView fx:id="listImagenes" layoutX="13.0" layoutY="14.0" prefHeight="194.0" prefWidth="176.0" stylesheets="@../utilidades/stryleImg.css" />
          </children>
       </Pane>
       <Label fx:id="labelId" layoutX="376.0" layoutY="10.0" prefHeight="45.0" prefWidth="55.0" text="ID" textFill="WHITE">

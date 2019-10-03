@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
-  <server auto-publish-setting="1" glassfish.adminserverportnumber="9848" glassfish.domainpath="C:\Users\Mateo Henao R\Documents\Universidad\Algotirmos 2\eclipse\server\glassfish5.1\glassfish\domains\domain1" glassfish.serverportnumber="9080" hostname="localhost" id="GlassFish 5 (2) [domain1]" name="GlassFish 5 (2) [domain1]" runtime-id="GlassFish 5 (2)" server-type="glassfish.server" server-type-id="glassfish.server" start-timeout="240" stop-timeout="240" timestamp="632">
+  <server auto-publish-setting="1" glassfish.adminserverportnumber="9848" glassfish.domainpath="C:\Users\Mateo Henao R\Documents\Universidad\Algotirmos 2\eclipse\server\glassfish5.1\glassfish\domains\domain1" glassfish.serverportnumber="9080" hostname="localhost" id="GlassFish 5 (2) [domain1]" name="GlassFish 5 (2) [domain1]" runtime-id="GlassFish 5 (2)" server-type="glassfish.server" server-type-id="glassfish.server" start-timeout="240" stop-timeout="240" timestamp="648">
     <list key="modules" value0="ProyectoEAR::org.eclipse.jst.jee.server:ProyectoEAR::jst.ear::7.0"/>
   </server>
 </servers>
