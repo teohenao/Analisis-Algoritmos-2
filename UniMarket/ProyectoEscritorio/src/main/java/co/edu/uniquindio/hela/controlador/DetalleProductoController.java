@@ -3,12 +3,9 @@ package co.edu.uniquindio.hela.controlador;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public class DetalleProductoController implements Initializable{
@@ -85,6 +83,9 @@ public class DetalleProductoController implements Initializable{
 
 	@FXML
 	private Rating estrellas;
+	
+	@FXML 
+	private Text textDescripcion;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -107,6 +108,7 @@ public class DetalleProductoController implements Initializable{
 		labelUsuarioNombre.setText(p.getUsuario().getNombreCompleto());
 		String d = new SimpleDateFormat("dd-MM-yyyy").format(p.getFechaLimite());
 		labelFecha.setText(d);
+		textDescripcion.setText(p.getDescripcion().toString());
 
 		comentariosProducto.setCellValueFactory(new PropertyValueFactory<Comentario,String>("comentario"));		
 		comentariosProductosUsuario.setCellValueFactory(new Callback<CellDataFeatures<Comentario,String>, ObservableValue<String>>() {

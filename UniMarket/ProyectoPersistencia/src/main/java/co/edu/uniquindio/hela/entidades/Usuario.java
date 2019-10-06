@@ -27,6 +27,18 @@ import javax.persistence.*;
 
 })
 public class Usuario extends Persona implements Serializable {
+	
+	//constante que identifica la consulta que lista todos los usuarios
+		public static final String LISTAR_USUARIOS = "ListarUsuarios";
+
+		//constante que identifica la consulta de usuario por email y clave
+		public static final String OBTENER_USER_EMAIL_CLAVE = "ObtenerUserEmailClave";
+		//constante que identifica la consulta de buscar un usuario por cedula
+		public static final String BUSCAR_POR_CEDULA = "BuscarUserCedula";
+		public static final String CONSULTA_DTO_USUARIO = "ConsultaDtoUsuario";
+		
+		public static final String USUARIOS_GMAIL = "UsuariosGmail";
+
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Calificacion> calificaciones;
@@ -37,20 +49,11 @@ public class Usuario extends Persona implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Favorito> favoritos;
 
+	//,cascade = CascadeType.ALL
 	@OneToMany(mappedBy = "usuario")
 	private List<Producto> productos;
 
-	//constante que identifica la consulta que lista todos los usuarios
-	public static final String LISTAR_USUARIOS = "ListarUsuarios";
-
-	//constante que identifica la consulta de usuario por email y clave
-	public static final String OBTENER_USER_EMAIL_CLAVE = "ObtenerUserEmailClave";
-	//constante que identifica la consulta de buscar un usuario por cedula
-	public static final String BUSCAR_POR_CEDULA = "BuscarUserCedula";
-	public static final String CONSULTA_DTO_USUARIO = "ConsultaDtoUsuario";
 	
-	public static final String USUARIOS_GMAIL = "UsuariosGmail";
-
 
 	private static final long serialVersionUID = 1L;
 

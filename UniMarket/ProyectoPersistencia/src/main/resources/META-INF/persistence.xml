@@ -3,9 +3,9 @@
 	<persistence-unit name="ProyectoPersistencia">
 		<jta-data-source>jdbc/unimarket</jta-data-source>
 		<properties>
-			<property name="eclipselink.exclude-eclipselink-orm" value="false"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.exclude-eclipselink-orm" value="false"/>
 		</properties>
 	</persistence-unit>
 </persistence>

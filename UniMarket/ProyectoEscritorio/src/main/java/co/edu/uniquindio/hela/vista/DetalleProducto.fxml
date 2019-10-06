@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="453.0" styleClass="paneDT" stylesheets="@../utilidades/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.hela.controlador.DetalleProductoController">
@@ -32,12 +33,12 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="215.0" text="Fecha Limite : ">
+            <Label layoutX="17.0" layoutY="228.0" text="Fecha Limite : ">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="241.0" text="Categoria : ">
+            <Label layoutX="17.0" layoutY="254.0" text="Categoria : ">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -52,12 +53,12 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="labelFecha" layoutX="131.0" layoutY="215.0" prefHeight="26.0" prefWidth="126.0" text="##########" textFill="WHITE">
+            <Label fx:id="labelFecha" layoutX="134.0" layoutY="228.0" prefHeight="26.0" prefWidth="126.0" text="##########" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="labelCategoria" layoutX="115.0" layoutY="241.0" prefHeight="26.0" prefWidth="126.0" text="###########" textFill="WHITE">
+            <Label fx:id="labelCategoria" layoutX="108.0" layoutY="254.0" prefHeight="26.0" prefWidth="126.0" text="###########" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -72,14 +73,14 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="267.0" text="Calificacion : ">
+            <Label layoutX="21.0" layoutY="278.0" text="Calificacion : ">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="17.0" layoutY="301.0" prefHeight="164.0" prefWidth="373.0" stylesheets="@../utilidades/DarkTheme.css">
+            <AnchorPane layoutX="17.0" layoutY="320.0" prefHeight="181.0" prefWidth="373.0" stylesheets="@../utilidades/DarkTheme.css">
                <children>
-                  <TableView fx:id="tablaComentarios" prefHeight="186.0" prefWidth="373.0">
+                  <TableView fx:id="tablaComentarios" layoutY="-8.0" prefHeight="186.0" prefWidth="373.0">
                     <columns>
                       <TableColumn fx:id="comentariosProducto" prefWidth="245.0" text="comentarios" />
                       <TableColumn fx:id="comentariosProductosUsuario" prefWidth="127.0" text="usuario" />
@@ -87,14 +88,23 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <Rating fx:id="estrellas" layoutX="131.0" layoutY="262.0" prefHeight="26.0" prefWidth="176.0" />
-            <AnchorPane layoutX="124.0" layoutY="260.0" prefHeight="36.0" prefWidth="190.0" />
-            <Label fx:id="labelCalificacion" layoutX="314.0" layoutY="263.0" text="Label">
+            <Rating fx:id="estrellas" layoutX="124.0" layoutY="275.0" prefHeight="26.0" prefWidth="176.0" />
+            <AnchorPane layoutX="124.0" layoutY="273.0" prefHeight="36.0" prefWidth="190.0" />
+            <Label fx:id="labelCalificacion" layoutX="314.0" layoutY="275.0" text="Label">
                <font>
                   <Font name="Arial Bold" size="27.0" />
                </font>
             </Label>
             <ListView fx:id="listImagenes" layoutX="13.0" layoutY="14.0" prefHeight="194.0" prefWidth="176.0" stylesheets="@../utilidades/stryleImg.css" />
+            <AnchorPane layoutX="192.0" layoutY="131.0" prefHeight="99.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="textDescripcion" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" wrappingWidth="190.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
       <Label fx:id="labelId" layoutX="376.0" layoutY="10.0" prefHeight="45.0" prefWidth="55.0" text="ID" textFill="WHITE">

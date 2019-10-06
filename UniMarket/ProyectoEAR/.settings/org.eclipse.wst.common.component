@@ -8,8 +8,5 @@
         <dependent-module archiveName="ProyectoNegocio.jar" deploy-path="/" handle="module:/resource/ProyectoNegocio/ProyectoNegocio">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ProyectoWeb.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/co/edu/uniquindio/hela/ProyectoWeb/0.0.1-SNAPSHOT/ProyectoWeb-0.0.1-SNAPSHOT.war">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
     </wb-module>
 </project-modules>
