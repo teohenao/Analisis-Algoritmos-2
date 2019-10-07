@@ -39,7 +39,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * Constructor del EJB administrador
 	 */
 	public AdministradorEJB() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -64,7 +63,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
-
 	/**
 	 * Buscar un usuario por el correo electronico en la base de datos
 	 * @param email
@@ -79,7 +77,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 	/**
 	 * Realiza una busqueda por cedula y clave para ver si coincide con algun
-	 * administrador registrado para realizar el login
+	 * administrador registrado para realizar el login a unimarket
 	 * @param cedula
 	 * @param clave
 	 * @return
@@ -91,7 +89,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 		return false;
 	}
-
 
 	/**
 	 * Busca un administrador por cedula
@@ -109,9 +106,8 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
-
 	/**
-	 * Listar todos los usuarios de la vase de datos
+	 * Listar todos los usuarios de la base de datos
 	 * @return List Usuarios
 	 */
 	public List<Usuario> listarUsuarios() {
@@ -122,7 +118,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	/**
 	 * Metodo para eliminar un usuario de unimarKet
 	 * @param cedula
-	 * @return
+	 * @return true si el usuario fue eliminado
 	 */
 	public boolean eliminarUsuario(String cedula){
 		try {
@@ -137,7 +133,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return false;
 		}
 	}
-
 
 	/**
 	 * Busca un usuario por cedula
@@ -156,7 +151,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	}
 
 	/**
-	 * Actualizar un usuario, con sus debidas validaciones
+	 * Actualizar un usuario de la base de datos
 	 * @param usuario
 	 * @return usuario, de lo contrario null
 	 */
@@ -170,7 +165,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	}
 
 	/**
-	 * Metodo para verificar si unna persona tiene un email en uso
+	 * Metodo para verificar si una persona tiene un email en uso
 	 * @param email
 	 * @param cedula
 	 * @return
@@ -183,7 +178,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList().size() > 0;
 	}
 
-
+	/**
+	 * Metodo que permite encontrar el usuario al cual corresponde cierta cedula, para enviar el correo
+	 * @param cedula
+	 * @return Administrador
+	 */
 	public Administrador buscarAdministradorEnvioCorreo(String cedula) throws InformacionInexistenteExcepcion {
 
 		try {
@@ -198,7 +197,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		} catch (NoResultException e) {
 			return null;
 		}
-
 	}
 
 	/**
@@ -209,7 +207,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS, Producto.class);
 		return query.getResultList();
 	}
-
 
 	/**
 	 * Listar todos los productos vencidos de la base de datos
@@ -223,7 +220,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 	/**
 	 * Listar todos los productos activos de la base de datos
-	 * @return List Productos Vencidos
+	 * @return List Productos activos
 	 */
 	public List<Producto> listarProductosActivos() {
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS, Producto.class);
@@ -231,6 +228,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
+	/**
+	 * Listar productos que se encuentran activos, por categoria
+	 * @param categoria
+	 * @return List Productos Activos Categoria
+	 */
 	public List<Producto> listarProductosActivosCategoria(String categoria){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, Producto.class);
 		query.setParameter("fechaActual",new Date());
@@ -238,6 +240,12 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 		return query.getResultList();
 	}
+	
+	/**
+	 * Metodo que permite listar los productos vencidos, por categoria
+	 * @param categoria
+	 * @return List Productos Vencidos Categoria
+	 */
 	public List<Producto> listarProductosVencidosCategoria(String categoria){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA, Producto.class);
 		query.setParameter("fechaActual",new Date());
@@ -246,6 +254,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
+	/**
+	 * Metodo que permite listar productos por categoria
+	 * @param categoria
+	 * @return List Productos Categoria
+	 */
 	public List<Producto> listarProductosCategoria(String categoria){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CATEGORIA, Producto.class);
 		query.setParameter("c", categoria);
@@ -253,6 +266,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
+	/**
+	 * Metodo que permite listar los productos, por nombre o coincidencias
+	 * @param nombreProducto
+	 * @return Lista filtrada por nombre
+	 */
 	public List<Producto> listarProductosNombre(String nombreProducto){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE, Producto.class);
 		query.setParameter("nombre","%"+nombreProducto+"%");	
@@ -260,6 +278,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
+	/**
+	 * Metodo que permite listar los productos de un usuario
+	 * @param ccUsuario
+	 * @return list Productos Usuario
+	 */
 	public List<Producto> listarProductosUsuario(String ccUsuario){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_USUARIO, Producto.class);
 		query.setParameter("cc",ccUsuario);	
@@ -268,6 +291,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	}
 
 
+	/**
+	 * Metodo que permite listar los comentarios de un producto
+	 * @param idProducto
+	 * @return List Comentarios Producto
+	 */
 	public List<Comentario> listarComentariosProducto(int idProducto){
 		TypedQuery<Comentario> query = entityManager.createNamedQuery(Comentario.LISTAR_COMENTARIOS_PRODUCTO, Comentario.class);
 		query.setParameter("id",idProducto);	
@@ -275,39 +303,49 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 
+	/**
+	 * Metodo que permite obtener la calificacion final de un producto
+	 * @param idProducto
+	 * @return double, calificacion final
+	 */
 	public double calificacionFinalProducto(int idProducto){
 		if(listarCalificacionesProducto(idProducto)) {
 			Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_FINAL_PRODUCTO);
 			query.setParameter("id", idProducto);
 			Object resultado = query.getSingleResult();
 			double promedio = (double)resultado;
-			//DecimalFormat formato = new DecimalFormat("#.0");
 
 			return promedio;
 		}else {
 			return 0;
 		}
-
 	}	
 
+	/**
+	 * Metodo que permite listar las calificaciones de un producto para determinar si tiene o no 
+	 * @param idProducto
+	 * @return true si el producto tiene calificaciones
+	 */
 	public Boolean listarCalificacionesProducto(int id) {
 
 		TypedQuery<Calificacion> query = entityManager.createNamedQuery(Calificacion.LISTAR_CALIFICACIONES_PRODUCTO,Calificacion.class);
 		query.setParameter("id", id);
 
 		return query.getResultList().size() > 0;
-
 	}
 
+	/**
+	 * Metodo que permite listar las imagenes de un producto
+	 * @param idProducto
+	 * @return List Imagenes Producto
+	 */
 	public List<Producto> listarImageneProducto(int id) {
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_IMAGENES_PRODUCTO,Producto.class);
 		query.setParameter("id", id);
-		
+
 		List<Producto> productos = query.getResultList();
-		
+
 		return productos;
-		
-		//else return null
 	}
 
 

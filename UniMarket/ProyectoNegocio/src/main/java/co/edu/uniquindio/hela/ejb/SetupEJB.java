@@ -20,14 +20,13 @@ public class SetupEJB {
 	@PersistenceContext
 	private EntityManager entityManager;
     /**
-     * Default constructor. 
+     * Constructor de la clase
      */
     public SetupEJB() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
-     * metodo que se encarga de crear un administrador en caso de que no exista
+     * metodo que se encarga de crear un administrador en caso de que no exista y persistiendo en la base de datos
      */
     @PostConstruct
     public void install(){

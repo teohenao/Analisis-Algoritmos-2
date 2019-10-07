@@ -188,6 +188,8 @@ public class DetalleProductoController implements Initializable{
 				listaImagenes.add(img);
 			}else {
 				String rutaImg = ""+imagenes.get(i)+"";
+				//getClass().getResource("../otropaquete/imagen1.jpg");
+				//ClassLoader.getSystemResource("com/otropaquete/imagen1.jpg");
 				FileInputStream imageStream = new FileInputStream(rutaImg);
 				Image image = new Image (imageStream );
 				ImageView img = new ImageView(image);

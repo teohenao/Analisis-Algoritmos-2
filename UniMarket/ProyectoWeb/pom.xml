@@ -12,7 +12,7 @@
 	<name>Proyecto Web</name>
 	<description>Proyecto que representa la capa web de UniMarket</description>
 	<dependencies>
-		<dependency>
+	<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>6.2</version>

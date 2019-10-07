@@ -24,6 +24,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.Initializable;
 
+/**
+ * Controlador para la vista Usuarios, en la cual se gestiona todo lo relacionado a los usuarios de unimarket
+ * @author mateo
+ *
+ */
 public class UsuariosController implements Initializable{
 
 	@FXML
@@ -88,13 +93,17 @@ public class UsuariosController implements Initializable{
 	private Usuario UsuarioSeleccionado;
 	private ObservableList<Usuario> listaUsuarios;
 
+	/**
+	 * Action para el btn BuscarUsuario, el cual se encarga de capturar lo que exista en txtBuscar 
+	 * y realiza la busqueda llenando los campos con los del resultado
+	 */
 	@FXML
 	void buscarUsuario(ActionEvent event) {
 
 		if(txtBuscar.getText().trim().isEmpty()) {
-			Utilidades.mostrarMensaje(":(","Debe ingresar una cedula para buscar thanks :/" );
+			Utilidades.mostrarMensaje("Campos Vacios","Debe ingresar una cedula para buscar un usuario" );
 		} else if (delegado.buscarUsuarioPorCedula(txtBuscar.getText()) == null) {
-			Utilidades.mostrarMensaje(":(","No se encontro esta cedula en la base de datos srrrry :/" );
+			Utilidades.mostrarMensaje("No Existe","No se encontro esta cedula en la base de datos" );
 		} else {
 			Usuario user = delegado.buscarUsuarioPorCedula(txtBuscar.getText());
 			txtCedula.setText(user.getCedula());
@@ -106,11 +115,17 @@ public class UsuariosController implements Initializable{
 		}
 
 	}
+	/**
+	 * Action btnLimpiarCampos el cual limpia todos los campos para un nuevo ingreso
+	 */
 	@FXML
 	void limpiarCampos(ActionEvent event) {
 		reiniciarCampos();
 	}
-
+	
+	/**
+	 * Action BtnActualizarUsuario el cual es encargado de realizar la actualizacion de un usuario
+	 */
 	@FXML
 	void actualizarUsuario(ActionEvent event) {
 
@@ -122,7 +137,7 @@ public class UsuariosController implements Initializable{
 
 		if(txtClave.getText().trim().isEmpty() | txtDireccion.getText().trim().isEmpty()
 				| txtEmail.getText().trim().isEmpty() | txtNombre.getText().trim().isEmpty() | txtTelefono.getText().trim().isEmpty()) {
-			Utilidades.mostrarMensaje("INTENTELO DE NUEVO", "Debe llenar todos los campos :D");
+			Utilidades.mostrarMensaje("Campo vacio", "Debe llenar todos los campos para realizar el registro");
 		}else{
 			if(UsuarioSeleccionado != null) {
 				UsuarioSeleccionado.setNombreCompleto(nombreUsuario);
@@ -160,22 +175,25 @@ public class UsuariosController implements Initializable{
 		}
 	}
 
+	/**
+	 * Action btnEliminarUsuario el cual se encarga de eliminar un usuario por medio de la cedula
+	 */
 	@FXML
 	void eliminarUsuario(ActionEvent event) {
 
 		if(txtCedula.getText().trim().isEmpty()){
 			Utilidades.mostrarMensaje("ADVERTENCIA", "POR FAVOR INSERTE UNA CEDULA");
 		}else if(delegado.buscarUsuarioPorCedula(txtCedula.getText()) == null ) {
-			Utilidades.mostrarMensaje(":(","No se encontro esta cedula en la base de datos srrrry :/" );
+			Utilidades.mostrarMensaje("Cedula incorrecta","No se encontro esta cedula en la base de datos" );
 		}
 		else if (delegado.eliminarUsuario(txtCedula.getText())) {
-			Utilidades.mostrarMensaje("USUARIO ELIMINADO", "El usuario identificado con C.C: "+txtCedula.getText()+"\nA sido eliminado satisfactoriamente");
+			Utilidades.mostrarMensaje("USUARIO ELIMINADO", "El usuario identificado con la cedula "+txtCedula.getText()+"\n a sido eliminado satisfactoriamente");
 			reiniciarCampos();
 			listaUsuarios = FXCollections.observableArrayList(obtenerLista());
 			llenarTablaUsuarios(listaUsuarios);
 
 		}else {
-			Utilidades.mostrarMensaje(":(","No se encontro esta cedula en la base de datos sorry :/" );
+			Utilidades.mostrarMensaje("Cedula erronea","No se encontro esta cedula en la base de datos" );
 
 		}
 

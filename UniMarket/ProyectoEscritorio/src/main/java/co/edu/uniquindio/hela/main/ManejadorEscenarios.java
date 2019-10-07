@@ -26,16 +26,18 @@ public class ManejadorEscenarios {
 	 */
 	private AdministradorDelegado administradorDelegado;
 
+	
 	public ManejadorEscenarios() {
 		administradorDelegado = AdministradorDelegado.administradorDelegado;
 	}
+	
 	public AdministradorDelegado getDelegado () {
 		return administradorDelegado;
 	}
 
 
 	/**
-	 * Se encarga de mostrar la pantalla inicial o Login de unimarket
+	 * Se encarga de mostrar la pantalla inicial y Login de unimarket
 	 * @param escenario
 	 */
 	public ManejadorEscenarios(Stage escenario) {
@@ -65,13 +67,8 @@ public class ManejadorEscenarios {
 		administradorDelegado = AdministradorDelegado.administradorDelegado;
 		
 		try {
-			//se carga la interfaz
-			FXMLLoader loader = new FXMLLoader();
-			
-			//Obtener referencia a la Escena del botón         
+			FXMLLoader loader = new FXMLLoader();         
 			escenario = (Stage) IniciarSesion.getScene().getWindow();
-			
-			//cargar el otro documento, en este caso la segundo pantalla
 			Parent root = FXMLLoader.load(getClass().getResource("../vista/Inicio.fxml"));
 			GestionController gestionController = (GestionController)loader.getController();
 			loader.setController(gestionController);
@@ -90,7 +87,7 @@ public class ManejadorEscenarios {
 
 
 	/**
-	 * Se encarga de mostrar el escenario de Usuarios registrados en la base de datos para el administrador
+	 * Se encarga de mostrar el escenario de Usuarios registrados en la base de datos para gestion del administrador
 	 * @param usuarios
 	 */
 	public void cargarEscenarioUsuarios(Button usuarios) {
@@ -115,7 +112,7 @@ public class ManejadorEscenarios {
 
 	
 	/**
-	 * Se encarga de mostrar el escenario de Productos registrados en la base de datos para el administrador
+	 * Se encarga de mostrar el escenario de Productos registrados en la base de datos para gestion del administrador
 	 * @param Productos
 	 */
 	public void cargarEscenarioProductos(Button productos) {

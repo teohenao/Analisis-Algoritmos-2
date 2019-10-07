@@ -1,7 +1,11 @@
 package co.edu.uniquindio.hela.main;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+/**
+ * Clase main que inicializa la aplicacion de escritorio
+ * @author mateo
+ * @version 1.0
+ */
 public class Main extends Application{
 	
 	public static void main (String[] args) {

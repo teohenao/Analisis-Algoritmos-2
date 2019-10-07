@@ -23,8 +23,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * Controlador de InicioSesion de unimarket
+ * @author mateo
+ * @version 1.0
+ */
 public class InicioSesionController implements Initializable {
-
 
 	@FXML
 	private Button btnIniciarSesion;
@@ -47,62 +51,66 @@ public class InicioSesionController implements Initializable {
 	@FXML
 	private Label LabelContrasena;
 
+
 	private ManejadorEscenarios manejador = new ManejadorEscenarios();
 	private AdministradorDelegado delegado = manejador.getDelegado();
 
 
-
+	/**
+	 * Action para el boton iniciarSesion del administrador
+	 * @param event
+	 */
 	@FXML
 	void IniciarSesion(ActionEvent event) {
 
 		String usuario = txtAdministrador.getText();
 		String clave = txtClave.getText();
 
-		if(delegado!=null) {
+		if(delegado.aprobarIngresoAdmin(usuario, clave)) {
+			manejador.cargarEscenarioMenuAdmin(btnIniciarSesion);
 
-			if(delegado.aprobarIngresoAdmin(usuario, clave)) {
-				manejador.cargarEscenarioMenuAdmin(btnIniciarSesion);
-				
-			} else {
-				JOptionPane.showMessageDialog(null,"Datos incorrectos o no tiene permisos de administrador :D");
-			}
+		} else {
+			JOptionPane.showMessageDialog(null,"Datos incorrectos o usted no tiene permisos de administrador");
 		}
+
 	}
 
+	/**
+	 * Accion para el btn RecuperarContraseña, el cual consiste en enviar un correo
+	 * @param event
+	 * @throws MessagingException
+	 */
 	@FXML
 	void RecuperarContrasena(ActionEvent event) throws MessagingException {
 		enviarEmail("mateohr880@gmail.com");
 	}
-	
+
+
+
 	public static void enviarEmail(String recepient) throws MessagingException {
 		System.out.println("preparando mensaje");
 		Properties properties = new Properties();
-		
+
 		properties.put("mail.smtp.auth","true");
 		properties.put("mail.smtp.starttls.enable","true");
 		properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		properties.put("mail.smtp.port","587");
-		
+
 		String myAccountEmail = "distrifacilarmenia@gmail.com";
 		String password = "41925469";
-		
+
 		Session session = Session.getInstance(properties,new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				
+
 				return new PasswordAuthentication(myAccountEmail, password);
-				
+
 			}
 		});
-		
 		Message message = prepareMessage(session,myAccountEmail,recepient);
 		Transport.send(message);
 		System.out.println("mensaje enviado");
-		
-		
 	}
-
-
 	private static Message prepareMessage(Session session,String myAccountEmail,String recepient) {
 		try {
 			Message message = new MimeMessage(session);
@@ -116,13 +124,12 @@ public class InicioSesionController implements Initializable {
 		}
 		return null;
 	}
-	
-	
-	
+
+
+
 
 	@Override
 	public void initialize(InternalTypeMappingRegistry arg0) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
