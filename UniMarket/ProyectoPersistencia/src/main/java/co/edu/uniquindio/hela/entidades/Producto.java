@@ -55,14 +55,38 @@ import javax.persistence.*;
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por usuario creador
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_VENCIDOS_USUARIO, query = "select p from Producto p where (p.fechaLimite <:fechaActual ) AND (p.usuario.cedula =:cc)"),
-	
+	/**
+	 * Consulta la cual permite listar la calificacion final de cada producto, y los productos que no tienen calificaciones por igual
+	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_CON_SIN_CALIFICACIONES, query = "SELECT producto.id , AVG(calificacion.valor) FROM Producto producto LEFT JOIN Calificacion calificacion ON calificacion.producto.id = producto.id GROUP BY producto.id"),
+	/**
+	 * Consulta DTO que permite listar los productos por nombre y categoria
+	 */
 	@NamedQuery(name = Producto.CONSULTA_DTO_PRODUCTO , query = "select new co.edu.uniquindio.hela.logica.ConsultaProductosDTO(producto.nombre,producto.descripcion) from Producto producto"),
+	/**
+	 * Consulta que permite contar los productos por categorias en unimarket
+	 */
 	@NamedQuery(name = Producto.CONTAR_PRODUCTOS_CATEGORIAS, query = "select COUNT(p.categoria) from Producto p GROUP BY p.categoria"),
+	/**
+	 * Consulta que permitte listar los productos que no tienen comentarios en unimarket
+	 */
 	@NamedQuery(name = Producto.PRODUCTOS_SIN_COMENTARIOS, query ="select p from Producto p WHERE p.Comentarios IS EMPTY"),
-	@NamedQuery(name = Producto.LISTAR_IMAGENES_PRODUCTO, query ="select p.imagenes from Producto p where p.id =:id ")
-
-	
+	/**
+	 * Consulta que permite listar las imagenes de determinado producto
+	 */
+	@NamedQuery(name = Producto.LISTAR_IMAGENES_PRODUCTO, query ="select p.imagenes from Producto p where p.id =:id "),
+	/**
+	 * Consulta que permite determinar cantidad de productos registrados por usuarios
+	 */
+	@NamedQuery(name = Producto.CANTIDAD_PRODUCTOS_USUARIO,query = "select new co.edu.uniquindio.hela.logica.ConsultaCantidadProductosUsuarioDTO(p.usuario.cedula,p.usuario.email),COUNT(p.usuario.cedula) from Producto p group by p.usuario.cedula"),
+	/**
+	 * Consulta que permite determinar la categoria que tiene mas productos registrados en unimarket
+	 */
+	@NamedQuery(name = Producto.CATEGORIA_MAS_PRODUCTOS, query = "select MAX(p.categoria),p.nombre from Producto p"),
+	/**
+	 * Consulta que permite determinar el producto que tiene el precio mas caro en unimarket
+	 */
+	@NamedQuery(name = Producto.PRODUCTO_PRECIO_MAS_ALTO,query = "select MAX(p.precio),p.nombre from Producto p ")
 })
 public class Producto implements Serializable {
 	
@@ -87,17 +111,24 @@ public class Producto implements Serializable {
 	public static final String LISTAR_PRODUCTOS_ACTIVOS_USUARIO = "ListarProductosActivosUsuario";
 	//Constante que identifica la consulta que lista todos los productos vencidos de cierto Usuario
 	public static final String LISTAR_PRODUCTOS_VENCIDOS_USUARIO = "ListarProductosVencidosUsuario";
-	
+	//Constante que identifica la consulta que lista productos por medio de nombre o similares en nombre
 	public static final String LISTAR_PRODUCTOS_NOMBRE = "ListarProductosNombres";
-	
+	//Constante que identifica la consulta que lista los productos que tienen o no calificaciones
 	public static final String LISTAR_PRODUCTOS_CON_SIN_CALIFICACIONES = "ListarProductosConSinCalificaciones"; 
+	//Constante que identifica la consulta DTO que lista productos por nombre y categoria
 	public static final String CONSULTA_DTO_PRODUCTO = "ConsultaDtoProducto";
-	
+	//Constante que identifica la consulta que cuenta los productos por categoria en unimarket
 	public static final String CONTAR_PRODUCTOS_CATEGORIAS = "ContarProductosCategorias";
-	
+	//Constante que identifica la consulta que lista los productos que no tienen comentarios en unimarket
 	public static final String PRODUCTOS_SIN_COMENTARIOS = "ProductosSinComentarios";
-	
+	//Constante que identifica la consulta que lista todas las imagenes de un producto
 	public static final String LISTAR_IMAGENES_PRODUCTO = "ListarImagenesProducto";
+	//Constante que identifica la consulta que cuenta los productos por usuario
+	public static final String CANTIDAD_PRODUCTOS_USUARIO = "CantidadProductosUsuario";
+	//Constante que identifica la consulta de identificar la categoria con mas productos
+	public static final String CATEGORIA_MAS_PRODUCTOS = "CategoriaMasProductos";
+	//Constante que identifica la consulta que encuentra el producto con el precio mas alto
+	public static final String PRODUCTO_PRECIO_MAS_ALTO = "ProductoPrecioMasAlto";	
 	
 
 	/**
@@ -179,8 +210,6 @@ public class Producto implements Serializable {
 	 */
 	@ElementCollection
 	private List<String> imagenes = new ArrayList<String>();
-	
-	
 	
 	
 	private static final long serialVersionUID = 1L;

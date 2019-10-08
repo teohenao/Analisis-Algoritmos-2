@@ -28,7 +28,6 @@ public class DetalleCompra implements Serializable {
 
 	//Constante que identifica la consulta que lista todos los detalles de una compra
 	public static final String LISTAR_DETALLES_COMPRA = "ListarDetallesCompra";
-
 	//Constante que identifica la consulta que listar los 5 productos mas vendidos
 	public static final String LISTAR_5PRODUCTOS_MAS_VENDIDOS = "Listar5ProductosMasVendidos";
 

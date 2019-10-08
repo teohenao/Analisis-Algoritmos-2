@@ -24,6 +24,9 @@ import javax.persistence.*;
 	 * Consulta que nos permite obtener una persona por medio del email
 	 */
 	@NamedQuery(name = Persona.PERSONA_POR_EMAIL, query = "select persona from Persona persona where persona.email=:email"),
+	/**
+	 * Consulta que nos permite obtener si un email se encuentra en uso en unimarket, y si lo esta que no sea de su propiedad
+	 */
 	@NamedQuery(name = Persona.PERSONAS_EMAIL_EN_USO, query = "select persona from Persona persona where persona.email=:email AND persona.cedula !=:cedula ")
 
 
@@ -38,7 +41,9 @@ public class Persona implements Serializable {
 	public static final String OBTENER_PERSONA_EMAIL_CLAVE = "ObtenerPersonaEmailClave";
 	//constante que identifica la consulta que obtiene una persona por medio del email
 	public static final String PERSONA_POR_EMAIL = "PersonaEmail";
+	//Constante que identifica la consulta que obtiene si un email se encuentra en uso en unimarket
 	public static final String PERSONAS_EMAIL_EN_USO = "PersonasEmailEnUso";
+	
 	/**
 	 * Atributos de la clase Persona
 	 */

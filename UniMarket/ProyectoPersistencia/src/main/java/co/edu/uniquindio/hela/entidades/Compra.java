@@ -23,10 +23,22 @@ import javax.persistence.*;
 	 * Consulta la cual nos permite listar las compras que ha realizado cierto usuario
 	 */
 	@NamedQuery(name = Compra.LISTAR_COMPRAS_USUARIO, query = "select c from Compra c where c.usuario.cedula = :cc"),
-	
+	/**
+	 * Consulta la cual permite listar las compras que se han realizado en determinada fecha
+	 */
 	@NamedQuery(name = Compra.LISTAR_COMPRAS_FECHA, query = "select c from Compra c where c.fechaCompra = :fecha"),
-	
-	@NamedQuery(name = Compra.CONTAR_COMPRAS, query = "select COUNT(c.ref) from Compra c ")
+	/**
+	 * Consulta que permite contar las compras realizadas en unimarket
+	 */
+	@NamedQuery(name = Compra.CONTAR_COMPRAS, query = "select COUNT(c.ref) from Compra c "),
+	/**
+	 * Consulta que permite calcular los gastos en compras de un usuario de unimarket
+	 */
+	@NamedQuery(name = Compra.GASTOS_COMPRAS, query = "select SUM(dc.precio*dc.cantidad) AS suma FROM Compra c JOIN DetalleCompra dc on c.ref = dc.compra.ref WHERE c.usuario.cedula = :cedula group by c.usuario.cedula"),
+	/**
+	 * Consulta que permite calcular las ganancias en ventas de un usuario de unimarket
+	 */
+	@NamedQuery(name = Compra.GANANCIAS_COMPRAS,query ="select SUM(dc.precio * dc.cantidad) AS suma from DetalleCompra dc JOIN Producto p ON dc.producto.id = p.id WHERE p.usuario.cedula = :cedula GROUP BY p.usuario.cedula")
 	
 })
 public class Compra implements Serializable {
@@ -39,10 +51,14 @@ public class Compra implements Serializable {
 	public static final String LISTAR_COMPRAS = "ListarCompras";
 	//Constante que identifica la consulta que lista todos las compras de determinado usuario
 	public static final String LISTAR_COMPRAS_USUARIO = "ListarComprasUsuario";
-
+	//Constante que identifica la consulta que lista todas las compras realizadas en determinada fecha
 	public static final String LISTAR_COMPRAS_FECHA = "ListarComprasFecha";
-	
+	//Constante que identifica la consulta que cuenta las compras realizadas en unimarket
 	public static final String CONTAR_COMPRAS = "ContarCompras";
+	//Constante que identifica la consulta que calcula las gastos
+	public static final String GASTOS_COMPRAS = "GastosCompras";
+	//Constante que identifica la consulta que calcula los ganancias
+	public static final String GANANCIAS_COMPRAS = "GananciasCompras";
 
 	/**
 	 * Relaciones de la entidad Compra
