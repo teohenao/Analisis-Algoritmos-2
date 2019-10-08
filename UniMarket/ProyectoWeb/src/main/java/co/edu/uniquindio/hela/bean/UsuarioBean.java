@@ -34,7 +34,7 @@ public class UsuarioBean {
 		nombreCompleto = temp;
 	}
 
-	public Boolean registrarUsuario() throws InformacionRepetidaExcepcion {
+	public String registrarUsuario() throws InformacionRepetidaExcepcion {
 		Usuario usuario = new Usuario();
 		usuario.setCedula(cedula);
 		usuario.setNombreCompleto(nombreCompleto);
@@ -44,11 +44,13 @@ public class UsuarioBean {
 		usuario.setClave(clave);
 	
 		if(adminEJB.registrarUsuario(usuario)!=null) {
+			FacesMessage mensaje = new FacesMessage("EXITO"+"\n"+"El Empleado "+cedula+" Se registro con exito");
+			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 			System.out.println("se registro");
-			return true;
+			return "/productos/inicio";
 		}else {
 			System.out.println("no se registro");
-			return false;
+			return "";
 		}
 	}
 	@PostConstruct

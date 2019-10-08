@@ -588,7 +588,7 @@ public class EntidadesTest {
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"detallecompra.json",})
+	@UsingDataSet({"detalleCompra.json",})
 	public void buscarDetalleCompraTest() {
 
 		DetalleCompra registrado = entityManager.find(DetalleCompra.class, 2);
@@ -601,7 +601,7 @@ public class EntidadesTest {
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"detallecompra.json"})
+	@UsingDataSet({"detalleCompra.json"})
 	public void actualizarDetalleCompraTest(){
 
 		DetalleCompra dc = entityManager.find(DetalleCompra.class, 5);
@@ -618,7 +618,7 @@ public class EntidadesTest {
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"detallecompra.json"})
+	@UsingDataSet({"detalleCompra.json"})
 	public void eliminarDetalleCompraTest() {
 
 		DetalleCompra dc = entityManager.find(DetalleCompra.class, 2);

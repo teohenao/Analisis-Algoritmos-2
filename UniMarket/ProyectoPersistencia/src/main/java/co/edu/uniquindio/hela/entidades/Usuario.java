@@ -55,7 +55,7 @@ public class Usuario extends Persona implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Compra> compras;
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	private List<Favorito> favoritos;
 
 	//,cascade = CascadeType.ALL

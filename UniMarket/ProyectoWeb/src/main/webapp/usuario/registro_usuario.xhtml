@@ -11,13 +11,14 @@
 </head>
 <body>
 	<form jsf:id="miFormulario">
-		<input id="cedula" type="text" jsf:value="#{usuarioBean.cedula}" /> 
-		<input id="nombreCompleto" type="text" jsf:value="#{usuarioBean.nombreCompleto}" /> 
-		<input id="direccion" type="text" jsf:value="#{usuarioBean.direccion}" /> 
-		<input id="numeroTelefonico" type="text" jsf:value="#{usuarioBean.numeroTelefonico}" />
-	    <input id="email" type="text" jsf:value="#{usuarioBean.email}" /> 
-	    <input id="clave" type="text" jsf:value="#{usuarioBean.clave}" /> 
-	    <input type="submit" jsf:action="#{usuarioBean.cambiar}" value="Aceptar" />
+		<input id="cedula" type="text" required="required" jsf:value="#{usuarioBean.cedula}"  /> 
+		<input id="nombreCompleto" type="text" required="required" jsf:value="#{usuarioBean.nombreCompleto}" /> 
+		<input id="direccion" type="text" required="required" jsf:value="#{usuarioBean.direccion}" /> 
+		<input id="numeroTelefonico" type="text" required="required" jsf:value="#{usuarioBean.numeroTelefonico}" />
+	    <input id="email" type="text" required="required" jsf:value="#{usuarioBean.email}" /> 
+	    <input id="clave" type="text" required="required" jsf:value="#{usuarioBean.clave}" /> 
+	    <input type="submit" jsf:action="#{usuarioBean.registrarUsuario}" value="Aceptar" />
+	    <h:messages /><br />
 	</form>
 </body>
 </html>
