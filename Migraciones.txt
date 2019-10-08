@@ -1,60 +1,60 @@
-insert into persona values ("1","Usuario","1234","Americas 35-10","valentina@gmail.com","valentina ossa perez","123456789");
-insert into persona values ("1094952608","Administrador","1234","Calarca cra 25 18-90","mhenaor@uqvirtual.edu.co","Mateo Henao Rodriguez","3176996558");
-insert into persona values ("2","Usuario","1234","Barcelona España","german@gmail.com","german urrea mondongo","1234456551"); 
-insert into persona values ("3","Usuario","1234","Rusia quinta avenida","gustavo@gmail.com","gustavo ernesto lucifer","13131231");
-insert into persona values ("4","Usuario","1234","Galeria 31-09","mario@gmail.com","mario luciano toro","121132113");
-insert into persona values ("5","Usuario","1234","carrera 12-31","oscar@gmail.com","oscar alonso felipe","12141311");
-insert into persona values ("6","Usuario","1234","Calle 12-11","julian@gmail.com","julian perez ossa","12313111");  
-insert into usuario values ("1");  
-insert into usuario values ("2");
-insert into usuario values ("3");
-insert into usuario values ("4");
-insert into usuario values ("5");
-insert into usuario values ("6");  
-insert into administrador values("1094952608");                
-insert into producto values (1,"moda","este producto es muy a la moda, por el diseño tan genial",10,"2019-10-10","vestido gucci",10.000,"1");
-insert into producto values (2,"moda","este producto es muy famoso por lo que tiene el color azul wuau",91,"2019-10-11","zapatos lana",12.200,"2");
-insert into producto values (3,"moda","este producto va a pegar duro, ya que son unas medias importadas",76,"2019-05-10","medias imports",12.200,"3");
-insert into producto values (4,"deporte","este balon es de los mejores del mercado ya que messi lo toco",12,"2019-11-11","balon messi",14.030,"1");
-insert into producto values (5,"deporte","estas tobilleras son de la suerte, aprovecha",12,"2019-11-15","tobilleras suerte",19.000,"2");
-insert into producto values (6,"deporte","estas raquetas a veces sirven pero aproveche que estan economicas",19,"2019-01-11","raquetas biporales",14.000,"1");
-insert into producto values (7,"tecnologia","este celular es creado por la nasa y en realidad vuela",10,"2019-12-11","celular nasa",13.130,"2");
-insert into producto values (8,"tecnologia","este televisor es tan enorme que quedara ciego",16,"2019-10-10","televisor x1000",11.990,"5");
-insert into producto values (9,"tecnologia","estos parlantes suenan tan duro que queddara sordo",87,"2018-11-11","parlantes bosse",14.650,"6");
-insert into producto values (10,"libros","este libro tiene que leerlo, pero antes debe aprender a leer :D",19,"2019-10-10","libro fabuloso",14.990,"5");
-insert into producto values (11,"libros","este libro lo dejara con ganas de estudiar, por que le dara a entender que no sabe nada",67,"2019-09-11","libro sabiduria",14.980,"4");
-insert into producto values (12,"libros","este libro es como una serie de netflix, asi que para que paga netflix? lea!",54,"2019-09-04","libro netflix",17.220,"3");
-insert into producto values (13,"libros","este libro en realidad no tiene letras, no se por que decimos que es un libro",42,"2019-04-11","libro nn",11.200,"6");
-insert into producto values (14,"joyas","este anillo, es diferente a los demas, es un anillo cuadrado :o",5,"2019-12-11","anillo cuadrado",18.900,"5");
-insert into producto values (15,"joyas","esta cadena es plateada pero no es de plata, es de aluminio :(",65,"2019-10-01","cadena aluminio",17.707,"6");
-insert into producto values (16,"joyas","esta joya no sabemos como se llama pero brilla y se ve costosa, comprala!",76,"2019-11-11","joya rara",14.080,"4");
-insert into comentario values(1,"este vestido no es gucci",1,"1");
-insert into comentario values(2,"este vestido esta very nice",1,"2");
-insert into comentario values(3,"este vestido tiene descuento?",1,"3");
-insert into comentario values(4,"yo lo compre y estoy muy gorda :(",1,"4");
-insert into comentario values(5,"ya vengo, voy a dar una vuelta!",1,"5");
-insert into comentario values(6,"esta como cariñoso",1,"6");
-insert into comentario values(7,"yo tengo unos y son fabulosos",2,"1");
-insert into comentario values(8,"quiero unos, me llaman?",2,"2");
-insert into comentario values(9,"si calientan?",2,"3");
-insert into comentario values(10,"a que cuestan mano?",2,"4");
-insert into comentario values(11,"de que color tiene? tiene de navidad?",2,"5");
-insert into comentario values(12,"yo me los compro todos",2,"6");
-insert into calificacion values (1,3,1,"1");
-insert into calificacion values (2,5,1,"2");
-insert into calificacion values (3,2,1,"3");
-insert into calificacion values (4,4,1,"4");
-insert into calificacion values (5,3,1,"5");
-insert into calificacion values (6,5,2,"2");
-insert into calificacion values (7,4,2,"5");
-insert into calificacion values (8,4,2,"6");
-insert into calificacion values (10,1,11,"2");
-insert into calificacion values (11,2,11,"5");
-insert into calificacion values (12,5,11,"6");
-insert into producto_imagenes values (1,"C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\fondo1.jpg");
-insert into producto_imagenes values (1,"C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\fondo4.jpg");
-insert into producto_imagenes values (1,"C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\fondo5.jpg");
-insert into producto_imagenes values (1,"C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\fondo6.jpg");
+insert into PERSONA values ("1","Usuario","1234","Americas 35-10","valentina@gmail.com","valentina ossa perez","123456789");
+insert into PERSONA values ("1094952608","Administrador","1234","Calarca cra 25 18-90","mhenaor@uqvirtual.edu.co","Mateo Henao Rodriguez","3176996558");
+insert into PERSONA values ("2","Usuario","1234","Barcelona España","german@gmail.com","german urrea mondongo","1234456551"); 
+insert into PERSONA values ("3","Usuario","1234","Rusia quinta avenida","gustavo@gmail.com","gustavo ernesto lucifer","13131231");
+insert into PERSONA values ("4","Usuario","1234","Galeria 31-09","mario@gmail.com","mario luciano toro","121132113");
+insert into PERSONA values ("5","Usuario","1234","carrera 12-31","oscar@gmail.com","oscar alonso felipe","12141311");
+insert into PERSONA values ("6","Usuario","1234","Calle 12-11","julian@gmail.com","julian perez ossa","12313111");  
+insert into USUARIO values ("1");  
+insert into USUARIO values ("2");
+insert into USUARIO values ("3");
+insert into USUARIO values ("4");
+insert into USUARIO values ("5");
+insert into USUARIO values ("6");  
+insert into ADMINISTRADOR values("1094952608");                
+insert into PRODUCTO values (1,"moda","este producto es muy a la moda, por el diseño tan genial",10,"2019-10-10","vestido gucci",10.000,"1");
+insert into PRODUCTO values (2,"moda","este producto es muy famoso por lo que tiene el color azul wuau",91,"2019-10-11","zapatos lana",12.200,"2");
+insert into PRODUCTO values (3,"moda","este producto va a pegar duro, ya que son unas medias importadas",76,"2019-05-10","medias imports",12.200,"3");
+insert into PRODUCTO values (4,"deporte","este balon es de los mejores del mercado ya que messi lo toco",12,"2019-11-11","balon messi",14.030,"1");
+insert into PRODUCTO values (5,"deporte","estas tobilleras son de la suerte, aprovecha",12,"2019-11-15","tobilleras suerte",19.000,"2");
+insert into PRODUCTO values (6,"deporte","estas raquetas a veces sirven pero aproveche que estan economicas",19,"2019-01-11","raquetas biporales",14.000,"1");
+insert into PRODUCTO values (7,"tecnologia","este celular es creado por la nasa y en realidad vuela",10,"2019-12-11","celular nasa",13.130,"2");
+insert into PRODUCTO values (8,"tecnologia","este televisor es tan enorme que quedara ciego",16,"2019-10-10","televisor x1000",11.990,"5");
+insert into PRODUCTO values (9,"tecnologia","estos parlantes suenan tan duro que queddara sordo",87,"2018-11-11","parlantes bosse",14.650,"6");
+insert into PRODUCTO values (10,"libros","este libro tiene que leerlo, pero antes debe aprender a leer :D",19,"2019-10-10","libro fabuloso",14.990,"5");
+insert into PRODUCTO values (11,"libros","este libro lo dejara con ganas de estudiar, por que le dara a entender que no sabe nada",67,"2019-09-11","libro sabiduria",14.980,"4");
+insert into PRODUCTO values (12,"libros","este libro es como una serie de netflix, asi que para que paga netflix? lea!",54,"2019-09-04","libro netflix",17.220,"3");
+insert into PRODUCTO values (13,"libros","este libro en realidad no tiene letras, no se por que decimos que es un libro",42,"2019-04-11","libro nn",11.200,"6");
+insert into PRODUCTO values (14,"joyas","este anillo, es diferente a los demas, es un anillo cuadrado :o",5,"2019-12-11","anillo cuadrado",18.900,"5");
+insert into PRODUCTO values (15,"joyas","esta cadena es plateada pero no es de plata, es de aluminio :(",65,"2019-10-01","cadena aluminio",17.707,"6");
+insert into PRODUCTO values (16,"joyas","esta joya no sabemos como se llama pero brilla y se ve costosa, comprala!",76,"2019-11-11","joya rara",14.080,"4");
+insert into COMENTARIO values(1,"este vestido no es gucci",1,"1");
+insert into COMENTARIO values(2,"este vestido esta very nice",1,"2");
+insert into COMENTARIO values(3,"este vestido tiene descuento?",1,"3");
+insert into COMENTARIO values(4,"yo lo compre y estoy muy gorda :(",1,"4");
+insert into COMENTARIO values(5,"ya vengo, voy a dar una vuelta!",1,"5");
+insert into COMENTARIO values(6,"esta como cariñoso",1,"6");
+insert into COMENTARIO values(7,"yo tengo unos y son fabulosos",2,"1");
+insert into COMENTARIO values(8,"quiero unos, me llaman?",2,"2");
+insert into COMENTARIO values(9,"si calientan?",2,"3");
+insert into COMENTARIO values(10,"a que cuestan mano?",2,"4");
+insert into COMENTARIO values(11,"de que color tiene? tiene de navidad?",2,"5");
+insert into COMENTARIO values(12,"yo me los compro todos",2,"6");
+insert into CALIFICACION values (1,3,1,"1");
+insert into CALIFICACION values (2,5,1,"2");
+insert into CALIFICACION values (3,2,1,"3");
+insert into CALIFICACION values (4,4,1,"4");
+insert into CALIFICACION values (5,3,1,"5");
+insert into CALIFICACION values (6,5,2,"2");
+insert into CALIFICACION values (7,4,2,"5");
+insert into CALIFICACION values (8,4,2,"6");
+insert into CALIFICACION values (10,1,11,"2");
+insert into CALIFICACION values (11,2,11,"5");
+insert into CALIFICACION values (12,5,11,"6");
+insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo1.jpg");
+insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo4.jpg");
+insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo5.jpg");
+insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo6.jpg");
 
 
 
@@ -81,5 +81,13 @@ insert into detallecompra values (5,20,8000,2,2);
 9. gruop by categoria max precio
 10. sleect c from compra c where beetwen fecha inicio fecha fin
 11. joind select compra y detalle 
+
+
+Asesoria,
+pruebas conector,
+eliminacion cascada, usuario producto, compra
+ruta imagenes sistema operativo
+404
+consulta max, limit
 
 
