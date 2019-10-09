@@ -27,13 +27,12 @@ public class UsuarioBean {
 	private String numeroTelefonico;
 	private String email;
 	private String clave;
-	
-	public void cambiar() {
-		String temp = cedula;
-		cedula = nombreCompleto;
-		nombreCompleto = temp;
-	}
 
+	/**
+	 * Metodo que permite registrar un usuario en la base de datos
+	 * @return
+	 * @throws InformacionRepetidaExcepcion
+	 */
 	public String registrarUsuario() throws InformacionRepetidaExcepcion {
 		Usuario usuario = new Usuario();
 		usuario.setCedula(cedula);
@@ -47,19 +46,26 @@ public class UsuarioBean {
 			FacesMessage mensaje = new FacesMessage("EXITO"+"\n"+"El Empleado "+cedula+" Se registro con exito");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 			System.out.println("se registro");
-			return "/productos/inicio";
+			return "/productos/Inicio";
 		}else {
 			System.out.println("no se registro");
 			return "";
 		}
 	}
+	
+	
+	public String loginUsuario() {
+		if(adminEJB.aprobarIngresoUser(cedula, clave)==true) {
+			return "/productos/Inicio";
+		}else {
+			return "";
+		}
+	}
+	
+	
 	@PostConstruct
     public void init() {
-        // In case you're updating an existing entity.
-        //entity = entityService.getById(entityId);
-
-        // Or in case you want to create a new entity.
-        Usuario usuario = new Usuario();
+        
     }
 	
 	public String getCedula() {

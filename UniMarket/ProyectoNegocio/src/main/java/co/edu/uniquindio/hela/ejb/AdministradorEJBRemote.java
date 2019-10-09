@@ -134,6 +134,13 @@ public interface AdministradorEJBRemote {
 	 * @return list Imagenes Producto
 	 */
 	public List<Producto> listarImageneProducto(int id);
+	/**
+	 * Metodo que permite aprobar el ingreso de un usuario a unimarket
+	 * @param cedula
+	 * @param clave
+	 * @return true si la clave coincide con el usuario existente
+	 */
+	public boolean aprobarIngresoUser(String cedula, String clave); 
 
 
 }

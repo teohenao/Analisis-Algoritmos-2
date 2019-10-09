@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<style type="text/css">
+body {
+	margin: 0;
+	background-image:
+		url("https://cdn.pixabay.com/photo/2016/12/17/17/44/presents-1913987_960_720.jpg");
+	background-size: cover;
+	/*  https://cdn.pixabay.com/photo/2015/05/07/08/37/chaotic-756196_960_720.jpg */
+}
+
+#footer {
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	bottom: 0;
+	color: white;
+}
+
+#cabecera {
+	top: 0;
+}
+
+#cabecera .ui-g div {
+	background-color: #268967;
+	text-align: center;
+	font-size: 60px;
+	font-family: unset;
+	color: white;
+}
+
+.ui-g div {
+	background-color: rgba(50, 115, 220, 0.3);
+	text-align: center;
+}
+
+.panel {
+	width: 400px;
+	height: 200px;
+	position: absolute;
+	top: 35%;
+	left: 35%;
+	background-color: #7DB976;
+	text-align: center;
+}
+
+.ui-widget-content {
+	border: white;
+	background: white;
+}
+
+.ui-widget-header {
+	background: #268967;
+	color: white;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default {
+	color: black;
+	background:#E4EA18;
+	width: 350px;
+}
+</style>
+</h:head>
+
+<h:body>
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+	<div id="cabecera">
+		<div class="ui-g">
+			<div class="ui-g-12">UniMarket</div>
+		</div>
+	</div>
+	<div id="content">
+		<ui:insert name="content">
+
+		</ui:insert>
+	</div>
+
+
+
+	<div id="footer">
+		<div class="ui-g">
+			<div class="ui-g-12">Footer de la aplicacion web unimarket, aca
+				van redes de contacto, etc</div>
+		</div>
+	</div>
+
+</h:body>
+
+</html>

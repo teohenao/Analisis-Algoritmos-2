@@ -240,7 +240,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 		return query.getResultList();
 	}
-	
+
 	/**
 	 * Metodo que permite listar los productos vencidos, por categoria
 	 * @param categoria
@@ -349,7 +349,18 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	}
 
 
-
-
-
+	/**
+	 * Realiza una busqueda por cedula y clave para ver si coincide con algun
+	 * usuario registrado para realizar el login a unimarket
+	 * @param cedula
+	 * @param clave
+	 * @return
+	 */
+	public boolean aprobarIngresoUser(String cedula, String clave) {
+		Usuario user = buscarUsuarioPorCedula(cedula);
+		if (user != null && user.getClave().equals(clave)) {
+			return true;
+		}
+		return false;
+	}
 }
