@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title><ui:insert name="title">Titulo default templateUnimarket</ui:insert></title>
+	<style type="text/css">
+body {
+	margin: 0;
+	background-image:
+		url("https://cdn.pixabay.com/photo/2016/12/13/14/19/seamless-1904178__340.jpg");
+	background-repeat: repeat repeat;
+}
+
+.ui-menubar {
+	background-color: white;
+}
+</style>
+</h:head>
+
+<h:body>
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+
+	<div id="header">
+		<ui:insert name="header">
+			<h:form>
+				<p:growl id="messages" />
+				<p:menubar>
+					<p:menuitem value="UniMarket" outcome="/productos/Inicio.xhtml" style="font-family: unset;font-weight: bold;color: #6C3483;"/>
+					<p:menuitem value="Mis Productos" outcome="/productos/ProductosUsuario.xhtml"/>
+					<p:menuitem value="Carrito" outcome="/compras/Carrito.xhtml"/>
+					<p:menuitem value="Mis Compras" outcome="/compras/ComprasUsuario.xhtml"/>
+					<f:facet name="options">
+						<p:commandButton type="button" value="Cerrar Sesion" style="background: #F15454;;color:white;"/>
+					</f:facet>
+				</p:menubar>
+			</h:form>
+		</ui:insert>
+	</div>
+
+
+	<div id="content">
+		<ui:insert name="content">
+    	Content area.  See comments below this line in the source.
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+			<!-- <div> -->
+			<!-- <ui:include src="content.xhtml"/> -->
+			<!-- </div> -->
+		</ui:insert>
+	</div>
+
+	<div id="footer">
+		<ui:insert name="footer">
+    	Footer area.  See comments below this line in the source.
+    	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
+			<!--<ui:include src="footer.xhtml"/>  -->
+		</ui:insert>
+	</div>
+
+</h:body>
+
+</html>

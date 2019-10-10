@@ -46,6 +46,7 @@ public class UsuarioBean {
 			FacesMessage mensaje = new FacesMessage("EXITO"+"\n"+"El Empleado "+cedula+" Se registro con exito");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 			System.out.println("se registro");
+			reiniciarCampos();
 			return "/productos/Inicio";
 		}else {
 			System.out.println("no se registro");
@@ -56,26 +57,21 @@ public class UsuarioBean {
 	
 	public String loginUsuario() {
 		if(adminEJB.aprobarIngresoUser(cedula, clave)==true) {
+			reiniciarCampos();
 			return "/productos/Inicio";
 		}else {
 			return "";
 		}
 	}
-	/**
-	 * Redireccion a la vista login
-	 * @return vista login usuario
-	 */
-	public String login() {
-		return "/usuario/Login";
-	}
-	/**
-	 * Redireccion a la vista Registri
-	 * @return vista registro usuario
-	 */
-	public String registro() {
-		return "/usuario/Registro";
-	}
 	
+	public void reiniciarCampos() {
+		nombreCompleto="";
+		cedula="";
+		email="";
+		clave="";
+		direccion="";
+		numeroTelefonico="";
+	}
 	
 	
 	@PostConstruct
