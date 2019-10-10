@@ -9,18 +9,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="/template/TemplateInicio.xhtml">
-
+	<ui:define name="title">UniMarket</ui:define>
 	<ui:define name="content">
-	<h:form>
-		<p:panelGrid columns="1" styleClass="panel">
-		<f:facet style="text-aling:center" name="header">Bienvenido a su pagina de CompraVenta</f:facet>
-		<h:outputText value="Por favor seleccione una opcion para acceder" />
-		<p:commandButton value="Iniciar Sesion"
-			action="#{UsuarioBean.login}"/>
-		<p:commandButton value="Registrarse"
-			action="#{UsuarioBean.registro}"/>
+		<h:form>
+			<p:panelGrid columns="1" styleClass="panel">
+				<f:facet style="text-aling:center" name="header">Bienvenido a su pagina de CompraVenta</f:facet>
+				<h:outputText value="Por favor seleccione una opcion para acceder" />
+				<p:button outcome="/usuario/Login.xhtm" value="Iniciar Sesion"
+					style="background:#BA4A00;color:white;">
+				</p:button>
+				<p:button outcome="/usuario/Registro.xhtm" value="Registrarse"
+					style="background:#BA4A00;color:white;">
+				</p:button>
 			</p:panelGrid>
-	</h:form>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

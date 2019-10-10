@@ -61,6 +61,21 @@ public class UsuarioBean {
 			return "";
 		}
 	}
+	/**
+	 * Redireccion a la vista login
+	 * @return vista login usuario
+	 */
+	public String login() {
+		return "/usuario/Login";
+	}
+	/**
+	 * Redireccion a la vista Registri
+	 * @return vista registro usuario
+	 */
+	public String registro() {
+		return "/usuario/Registro";
+	}
+	
 	
 	
 	@PostConstruct

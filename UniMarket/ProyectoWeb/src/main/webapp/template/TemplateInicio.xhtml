@@ -31,7 +31,7 @@ body {
 #cabecera .ui-g div {
 	background-color: #268967;
 	text-align: center;
-	font-size: 60px;
+	font-size: 40px;
 	font-family: unset;
 	color: white;
 }
@@ -45,10 +45,13 @@ body {
 	width: 400px;
 	height: 200px;
 	position: absolute;
-	top: 35%;
+	top: 30%;
 	left: 35%;
 	background-color: #7DB976;
 	text-align: center;
+}
+ui-panelgrid .ui-panelgrid-cell {
+    padding: 3px;
 }
 
 .ui-widget-content {
@@ -64,8 +67,11 @@ body {
 .ui-state-default, .ui-widget-content .ui-state-default,
 	.ui-widget-header .ui-state-default {
 	color: black;
-	background:#E4EA18;
+	background: #E4EA18;
 	width: 350px;
+}
+.linc {
+	color: #FFFFFF;
 }
 </style>
 </h:head>
@@ -83,9 +89,6 @@ body {
 
 		</ui:insert>
 	</div>
-
-
-
 	<div id="footer">
 		<div class="ui-g">
 			<div class="ui-g-12">Footer de la aplicacion web unimarket, aca
