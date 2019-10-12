@@ -2,16 +2,15 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/template/TemplateInicio.xhtml">
 	<ui:define name="title">UniMarket</ui:define>
 	<ui:define name="content">
-		<h:form>
+			<h:form>
 			<p:panelGrid columns="1" styleClass="panel">
 				<f:facet style="text-aling:center" name="header">Bienvenido a su pagina de CompraVenta</f:facet>
 				<h:outputText value="Por favor seleccione una opcion para acceder" />

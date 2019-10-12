@@ -1,0 +1,81 @@
+body {
+	margin: 0;
+	background-image:
+		url("http://www.solofondos.com/wp-content/uploads/2015/11/21omxpw.jpg");
+	background-repeat: repeat repeat;
+}
+
+#content {
+	min-height: 520px;
+}
+
+.ui-menubar {
+	background-color: white;
+}
+
+.ui-g div {
+	background-color: white;
+	text-align: center;
+}
+
+#footer {
+	width: 100%;
+	height: 40px;
+	color: black;
+	font-weight: bold;
+}
+
+.containerInicio {
+	padding-left: 78px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-right: 40px;
+	/* para que el container se alinee hacia el centro */
+	margin: auto;
+}
+
+.row {
+	display: flex;
+}
+
+.col-2 {
+	width: calc(100%/ 12 * 2);
+}
+
+.col-4 {
+	width: 33.333333332%;
+}
+
+.col-8 {
+	width: 66.666666664%;
+}
+
+.col-10 {
+	width: 83.333333333%;
+}
+
+.col-12 {
+	width: 100%;
+}
+/* sistema de reglas generales para las columnas */
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
+	.col-9, .col-10, .col-11, .col-12 {
+	/* padding para que en el momento que un grid tenga mucho texto no se choque con los otros grid al hacer responsive */
+	padding: 5px;
+}
+
+/* responsive para las columnas  */
+@media ( max-width :900px) {
+	.row {
+		display: inherit;
+	}
+	.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
+		.col-9, .col-10, .col-11, .col-12 {
+		width: 100%;
+	}
+	.value {
+		font-weight: bold;
+	}
+}
+
+

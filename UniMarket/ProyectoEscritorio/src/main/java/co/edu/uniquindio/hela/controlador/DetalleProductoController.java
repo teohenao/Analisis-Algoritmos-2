@@ -180,7 +180,7 @@ public class DetalleProductoController implements Initializable{
 		List<Producto> imagenes = delegado.listarImageneProducto(idProductoMostrar);
 		for (int i = 0; i < imagenes.size(); i++) {
 			if(imagenes.get(0)==null) {
-				FileInputStream imageStream = new FileInputStream("C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\hela.jpg");
+				FileInputStream imageStream = new FileInputStream("/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/hela.jpg");
 				Image image = new Image (imageStream );
 				ImageView img = new ImageView(image);
 				img.setFitWidth(150);
