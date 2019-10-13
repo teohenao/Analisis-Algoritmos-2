@@ -13,16 +13,18 @@
 		<div class="containerInicio" style="padding-bottom: 0px;">
 			<div class="row">
 				<div class="col-12">
-					<div class="slide" style="padding-left: 26.7%;">
-						<h2 style="color:blue;">los productos mas vendidos</h2>
+					<div class="slide" style="padding-left: 26.9%;">
+						<h1
+			style="margin-left: 5%; color: white; font-family: serif; font-size: 54px;">Los Mas Vendidos</h1>
 						<b:carousel id="carousel" style="max-width: 500px; height: 100%">
-							<c:forEach items="#{productoBean.listaProductos}" var="producto">
+							<c:forEach items="#{productoBean.listaMisFavoritos}"
+								var="producto">
 								<b:carouselItem>
 									<img src="../recursos/fondo1.jpg"
-										style="width: 100%; max-height: 100%" />
+										style="width: 100%; max-height: 100%; opacity: 0.7;" />
 									<b:carouselCaption>
-										<h2>#{producto.nombre}</h2>
-										<p>#{producto.descripcion}</p>
+										<h2 style="color: black; font-weight: bold;">#{producto.producto.id}</h2>
+										<p style="color: black;">#{producto.producto.id}</p>
 									</b:carouselCaption>
 								</b:carouselItem>
 							</c:forEach>
@@ -36,13 +38,40 @@
 			<div class="row">
 				<div class="col-8" style="width: 70%;">
 					<h:form id="form">
+						<b:dropButton look="primary" value=" CATEGORIAS ">
+							<b:navCommandLink value="TODOS LOS PRODUCTOS"
+								action="#{productoBean.productosActivos}" update="productos" />
+							<b:navLink></b:navLink>
+							<b:navLink header="----TIPOS----"></b:navLink>
+							<b:navCommandLink value="TECNOLOGIA"
+								action="#{productoBean.productosActivosCategoria('tecnologia')}"
+								update="productos" />
+							<b:navCommandLink value="DEPORTE"
+								action="#{productoBean.productosActivosCategoria('deporte')}"
+								update="productos" />
+							<b:navCommandLink value="MODA"
+								action="#{productoBean.productosActivosCategoria('moda')}"
+								update="productos" />
+							<b:navCommandLink value="LIBROS"
+								action="#{productoBean.productosActivosCategoria('libros')}"
+								update="productos" />
+							<b:navCommandLink value="JOYAS"
+								action="#{productoBean.productosActivosCategoria('joyas')}"
+								update="productos" />
+						</b:dropButton>
+						<p:inputText value="#{productoBean.inputBuscar}"
+							placeholder="Palabras o nombre del producto a buscar!"
+							style="width: 320px;height:42px;margin-left: 2%;margin-bottom: 8px;" />
+						<b:commandButton value="Buscar Productos" look="primary"
+							action="#{productoBean.buscarProductosNombreActivos}"
+							update="productos" style="margin-left: 9px;height: 42px;" />
 						<p:dataGrid var="producto" value="#{productoBean.listaProductos}"
 							columns="3" layout="grid" rows="12" paginator="true"
 							id="productos"
 							paginatorTemplate=" {FirstPageLink} {CurrentPageReport} {PageLinks} {NextPageLink} "
 							currentPageReportTemplate="{startRecord} - {endRecord} de {totalRecords}">
 							<p:panel header="#{producto.nombre}"
-								style="text-align:center;font-weight: bold;">
+								style="text-align:center;font-weight: bold;background:white;">
 								<h:panelGrid columns="1" style="width:100%">
 									<h:graphicImage height="180" width="100%"
 										value="../recursos/fondo1.jpg" />
@@ -50,10 +79,11 @@
 										style="font-size: 15px;font-family: unset;color:black;" />
 									<h:outputText value="$ #{producto.precio}"
 										style="font-size: 25px;font-family: unset;color:green;font-weight: bold;" />
-									<b:button value="Ver detalles" iconAwesome="fa-angle-double-up"
-										look="info" size="lg"
+									<b:commandButton value="Ver Productos"
+										action="#{productoBean.pruebaParam(producto.id)}"
+										iconAwesome="fa-angle-double-up" look="info" size="lg"
 										style="margin-right:20px;width: 100%;margin-bottom: 3px;" />
-									<b:button value="Comprar" iconAwesome="fa-info-circle"
+									<b:commandButton value="Comprar" iconAwesome="fa-info-circle"
 										look="success" size="lg"
 										style="margin-right:20px;width: 100%;" />
 								</h:panelGrid>
@@ -62,16 +92,18 @@
 					</h:form>
 				</div>
 				<div class="col-4" style="padding-left: 75px;">
-					<h:form id="formFav" style="width: 100%;">
-						<p:dataList value="#{productoBean.listaProductos}" var="producto"
-							type="ordered">
-							<f:facet name="header"> Mis Favoritos</f:facet> #{producto.nombre}
+					<h:form id="formFav"
+						style="width: 100%;background:white;color:black;">
+						<p:dataList value="#{productoBean.listaMisFavoritos}"
+							var="favorito">
+							<f:facet name="header">
+								<h4>
+									<b:iconAwesome name="thumbs-down" spin="true" size="lg" />
+									Mis Favoritos
+								</h4>
+							</f:facet> #{favorito.producto.nombre}
  						</p:dataList>
-						<b:panelGrid columns="2" size="lg" value="#{productoBean.listaProductos}" var="producto">
-							<b:badge value="#{producto.nombre}"/>
-						</b:panelGrid>
 					</h:form>
-					
 				</div>
 			</div>
 		</div>

@@ -278,6 +278,9 @@ public class QuerysTest {
 		query.setParameter("cc", "6");
 		List<Favorito> favoritos = query.getResultList();
 
+		 for (Favorito favorito: favoritos) {
+			 System.out.println(favorito.getProducto().getNombre());
+		 }
 		Assert.assertEquals(favoritos.size(), 5);
 
 	}

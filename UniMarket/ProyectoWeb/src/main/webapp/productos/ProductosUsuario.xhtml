@@ -3,13 +3,52 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <ui:composition template="/template/TemplateUniMarket.xhtml">
-<ui:define name="title">Mis Productos</ui:define>
+	<ui:define name="title">Mis Productos</ui:define>
 	<ui:define name="content">
-	    Add your content here or delete to use the default
+		<h1
+			style="text-align: center; color: white; margin-top: 5%; margin-bottom: 6%; font-family: serif; font-size: 54px;">Tus
+			Productos Registrados</h1>
+		<div class="containerMisProductos" style="margin: 3%">
+			<div class="row" style="background: white">
+				<div class="col-12">
+					<div class="tableMisProductos">
+						<h:form>
+							<b:dataTable id="tableProductosUsuario"
+								style="background:#E0D99F"
+								value="#{misProductosBean.listaProductosUsuario}" var="producto">
+								<b:dataTableColumn value="#{producto.nombre}" />
+								<b:dataTableColumn label="FechaLimite" dataType="date">
+									<h:outputText value="#{producto.fechaLimite}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</b:dataTableColumn>
+								<b:dataTableColumn value="#{producto.disponibilidad}" />
+								<b:dataTableColumn value="#{producto.categoria}" />
+								<b:dataTableColumn label="Precio" type="currency">
+									<h:outputText value="#{producto.precio}">
+										<f:convertNumber type="currency" currencySymbol="$"
+											maxIntegerDigits="6" maxFractionDigits="3" />
+									</h:outputText>
+								</b:dataTableColumn>
+								<b:dataTableColumn style="text-align:center;">
+									<b:commandButton value="Editar" icon="edit" look="warning" />
+								</b:dataTableColumn>
+								<b:dataTableColumn style="text-align:center;">
+									<b:commandButton value="Elimiar" iconAwesome="trash" look="danger"/>
+								</b:dataTableColumn>
+							</b:dataTable>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</ui:define>
 </ui:composition>
 </html>

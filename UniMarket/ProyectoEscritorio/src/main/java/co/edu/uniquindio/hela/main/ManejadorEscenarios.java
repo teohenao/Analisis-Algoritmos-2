@@ -48,7 +48,7 @@ public class ManejadorEscenarios {
 			escenario.setTitle("UniMarket");
 			Parent root = FXMLLoader.load(getClass().getResource("../vista/InicioSesionAdmin.fxml"));
 			Scene scene = new Scene(root);
-			escenario.setResizable(false);
+			//escenario.setResizable(false);
 			escenario.centerOnScreen();
 			escenario.setScene(scene);
 			escenario.show();
@@ -74,7 +74,7 @@ public class ManejadorEscenarios {
 			loader.setController(gestionController);
 			Scene scene = new Scene(root);
 			escenario.setScene(scene);
-			escenario.setResizable(false);
+			//escenario.setResizable(false);
 			escenario.centerOnScreen();
 			escenario.setTitle("Bienvenido");
 			escenario.show();

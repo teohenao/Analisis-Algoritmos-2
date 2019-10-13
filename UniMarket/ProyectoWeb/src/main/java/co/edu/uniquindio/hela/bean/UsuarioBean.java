@@ -54,7 +54,10 @@ public class UsuarioBean {
 		}
 	}
 	
-	
+	/**
+	 * Metodo que permite logear a un usuario en la base de datos
+	 * @return redireccion 
+	 */
 	public String loginUsuario() {
 		if(adminEJB.aprobarIngresoUser(cedula, clave)==true) {
 			reiniciarCampos();
@@ -63,7 +66,9 @@ public class UsuarioBean {
 			return "";
 		}
 	}
-	
+	/**
+	 * Metodo que permite reiniciar los campos despues de un registro o login
+	 */
 	public void reiniciarCampos() {
 		nombreCompleto="";
 		cedula="";

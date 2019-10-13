@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 import co.edu.uniquindio.hela.excepciones.InformacionInexistenteExcepcion;
@@ -142,5 +143,8 @@ public interface AdministradorEJBRemote {
 	 */
 	public boolean aprobarIngresoUser(String cedula, String clave); 
 
+	
+	public List<Producto> listarProductosNombreActivos(String nombreProducto);
+	public List<Favorito> listarFavoritosUsuario(String cedula);
 
 }

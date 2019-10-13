@@ -20,6 +20,11 @@ import javax.persistence.*;
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE, query = "select producto from Producto producto where producto.nombre LIKE :nombre "),
 	/**
+	 * Consulta la cual permite listar los productos por medio del nombre que se encuentren activos
+	 */
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, query = "select producto from Producto producto where producto.nombre LIKE :nombre AND  producto.fechaLimite >=  :fechaActual"),
+	
+	/**
 	 * Consulta la cual permite listar todos los productos registrados en la base de datos
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS, query = "select producto from Producto producto"),
@@ -89,7 +94,7 @@ import javax.persistence.*;
 	@NamedQuery(name = Producto.PRODUCTO_PRECIO_MAS_ALTO,query = "select MAX(p.precio),p.nombre from Producto p ")
 })
 public class Producto implements Serializable {
-	
+
 	/**
 	 * Constantes que identifican las consultas de Producto
 	 */
@@ -129,28 +134,30 @@ public class Producto implements Serializable {
 	public static final String CATEGORIA_MAS_PRODUCTOS = "CategoriaMasProductos";
 	//Constante que identifica la consulta que encuentra el producto con el precio mas alto
 	public static final String PRODUCTO_PRECIO_MAS_ALTO = "ProductoPrecioMasAlto";	
-	
+	//Constante que identifica la consulta que lista productos por medio de nombre o similares en nombre que se encuentren activos
+	public static final String LISTAR_PRODUCTOS_NOMBRE_ACTIVOS = "ListarProductosNombresActivos";
+
 
 	/**
 	 * Relaciones de la entidad Producto
 	 */
-	
+
 	//Relacion de uno a muchos con la entidad de detalle compras
 	@OneToMany(mappedBy = "producto")
 	private List<DetalleCompra> DetalleCompras;
-	
+
 	//Relacion de muchos a uno con usuario
 	@ManyToOne
 	private Usuario usuario;
-	
+
 	//Relacion de uno a muchos con la entidad de calificaciones
 	@OneToMany(mappedBy = "producto")
 	private List<Calificacion> Calificaciones;
-	
+
 	//Relacion de uno a muchos con la entidad de comentarios
 	@OneToMany(mappedBy = "producto")
 	private List<Comentario> Comentarios;
-	
+
 	//Relacion de uno a muchos con la entidad de favoritos
 	@OneToMany(mappedBy = "producto")
 	private List<Favorito> Favoritos;
@@ -158,7 +165,7 @@ public class Producto implements Serializable {
 	/**
 	 * Atributos de Producto
 	 */
-	   
+
 	/**
 	 * Id autoincrementable el cual identifica cada producto registrado en la base de datos
 	 */
@@ -166,52 +173,52 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id",nullable = false,updatable = false)
 	private int id;
-	
+
 	/**
 	 * Nombre del producto
 	 */
 	@Column(name = "nombre",nullable = false ,length = 30)
 	private String nombre;
-	
+
 	/**
 	 * Descripcion del producto
 	 */
 	@Column(name = "descripcion",nullable = false,length = 200)
 	private String descripcion;
-	
+
 	/**
 	 * Disponibilidad del producto
 	 */
 	@Column(name = "disponibilidad",nullable = false,length = 4)
 	private int disponibilidad;
-	
+
 	/**
 	 * Categorida del producto
 	 */
 	@Enumerated(EnumType.STRING)
 	@Column(name = "categoria",nullable = false)
 	private Categoria categoria;
-	
+
 	/**
 	 * Precio del producto
 	 */
 	@Column(name = "precio",nullable = false,length = 10)
 	private Double precio;
-	
+
 	/**
 	 * Fecha limite del producto, la cual define si esta activo o no
 	 */
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaLimite")
 	private Date fechaLimite;
-	
+
 	/**
 	 * Lista de imagenes de un producto, Crea tabla con todas las imagenes registradas y su relacion con el producto
 	 */
 	@ElementCollection
 	private List<String> imagenes = new ArrayList<String>();
-	
-	
+
+
 	private static final long serialVersionUID = 1L;
 
 	public Producto() {
@@ -241,9 +248,9 @@ public class Producto implements Serializable {
 		return this.disponibilidad;
 	}
 
-	
-	
-	
+
+
+
 	public List<DetalleCompra> getDetalleCompras() {
 		return DetalleCompras;
 	}
@@ -265,7 +272,7 @@ public class Producto implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -296,7 +303,7 @@ public class Producto implements Serializable {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	
+
 	public Date getFechaLimite() {
 		return fechaLimite;
 	}
@@ -331,9 +338,9 @@ public class Producto implements Serializable {
 				+ ", categoria=" + categoria + ", precio=" + precio + ", fechaLimite=" + fechaLimite + ", imagenes="
 				+ imagenes + "]";
 	}
-		
-	
-	
-	
-	
+
+
+
+
+
 }

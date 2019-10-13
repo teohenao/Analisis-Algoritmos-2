@@ -1,6 +1,5 @@
 package co.edu.uniquindio.hela.bean;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,11 +13,10 @@ import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 
-
 @Named
 @ApplicationScoped
-public class ProductoBean implements Serializable {
-
+public class MisProductosBean implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -26,13 +24,13 @@ public class ProductoBean implements Serializable {
 
 	private String ccUsuario = "1";
 	
-	private List<Producto>listaProductos;
+	
 	private List<Producto>listaImagenesProducto;
-	private List<Favorito>listaMisFavoritos;
+	private List<Producto>listaProductosUsuario;
 	private Producto producto;
 	private double precio;
 	private int id,disponibilidad;
-	private String nombre,categoria,descripcion,imagenInicio,inputBuscar;
+	private String nombre,categoria,descripcion,imagenInicio,idSeleccionado;
 	private Date fechaLimite;
 
 
@@ -50,56 +48,25 @@ public class ProductoBean implements Serializable {
 			return ""+listaImagenesProducto.get(0)+"";
 		}	
 	}
+	
 	/**
-	 * Metodo que permite buscar los productos activos de unimarket, para la pagina principal
-	 * @return Lista productos Activos por nombre
+	 * Metodo que permite listar todos los productos que un usuario a registrado en unimarket 
+	 * @return lista productos  usuario
 	 */
-	public List<Producto> buscarProductosNombreActivos(){
-		return listaProductos = adminEJB.listarProductosNombreActivos(inputBuscar);
+	public List<Producto> productosUsuario(){
+		return listaProductosUsuario = adminEJB.listarProductosUsuario(ccUsuario);
 	}
-	/**
-	 * Metodo que permite listar productos por categoria que se encuentren activos para la pagina principal
-	 * @param categoriaProducto
-	 * @return List productos activos por categoria
-	 */
-	public List<Producto> productosActivosCategoria(String categoriaProducto){
-		return listaProductos = adminEJB.listarProductosActivosCategoria(categoriaProducto);
-	}
-	/**
-	 * Metodo que permite listar productos activos de unimarket, para la pagina principal
-	 * @return list productos activos de unimarket
-	 */
-	public List<Producto> productosActivos(){
-		return listaProductos = adminEJB.listarProductosActivos();
-	}
-	/**
-	 * Metodo que permite listar los favoritos de un usuario que se encuentren activos
-	 * @return lista favoritos usuario
-	 */
-	public List<Favorito> misFavoritos(){
-		return listaMisFavoritos = adminEJB.listarFavoritosUsuario(ccUsuario);
-	}
-
-	public void pruebaParam(int idProduc) {
-		inputBuscar = ""+idProduc+"" ;
+	
+	public void productoSeleccionado(String idProduc) {
+		idSeleccionado = idProduc ;
 	}
 
 	@PostConstruct 
 	public void Inicializar() {
-		inputBuscar = "";
-		listaProductos=adminEJB.listarProductosActivos();
-		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
-		
-
+		listaProductosUsuario=adminEJB.listarProductosUsuario(ccUsuario);
 	}
 
-	public List<Producto> getListaProductos() {
-		return listaProductos;
-	}
 
-	public void setListaProductos(List<Producto> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
 
 	public Producto getProducto() {
 		return producto;
@@ -176,24 +143,29 @@ public class ProductoBean implements Serializable {
 	public void setImagenInicio(String imagenInicio) {
 		this.imagenInicio = imagenInicio;
 	}
-	public String getInputBuscar() {
-		return inputBuscar;
-	}
-	public void setInputBuscar(String inputBuscar) {
-		this.inputBuscar = inputBuscar;
-	}
+
 	public String getCcUsuario() {
 		return ccUsuario;
 	}
 	public void setCcUsuario(String ccUsuario) {
 		this.ccUsuario = ccUsuario;
 	}
-	public List<Favorito> getListaMisFavoritos() {
-		return listaMisFavoritos;
+	
+	public List<Producto> getListaProductosUsuario() {
+		return listaProductosUsuario;
 	}
-	public void setListaMisFavoritos(List<Favorito> listaMisFavoritos) {
-		this.listaMisFavoritos = listaMisFavoritos;
+	public void setListaProductosUsuario(List<Producto> listaProductosUsuario) {
+		this.listaProductosUsuario = listaProductosUsuario;
 	}
+
+	public String getIdSeleccionado() {
+		return idSeleccionado;
+	}
+
+	public void setIdSeleccionado(String idSeleccionado) {
+		this.idSeleccionado = idSeleccionado;
+	}
+
 
 
 

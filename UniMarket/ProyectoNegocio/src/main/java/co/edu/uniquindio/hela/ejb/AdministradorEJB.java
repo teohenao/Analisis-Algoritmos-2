@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -363,4 +364,20 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 		return false;
 	}
+	
+	public List<Producto> listarProductosNombreActivos(String nombreProducto){
+		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, Producto.class);
+		query.setParameter("fechaActual",new Date());
+		query.setParameter("nombre","%"+nombreProducto+"%");	
+
+		return query.getResultList();
+	}
+	
+	public List<Favorito> listarFavoritosUsuario(String cedula){
+		TypedQuery<Favorito> query = entityManager.createNamedQuery(Favorito.LISTAR_FAVORITOS_USUARIO_ACTIVOS,Favorito.class);
+		query.setParameter("fechaActual", new Date());
+		query.setParameter("cc", cedula);
+		return query.getResultList();
+	}
+	
 }

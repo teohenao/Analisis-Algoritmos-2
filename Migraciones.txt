@@ -55,6 +55,20 @@ insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algorit
 insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo4.jpg");
 insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo5.jpg");
 insert into Producto_IMAGENES values (1,"/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/fondo6.jpg");
+insert into FAVORITO values (1,1,"1");
+insert into FAVORITO values (2,2,"1");
+insert into FAVORITO values (3,3,"1");
+insert into FAVORITO values (4,4,"1");
+insert into FAVORITO values (5,5,"1");
+insert into FAVORITO values (6,6,"1");
+insert into FAVORITO values (7,7,"1");
+
+
+
+
+
+
+
 
 
 

@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.hela.controlador.UsuariosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.hela.controlador.UsuariosController">
    <children>
-      <SplitPane dividerPositions="0.5904522613065326" layoutX="-6.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="606.0">
+      <SplitPane dividerPositions="0.5523385300668151" layoutX="-6.0" orientation="VERTICAL" prefHeight="451.0" prefWidth="636.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="177.0" prefWidth="490.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="652.0">
                <children>
-                  <SplitPane dividerPositions="0.8396624472573839" layoutY="-3.0" orientation="VERTICAL" prefHeight="239.0" prefWidth="606.0">
+                  <SplitPane dividerPositions="0.8047808764940239" layoutX="6.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="253.0" prefWidth="629.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="629.0" styleClass="usuarios">
                            <children>
@@ -26,34 +26,34 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Pane layoutX="28.0" layoutY="41.0" prefHeight="141.0" prefWidth="442.0" styleClass="panel">
+                              <Pane layoutX="16.0" layoutY="41.0" prefHeight="141.0" prefWidth="454.0" styleClass="panel">
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" text="Cedula :">
+                                    <Label layoutX="7.0" layoutY="18.0" text="Cedula :">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="13.0" layoutY="43.0" text="Nombre : ">
+                                    <Label layoutX="5.0" layoutY="47.0" text="Nombre : ">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="11.0" layoutY="70.0" text="Direccion :">
+                                    <Label layoutX="4.0" layoutY="76.0" text="Direccion:">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="13.0" layoutY="99.0" text="Telefono :">
+                                    <Label layoutX="7.0" layoutY="105.0" text="Telefono:">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="238.0" layoutY="43.0" text="E-mail : ">
+                                    <Label layoutX="226.0" layoutY="47.0" text="E-mail : ">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="238.0" layoutY="70.0" text="Clave : ">
+                                    <Label layoutX="230.0" layoutY="76.0" text="Clave : ">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -64,18 +64,18 @@
                                     <TextField fx:id="txtNombre" layoutX="112.0" layoutY="44.0" prefHeight="21.0" prefWidth="109.0" style="-fx-background-color: #cddef4;" />
                                     <TextField fx:id="txtEmail" layoutX="306.0" layoutY="44.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #cddef4;" />
                                     <TextField fx:id="txtClave" layoutX="306.0" layoutY="73.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #cddef4;" />
-                                    <Button fx:id="btnLimpiar" layoutX="369.0" layoutY="115.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: #61a493;" text="LIMPIAR" textFill="#fffdfd" />
+                                    <Button fx:id="btnLimpiar" layoutX="354.0" layoutY="115.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #61a493;" text="LIMPIAR" textFill="#fffdfd" />
                                  </children>
                               </Pane>
                               <Button fx:id="btnRegistrar" layoutX="476.0" layoutY="41.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #61a493;" text="REGISTRAR" textFill="#fffdfd" />
                               <Button fx:id="btnActualizar" layoutX="476.0" layoutY="73.0" mnemonicParsing="false" onAction="#actualizarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #61a493;" text="ACTUALIZAR" textFill="#fffdfd" />
                               <Button fx:id="btnEliminar" layoutX="476.0" layoutY="105.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #eb6740;" text="ELIMINAR" textFill="#fffdfd" />
-                              <Button fx:id="btnRegresar" layoutX="476.0" layoutY="157.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #5e5ce4;" text="REGRESAR INICIO" textFill="#fffdfd" />
+                              <Button fx:id="btnRegresar" layoutX="476.0" layoutY="157.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #5e5ce4;" text="REGRESAR" textFill="#fffdfd" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="38.0" prefWidth="627.0">
                            <children>
-                              <Label layoutX="22.0" layoutY="4.0" text="Buscar usuario por cedula:">
+                              <Label layoutX="7.0" layoutY="9.0" text="Buscar usuario por cedula:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -88,15 +88,15 @@
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="588.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="211.0" prefWidth="634.0">
                <children>
-                  <TableView fx:id="tablaUsuarios" layoutX="5.0" prefHeight="160.0" prefWidth="600.0" style="-fx-background-color: #c6f8f1;">
+                  <TableView fx:id="tablaUsuarios" layoutX="6.0" layoutY="3.0" prefHeight="195.0" prefWidth="627.0" style="-fx-background-color: #c6f8f1;">
                     <columns>
                       <TableColumn fx:id="cedulaUsuario" prefWidth="96.0" text="Cedula" />
-                      <TableColumn fx:id="nombreUsuario" minWidth="0.0" prefWidth="138.0" text="Nombre Completo" />
-                        <TableColumn fx:id="emailUsuario" prefWidth="126.0" text="E-mail" />
+                      <TableColumn fx:id="nombreUsuario" minWidth="0.0" prefWidth="160.0" text="Nombre Completo" />
+                        <TableColumn fx:id="emailUsuario" prefWidth="104.0" text="E-mail" />
                         <TableColumn fx:id="telefonoUsuario" prefWidth="101.0" text="Telefono" />
-                        <TableColumn fx:id="direccionUsuario" prefWidth="144.0" text="Direccion" />
+                        <TableColumn fx:id="direccionUsuario" prefWidth="165.0" text="Direccion" />
                     </columns>
                   </TableView>
                </children>
