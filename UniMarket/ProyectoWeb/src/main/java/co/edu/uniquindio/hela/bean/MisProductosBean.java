@@ -10,7 +10,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
-import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 
 @Named
@@ -57,9 +56,8 @@ public class MisProductosBean implements Serializable {
 		return listaProductosUsuario = adminEJB.listarProductosUsuario(ccUsuario);
 	}
 	
-	public void productoSeleccionado(String idProduc) {
-		idSeleccionado = idProduc ;
-	}
+	private Producto productoSeleccionado;
+ 
 
 	@PostConstruct 
 	public void Inicializar() {
@@ -165,6 +163,15 @@ public class MisProductosBean implements Serializable {
 	public void setIdSeleccionado(String idSeleccionado) {
 		this.idSeleccionado = idSeleccionado;
 	}
+
+	public Producto getProductoSeleccionado() {
+		return productoSeleccionado;
+	}
+
+	public void setProductoSeleccionado(Producto productoSeleccionado) {
+		this.productoSeleccionado = productoSeleccionado;
+	}
+	
 
 
 

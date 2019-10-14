@@ -10,19 +10,39 @@
 
 </h:head>
 <h:body>
-	<b:modal id="amodal" title="Modal Example"
-		styleClass="modalPseudoClass">
-	
-		<f:facet name="footer">
-			<b:button value="Close" dismiss="modal" />
-			<b:button value="Ok" look="primary" dismiss="modal" />
-		</f:facet>
-	</b:modal>
-	<b:row>
-		<b:column span="3">
-			<a id="atrigger" class="btn btn-primary btn-lg" href="#amodal"
-				data-toggle="modal">Trigger (HTML A tag)</a>
-		</b:column>
-	</b:row>
+
+
+	<h:form>
+		<p:dataTable var="producto" value="#{misProductosBean.listaProductosUsuario}">
+			<f:facet name="header">
+            Expand rows to see detailed information
+        </f:facet>
+			<p:column style="width:16px">
+				<p:rowToggler />
+			</p:column>
+			<p:column headerText="Id">
+				<h:outputText value="#{producto.id}" />
+			</p:column>
+			<p:column headerText="Year">
+				<h:outputText value="#{producto.nombre}" />
+			</p:column>
+
+			<p:rowExpansion>
+				<p:panelGrid columns="2" columnClasses="label,value"
+					style="width:300px">
+					
+					<h:outputText value="Id:" />
+					<h:outputText value="#{producto.id}" />
+
+					<h:outputText value="Year" />
+					<h:outputText value="#{producto.nombre}" />
+
+			
+				</p:panelGrid>
+			</p:rowExpansion>
+		</p:dataTable>
+	</h:form>
+
+
 </h:body>
 </html>
