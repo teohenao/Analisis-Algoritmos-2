@@ -6,14 +6,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Producto;
 
+import javax.faces.view.ViewScoped;
+
 @Named
-@ApplicationScoped
+@ViewScoped
 public class MisProductosBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -57,12 +58,14 @@ public class MisProductosBean implements Serializable {
 	}
 	
 	private Producto productoSeleccionado;
- 
 
-	@PostConstruct 
-	public void Inicializar() {
-		listaProductosUsuario=adminEJB.listarProductosUsuario(ccUsuario);
-	}
+
+	@PostConstruct
+    public void init(){
+		listaProductosUsuario=null;
+		listaProductosUsuario = adminEJB.listarProductosUsuario(ccUsuario);
+
+    }
 
 
 
@@ -171,6 +174,8 @@ public class MisProductosBean implements Serializable {
 	public void setProductoSeleccionado(Producto productoSeleccionado) {
 		this.productoSeleccionado = productoSeleccionado;
 	}
+
+
 	
 
 

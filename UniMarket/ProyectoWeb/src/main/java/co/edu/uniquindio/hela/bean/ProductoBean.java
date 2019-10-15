@@ -34,7 +34,24 @@ public class ProductoBean implements Serializable {
 	private int id,disponibilidad;
 	private String nombre,categoria,descripcion,imagenInicio,inputBuscar;
 	private Date fechaLimite;
+	
+	private Producto productoSeleccionadoUsuario;
+	
+	public void actualizarProducto(){
+		Producto p = new Producto();
+		p.setId(productoSeleccionadoUsuario.getId());
+		p.setNombre(productoSeleccionadoUsuario.getNombre());
+		p.setDescripcion(productoSeleccionadoUsuario.getDescripcion());
+		p.setPrecio(productoSeleccionadoUsuario.getPrecio());
+		p.setDisponibilidad(productoSeleccionadoUsuario.getDisponibilidad());
+		p.setFechaLimite(productoSeleccionadoUsuario.getFechaLimite());
+		p.setCategoria(productoSeleccionadoUsuario.getCategoria());
+		p.setUsuario(productoSeleccionadoUsuario.getUsuario());
+		
+		adminEJB.actualizarProducto(p);
+	}
 
+	
 
 	/**
 	 * Metodo para obtener una imagen y mostrarla por cada producto
@@ -89,9 +106,9 @@ public class ProductoBean implements Serializable {
 		inputBuscar = "";
 		listaProductos=adminEJB.listarProductosActivos();
 		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
-		
-
+		productoSeleccionadoUsuario = new Producto();
 	}
+	
 
 	public List<Producto> getListaProductos() {
 		return listaProductos;
@@ -193,6 +210,12 @@ public class ProductoBean implements Serializable {
 	}
 	public void setListaMisFavoritos(List<Favorito> listaMisFavoritos) {
 		this.listaMisFavoritos = listaMisFavoritos;
+	}
+	public Producto getProductoSeleccionadoUsuario() {
+		return productoSeleccionadoUsuario;
+	}
+	public void setProductoSeleccionadoUsuario(Producto productoSeleccionadoUsuario) {
+		this.productoSeleccionadoUsuario = productoSeleccionadoUsuario;
 	}
 
 

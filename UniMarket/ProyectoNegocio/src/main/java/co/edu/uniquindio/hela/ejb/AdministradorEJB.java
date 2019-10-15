@@ -365,6 +365,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return false;
 	}
 	
+	/**
+	 * Metodo que permite listar los productos activos por medio de una palabra o coincidencias en el nombre
+	 * @param nombre o palabra a buscar en producto
+	 * @return list productos filtrados
+	 */
 	public List<Producto> listarProductosNombreActivos(String nombreProducto){
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, Producto.class);
 		query.setParameter("fechaActual",new Date());
@@ -373,11 +378,33 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList();
 	}
 	
+	/**
+	 * Metodo que permite listar los productos favoritos de un usuario
+	 * @param cedula del usuario
+	 * @return list favoritos del usuario
+	 */
 	public List<Favorito> listarFavoritosUsuario(String cedula){
 		TypedQuery<Favorito> query = entityManager.createNamedQuery(Favorito.LISTAR_FAVORITOS_USUARIO_ACTIVOS,Favorito.class);
 		query.setParameter("fechaActual", new Date());
 		query.setParameter("cc", cedula);
 		return query.getResultList();
 	}
+	
+	/**
+	 * Metodo que permite actualizar los productos por parte del usuario creador
+	 * @param producto
+	 * @return producto
+	 */
+	public Producto actualizarProducto(Producto producto) {
+		if((entityManager.find(Producto.class,producto.getId())!=null)) {
+			entityManager.merge(producto);
+			return producto;
+		}else {
+			return null;
+		}
+	}
+	
+	
+	
 	
 }
