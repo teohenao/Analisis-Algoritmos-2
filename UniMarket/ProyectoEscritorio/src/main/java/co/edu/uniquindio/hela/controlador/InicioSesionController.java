@@ -87,6 +87,9 @@ public class InicioSesionController implements Initializable {
 
 
 
+	/*
+	 * enviar email---------------------------------------------------------------------------------------------
+	 */
 	public static void enviarEmail(String recepient) throws MessagingException {
 		System.out.println("preparando mensaje");
 		Properties properties = new Properties();
@@ -117,16 +120,13 @@ public class InicioSesionController implements Initializable {
 			message.setFrom(new InternetAddress(myAccountEmail));
 			message.setRecipient(Message.RecipientType.TO,new InternetAddress(recepient) );
 			message.setSubject("my first email java papa");
-			message.setText("hey putos");
+			message.setText("hey mundo");
 			return message;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
-
-
 
 	@Override
 	public void initialize(InternalTypeMappingRegistry arg0) throws Exception {

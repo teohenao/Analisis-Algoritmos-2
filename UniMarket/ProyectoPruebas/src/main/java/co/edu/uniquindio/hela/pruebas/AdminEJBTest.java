@@ -48,7 +48,7 @@ public class AdminEJBTest {
 		usuario.setCedula("200");
 		usuario.setClave("12345");
 		usuario.setDireccion("asturias 21");
-		usuario.setEmail("emiaaaail1@gamil.com");
+		usuario.setEmail("eail1@gamil.com");
 		usuario.setNombreCompleto("samuel diaz");
 		usuario.setNumeroTelefonico("3176996558");
 		
