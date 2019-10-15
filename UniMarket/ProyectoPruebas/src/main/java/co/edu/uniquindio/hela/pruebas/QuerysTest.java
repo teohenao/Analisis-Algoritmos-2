@@ -329,7 +329,7 @@ public class QuerysTest {
 		query.setParameter("fechaActual", new Date());
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 11);
+		Assert.assertEquals(productos.size(), 10);
 
 		
 	}
@@ -347,7 +347,7 @@ public class QuerysTest {
 		query.setParameter("fechaActual",new Date());
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 4);
+		Assert.assertEquals(productos.size(), 5);
 
 	}
 	
@@ -400,7 +400,7 @@ public class QuerysTest {
 		query.setParameter("c","tecnologia");
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 2);
+		Assert.assertEquals(productos.size(), 3);
 
 	}
 
@@ -417,7 +417,7 @@ public class QuerysTest {
 		query.setParameter("cc", "7");
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 3);
+		Assert.assertEquals(productos.size(), 2);
 
 	}
 	/**
@@ -434,7 +434,7 @@ public class QuerysTest {
 		query.setParameter("cc", "7");
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 1);
+		Assert.assertEquals(productos.size(), 2);
 	
 	}
 

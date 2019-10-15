@@ -19,11 +19,6 @@
 		</dependency>
 		<dependency>
 			<groupId>co.edu.uniquindio.hela</groupId>
-			<artifactId>ProyectoPersistencia</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>co.edu.uniquindio.hela</groupId>
 			<artifactId>ProyectoNegocio</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb</type>
@@ -43,6 +38,11 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
 			<version>13-ea+8</version>
+		</dependency>
+		<dependency>
+			<groupId>co.edu.uniquindio.hela</groupId>
+			<artifactId>ProyectoPersistente</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

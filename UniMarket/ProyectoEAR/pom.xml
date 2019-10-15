@@ -7,25 +7,26 @@
   </parent>
   <artifactId>ProyectoEAR</artifactId>
   <packaging>ear</packaging>
-  <name>Proyecto EAR</name>
-  <description>Proyecto EAR</description>
+  <name>Proyecto ear</name>
+  <description>Proyecto del despliegue del servidor</description>
   <dependencies>
-  	<dependency>
-  		<groupId>co.edu.uniquindio.hela</groupId>
-  		<artifactId>ProyectoPersistencia</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>co.edu.uniquindio.hela</groupId>
-  		<artifactId>ProyectoNegocio</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  		<type>ejb</type>
-  	</dependency>
-  	<dependency>
-  		<groupId>co.edu.uniquindio.hela</groupId>
-  		<artifactId>ProyectoWeb</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  		<type>war</type>
-  	</dependency>
+
+  <dependency>
+  	<groupId>co.edu.uniquindio.hela</groupId>
+  	<artifactId>ProyectoNegocio</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<type>ejb</type>
+  </dependency>
+  <dependency>
+  	<groupId>co.edu.uniquindio.hela</groupId>
+  	<artifactId>ProyectoWeb</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<type>war</type>
+  </dependency>
+  <dependency>
+  	<groupId>co.edu.uniquindio.hela</groupId>
+  	<artifactId>ProyectoPersistente</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </dependency>
   </dependencies>
 </project>

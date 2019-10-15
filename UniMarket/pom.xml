@@ -77,5 +77,6 @@
   	<module>ProyectoNegocio</module>
   	<module>ProyectoEscritorio</module>
     <module>ProyectoWeb</module>
+    <module>ProyectoPersistente</module>
   </modules>
 </project>

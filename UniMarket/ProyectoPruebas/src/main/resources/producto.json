@@ -7,7 +7,7 @@
 		"fechaLimite" : "2019-01-12",
 		"categoria" : "tecnologia",
 		"precio" : 12.000,
-		"USUARIO_CEDULA" :"6",
+		"USUARIO_cedula" :"6",
 		"disponibilidad" : 19
 		},{
 		"id" : 2,
@@ -16,7 +16,7 @@
 		"fechaLimite" : "2019-02-21",
 		"categoria" : "deporte",
 		"precio" : 12.000,
-		"USUARIO_CEDULA" :"8",
+		"USUARIO_cedula" :"8",
 		"disponibilidad" : 12
 		},{
 		"id" : 3,
@@ -25,7 +25,7 @@
 		"fechaLimite" : "2019-11-20",
 		"categoria" : "moda",
 		"precio" : 120.000,
-		"USUARIO_CEDULA" :"10",
+		"USUARIO_cedula" :"10",
 		"disponibilidad" : 100
 		},{
 		"id" : 4,
@@ -34,7 +34,7 @@
 		"fechaLimite" : "2019-01-11",
 		"categoria" : "tecnologia",
 		"precio" : 12.900,
-		"USUARIO_CEDULA" :"8",
+		"USUARIO_cedula" :"8",
 		"disponibilidad" : 19
 		},{
 		"id" : 5,
@@ -43,7 +43,7 @@
 		"fechaLimite" : "2019-10-13",
 		"categoria" : "tecnologia",
 		"precio" : 13.000,
-		"USUARIO_CEDULA" :"7",
+		"USUARIO_cedula" :"7",
 		"disponibilidad" : 20
 		},{
 		"id" : 6,
@@ -52,7 +52,7 @@
 		"fechaLimite" : "2019-11-22",
 		"categoria" : "deporte",
 		"precio" : 12.200,
-		"USUARIO_CEDULA" :"9",
+		"USUARIO_cedula" :"9",
 		"disponibilidad" : 22
 		},{
 		"id" : 7,
@@ -61,7 +61,7 @@
 		"fechaLimite" : "2019-11-13",
 		"categoria" : "deporte",
 		"precio" : 13.000,
-		"USUARIO_CEDULA" :"10",
+		"USUARIO_cedula" :"10",
 		"disponibilidad" : 32
 		},{
 		"id" : 8,
@@ -70,7 +70,7 @@
 		"fechaLimite" : "2019-11-22",
 		"categoria" : "moda",
 		"precio" : 122.000,
-		"USUARIO_CEDULA" :"9",
+		"USUARIO_cedula" :"9",
 		"disponibilidad" : 200
 		},{
 		"id" : 9,
@@ -79,7 +79,7 @@
 		"fechaLimite" : "2018-11-30",
 		"categoria" : "moda",
 		"precio" : 320.000,
-		"USUARIO_CEDULA" :"7",
+		"USUARIO_cedula" :"7",
 		"disponibilidad" : 300
 		},{
 		"id" : 10,
@@ -88,7 +88,7 @@
 		"fechaLimite" : "2019-11-01",
 		"categoria" : "libros",
 		"precio" : 281.000,
-		"USUARIO_CEDULA" :"7",
+		"USUARIO_cedula" :"7",
 		"disponibilidad" : 320
 		},{
 		"id" : 11,
@@ -97,7 +97,7 @@
 		"fechaLimite" : "2019-11-02",
 		"categoria" : "libros",
 		"precio" : 282.000,
-		"USUARIO_CEDULA" :"8",
+		"USUARIO_cedula" :"8",
 		"disponibilidad" : 220
 		},{
 		"id" : 12,
@@ -106,7 +106,7 @@
 		"fechaLimite" : "2019-11-03",
 		"categoria" : "libros",
 		"precio" : 283.000,
-		"USUARIO_CEDULA" :"9",
+		"USUARIO_cedula" :"9",
 		"disponibilidad" : 330
 		},{
 		"id" : 13,
@@ -115,7 +115,7 @@
 		"fechaLimite" : "2019-11-01",
 		"categoria" : "joyas",
 		"precio" : 281.000,
-		"USUARIO_CEDULA" :"7",
+		"USUARIO_cedula" :"7",
 		"disponibilidad" : 320
 		},{
 		"id" : 14,
@@ -124,7 +124,7 @@
 		"fechaLimite" : "2019-11-02",
 		"categoria" : "joyas",
 		"precio" : 282.000,
-		"USUARIO_CEDULA" :"8",
+		"USUARIO_cedula" :"8",
 		"disponibilidad" : 220
 		},{
 		"id" : 15,
@@ -133,23 +133,25 @@
 		"fechaLimite" : "2019-11-03",
 		"categoria" : "joyas",
 		"precio" : 283.000,
-		"USUARIO_CEDULA" :"9",
+		"USUARIO_cedula" :"9",
 		"disponibilidad" : 320
 		}
 	],
-	"PRODUCTO_IMAGENES" : [
+	"Producto_IMAGENES" : [
 		{
 		"Producto_id" : 1,
-		"imagenes" : "ruta/imagenJson1.png"
+		"iMAGENES" : "ruta/imagenJson1.png"
 		},{
 		"Producto_id" : 1,
-		"imagenes" : "ruta/imagenJson2.png"
+		"iMAGENES" : "ruta/imagenJson2.png"
 		},{
 		"Producto_id" : 2,
-		"imagenes" : "ruta2/imagenJson1.png"
+		"iMAGENES" : "ruta2/imagenJson1.png"
 		},{
 		"Producto_id" : 2,
-		"imagenes" : "ruta2/imagenJson2.png"
+		"iMAGENES" : "ruta2/imagenJson2.png"
 		}
 	]
+	
+	
 }

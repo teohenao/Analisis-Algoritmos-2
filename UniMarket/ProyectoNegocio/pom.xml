@@ -16,10 +16,10 @@
 			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>co.edu.uniquindio.hela</groupId>
-			<artifactId>ProyectoPersistencia</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+	<dependency>
+		<groupId>co.edu.uniquindio.hela</groupId>
+		<artifactId>ProyectoPersistente</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+  </dependencies>
 </project>
