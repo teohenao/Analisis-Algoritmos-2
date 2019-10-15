@@ -15,7 +15,8 @@
 				<div class="col-12">
 					<div class="slide" style="padding-left: 26.9%;">
 						<h1
-			style="margin-left: 5%; color: white; font-family: serif; font-size: 54px;">Los Mas Vendidos</h1>
+							style="margin-left: 5%; color: white; font-family: serif; font-size: 54px;">Los
+							Mas Vendidos</h1>
 						<b:carousel id="carousel" style="max-width: 500px; height: 100%">
 							<c:forEach items="#{productoBean.listaMisFavoritos}"
 								var="producto">
@@ -77,8 +78,11 @@
 										value="../recursos/fondo1.jpg" />
 									<h:outputText value="#{producto.descripcion}"
 										style="font-size: 15px;font-family: unset;color:black;" />
-									<h:outputText value="$ #{producto.precio}"
-										style="font-size: 25px;font-family: unset;color:green;font-weight: bold;" />
+									<h:outputText value="#{producto.precio}"
+										style="font-size: 25px;font-family: unset;color:green;font-weight: bold;">
+										<f:convertNumber type="currency" currencySymbol="$"
+											maxIntegerDigits="6" maxFractionDigits="3" />
+									</h:outputText>
 									<b:commandButton value="Ver Productos"
 										action="#{productoBean.pruebaParam(producto.id)}"
 										iconAwesome="fa-angle-double-up" look="info" size="lg"
