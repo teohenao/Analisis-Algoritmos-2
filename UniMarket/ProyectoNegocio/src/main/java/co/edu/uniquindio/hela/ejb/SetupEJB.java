@@ -42,7 +42,7 @@ public class SetupEJB {
     		administrador.setDireccion("calarca casa 100");
     		administrador.setEmail("mateohr880@gmail.com");
     		administrador.setNumeroTelefonico("1231111211");
-    		administrador.setNombreCompleto("admin1");
+    		administrador.setNombreCompleto("Mateo Henao");
     		entityManager.persist(administrador);
     	}
     }

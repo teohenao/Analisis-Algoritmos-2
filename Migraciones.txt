@@ -64,6 +64,27 @@ insert into FAVORITO values (6,6,"1");
 insert into FAVORITO values (7,7,"1");
 
 
+insert into PERSONA values ("10","Usuario","1234","Rusia quinta avenida","gustav10o@gmail.com","gustavo ernesto lucifer","13131231");
+
+
+insert into PERSONA values ("11","Usuario","1234","Rusia quinta avenida","gustav11o@gmail.com","gustavo ernesto lucifer","13131231");
+
+
+insert into PERSONA values ("12","Usuario","1234","Rusia quinta avenida","gustav12o@gmail.com","gustavo ernesto lucifer","13131231");
+
+
+insert into PERSONA values ("13","Usuario","1234","Rusia quinta avenida","gustav13o@gmail.com","gustavo ernesto lucifer","13131231");
+
+
+("14","Usuario","1234","Rusia quinta avenida","gustav14o@gmail.com","gustavo ernesto lucifer","13131231");
+insert into USUARIO values ("10");
+insert into USUARIO values ("11");
+insert into USUARIO values ("12");
+insert into USUARIO values ("13");
+
+
+
+
 
 
 

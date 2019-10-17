@@ -49,16 +49,17 @@ public class Usuario extends Persona implements Serializable {
 		public static final String USUARIOS_GMAIL = "UsuariosGmail";
 
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
 	private List<Calificacion> calificaciones;
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Compra> compras;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	//(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToMany(mappedBy = "usuario", orphanRemoval = true)
 	private List<Favorito> favoritos;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Producto> productos;
 
 	

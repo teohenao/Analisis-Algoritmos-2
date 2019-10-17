@@ -143,7 +143,7 @@ public class Producto implements Serializable {
 	 */
 
 	//Relacion de uno a muchos con la entidad de detalle compras
-	@OneToMany(mappedBy = "producto")
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<DetalleCompra> DetalleCompras;
 
 	//Relacion de muchos a uno con usuario
@@ -151,15 +151,15 @@ public class Producto implements Serializable {
 	private Usuario usuario;
 
 	//Relacion de uno a muchos con la entidad de calificaciones
-	@OneToMany(mappedBy = "producto")
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Calificacion> Calificaciones;
 
 	//Relacion de uno a muchos con la entidad de comentarios
-	@OneToMany(mappedBy = "producto")
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Comentario> Comentarios;
 
 	//Relacion de uno a muchos con la entidad de favoritos
-	@OneToMany(mappedBy = "producto")
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Favorito> Favoritos;
 
 	/**

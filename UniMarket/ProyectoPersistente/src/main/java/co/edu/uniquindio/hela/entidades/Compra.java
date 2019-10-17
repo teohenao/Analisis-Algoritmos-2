@@ -69,7 +69,7 @@ public class Compra implements Serializable {
 	private Usuario usuario;
 
 	//Relacion de uno a muchos con la entidad de detalle compras
-	@OneToMany(mappedBy = "compra")
+	@OneToMany(mappedBy = "compra", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<DetalleCompra> DetalleCompras;
 
 	/**

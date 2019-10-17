@@ -123,14 +123,18 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 */
 	public boolean eliminarUsuario(String cedula){
 		try {
-			if (entityManager.find(Usuario.class, cedula) != null) {
-				entityManager.remove(buscarUsuarioPorCedula(cedula));
+			
+			Usuario u = entityManager.find(Usuario.class, cedula);
+			
+			if ( u != null) {
+				entityManager.remove( u );
 				return true;
 			}else {
 				JOptionPane.showMessageDialog(null, "no se pudo eliminar, confirme que exista :P ");
 				return false;
 			} 
 		} catch (NoResultException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
