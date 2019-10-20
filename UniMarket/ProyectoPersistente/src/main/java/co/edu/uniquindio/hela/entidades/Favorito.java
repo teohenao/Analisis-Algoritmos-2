@@ -23,7 +23,9 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual nos permite listar todos los productos favoritos de un usuario, con los productos vencidos
 	 */
-	@NamedQuery(name = Favorito.LISTAR_FAVORITOS_USUARIO_VENCIDOS, query = "select f from Favorito f WHERE (f.usuario.cedula = :cc) AND (f.producto.fechaLimite <:fechaActual ) ")
+	@NamedQuery(name = Favorito.LISTAR_FAVORITOS_USUARIO_VENCIDOS, query = "select f from Favorito f WHERE (f.usuario.cedula = :cc) AND (f.producto.fechaLimite <:fechaActual ) "),
+	
+	@NamedQuery(name = Favorito.ES_FAVORITO,query ="select f from Favorito f WHERE (f.usuario.cedula = :cc ) AND (f.producto.id = :id) ")
 
 })
 
@@ -39,6 +41,8 @@ public class Favorito implements Serializable {
 	public static final String LISTAR_FAVORITOS_USUARIO_ACTIVOS = "ListarFavoritosUsuarioActivos";
 	//Constante que nos permite identificar la consulta de listar favoritos de un usuario, productos vencidos
 	public static final String LISTAR_FAVORITOS_USUARIO_VENCIDOS = "ListarFavoritosUsuarioVencidos";
+	
+	public static final String ES_FAVORITO = "EsFavorito";
 
 
 	/**

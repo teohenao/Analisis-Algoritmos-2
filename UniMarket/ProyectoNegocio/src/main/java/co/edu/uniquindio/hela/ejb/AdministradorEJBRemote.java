@@ -147,4 +147,6 @@ public interface AdministradorEJBRemote {
 	public List<Producto> listarProductosNombreActivos(String nombreProducto);
 	public List<Favorito> listarFavoritosUsuario(String cedula);
 	public Producto actualizarProducto(Producto producto);
+	public Producto obtenerProductoId(int id);
+	public Comentario comentarProducto(Comentario c);
 }

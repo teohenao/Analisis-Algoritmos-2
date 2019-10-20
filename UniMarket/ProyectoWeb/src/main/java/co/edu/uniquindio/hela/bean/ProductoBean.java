@@ -14,13 +14,19 @@ import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 
-
+/**
+ * Bean principal de la aplicacion unimarket
+ * @author mateo
+ */
 @Named
 @ApplicationScoped
 public class ProductoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instancia de la capa negocio en el bean para utilizar sus metodos
+	 */
 	@EJB
 	private AdministradorEJB adminEJB;
 
@@ -37,6 +43,20 @@ public class ProductoBean implements Serializable {
 	
 	private Producto productoSeleccionadoUsuario;
 	
+	
+
+	@PostConstruct 
+	public void Inicializar() {
+		inputBuscar = "";
+		listaProductos=adminEJB.listarProductosActivos();
+		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
+		productoSeleccionadoUsuario = new Producto();
+	}
+	
+	
+	/**
+	 * Metodo que permite actualizar el producto creado por un usuario
+	 */
 	public void actualizarProducto(){
 		Producto p = new Producto();
 		p.setId(productoSeleccionadoUsuario.getId());
@@ -51,22 +71,6 @@ public class ProductoBean implements Serializable {
 		adminEJB.actualizarProducto(p);
 	}
 
-	
-
-	/**
-	 * Metodo para obtener una imagen y mostrarla por cada producto
-	 * @param idProducto
-	 * @return Imagen producto asociado
-	 */
-	public String imagenInicioProducto(String idProducto) {
-		int idProduct = Integer.parseInt(idProducto);
-		listaImagenesProducto = adminEJB.listarImageneProducto(idProduct);
-		if(listaImagenesProducto.get(0)==null) {
-			return "C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\hela.jpg";
-		}else {
-			return ""+listaImagenesProducto.get(0)+"";
-		}	
-	}
 	/**
 	 * Metodo que permite buscar los productos activos de unimarket, para la pagina principal
 	 * @return Lista productos Activos por nombre
@@ -97,18 +101,26 @@ public class ProductoBean implements Serializable {
 		return listaMisFavoritos = adminEJB.listarFavoritosUsuario(ccUsuario);
 	}
 
-	public void pruebaParam(int idProduc) {
-		inputBuscar = ""+idProduc+"" ;
-	}
 
-	@PostConstruct 
-	public void Inicializar() {
-		inputBuscar = "";
-		listaProductos=adminEJB.listarProductosActivos();
-		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
-		productoSeleccionadoUsuario = new Producto();
-	}
 	
+	
+	
+	
+
+	/**
+	 * Metodo para obtener una imagen y mostrarla por cada producto
+	 * @param idProducto
+	 * @return Imagen producto asociado
+	 */
+	public String imagenInicioProducto(String idProducto) {
+		int idProduct = Integer.parseInt(idProducto);
+		listaImagenesProducto = adminEJB.listarImageneProducto(idProduct);
+		if(listaImagenesProducto.get(0)==null) {
+			return "C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\hela.jpg";
+		}else {
+			return ""+listaImagenesProducto.get(0)+"";
+		}	
+	}
 
 	public List<Producto> getListaProductos() {
 		return listaProductos;
@@ -217,6 +229,7 @@ public class ProductoBean implements Serializable {
 	public void setProductoSeleccionadoUsuario(Producto productoSeleccionadoUsuario) {
 		this.productoSeleccionadoUsuario = productoSeleccionadoUsuario;
 	}
+
 
 
 

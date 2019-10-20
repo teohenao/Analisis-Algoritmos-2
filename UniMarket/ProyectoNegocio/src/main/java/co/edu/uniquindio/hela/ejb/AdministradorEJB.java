@@ -123,9 +123,9 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 */
 	public boolean eliminarUsuario(String cedula){
 		try {
-			
+
 			Usuario u = entityManager.find(Usuario.class, cedula);
-			
+
 			if ( u != null) {
 				entityManager.remove( u );
 				return true;
@@ -368,7 +368,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Metodo que permite listar los productos activos por medio de una palabra o coincidencias en el nombre
 	 * @param nombre o palabra a buscar en producto
@@ -381,7 +381,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 		return query.getResultList();
 	}
-	
+
 	/**
 	 * Metodo que permite listar los productos favoritos de un usuario
 	 * @param cedula del usuario
@@ -393,7 +393,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		query.setParameter("cc", cedula);
 		return query.getResultList();
 	}
-	
+
 	/**
 	 * Metodo que permite actualizar los productos por parte del usuario creador
 	 * @param producto
@@ -407,8 +407,64 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return null;
 		}
 	}
-	
-	
-	
-	
+
+	public Producto obtenerProductoId(int id) {
+		Producto p = entityManager.find(Producto.class, id);
+		return p;
+	}
+	/**
+	 * Metodo que permite realizar un comentario a algun producto de unimarket
+	 * @param Comentario
+	 * @return Comentario
+	 */
+	public Comentario comentarProducto(Comentario c) {
+		Usuario u = entityManager.find(Usuario.class, "1");
+		c.setUsuario(u);
+		entityManager.persist(c);
+		return c;
+	}
+
+	/**
+	 * Metodo que permite determinar cada producto que pertenece a la lista de favorito de un usuario
+	 * @param cedula
+	 * @param id
+	 * @return true si ya es favorito del ususario
+	 */
+	public Boolean esFavorito(String cedula, int id) {
+		TypedQuery<Favorito> query = entityManager.createNamedQuery(Favorito.ES_FAVORITO, Favorito.class);
+		query.setParameter("cc", cedula);
+		query.setParameter("id", id);
+
+		return query.getResultList().size() > 0;
+	}
+
+	/**
+	 * metodo que permite registrar un produccto en la lista de favoritos del usuario
+	 * @param favorito
+	 * @return favorito
+	 */
+	public Favorito registrarFavorito(Favorito f) {
+		Usuario u = entityManager.find(Usuario.class, "1");
+		f.setUsuario(u);
+		entityManager.persist(f);
+		return f;
+
+	}
+
+	/**
+	 * Metodo que permite eliminar un producto de la lista de favoritos de un usuario
+	 * @param cedula
+	 * @param id
+	 * @return true
+	 */
+	public Boolean eliminarFavorito(String cedula,int id) {
+		TypedQuery<Favorito> query = entityManager.createNamedQuery(Favorito.ES_FAVORITO, Favorito.class);
+		query.setParameter("cc", cedula);
+		query.setParameter("id", id);
+		Favorito f = query.getSingleResult();
+		entityManager.remove(f);
+		return true;
+	}
+
+
 }

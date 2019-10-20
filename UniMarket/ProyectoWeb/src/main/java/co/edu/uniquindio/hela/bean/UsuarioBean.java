@@ -12,8 +12,7 @@ import co.edu.uniquindio.hela.entidades.Usuario;
 import co.edu.uniquindio.hela.excepciones.InformacionRepetidaExcepcion;
 
 
-
-@Named
+@Named("usuarioBean")
 @ApplicationScoped
 public class UsuarioBean {
 	
@@ -61,6 +60,7 @@ public class UsuarioBean {
 	public String loginUsuario() {
 		if(adminEJB.aprobarIngresoUser(cedula, clave)==true) {
 			reiniciarCampos();
+			usuario = adminEJB.buscarUsuarioPorCedula(cedula);
 			return "/productos/Inicio";
 		}else {
 			return "";
@@ -130,6 +130,14 @@ public class UsuarioBean {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

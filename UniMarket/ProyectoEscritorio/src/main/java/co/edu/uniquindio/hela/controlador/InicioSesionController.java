@@ -141,6 +141,7 @@ public class InicioSesionController implements Initializable {
 		transport.connect("smtp.gmail.com", "distrifacilarmenia@gmail.com", "41925469");
 		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 		transport.close();
+		JOptionPane.showMessageDialog(null,"Revise su correo, se le envio su clave");
 	}
 	
 

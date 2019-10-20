@@ -84,10 +84,12 @@
 											maxIntegerDigits="6" maxFractionDigits="3" />
 									</h:outputText>
 									<b:commandButton value="Ver Productos"
-										action="#{productoBean.pruebaParam(producto.id)}"
+										action="#{detalleProductoBean.detalleProducto(producto)}"
 										iconAwesome="fa-angle-double-up" look="info" size="lg"
-										style="margin-right:20px;width: 100%;margin-bottom: 3px;" />
-									<b:commandButton value="Comprar" iconAwesome="fa-info-circle"
+										style="margin-right:20px;width: 100%;margin-bottom: 3px;">
+									</b:commandButton>
+										
+									<b:commandButton value="Comprar" iconAwesome="fa-cart-plus"
 										look="success" size="lg"
 										style="margin-right:20px;width: 100%;" />
 								</h:panelGrid>
