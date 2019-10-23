@@ -3,13 +3,46 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <ui:composition template="/template/TemplateUniMarket.xhtml">
-<ui:define name="title">Carrito</ui:define>
+	<ui:define name="title">Carrito</ui:define>
 	<ui:define name="content">
-	    Add your content here or delete to use the default
+		<div class="containerCarrito">
+	
+				<h1
+				 style="color: skyblue; font-family: 'Raleway', sans-serif; font-size: 62px; font-weight: 800; line-height: 72px; margin: 0 0 24px; text-align: center; text-transform: uppercase;">
+				CARRITO DE COMPRAS
+				</h1>
+
+			<div class="row" style="margin: 2%;">
+				<div class="col-8">
+					<h:form id="productosCarrito">
+					<p:repeat value="#{carritoComprasBean.carrito}"
+							var="productoCar">
+							<h:panelGrid columns="2" style="width:100%"
+								columnClasses="logo,detail">
+								<p:outputPanel
+									style="margin-bottom: 2%;background: white;border-radius: 4px 4px 4px 4px;padding: 5px;">
+									<h:panelGrid columns="1" cellpadding="5">
+										<h:outputText value="#{productoCar.producto.nombre}"
+											style="font-weight: bold;font-family: serif;color: darkblue;" />
+										<h:outputText value="#{productoCar.precio}"
+											style="font-size: 120%;font-family: sans-serif;" />
+									</h:panelGrid>
+								</p:outputPanel>
+							</h:panelGrid>
+						</p:repeat>
+					</h:form>
+				</div>
+				<div class="col-4">
+					
+				</div>
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

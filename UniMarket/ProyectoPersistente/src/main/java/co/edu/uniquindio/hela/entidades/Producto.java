@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R,AnaMaria
  * Entidad producto la cual contiene todo lo relevante a los productos de la plataforma
  * @version 1.0
  */
@@ -143,7 +143,7 @@ public class Producto implements Serializable {
 	 */
 
 	//Relacion de uno a muchos con la entidad de detalle compras
-	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<DetalleCompra> DetalleCompras;
 
 	//Relacion de muchos a uno con usuario
@@ -151,15 +151,15 @@ public class Producto implements Serializable {
 	private Usuario usuario;
 
 	//Relacion de uno a muchos con la entidad de calificaciones
-	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Calificacion> Calificaciones;
 
 	//Relacion de uno a muchos con la entidad de comentarios
-	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Comentario> Comentarios;
 
 	//Relacion de uno a muchos con la entidad de favoritos
-	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Favorito> Favoritos;
 
 	/**

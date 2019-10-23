@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="545.0" styleClass="inicio" stylesheets="@../utilidades/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="co.edu.uniquindio.hela.controlador.GestionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="545.0" styleClass="inicio" stylesheets="@../utilidades/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.hela.controlador.GestionController">
    <children>
       <ImageView fitHeight="192.0" fitWidth="204.0" layoutX="42.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -35,6 +34,5 @@ fx:controller="co.edu.uniquindio.hela.controlador.GestionController">
          </font>
       </Button>
       <Button fx:id="btnSalir" layoutX="494.0" layoutY="345.0" mnemonicParsing="false" onAction="#salir" style="-fx-background-color: GRAY;" text="Salir" textFill="WHITE" />
-      <Button fx:id="btnCerrarSesion" layoutX="14.0" layoutY="345.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: GRAY;" text="Cerrar Sesion" textFill="WHITE" />
    </children>
 </AnchorPane>

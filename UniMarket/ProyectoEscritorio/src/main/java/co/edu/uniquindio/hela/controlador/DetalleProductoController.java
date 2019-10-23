@@ -34,6 +34,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+/**
+ * Controlador del escenario detalleProducto
+ * @author mateo,AnaMaria
+ * @version 1.0
+ */
 public class DetalleProductoController implements Initializable{
 
 	private ManejadorEscenarios manejador = new ManejadorEscenarios();
@@ -188,8 +193,6 @@ public class DetalleProductoController implements Initializable{
 				listaImagenes.add(img);
 			}else {
 				String rutaImg = ""+imagenes.get(i)+"";
-				//getClass().getResource("../otropaquete/imagen1.jpg");
-				//ClassLoader.getSystemResource("com/otropaquete/imagen1.jpg");
 				FileInputStream imageStream = new FileInputStream(rutaImg);
 				Image image = new Image (imageStream );
 				ImageView img = new ImageView(image);

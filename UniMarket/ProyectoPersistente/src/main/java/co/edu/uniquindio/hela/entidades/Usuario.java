@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R,AnaMaria
  * Entidad Usuario, Clase hija de Persona
  * @version 1.0
  */
@@ -49,17 +49,17 @@ public class Usuario extends Persona implements Serializable {
 		public static final String USUARIOS_GMAIL = "UsuariosGmail";
 
 
-	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Calificacion> calificaciones;
 
-	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Compra> compras;
 
 	//(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@OneToMany(mappedBy = "usuario", orphanRemoval = true)
+	@OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Favorito> favoritos;
 
-	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Producto> productos;
 
 	

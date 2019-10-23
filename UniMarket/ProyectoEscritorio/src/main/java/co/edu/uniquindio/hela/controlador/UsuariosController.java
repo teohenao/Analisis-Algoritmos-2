@@ -26,8 +26,8 @@ import javafx.fxml.Initializable;
 
 /**
  * Controlador para la vista Usuarios, en la cual se gestiona todo lo relacionado a los usuarios de unimarket
- * @author mateo
- *
+ * @author mateo,AnaMaria
+ * @version 1.0
  */
 public class UsuariosController implements Initializable{
 
@@ -93,9 +93,11 @@ public class UsuariosController implements Initializable{
 	private Usuario UsuarioSeleccionado;
 	private ObservableList<Usuario> listaUsuarios;
 
+
 	/**
 	 * Action para el btn BuscarUsuario, el cual se encarga de capturar lo que exista en txtBuscar 
 	 * y realiza la busqueda llenando los campos con los del resultado
+	 * @param event
 	 */
 	@FXML
 	void buscarUsuario(ActionEvent event) {
@@ -177,6 +179,7 @@ public class UsuariosController implements Initializable{
 
 	/**
 	 * Action btnEliminarUsuario el cual se encarga de eliminar un usuario por medio de la cedula
+	 * @param event
 	 */
 	@FXML
 	void eliminarUsuario(ActionEvent event) {
@@ -199,6 +202,10 @@ public class UsuariosController implements Initializable{
 
 	}
 
+	/**
+	 * Metodo que se encarga del evento que registra Usuarios en unimarket con sus respectivas validaciones
+	 * @param event
+	 */
 	@FXML
 	void registrarUsuario(ActionEvent event) {
 		if (txtCedula.getText().trim().isEmpty() | txtClave.getText().trim().isEmpty() | txtDireccion.getText().trim().isEmpty()
@@ -230,6 +237,9 @@ public class UsuariosController implements Initializable{
 
 	}
 
+	/**
+	 * Metodo que se encarga de reiniciar los campos
+	 */
 	public void reiniciarCampos() {
 		txtNombre.setText("");
 		txtCedula.setText("");
@@ -239,24 +249,41 @@ public class UsuariosController implements Initializable{
 		txtTelefono.setText("");
 	}
 
+	/**
+	 * Action para el boton regresar que lo redirige al menu principal
+	 * @param event
+	 */
 	@FXML
 	void regresar(ActionEvent event) {
 		manejador.cargarEscenarioMenuAdmin(btnRegresar);
 	}
 
+	/**
+	 * Metodo que se encarga  de inicializar la lista de usuarios y llenar la tabla
+	 */
 	public void inicializarListaUsuarios() {
 		listaUsuarios = FXCollections.observableArrayList(obtenerLista());
 		llenarTablaUsuarios(listaUsuarios);
 	}
-	
+	/**
+	 * Metodo que lista los usuarios de unimarket
+	 * @return List usuarios
+	 */
 	public List<Usuario> obtenerLista(){
 		return delegado.listarUsuarios();
 	}
 
+	/**
+	 * Metodo que se encarga de llenar la tabla de usuarios con la lista
+	 * @param listaUsuarios
+	 */
 	public void llenarTablaUsuarios(ObservableList<Usuario> listaUsuarios) {
 		tablaUsuarios.setItems(listaUsuarios);
 	}
 
+	/**
+	 * Metodo que se ejecuta al iniciar el escenario de usuarios
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -271,9 +298,11 @@ public class UsuariosController implements Initializable{
 
 		final ObservableList<Usuario> tablaUsuarioSeleccionado = tablaUsuarios.getSelectionModel().getSelectedItems();
 		tablaUsuarioSeleccionado.addListener(seleccionadoTabla);
-
 	}    
 
+	/**
+	 * Metodo que se ejecuta cada vez que se selecciona un usuario de la tabla
+	 */
 	private final ListChangeListener<Usuario> seleccionadoTabla = new ListChangeListener<Usuario>() {
 
 		@Override
@@ -283,6 +312,9 @@ public class UsuariosController implements Initializable{
 	};
 
 
+	/**
+	 * Metodo que permite mostrar los datos del usuario seleccionado
+	 */
 	public void mostrarUsuarioSeleccionado() {
 
 		UsuarioSeleccionado = obtenerFilaSeleccionada();
@@ -299,6 +331,10 @@ public class UsuariosController implements Initializable{
 		}
 	}
 
+	/**
+	 * Metodo que obtiene el usuario seleccionado de la tabla del scenario de usuarios 
+	 * @return Usuario seleccionado
+	 */
 	public Usuario obtenerFilaSeleccionada() {
 		if(tablaUsuarios!=null) {
 			Usuario user = tablaUsuarios.getSelectionModel().getSelectedItem();

@@ -12,7 +12,11 @@ import javafx.scene.control.Button;
 
 import javafx.stage.Stage;
 
-
+/**
+ * Clase encargada de manejar los escenarios "vista" de unimarket Escritorio
+ * @author mateo,AnaMaria
+ * @version 1.0
+ */
 public class ManejadorEscenarios {
 
 	/**

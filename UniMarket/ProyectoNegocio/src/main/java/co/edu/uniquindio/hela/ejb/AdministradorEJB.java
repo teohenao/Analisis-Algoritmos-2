@@ -2,7 +2,6 @@ package co.edu.uniquindio.hela.ejb;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,20 +10,20 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-
-
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.DetalleCompra;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
-import co.edu.uniquindio.hela.excepciones.InformacionInexistenteExcepcion;
 import co.edu.uniquindio.hela.excepciones.InformacionRepetidaExcepcion;
 
 /**
- * Session Bean implementation class AdministradorEJB
+ * Clase encargada de la capa de negocio, donde se encuentran los metodos que se implementaran en las otras capas
+ * @author mateo,AnaMaria
+ * @version 1.0
  */
 @Stateless
 @LocalBean
@@ -52,8 +51,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 		if (entityManager.find(Persona.class, usuario.getCedula()) != null) {
 			throw new InformacionRepetidaExcepcion("La cedula " + usuario.getCedula() + " ya ha sido registrado");
-		} else if (buscarPorEmail(usuario.getEmail())) {
-			throw new InformacionRepetidaExcepcion("El email " + usuario.getEmail() + " ya ha sido registrado");
 		}
 		try {
 			entityManager.persist(usuario);
@@ -62,18 +59,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	/**
-	 * Buscar un usuario por el correo electronico en la base de datos
-	 * @param email
-	 * @return true si se obtuvo una persona con ese email
-	 */
-	public boolean buscarPorEmail(String email) {
-		TypedQuery<Persona> query = entityManager.createNamedQuery(Persona.PERSONA_POR_EMAIL, Persona.class);
-		query.setParameter("email", email);
-
-		return query.getResultList().size() > 0;
 	}
 
 	/**
@@ -96,7 +81,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @param cedula
 	 * @return el adminsitrador si existe, de lo contrario null
 	 */
-	private Administrador buscarAdministradorPorCedula(String cedula) {
+	public Administrador buscarAdministradorPorCedula(String cedula) {
 		try {
 			TypedQuery<Administrador> query = entityManager.createNamedQuery(Administrador.BUSCAR_POR_CEDULA,Administrador.class);
 			query.setParameter("cedula", cedula);
@@ -127,7 +112,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			Usuario u = entityManager.find(Usuario.class, cedula);
 
 			if ( u != null) {
-				entityManager.remove( u );
+				entityManager.remove(u);
 				return true;
 			}else {
 				JOptionPane.showMessageDialog(null, "no se pudo eliminar, confirme que exista :P ");
@@ -148,7 +133,8 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		try {
 			TypedQuery<Usuario> query = entityManager.createNamedQuery(Usuario.BUSCAR_POR_CEDULA,Usuario.class);
 			query.setParameter("cedula", cedula);
-			return query.getSingleResult();
+			Usuario u = query.getSingleResult();
+			return u;
 
 		} catch (NoResultException e) {
 			return null;
@@ -183,26 +169,6 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		return query.getResultList().size() > 0;
 	}
 
-	/**
-	 * Metodo que permite encontrar el usuario al cual corresponde cierta cedula, para enviar el correo
-	 * @param cedula
-	 * @return Administrador
-	 */
-	public Administrador buscarAdministradorEnvioCorreo(String cedula) throws InformacionInexistenteExcepcion {
-
-		try {
-			TypedQuery<Administrador> query = entityManager.createNamedQuery(Administrador.BUSCAR_POR_CEDULA, Administrador.class);
-			query.setParameter("cedula", cedula);
-			if(query.getSingleResult()!=null) {
-				return query.getSingleResult();
-			}
-
-			throw new InformacionInexistenteExcepcion("Administrador no encontrado");	
-
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
 
 	/**
 	 * Listar todos los productos de la base de datos
@@ -408,6 +374,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
+	/**
+	 * metodoq que se encarga de obtener el producto por el id
+	 * @param idProducto
+	 * @return Producto
+	 */
 	public Producto obtenerProductoId(int id) {
 		Producto p = entityManager.find(Producto.class, id);
 		return p;
@@ -465,6 +436,19 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		entityManager.remove(f);
 		return true;
 	}
+	
+	/**
+	 * Metodo que permite obtener la lista de los 3 mas vendidos de unimarket
+	 * @return list mas vendidos
+	 */
+	public List<Object[]> listaTopVendidos(){
+		
+		TypedQuery<Object[]> query = entityManager.createNamedQuery(DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, Object[].class);
+		query.setMaxResults(3);
+		List<Object[]> top = query.getResultList();
 
+		return top;
+	}
+	
 
 }

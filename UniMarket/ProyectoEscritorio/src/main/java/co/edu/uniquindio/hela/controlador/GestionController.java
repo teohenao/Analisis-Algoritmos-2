@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 /**
  * Controlador de GestionAdmin el cual se encarga de redireccionar al administrador al area que desee
- * @author mateo
+ * @author mateo,AnaMaria
  * @version 1.0
  */
 public class GestionController implements Initializable {
@@ -28,8 +28,6 @@ public class GestionController implements Initializable {
 	@FXML
 	private Label labelNombre;
 	
-	@FXML
-	private Button btnCerrarSesion;
 
 	private ManejadorEscenarios manejador = new ManejadorEscenarios();
 
@@ -62,10 +60,6 @@ public class GestionController implements Initializable {
 		
 	}
 
-	@FXML
-	void cerrarSesion(ActionEvent event) {
-
-	}
 
 	public void setManejador(ManejadorEscenarios manejador) {
 		this.manejador = manejador;

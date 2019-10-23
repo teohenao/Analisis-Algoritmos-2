@@ -2,17 +2,12 @@ package co.edu.uniquindio.hela.pruebas;
 
 
 import static org.junit.Assert.assertEquals;
-
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.UsingDataSet;
@@ -26,8 +21,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import javax.persistence.TypedQuery;
-
-
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
@@ -41,7 +34,7 @@ import co.edu.uniquindio.hela.logica.ConsultaProductosDTO;
 import co.edu.uniquindio.hela.logica.ConsultaUsuariosDTO;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R,AnaMaria
  * Clase de pruebas para las consultas query o TypedQuery del proyecto unimarket
  * @version 1.0
  */
@@ -61,18 +54,18 @@ public class QuerysTest {
 	 * Test de consulta que permite encontrar a una persona por medio del email.
 	 */
 	@Test
- 	@Transactional(value = TransactionMode.ROLLBACK)
- 	@UsingDataSet({ "persona.json"})
- 	public void obtenerPersonaEmail() {
- 
-		TypedQuery<Persona> query = entityManager.createNamedQuery(Persona.PERSONA_POR_EMAIL,Persona.class);
- 		query.setParameter("email", "andrea@gmail.com");
- 		Persona persona = query.getSingleResult();
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({ "persona.json"})
+	public void obtenerPersonaEmail() {
 
- 		assertEquals(persona.getCedula(), "6");
+		TypedQuery<Persona> query = entityManager.createNamedQuery(Persona.PERSONA_POR_EMAIL,Persona.class);
+		query.setParameter("email", "andrea@gmail.com");
+		Persona persona = query.getSingleResult();
+
+		assertEquals(persona.getCedula(), "6");
 	}
-	
-	
+
+
 	/**
 	 * Test de consulta que permite obtener la persona con email y clave
 	 */
@@ -122,8 +115,8 @@ public class QuerysTest {
 		Assert.assertNotNull(registrado);
 
 	}
-	
-	
+
+
 
 	/** 
 	 * Test de consulta que permite listar todas las personas registradas en la base de datos
@@ -138,8 +131,8 @@ public class QuerysTest {
 
 		Assert.assertEquals(personas.size(), 10);
 	}
-	
-	
+
+
 	/** 
 	 * Test de consulta que permite listar todos los administradores de la base de datos
 	 */
@@ -166,7 +159,7 @@ public class QuerysTest {
 		List<Usuario> usuarios = query.getResultList();
 
 		Assert.assertEquals(usuarios.size(), 5);
-		
+
 	}
 
 	/** 
@@ -176,12 +169,12 @@ public class QuerysTest {
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({ "producto.json" })
 	public void listarProductosTest() {
-		
+
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS,Producto.class);
 		List<Producto> producto = query.getResultList();
 
 		Assert.assertEquals(producto.size(), 15);
-		
+
 	} 
 
 	/**
@@ -247,7 +240,7 @@ public class QuerysTest {
 		Assert.assertEquals(calificaciones.size(), 3);
 
 	}
-	
+
 	/**
 	 * Test de consulta que permite listar la calificacion final de un producto
 	 */
@@ -264,7 +257,7 @@ public class QuerysTest {
 
 		Assert.assertEquals("2,7",formato.format(promedio));
 	}
-	
+
 
 	/**
 	 * Test de consulta que permite listar todos las favoritos de determinado usuario
@@ -278,9 +271,6 @@ public class QuerysTest {
 		query.setParameter("cc", "6");
 		List<Favorito> favoritos = query.getResultList();
 
-		 for (Favorito favorito: favoritos) {
-			 System.out.println(favorito.getProducto().getNombre());
-		 }
 		Assert.assertEquals(favoritos.size(), 5);
 
 	}
@@ -331,7 +321,7 @@ public class QuerysTest {
 
 		Assert.assertEquals(productos.size(), 10);
 
-		
+
 	}
 
 	/**
@@ -342,7 +332,7 @@ public class QuerysTest {
 	@UsingDataSet({"producto.json"})
 	public void listarProductosVencidosTest() {
 
-		
+
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS,Producto.class);
 		query.setParameter("fechaActual",new Date());
 		List<Producto> productos = query.getResultList();
@@ -350,7 +340,7 @@ public class QuerysTest {
 		Assert.assertEquals(productos.size(), 5);
 
 	}
-	
+
 
 	/**
 	 * Test de consulta que permite listar todos los productos que se encuentran ACTIVOS por determinada Categoria
@@ -360,7 +350,7 @@ public class QuerysTest {
 	@UsingDataSet({ "producto.json"})
 	public void listarProductosActivosCategoriaTest() {
 
-		
+
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA,Producto.class);
 		query.setParameter("fechaActual",new Date());
 		query.setParameter("c", "moda");
@@ -369,15 +359,17 @@ public class QuerysTest {
 		Assert.assertEquals(productos.size(), 2);
 
 	}
-	
 
 
+	/**
+	 * Test de la consulta que lista productos por nombre o letra en su nombre 
+	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({ "producto.json"})
 	public void listarProductosNombreTest() {
 
-		
+
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_NOMBRE,Producto.class);
 		query.setParameter("nombre","%"+"celular"+"%");
 		List<Producto> productos = query.getResultList();
@@ -394,7 +386,7 @@ public class QuerysTest {
 	@UsingDataSet({ "producto.json"})
 	public void listarProductosVencidosCategoriaTest() {
 
-		
+
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_CATEGORIA,Producto.class);
 		query.setParameter("fechaActual",new Date());
 		query.setParameter("c","tecnologia");
@@ -428,18 +420,18 @@ public class QuerysTest {
 	@UsingDataSet({ "producto.json"})
 	public void listarProductosVencidosUsuarioTest() {
 
-	
+
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_VENCIDOS_USUARIO,Producto.class);
 		query.setParameter("fechaActual",new Date());
 		query.setParameter("cc", "7");
 		List<Producto> productos = query.getResultList();
 
 		Assert.assertEquals(productos.size(), 2);
-	
+
 	}
 
-	
-	
+
+
 	/** 
 	 * Test consulta que permite listar todas las compras de la base de datos
 	 */
@@ -447,7 +439,7 @@ public class QuerysTest {
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({ "compra.json" })
 	public void listarComprasTest() {
-		
+
 		TypedQuery<Compra> query = entityManager.createNamedQuery(Compra.LISTAR_COMPRAS,Compra.class);
 		List<Compra> compras = query.getResultList();
 
@@ -471,7 +463,7 @@ public class QuerysTest {
 		Assert.assertEquals(compras.size(), 2);
 
 	}
-	
+
 	/**
 	 * Test de consulta que permite listar todos los detalles qued eterminada compra
 	 */
@@ -486,9 +478,9 @@ public class QuerysTest {
 
 		Assert.assertEquals(detallesCompra.size(), 4);
 
-		
+
 	}
-	
+
 	/**
 	 * Test de consulta que permite listar 5 productos mas vendidos de unimarket
 	 */
@@ -496,92 +488,64 @@ public class QuerysTest {
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"detalleCompra.json", "compra.json", "producto.json", "persona.json"})
 	public void listarTopProductosTest() {
-		
+
 		TypedQuery<Object[]> query = entityManager.createNamedQuery(DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, Object[].class);
 		query.setMaxResults(3);
 		
 		Assert.assertEquals(5,query.getResultList().get(0)[0]);
 		
-//		for (Object[] objeto : query.getResultList()) {
-//			System.out.println( objeto[0]+" "+objeto[1] );
-//		}
-		
+		for (Object[] objeto : query.getResultList()) {
+		System.out.println( objeto[0]+" "+objeto[1] );
 	}
-	
-	
-		
-	@Test
-	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"producto.json","compra.json","persona.json"})
-	public void listarComprasFechaTest() throws ParseException {
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date d = sdf.parse("2019-10-10");
-		TypedQuery<Compra> query = entityManager.createNamedQuery(Compra.LISTAR_COMPRAS_FECHA,Compra.class);
-		query.setParameter("fecha",d);
-		List<Compra> compra = query.getResultList();
-		
-		for(Compra c : compra) {
-			System.out.println("id compra: "+c.getRef()+" metodo pago "+c.getMetodo_pago()+" cedula de la persona "+c.getUsuario().getCedula()
-					+" email "+c.getUsuario().getEmail());
-		}
 
-		Assert.assertEquals(compra.size(), 2);	
 	}
-	
+
+
+
+	/**
+	 * test que permite listar todas las calificaciones promedio de los prpoductos
+	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({ "calificacion.json","producto.json","persona.json" })
 	public void listarCalificacionesPromedioProductosTest() {
-		
+
 		TypedQuery<Object[]> query = entityManager.createNamedQuery(Calificacion.CALIFICACION_PROMEDIO_PRODUCTOS, Object[].class);
-		
-		for (Object[] objeto : query.getResultList()) {
-			System.out.println( objeto[0]+" calificacion promedio del producto "+objeto[1] );
-			}
+		List<Object[]> objeto = query.getResultList();
+		Assert.assertEquals(objeto.size(), 2);	
 
 	}
-	
-	@Test
-	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({ "calificacion.json","producto.json","persona.json" })
-	public void listarCalificacionesPromedioProductosConSinTest() {
-		
-		TypedQuery<Object[]> query = entityManager.createNamedQuery(Producto.LISTAR_PRODUCTOS_CON_SIN_CALIFICACIONES, Object[].class);
-		Object result = query.getResultList();
-		System.out.println(result);
-		for (Object[] objeto : query.getResultList()) {
-			System.out.println( objeto );
-			}
 
-	}
-	
+
+	/**
+	 * Test DTO de producto
+	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"producto.json"})
 	public void productoDTOTest() {
 		TypedQuery<ConsultaProductosDTO> resultados = entityManager.createNamedQuery(Producto.CONSULTA_DTO_PRODUCTO,ConsultaProductosDTO.class);
 		List<ConsultaProductosDTO> resultDto = resultados.getResultList();
-		
-		for(ConsultaProductosDTO p : resultDto) {
-			System.out.println("nombre producto: "+p.getNombre()+" descripcion "+p.getDescripcion());
-		}
+		Assert.assertEquals(resultDto.size(), 15);	
 
-		
+
 	}
-	
+
+	/**
+	 * Test DTO de usuario
+	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"persona.json"})
 	public void usuarioDTOTest() {
 		TypedQuery<ConsultaUsuariosDTO> resultados = entityManager.createNamedQuery(Usuario.CONSULTA_DTO_USUARIO,ConsultaUsuariosDTO.class);
 		List<ConsultaUsuariosDTO> resultDto = resultados.getResultList();
-		
-		for(ConsultaUsuariosDTO u : resultDto) {
-			System.out.println("nombre usuario: "+u.getNombreCompleto()+" email : "+u.getEmail());
-		}
+		Assert.assertEquals(resultDto.size(), 5);	
 	}
-	
+
+	/**
+	 * Test de listar las imagenes de un producto
+	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
 	@UsingDataSet({"producto.json"})
@@ -589,16 +553,12 @@ public class QuerysTest {
 
 		TypedQuery<Producto> query = entityManager.createNamedQuery(Producto.LISTAR_IMAGENES_PRODUCTO,Producto.class);
 		query.setParameter("id", 1);
-		
 		List<Producto> productos = query.getResultList();
-		for (int i = 0; i < productos.size(); i++) {
-			System.out.println(productos.get(i));
-		}
-		
+
 		Assert.assertEquals(productos.size(), 2);	
-		
+
 	}
-			
-	
+
+
 
 }

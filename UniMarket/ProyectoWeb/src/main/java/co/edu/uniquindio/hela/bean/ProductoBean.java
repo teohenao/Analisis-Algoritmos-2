@@ -53,6 +53,11 @@ public class ProductoBean implements Serializable {
 		productoSeleccionadoUsuario = new Producto();
 	}
 	
+	public void refrescar() {
+		listaProductos=adminEJB.listarProductosActivos();
+		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
+	}
+	
 	
 	/**
 	 * Metodo que permite actualizar el producto creado por un usuario

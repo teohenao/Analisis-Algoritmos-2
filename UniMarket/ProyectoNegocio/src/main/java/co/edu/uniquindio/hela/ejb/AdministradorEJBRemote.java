@@ -12,6 +12,11 @@ import co.edu.uniquindio.hela.entidades.Usuario;
 import co.edu.uniquindio.hela.excepciones.InformacionInexistenteExcepcion;
 import co.edu.uniquindio.hela.excepciones.InformacionRepetidaExcepcion;
 
+/**
+ * 
+ * @author mateo
+ *
+ */
 @Remote
 public interface AdministradorEJBRemote {
 	
@@ -53,19 +58,14 @@ public interface AdministradorEJBRemote {
 	 * @return Usuario 
 	 */
 	public Usuario actualizarUsuario(Usuario usuario);
-	/**
-	 * Metodo que permite buscar un email, para rectificar que no se repita
-	 * @param email
-	 * @return Boolean si ya existe un email
-	 */
-	public boolean buscarPorEmail(String email);
+
 	/**
 	 * Metodo que permite obtener el administrador al cual se le enviara el correo de recuperacion de clave
 	 * @param cedula
 	 * @return Administrador
 	 * @throws InformacionInexistenteExcepcion
 	 */
-	public Administrador buscarAdministradorEnvioCorreo(String cedula) throws InformacionInexistenteExcepcion;	
+	public Administrador buscarAdministradorPorCedula(String cedula);	
 	/**
 	 * Metodo que permite listar todos los productos de unimarket
 	 * @return List Productos
@@ -142,11 +142,39 @@ public interface AdministradorEJBRemote {
 	 * @return true si la clave coincide con el usuario existente
 	 */
 	public boolean aprobarIngresoUser(String cedula, String clave); 
-
-	
+	/**
+	 * Metodo que permite listar los productos por nombre que se encuentren activos
+	 * @param nombreProducto
+	 * @return List Producto
+	 */
 	public List<Producto> listarProductosNombreActivos(String nombreProducto);
+	/**
+	 * Metodo que permite listar los favoritos de un usuario
+	 * @param cedula
+	 * @return List Favoritos
+	 */
 	public List<Favorito> listarFavoritosUsuario(String cedula);
+	/**
+	 * Metodo que permite actualizar los productos de unimarket
+	 * @param producto
+	 * @return ProductoActualizado
+	 */
 	public Producto actualizarProducto(Producto producto);
+	/**
+	 * Metodo que permite obtener un producto por medio del id 
+	 * @param idProducto
+	 * @return Producto 
+	 */
 	public Producto obtenerProductoId(int id);
+	/**
+	 * Metodo que permite comentar un producto
+	 * @param c
+	 * @return Comentario
+	 */
 	public Comentario comentarProducto(Comentario c);
+	/**
+	 * Metodo que permite listar los 3 productos mas vendidos de unimarket
+	 * @return List Object productos mas vendidos
+	 */
+	public List<Object[]> listaTopVendidos();
 }

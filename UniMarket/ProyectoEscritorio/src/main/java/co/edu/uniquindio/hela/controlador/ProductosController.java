@@ -34,6 +34,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+/**
+ * Controlador de la vista de productos
+ * @author mateo,AnaMaria
+ * @version 1.0
+ */
 public class ProductosController implements Initializable{
 
 	@FXML
@@ -47,7 +52,7 @@ public class ProductosController implements Initializable{
 
 	@FXML
 	private TableColumn<Producto, String> usuarioProducto;
-	
+
 	@FXML
 	private Label labelNombreSeleccionado;
 
@@ -75,11 +80,19 @@ public class ProductosController implements Initializable{
 	@FXML
 	private ComboBox<String> comboEstado;
 
+	/**
+	 * Evento del boton regresar que carga el escenario principal
+	 * @param event
+	 */
 	@FXML
 	void regresar(ActionEvent event) {
 		manejador.cargarEscenarioMenuAdmin(btnRegresar);
 	}
 
+	/**
+	 * Event que permite buscar un producto por nombre
+	 * @param event
+	 */
 	@FXML
 	void buscarProducto(ActionEvent event) {
 		if(txtBuscarProducto.getText().trim().isEmpty()) {
@@ -90,6 +103,10 @@ public class ProductosController implements Initializable{
 		}	
 	}
 
+	/**
+	 * Event que permite buscar los productos de un usuario
+	 * @param event
+	 */
 	@FXML
 	void buscarProductoUsuario(ActionEvent event) {
 		if(txtBuscarUsuario.getText().isEmpty()) {
@@ -101,14 +118,12 @@ public class ProductosController implements Initializable{
 			llenarTablaProductos(listaProductos);
 		}
 	}
-	//instanciamos el controlador para poder pasar parametros al detalle producto
 	ProductosController productosController;
 	public Producto idSeleccionado;
 
-	
-
-
-
+	/**
+	 * Metodo que llena el combo de categorias
+	 */
 	private void llenarComboCategoria() {
 		comboCategoria.getItems().addAll(
 				"todos",
@@ -120,6 +135,9 @@ public class ProductosController implements Initializable{
 				);
 	}
 
+	/**
+	 * Metodo que llena el combo de estados
+	 */
 	private void llenarComboEstado() {
 		comboEstado.getItems().addAll(
 				"todos",
@@ -132,24 +150,17 @@ public class ProductosController implements Initializable{
 	private AdministradorDelegado delegado = manejador.getDelegado();
 	private Producto ProductoSeleccionado;
 	private ObservableList<Producto> listaProductos;
-
-
-
-
-
 	private String categoriaSeleccionada = "";
 	private String estadoSeleccionado = "";
 
-
-
+	/**
+	 * Metodo que se inicializa al cargar el escenario de productos
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//inicializamos, capturar controler
-		productosController=this;
 
 		idProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("id"));		
 		nombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));		
-		//usuarioProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("USUARIO_cedula"));	
 		usuarioProducto.setCellValueFactory(new Callback<CellDataFeatures<Producto,String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Producto, String> param) {
@@ -164,45 +175,45 @@ public class ProductosController implements Initializable{
 		final ObservableList<Producto> tablaProductoSeleccionado = tablaProductos.getSelectionModel().getSelectedItems();
 		tablaProductoSeleccionado.addListener(seleccionadoTabla);
 
-
-
-
 		comboCategoria.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
 				String seleccionCategoria = comboCategoria.getSelectionModel().getSelectedItem();
 				categoriaSeleccionada = seleccionCategoria;
 				listaProductos = FXCollections.observableArrayList(obtenerListaProductosFiltrada(estadoSeleccionado,seleccionCategoria));
 				llenarTablaProductos(listaProductos);
-
 			}
-
 		});
-
 		comboEstado.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
 				String seleccionEstado = comboEstado.getSelectionModel().getSelectedItem();
 				estadoSeleccionado = seleccionEstado;
 				listaProductos = FXCollections.observableArrayList(obtenerListaProductosFiltrada(seleccionEstado,categoriaSeleccionada));
 				llenarTablaProductos(listaProductos);
-
 			}	
 		});
-
-
-
-
 	}
+	/**
+	 * Inicializar vista de productos registrados
+	 */
 	public void inicializarListaProductos() {
 		listaProductos = FXCollections.observableArrayList(obtenerLista());
 		llenarTablaProductos(listaProductos);
 	}
+	/**
+	 * obtener la lista de productos de unimarket
+	 * @return List productos
+	 */
 	public List<Producto> obtenerLista(){
 		return delegado.listarProductos();
 	}
+	/**
+	 * Metodo que funciona como filtro para todos los posibles estados de los combox
+	 * @param estado
+	 * @param categoria
+	 * @return ListFiltrada
+	 */
 	public List<Producto> obtenerListaProductosFiltrada(String estado, String categoria){
 
 		if((estado == "" | estado == "todos")&&(categoria == "" | categoria == "todos" ) ) {
@@ -222,26 +233,42 @@ public class ProductosController implements Initializable{
 		}
 
 	}
+	/**
+	 * Metodo que permite obtener la lista filtrada por nombre
+	 * @param nombreProducto
+	 * @return ListProductosFiltrados
+	 */
 	public List<Producto> obtenerListaProductosNombre(String nombreProducto){
 		return delegado.listarProductosNombre(nombreProducto);
 	}
 
+	/**
+	 * Metodo que permite obtener la lista filtrada por productos de usuario
+	 * @param cedulaUsuario
+	 * @return ListProductosUsuario
+	 */
 	public List<Producto> obtenerListaProductosUsuario(String cedulaUsuario){
 		return delegado.listarProductosUsuario(cedulaUsuario);
 	}
+	/**
+	 * Metodo que llena la tabla con los productos
+	 * @param listaProductos
+	 */
 	public void llenarTablaProductos(ObservableList<Producto> listaProductos) {
 		tablaProductos.setItems(listaProductos);
 	}
 
-	private final ListChangeListener<Producto> seleccionadoTabla = new ListChangeListener<Producto>() {
 
+	private final ListChangeListener<Producto> seleccionadoTabla = new ListChangeListener<Producto>() {
 		@Override
 		public void onChanged(ListChangeListener.Change<? extends Producto> p) {
 			capturarProductoSeleccionado();
 		}
 	};
 
-
+	/**
+	 * Metodo  que se ejecuta al seleccionar un producto de la tabla
+	 */
 	public void capturarProductoSeleccionado() {
 
 		ProductoSeleccionado = obtenerFilaSeleccionada();
@@ -252,6 +279,10 @@ public class ProductosController implements Initializable{
 		}
 	}
 
+	/**
+	 * Metodo que se encarga de obtener el producto seleccionado
+	 * @return
+	 */
 	public Producto obtenerFilaSeleccionada() {
 		if(tablaProductos!=null) {
 			Producto producto = tablaProductos.getSelectionModel().getSelectedItem();
@@ -259,24 +290,28 @@ public class ProductosController implements Initializable{
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Vista de detalle productos "MODAL"
+	 * @param event
+	 */
 	@FXML
 	private void detalles(ActionEvent event){
 		if(idSeleccionado != null) {
-		try {
-		Stage detalleProducto = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/DetalleProducto.fxml"));	
-		Parent root = (Parent) loader.load();
-		DetalleProductoController detalleProductoController = loader.getController();
-		detalleProductoController.detallesProducto(idSeleccionado);
-		Scene scene = new Scene(root);
-		detalleProducto.setScene(scene);
-		detalleProducto.alwaysOnTopProperty();
-		detalleProducto.initModality(Modality.APPLICATION_MODAL);
-		detalleProducto.show();
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
+			try {
+				Stage detalleProducto = new Stage();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../vista/DetalleProducto.fxml"));	
+				Parent root = (Parent) loader.load();
+				DetalleProductoController detalleProductoController = loader.getController();
+				detalleProductoController.detallesProducto(idSeleccionado);
+				Scene scene = new Scene(root);
+				detalleProducto.setScene(scene);
+				detalleProducto.alwaysOnTopProperty();
+				detalleProducto.initModality(Modality.APPLICATION_MODAL);
+				detalleProducto.show();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
 			Utilidades.mostrarMensaje("ERROR", "por favor seleccione un producto para mostrar los detalles");
 		}
@@ -284,5 +319,5 @@ public class ProductosController implements Initializable{
 	}
 
 
-	
+
 }

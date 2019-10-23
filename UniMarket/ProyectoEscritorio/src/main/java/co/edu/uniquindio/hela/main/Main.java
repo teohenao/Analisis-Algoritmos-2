@@ -3,7 +3,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 /**
  * Clase main que inicializa la aplicacion de escritorio
- * @author mateo
+ * @author mateo,AnaMaria
  * @version 1.0
  */
 public class Main extends Application{

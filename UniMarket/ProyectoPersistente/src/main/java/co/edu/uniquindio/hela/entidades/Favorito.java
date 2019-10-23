@@ -6,7 +6,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R,AnaMaria
  * Entidad Favorito la cual contiene todo lo relevante a los productos favoritos de un usuario
  * @version 1.0
  */
@@ -24,7 +24,9 @@ import javax.persistence.*;
 	 * Consulta la cual nos permite listar todos los productos favoritos de un usuario, con los productos vencidos
 	 */
 	@NamedQuery(name = Favorito.LISTAR_FAVORITOS_USUARIO_VENCIDOS, query = "select f from Favorito f WHERE (f.usuario.cedula = :cc) AND (f.producto.fechaLimite <:fechaActual ) "),
-	
+	/**
+	 * Consulta la cual nos permite determinar si un producto ya es favorito de un usuario
+	 */
 	@NamedQuery(name = Favorito.ES_FAVORITO,query ="select f from Favorito f WHERE (f.usuario.cedula = :cc ) AND (f.producto.id = :id) ")
 
 })
@@ -41,7 +43,7 @@ public class Favorito implements Serializable {
 	public static final String LISTAR_FAVORITOS_USUARIO_ACTIVOS = "ListarFavoritosUsuarioActivos";
 	//Constante que nos permite identificar la consulta de listar favoritos de un usuario, productos vencidos
 	public static final String LISTAR_FAVORITOS_USUARIO_VENCIDOS = "ListarFavoritosUsuarioVencidos";
-	
+	//Constante que nos permite identificar la consulta de determinar si un producto ya es favorito
 	public static final String ES_FAVORITO = "EsFavorito";
 
 

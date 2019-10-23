@@ -33,7 +33,7 @@
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="254.0" prefHeight="26.0" prefWidth="139.0" text="Fecha Limite : ">
+            <Label layoutX="13.0" layoutY="254.0" prefHeight="26.0" prefWidth="139.0" text="Limite : ">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
