@@ -16,8 +16,8 @@
 
 				<h:outputText value="Cedula" />
 				<h:inputText styleClass="input" value="#{usuarioBean.cedula}"
-				required="true" requiredMessage="Por favor ingrese un USUARIO">
-				<f:validateLength minimum="2" maximum="10"></f:validateLength>
+				required="true" requiredMessage="Por favor ingrese una CEDULA">
+				<f:validateLength minimum="1" maximum="10"></f:validateLength>
 				</h:inputText>
 				<h:outputText value="Contraseña" />
 				<h:inputSecret styleClass="input" value="#{usuarioBean.clave}"

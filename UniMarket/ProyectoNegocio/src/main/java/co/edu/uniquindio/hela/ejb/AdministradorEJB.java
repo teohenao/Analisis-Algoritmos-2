@@ -60,6 +60,8 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 		if (entityManager.find(Persona.class, usuario.getCedula()) != null) {
 			throw new InformacionRepetidaExcepcion("La cedula " + usuario.getCedula() + " ya ha sido registrado");
+		}else if(buscarEmailEnUso(usuario.getEmail(),usuario.getCedula())) {
+			throw new InformacionRepetidaExcepcion("El email " + usuario.getEmail() + " ya ha sido registrado");
 		}
 		try {
 			entityManager.persist(usuario);

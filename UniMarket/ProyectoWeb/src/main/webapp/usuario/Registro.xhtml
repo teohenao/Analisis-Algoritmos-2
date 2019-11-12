@@ -16,30 +16,29 @@
 				<f:facet style="text-aling:center" name="header">Registro UniMarket</f:facet>
 				<h:outputText value="Cedula" />
 				<h:inputText styleClass="input" value="#{usuarioBean.cedula}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+					required="true" requiredMessage="el campo de cedula es obligatorio" />
 				<h:outputText value="Nombre Completo" />
 				<h:inputText styleClass="input"
 					value="#{usuarioBean.nombreCompleto}" required="true"
-					requiredMessage="Por favor ingrese un USUARIO" />
+					requiredMessage="el campo de nombre es obligatorio" />
 				<h:outputText value="Direccion" />
 				<h:inputText styleClass="input" value="#{usuarioBean.direccion}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+					required="true" requiredMessage="el campo de direccion es obligatorio" />
 				<h:outputText value="Telefono" />
 				<h:inputText styleClass="input"
 					value="#{usuarioBean.numeroTelefonico}" required="true"
-					requiredMessage="Por favor ingrese un USUARIO" />
+					requiredMessage="el campo de telefono es obligatorio" />
 				<h:outputText value="E-Mail" />
 				<h:inputText styleClass="input" value="#{usuarioBean.email}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO"/>
+					required="true" requiredMessage="el campo de email es obligatorio"/>
 				<h:outputText value="Contraseña" />
 				<h:inputText styleClass="input" value="#{usuarioBean.clave}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+					required="true" requiredMessage="el campo de contraseña es obligatorio" />
 				<p:button outcome="/usuario/Login.xhtm" value="ya tengo una cuenta!"
 					style="background:#4EE565;width: 230px;">
 				</p:button>
 				<p:commandButton value="Registrarse" style="width: 230px;"
 					action="#{usuarioBean.registrarUsuario}"/>
-				<h:messages/>
 			</p:panelGrid>
 
 		</h:form>

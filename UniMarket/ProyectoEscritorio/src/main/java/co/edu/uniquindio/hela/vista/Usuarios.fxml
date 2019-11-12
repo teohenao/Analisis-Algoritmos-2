@@ -69,7 +69,6 @@
                               </Pane>
                               <Button fx:id="btnRegistrar" layoutX="476.0" layoutY="41.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #61a493;" text="REGISTRAR" textFill="#fffdfd" />
                               <Button fx:id="btnActualizar" layoutX="476.0" layoutY="73.0" mnemonicParsing="false" onAction="#actualizarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #61a493;" text="ACTUALIZAR" textFill="#fffdfd" />
-                              <Button fx:id="btnEliminar" layoutX="476.0" layoutY="105.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #eb6740;" text="ELIMINAR" textFill="#fffdfd" />
                               <Button fx:id="btnRegresar" layoutX="476.0" layoutY="157.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #5e5ce4;" text="REGRESAR" textFill="#fffdfd" />
                            </children>
                         </AnchorPane>

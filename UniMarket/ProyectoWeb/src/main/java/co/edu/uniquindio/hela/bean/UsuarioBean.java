@@ -50,8 +50,10 @@ public class UsuarioBean {
 			System.out.println("se registro");
 			reiniciarCampos();
 			return "/productos/Inicio?faces-redirect=true";
+			
 		}else {
-			System.out.println("no se registro");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Lo sentimos no se pudo registrar","no se pudo registrar");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		}
 	}
@@ -66,7 +68,9 @@ public class UsuarioBean {
 			usuario = adminEJB.buscarUsuarioPorCedula(cedula);
 			return "/productos/Inicio?faces-redirect=true";
 		}else {
-			return "";
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Lo sentimos no se encontro el registro","no se encontro su registro");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+			return null;
 		}
 	}
 	/**

@@ -73,8 +73,6 @@ public class UsuariosController implements Initializable{
 	@FXML
 	private Button btnRegresar;
 
-	@FXML
-	private Button btnEliminar;
 
 	@FXML
 	private Button btnRegistrar;
@@ -177,30 +175,6 @@ public class UsuariosController implements Initializable{
 		}
 	}
 
-	/**
-	 * Action btnEliminarUsuario el cual se encarga de eliminar un usuario por medio de la cedula
-	 * @param event
-	 */
-	@FXML
-	void eliminarUsuario(ActionEvent event) {
-
-		if(txtCedula.getText().trim().isEmpty()){
-			Utilidades.mostrarMensaje("ADVERTENCIA", "POR FAVOR INSERTE UNA CEDULA");
-		}else if(delegado.buscarUsuarioPorCedula(txtCedula.getText()) == null ) {
-			Utilidades.mostrarMensaje("Cedula incorrecta","No se encontro esta cedula en la base de datos" );
-		}
-		else if (delegado.eliminarUsuario(txtCedula.getText())) {
-			Utilidades.mostrarMensaje("USUARIO ELIMINADO", "El usuario identificado con la cedula "+txtCedula.getText()+"\n a sido eliminado satisfactoriamente");
-			reiniciarCampos();
-			listaUsuarios = FXCollections.observableArrayList(obtenerLista());
-			llenarTablaUsuarios(listaUsuarios);
-
-		}else {
-			Utilidades.mostrarMensaje("Cedula erronea","No se encontro esta cedula en la base de datos" );
-
-		}
-
-	}
 
 	/**
 	 * Metodo que se encarga del evento que registra Usuarios en unimarket con sus respectivas validaciones
@@ -213,7 +187,7 @@ public class UsuariosController implements Initializable{
 			Utilidades.mostrarMensaje("INTENTELO DE NUEVO", "Debe llenar todos los campos :D");
 		} else {
 			try {
-
+				
 				Usuario usuario = new Usuario();
 				usuario.setCedula(txtCedula.getText());
 				usuario.setClave(txtClave.getText());
