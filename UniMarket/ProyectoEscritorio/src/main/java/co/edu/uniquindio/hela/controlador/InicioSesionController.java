@@ -130,7 +130,7 @@ public class InicioSesionController implements Initializable {
 		System.out.println("\n\n 3rd ===> Obteniendo session y enviando email");
 		Transport transport = getMailSession.getTransport("smtp");
  
-		transport.connect("smtp.gmail.com", "distrifacilarmenia@gmail.com", "41925469");
+		transport.connect("smtp.gmail.com", "unimarkethela@gmail.com", "41925469");
 		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 		transport.close();
 		Utilidades.mostrarMensaje("Envio del correo exitoso", "por favor ingrese a su correo electronico para recuperar la clave");

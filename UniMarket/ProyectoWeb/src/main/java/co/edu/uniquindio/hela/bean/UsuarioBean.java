@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.validation.constraints.Size;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -20,6 +21,7 @@ public class UsuarioBean {
 	private AdministradorEJB adminEJB;
 	private Usuario usuario;
 	
+	//@Size(min = 2, max = 10, message = "La cedula debe tener entre 2 y 10 caracteres")
 	private String cedula;
 	private String nombreCompleto;
 	private String direccion;
@@ -33,6 +35,7 @@ public class UsuarioBean {
 	 * @throws InformacionRepetidaExcepcion
 	 */
 	public String registrarUsuario() throws InformacionRepetidaExcepcion {
+		
 		Usuario usuario = new Usuario();
 		usuario.setCedula(cedula);
 		usuario.setNombreCompleto(nombreCompleto);
@@ -42,14 +45,14 @@ public class UsuarioBean {
 		usuario.setClave(clave);
 	
 		if(adminEJB.registrarUsuario(usuario)!=null) {
-			FacesMessage mensaje = new FacesMessage("EXITO"+"\n"+"El Empleado "+cedula+" Se registro con exito");
-			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro Exitoso ","Registro exitoso");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			System.out.println("se registro");
 			reiniciarCampos();
-			return "/productos/Inicio";
+			return "/productos/Inicio?faces-redirect=true";
 		}else {
 			System.out.println("no se registro");
-			return "";
+			return null;
 		}
 	}
 	
@@ -61,7 +64,7 @@ public class UsuarioBean {
 		if(adminEJB.aprobarIngresoUser(cedula, clave)==true) {
 			reiniciarCampos();
 			usuario = adminEJB.buscarUsuarioPorCedula(cedula);
-			return "/productos/Inicio";
+			return "/productos/Inicio?faces-redirect=true";
 		}else {
 			return "";
 		}

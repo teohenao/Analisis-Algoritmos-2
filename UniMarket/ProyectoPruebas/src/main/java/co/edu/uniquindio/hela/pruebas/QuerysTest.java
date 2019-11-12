@@ -494,10 +494,6 @@ public class QuerysTest {
 		
 		Assert.assertEquals(5,query.getResultList().get(0)[0]);
 		
-		for (Object[] objeto : query.getResultList()) {
-		System.out.println( objeto[0]+" "+objeto[1] );
-	}
-
 	}
 
 

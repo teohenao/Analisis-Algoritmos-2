@@ -34,14 +34,11 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.2.20</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.bootsfaces/bootsfaces -->
 		<dependency>
 			<groupId>net.bootsfaces</groupId>
 			<artifactId>bootsfaces</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>co.edu.uniquindio.hela</groupId>
 			<artifactId>ProyectoNegocio</artifactId>
@@ -60,7 +57,6 @@
 			<artifactId>ProyectoPersistente</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>provided</scope>
-
 		</dependency>
 	</dependencies>
 </project>

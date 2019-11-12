@@ -100,6 +100,11 @@ public class DetalleProductoController implements Initializable{
 
 	ObservableList<Path> imageFiles;
 
+	/**
+	 * Metodo que se ejecuta desde la vista de productos, efectuando la carga de los detalles del producto seleccionado
+	 * @param p
+	 * @throws FileNotFoundException
+	 */
 	public void detallesProducto(Producto p) throws FileNotFoundException {
 
 		idProductoMostrar = p.getId();
@@ -125,7 +130,6 @@ public class DetalleProductoController implements Initializable{
 		inicializarListaComentarios();
 		verificarEstado(p.getFechaLimite());
 		calificacionProducto();
-
 		imageFiles = FXCollections.observableArrayList();
 		listaImagenes = FXCollections.observableArrayList();
 		listarImagenes();
@@ -135,18 +139,32 @@ public class DetalleProductoController implements Initializable{
 
 	}
 
-
+	/**
+	 * Inicializar lista de los comentarios de un producto
+	 */
 	public void inicializarListaComentarios() {
 		listaComentarios = FXCollections.observableArrayList(obtenerLista());
 		llenarTablaComentarios(listaComentarios);
 	}
+	/**
+	 * Metodo que obtiene la lista de comentarios de un producto
+	 * @return ListComentariosProducto
+	 */
 	public List<Comentario> obtenerLista(){
 		return delegado.listarComentariosProducto(idProductoMostrar);
 	}
+	/**
+	 * Metodo que se encarga de llenar la tabla de comentarios de un producto
+	 * @param listaComeentarios
+	 */
 	public void llenarTablaComentarios(ObservableList<Comentario> listaComeentarios) {
 		tablaComentarios.setItems(listaComentarios);
 	}
 
+	/**
+	 * Metodo para verificar el estado de un producto y darle un color que lo diferencie
+	 * @param fecha
+	 */
 	public void verificarEstado(Date fecha){
 		Date fechaActual = new Date();
 		//Date tiene un Compareto que compara fechas, devuelve 1 si esta activo o -1 si esta inactivo
@@ -158,6 +176,9 @@ public class DetalleProductoController implements Initializable{
 		}
 	}
 
+	/**
+	 * Metodo que se encarga de obtener la calificacion final de un producto y mostrarla
+	 */
 	public void calificacionProducto() {
 
 		double resultado = delegado.calificacionFinalProducto(idProductoMostrar);
@@ -179,7 +200,10 @@ public class DetalleProductoController implements Initializable{
 
 	}
 
-
+	/**
+	 * Metodo que se encarga de obtener las imagenes de un producto y mostrarla obtienendo su ubicacion
+	 * @throws FileNotFoundException
+	 */
 	public void listarImagenes() throws FileNotFoundException {
 
 		List<Producto> imagenes = delegado.listarImageneProducto(idProductoMostrar);

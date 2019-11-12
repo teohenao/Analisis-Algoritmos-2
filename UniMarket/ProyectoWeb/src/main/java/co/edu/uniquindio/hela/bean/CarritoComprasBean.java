@@ -39,9 +39,6 @@ public class CarritoComprasBean implements Serializable{
 	public void Inicializar() {
 		
 	}
-	
-	
-	
 
 	public List<DetalleCompra> getCarrito() {
 		return carrito;

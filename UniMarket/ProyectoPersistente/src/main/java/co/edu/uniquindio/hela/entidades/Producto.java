@@ -23,7 +23,6 @@ import javax.persistence.*;
 	 * Consulta la cual permite listar los productos por medio del nombre que se encuentren activos
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, query = "select producto from Producto producto where producto.nombre LIKE :nombre AND  producto.fechaLimite >=  :fechaActual"),
-	
 	/**
 	 * Consulta la cual permite listar todos los productos registrados en la base de datos
 	 */
@@ -83,7 +82,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta que permite determinar cantidad de productos registrados por usuarios
 	 */
-	@NamedQuery(name = Producto.CANTIDAD_PRODUCTOS_USUARIO,query = "select new co.edu.uniquindio.hela.logica.ConsultaCantidadProductosUsuarioDTO(p.usuario.cedula,p.usuario.email),COUNT(p.usuario.cedula) from Producto p group by p.usuario.cedula"),
+	//@NamedQuery(name = Producto.CANTIDAD_PRODUCTOS_USUARIO,query = "select new co.edu.uniquindio.hela.logica.ConsultaCantidadProductosUsuarioDTO(p.usuario.cedula,p.usuario.email),COUNT(p.usuario.cedula) from Producto p group by p.usuario.cedula"),
 	/**
 	 * Consulta que permite determinar la categoria que tiene mas productos registrados en unimarket
 	 */

@@ -14,11 +14,9 @@
 			<p:panelGrid columns="2"
 				style="position: absolute;top: 27%;left: 31%;">
 				<f:facet style="text-aling:center" name="header">Registro UniMarket</f:facet>
-
 				<h:outputText value="Cedula" />
 				<h:inputText styleClass="input" value="#{usuarioBean.cedula}"
 					required="true" requiredMessage="Por favor ingrese un USUARIO" />
-
 				<h:outputText value="Nombre Completo" />
 				<h:inputText styleClass="input"
 					value="#{usuarioBean.nombreCompleto}" required="true"
@@ -32,16 +30,16 @@
 					requiredMessage="Por favor ingrese un USUARIO" />
 				<h:outputText value="E-Mail" />
 				<h:inputText styleClass="input" value="#{usuarioBean.email}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+					required="true" requiredMessage="Por favor ingrese un USUARIO"/>
 				<h:outputText value="Contraseña" />
 				<h:inputText styleClass="input" value="#{usuarioBean.clave}"
 					required="true" requiredMessage="Por favor ingrese un USUARIO" />
-
 				<p:button outcome="/usuario/Login.xhtm" value="ya tengo una cuenta!"
 					style="background:#4EE565;width: 230px;">
 				</p:button>
 				<p:commandButton value="Registrarse" style="width: 230px;"
 					action="#{usuarioBean.registrarUsuario}"/>
+				<h:messages/>
 			</p:panelGrid>
 
 		</h:form>
