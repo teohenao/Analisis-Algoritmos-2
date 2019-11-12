@@ -5,6 +5,15 @@
         <dependent-module archiveName="ProyectoNegocio.jar" deploy-path="/" handle="module:/resource/ProyectoNegocio/ProyectoNegocio">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="mail.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/mail/mail/1.5.0-b01/mail-1.5.0-b01.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activation.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/activation/activation/1.1/activation-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.mail-api.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/mail/javax.mail-api/1.6.2/javax.mail-api-1.6.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="ProyectoWeb.war" deploy-path="/" handle="module:/resource/ProyectoWeb/ProyectoWeb">
             <dependency-type>uses</dependency-type>
         </dependent-module>

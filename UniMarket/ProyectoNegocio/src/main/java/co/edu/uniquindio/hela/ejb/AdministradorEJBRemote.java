@@ -3,10 +3,13 @@ package co.edu.uniquindio.hela.ejb;
 import java.util.List;
 
 import javax.ejb.Remote;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Favorito;
+import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 import co.edu.uniquindio.hela.excepciones.InformacionInexistenteExcepcion;
@@ -177,4 +180,9 @@ public interface AdministradorEJBRemote {
 	 * @return List Object productos mas vendidos
 	 */
 	public List<Object[]> listaTopVendidos();
+	/*
+	 * Metodo que permite enviar correos a una persona
+	 * @return true si el correo se pudo enviar correctamente
+	 */
+	public Boolean envioEmail(Persona p) throws AddressException, MessagingException;
 }

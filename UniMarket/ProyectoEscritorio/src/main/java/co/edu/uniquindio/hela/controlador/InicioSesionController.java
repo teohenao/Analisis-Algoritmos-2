@@ -1,13 +1,6 @@
 package co.edu.uniquindio.hela.controlador;
-import java.util.Properties;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
 import com.sun.xml.rpc.encoding.Initializable;
 import com.sun.xml.rpc.encoding.InternalTypeMappingRegistry;
@@ -91,51 +84,15 @@ public class InicioSesionController implements Initializable {
 		}else if(admin == null) {
 			JOptionPane.showMessageDialog(null,"la cedula no coincide con un administrador");
 		}else {
-			envioEmail(admin);
+			if(delegado.envioEmail(admin)) {
+				Utilidades.mostrarMensaje("Envio del correo exitoso", "por favor ingrese a su correo electronico para recuperar la clave");
+			}else{
+				Utilidades.mostrarMensaje("Fallo el envio de correo", "por favor despida el programador");
+				 }
 		}
 		
 	}
 
-
-	
-	static Properties mailServerProperties;
-	static Session getMailSession;
-	static MimeMessage generateMailMessage;
-	/**
-	 * Metodo que permite enviar un correo electronico
-	 * @param u, administrador al cual se desea enviar el email
-	 * @throws AddressException
-	 * @throws MessagingException
-	 */
-	public static void envioEmail(Administrador u) throws AddressException, MessagingException {
- 
-		System.out.println("\n 1st ===> configurando propiedades de mailServer..");
-		mailServerProperties = System.getProperties();
-		mailServerProperties.put("mail.smtp.port", "587");
-		mailServerProperties.put("mail.smtp.auth", "true");
-		mailServerProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-		mailServerProperties.put("mail.smtp.starttls.enable", "true");
-		System.out.println("Propiedades de mailServer configuradas..");
- 
-		System.out.println("\n\n 2nd ===> enviando email Session..");
-		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
-		generateMailMessage = new MimeMessage(getMailSession);
-		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(u.getEmail()));
-		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(u.getEmail()));
-		generateMailMessage.setSubject("Ingreso UniMarket..");
-		String emailBody = "hola "+u.getNombreCompleto()+" se nos informo que perdio su contraseña no se asuste." + "<br><br> Su contraseña es: "+u.getClave() +"  <br>Feliz dia y no sea tan olvidadizo :D";
-		generateMailMessage.setContent(emailBody, "text/html");
-		System.out.println("Mail Session creado satisfactoriamente..");
- 
-		System.out.println("\n\n 3rd ===> Obteniendo session y enviando email");
-		Transport transport = getMailSession.getTransport("smtp");
- 
-		transport.connect("smtp.gmail.com", "unimarkethela@gmail.com", "41925469");
-		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-		transport.close();
-		Utilidades.mostrarMensaje("Envio del correo exitoso", "por favor ingrese a su correo electronico para recuperar la clave");
-	}
-	
 
 	@Override
 	public void initialize(InternalTypeMappingRegistry arg0) throws Exception {

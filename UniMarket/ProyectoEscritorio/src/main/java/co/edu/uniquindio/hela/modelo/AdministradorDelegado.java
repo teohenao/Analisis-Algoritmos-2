@@ -3,12 +3,15 @@ package co.edu.uniquindio.hela.modelo;
 import co.edu.uniquindio.hela.ejb.AdministradorEJBRemote;
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 import co.edu.uniquindio.hela.excepciones.InformacionRepetidaExcepcion;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -204,6 +207,16 @@ public static AdministradorDelegado administradorDelegado = instancia();
 	 */
 	public Administrador buscarAdministradorPorCedula(String cedula) {
 		return administradorEJB.buscarAdministradorPorCedula(cedula);
+	}
+	/**
+	 * Metodo que permite el envio de correos al administrador
+	 * @param p
+	 * @return true, si el envio se pudo realizar de manera correcta
+	 * @throws AddressException
+	 * @throws MessagingException
+	 */
+	public Boolean envioEmail(Persona p) throws AddressException, MessagingException {
+		return administradorEJB.envioEmail(p);
 	}
 	
 	

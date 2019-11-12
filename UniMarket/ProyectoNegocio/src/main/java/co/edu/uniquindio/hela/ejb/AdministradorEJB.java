@@ -2,8 +2,17 @@ package co.edu.uniquindio.hela.ejb;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -448,6 +457,47 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		List<Object[]> top = query.getResultList();
 
 		return top;
+	}
+	
+	static Properties mailServerProperties;
+	static Session getMailSession;
+	static MimeMessage generateMailMessage;
+	/**
+	 * Metodo que permite enviar un correo electronico
+	 * @param Persona  al cual se desea enviar el email
+	 * @throws AddressException
+	 * @throws MessagingException
+	 */
+	public Boolean envioEmail(Persona p) throws AddressException, MessagingException {
+		try {
+		System.out.println("\n 1st ===> configurando propiedades de mailServer..");
+		mailServerProperties = System.getProperties();
+		mailServerProperties.put("mail.smtp.port", "587");
+		mailServerProperties.put("mail.smtp.auth", "true");
+		mailServerProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+		mailServerProperties.put("mail.smtp.starttls.enable", "true");
+		System.out.println("Propiedades de mailServer configuradas..");
+ 
+		System.out.println("\n\n 2nd ===> enviando email Session..");
+		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+		generateMailMessage = new MimeMessage(getMailSession);
+		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(p.getEmail()));
+		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(p.getEmail()));
+		generateMailMessage.setSubject("Ingreso UniMarket..");
+		String emailBody = "hola "+p.getNombreCompleto()+" se nos informo que perdio su contraseña no se asuste." + "<br><br> Su contraseña es: "+p.getClave() +"  <br>Feliz dia y no sea tan olvidadizo :D";
+		generateMailMessage.setContent(emailBody, "text/html");
+		System.out.println("Mail Session creado satisfactoriamente..");
+ 
+		System.out.println("\n\n 3rd ===> Obteniendo session y enviando email");
+		Transport transport = getMailSession.getTransport("smtp");
+ 
+		transport.connect("smtp.gmail.com", "unimarkethela@gmail.com", "41925469");
+		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+		transport.close();
+		return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	
 
