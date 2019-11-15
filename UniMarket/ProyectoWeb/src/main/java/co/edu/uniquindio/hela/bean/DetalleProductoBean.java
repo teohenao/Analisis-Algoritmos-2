@@ -1,7 +1,9 @@
 package co.edu.uniquindio.hela.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -15,8 +17,9 @@ import co.edu.uniquindio.hela.entidades.Producto;
 
 @Named
 @ApplicationScoped
-public class DetalleProductoBean{
+public class DetalleProductoBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	@EJB
 	private AdministradorEJB adminEJB;
 	private Producto p;
@@ -26,11 +29,9 @@ public class DetalleProductoBean{
 	private String comentario;
 	private Boolean esFavorito;
 	
-	/**
-	 * Metodo que se llama desde la vista inicio y carga lo referente a el producto seleccionado para mostrar sus detalles
-	 * @param producto
-	 * @return
-	 */
+	
+
+	
 	public String detalleProducto(Producto producto) {
 		p = producto;
 		comentariosProducto = adminEJB.listarComentariosProducto(2);
@@ -39,9 +40,6 @@ public class DetalleProductoBean{
 		return "/productos/DetalleProducto.xhtml";
 	}
 
-	/**
-	 * Metodo que permite comentar un producto de unimarket
-	 */
 	public void comentarProducto() {
 		Comentario c = new Comentario();
 		c.setComentario(comentario);
@@ -51,21 +49,21 @@ public class DetalleProductoBean{
 		comentario = "";
 	}
 	
-	/**
-	 * Metodo que permite registrar el producto en la lista de favoritos del usuario
-	 */
 	public void registrarFavorito(){
 		Favorito f = new Favorito();
 		f.setProducto(p);
 		adminEJB.registrarFavorito(f);
 		esFavorito = true;
 	}
-	/**
-	 * Metodo que permite eliminar un producto de la lista de favoritos del usuario
-	 */
 	public void eliminarFavorito(){
 		adminEJB.eliminarFavorito("1", p.getId());
 		esFavorito = false;
+	}
+
+	@PostConstruct
+	public void init(){
+		
+
 	}
 
 	public Producto getP() {

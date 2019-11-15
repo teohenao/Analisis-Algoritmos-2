@@ -11,8 +11,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
+import co.edu.uniquindio.hela.entidades.Categoria;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
+import co.edu.uniquindio.hela.entidades.Usuario;
 
 /**
  * Bean principal de la aplicacion unimarket
@@ -40,6 +42,7 @@ public class ProductoBean implements Serializable {
 	private int id,disponibilidad;
 	private String nombre,categoria,descripcion,imagenInicio,inputBuscar;
 	private Date fechaLimite;
+
 	
 	private Producto productoSeleccionadoUsuario;
 	
@@ -51,13 +54,30 @@ public class ProductoBean implements Serializable {
 		listaProductos=adminEJB.listarProductosActivos();
 		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
 		productoSeleccionadoUsuario = new Producto();
+		
 	}
 	
-	public void refrescar() {
-		listaProductos=adminEJB.listarProductosActivos();
-		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
+	public String registrarProducto() 
+	{
+		
+		Producto p = new Producto();
+		p.setNombre(nombre);
+		p.setDisponibilidad(disponibilidad);
+		p.setCategoria(Categoria.valueOf(Categoria.class,categoria));
+		p.setPrecio(precio);
+		p.setDescripcion(descripcion);
+		p.setFechaLimite(fechaLimite);
+		Usuario u = adminEJB.buscarUsuarioPorCedula("1");
+		p.setUsuario(u);
+		
+		if(adminEJB.registrarProducto(p)) {
+			 return "/productos/Inicio";
+		}else
+		{
+			System.out.println("llorela");
+			return null;
+		}
 	}
-	
 	
 	/**
 	 * Metodo que permite actualizar el producto creado por un usuario
@@ -105,12 +125,6 @@ public class ProductoBean implements Serializable {
 	public List<Favorito> misFavoritos(){
 		return listaMisFavoritos = adminEJB.listarFavoritosUsuario(ccUsuario);
 	}
-
-
-	
-	
-	
-	
 
 	/**
 	 * Metodo para obtener una imagen y mostrarla por cada producto
@@ -234,7 +248,6 @@ public class ProductoBean implements Serializable {
 	public void setProductoSeleccionadoUsuario(Producto productoSeleccionadoUsuario) {
 		this.productoSeleccionadoUsuario = productoSeleccionadoUsuario;
 	}
-
 
 
 

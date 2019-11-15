@@ -57,6 +57,11 @@ public class MisProductosBean implements Serializable {
 		return listaProductosUsuario = adminEJB.listarProductosUsuario(ccUsuario);
 	}
 	
+	public String CrearProducto()
+	{
+		return "";
+	}
+	
 	private Producto productoSeleccionado;
 
 

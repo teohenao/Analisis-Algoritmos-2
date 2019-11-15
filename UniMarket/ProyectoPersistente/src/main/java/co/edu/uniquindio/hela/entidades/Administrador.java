@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R,AnaMaria
+ * @author Mateo Henao R
  * Entidad Administrador que hereda los atributos de una persona
  * @version 1.0
  */

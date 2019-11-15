@@ -20,7 +20,7 @@
 						action="#{detalleProductoBean.registrarFavorito}"
 						rendered="#{!detalleProductoBean.esFavorito}"
 						iconAwesome="thumbs-up" update="favorito" />
-					<b:commandButton style="background: skyblue;"
+					<b:commandButton  style="background: skyblue;"
 						action="#{detalleProductoBean.eliminarFavorito}"
 						rendered="#{detalleProductoBean.esFavorito}"
 						iconAwesome="thumbs-down" update="favorito" />
@@ -105,3 +105,6 @@
 	</ui:define>
 </ui:composition>
 </html>
+
+
+<!-- rendered="#{!seguridadBean.autenticado}" -->

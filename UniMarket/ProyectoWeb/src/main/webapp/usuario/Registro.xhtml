@@ -14,26 +14,29 @@
 			<p:panelGrid columns="2"
 				style="position: absolute;top: 27%;left: 31%;">
 				<f:facet style="text-aling:center" name="header">Registro UniMarket</f:facet>
+
 				<h:outputText value="Cedula" />
 				<h:inputText styleClass="input" value="#{usuarioBean.cedula}"
-					required="true" requiredMessage="el campo de cedula es obligatorio" />
+					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+
 				<h:outputText value="Nombre Completo" />
 				<h:inputText styleClass="input"
 					value="#{usuarioBean.nombreCompleto}" required="true"
-					requiredMessage="el campo de nombre es obligatorio" />
+					requiredMessage="Por favor ingrese un USUARIO" />
 				<h:outputText value="Direccion" />
 				<h:inputText styleClass="input" value="#{usuarioBean.direccion}"
-					required="true" requiredMessage="el campo de direccion es obligatorio" />
+					required="true" requiredMessage="Por favor ingrese un USUARIO" />
 				<h:outputText value="Telefono" />
 				<h:inputText styleClass="input"
 					value="#{usuarioBean.numeroTelefonico}" required="true"
-					requiredMessage="el campo de telefono es obligatorio" />
+					requiredMessage="Por favor ingrese un USUARIO" />
 				<h:outputText value="E-Mail" />
 				<h:inputText styleClass="input" value="#{usuarioBean.email}"
-					required="true" requiredMessage="el campo de email es obligatorio"/>
+					required="true" requiredMessage="Por favor ingrese un USUARIO" />
 				<h:outputText value="Contraseña" />
 				<h:inputText styleClass="input" value="#{usuarioBean.clave}"
-					required="true" requiredMessage="el campo de contraseña es obligatorio" />
+					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+
 				<p:button outcome="/usuario/Login.xhtm" value="ya tengo una cuenta!"
 					style="background:#4EE565;width: 230px;">
 				</p:button>

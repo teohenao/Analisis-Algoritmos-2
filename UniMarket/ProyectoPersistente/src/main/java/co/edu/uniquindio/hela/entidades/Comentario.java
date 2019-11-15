@@ -6,7 +6,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R,AnaMaria
+ * @author Mateo Henao R
  * Entidad comentario la cual contiene todo lo relevante a los comentarios que realizan los usuarios sobre determinado producto
  * @version 1.0
  */

@@ -1,9 +1,5 @@
 package co.edu.uniquindio.hela.logica;
-/**
- * DTO producto
- * @author mateo
- * @version 1.0
- */
+
 public class ConsultaProductosDTO {
 
 	private String nombre;

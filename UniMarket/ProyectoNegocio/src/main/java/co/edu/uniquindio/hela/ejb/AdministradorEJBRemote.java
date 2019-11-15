@@ -185,4 +185,6 @@ public interface AdministradorEJBRemote {
 	 * @return true si el correo se pudo enviar correctamente
 	 */
 	public Boolean envioEmail(Persona p) throws AddressException, MessagingException;
+	
+	public Boolean registrarProducto(Producto producto);
 }

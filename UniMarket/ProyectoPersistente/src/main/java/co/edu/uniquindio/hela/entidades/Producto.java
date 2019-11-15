@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R,AnaMaria
+ * @author Mateo Henao R
  * Entidad producto la cual contiene todo lo relevante a los productos de la plataforma
  * @version 1.0
  */
@@ -23,6 +23,7 @@ import javax.persistence.*;
 	 * Consulta la cual permite listar los productos por medio del nombre que se encuentren activos
 	 */
 	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, query = "select producto from Producto producto where producto.nombre LIKE :nombre AND  producto.fechaLimite >=  :fechaActual"),
+	
 	/**
 	 * Consulta la cual permite listar todos los productos registrados en la base de datos
 	 */
@@ -82,7 +83,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta que permite determinar cantidad de productos registrados por usuarios
 	 */
-	//@NamedQuery(name = Producto.CANTIDAD_PRODUCTOS_USUARIO,query = "select new co.edu.uniquindio.hela.logica.ConsultaCantidadProductosUsuarioDTO(p.usuario.cedula,p.usuario.email),COUNT(p.usuario.cedula) from Producto p group by p.usuario.cedula"),
+	@NamedQuery(name = Producto.CANTIDAD_PRODUCTOS_USUARIO,query = "select new co.edu.uniquindio.hela.logica.ConsultaCantidadProductosUsuarioDTO(p.usuario.cedula,p.usuario.email),COUNT(p.usuario.cedula) from Producto p group by p.usuario.cedula"),
 	/**
 	 * Consulta que permite determinar la categoria que tiene mas productos registrados en unimarket
 	 */
@@ -142,7 +143,7 @@ public class Producto implements Serializable {
 	 */
 
 	//Relacion de uno a muchos con la entidad de detalle compras
-	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<DetalleCompra> DetalleCompras;
 
 	//Relacion de muchos a uno con usuario
@@ -150,15 +151,15 @@ public class Producto implements Serializable {
 	private Usuario usuario;
 
 	//Relacion de uno a muchos con la entidad de calificaciones
-	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Calificacion> Calificaciones;
 
 	//Relacion de uno a muchos con la entidad de comentarios
-	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Comentario> Comentarios;
 
 	//Relacion de uno a muchos con la entidad de favoritos
-	@OneToMany(mappedBy = "producto",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Favorito> Favoritos;
 
 	/**

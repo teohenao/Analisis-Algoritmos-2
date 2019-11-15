@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R,AnaMaria
+ * @author Mateo Henao R
  * Entidad Compra la cual contiene todo lo relevante a las compras realizadas por los usuarios
  * @version 1.0
  */
@@ -69,7 +69,7 @@ public class Compra implements Serializable {
 	private Usuario usuario;
 
 	//Relacion de uno a muchos con la entidad de detalle compras
-	@OneToMany(mappedBy = "compra",fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "compra", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<DetalleCompra> DetalleCompras;
 
 	/**

@@ -19,6 +19,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
@@ -498,6 +500,18 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		transport.close();
 		return true;
 		}catch(Exception e) {
+			return false;
+		}
+	}
+	
+	
+	public Boolean registrarProducto(Producto producto){
+
+		try {
+			entityManager.persist(producto);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

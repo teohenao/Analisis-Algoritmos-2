@@ -5,7 +5,7 @@ import java.lang.String;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R,AnaMaria
+ * @author Mateo Henao R
  * Clase padre de usuario y administrador
  * @version 1.0
  */
@@ -68,7 +68,7 @@ public class Persona implements Serializable {
 	private String email;
 
 	/**
-	 * Contraseï¿½a con la cual ingresara a la aplicacion
+	 * Contraseña con la cual ingresara a la aplicacion
 	 */
 	@Column(name = "clave",length = 20,nullable = false)
 	private String clave;

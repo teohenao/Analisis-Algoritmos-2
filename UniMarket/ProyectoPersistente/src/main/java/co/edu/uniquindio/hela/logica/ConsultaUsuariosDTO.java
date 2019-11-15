@@ -1,10 +1,5 @@
 package co.edu.uniquindio.hela.logica;
 
-/**
- * DTO usuario
- * @author mateo
- * @version 1.0
- */
 public class ConsultaUsuariosDTO {
 	
 	private String nombreCompleto;

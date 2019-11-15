@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/template/TemplateUniMarket.xhtml">
+	<ui:define name="title">Registro Producto</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:panelGrid columns="2"
+				style="position: absolute;top: 27%;left: 31%;">
+				<h:outputText value="Nombre" />
+				<h:inputText styleClass="input" value="#{productoBean.nombre}"
+					required="true" requiredMessage="Por favor ingrese un nombre" />
+				<h:outputText value="Descripcion" />
+				<h:inputTextarea styleClass="input"
+					value="#{productoBean.descripcion}" required="true"
+					requiredMessage="Por favor ingrese una descripcion" />
+				<h:outputText value="Fecha limite" />
+				<p:datePicker id="popup" value="#{productoBean.fechaLimite}" />
+				<h:outputText value="Disponibilidad" />
+				<p:inputNumber styleClass="input"
+					value="#{productoBean.disponibilidad}" required="true"
+					decimalPlaces="0" requiredMessage="Por favor ingrese una cantidad" />
+				<h:outputText value="Precio" />
+				<p:inputNumber styleClass="input" value="#{productoBean.precio}"
+					required="true" requiredMessage="Por favor ingrese un precio" />
+				<h:outputText value="Categoria"/>
+				<b:formGroup>
+					<b:selectOneMenu value="#{productoBean.categoria}" required="true" >
+						<f:selectItem itemLabel="(seleccione una categoria)" itemValue="" />
+						<f:selectItem itemLabel="Tecnologia" itemValue="tecnologia" />
+						<f:selectItem itemLabel="Moda" itemValue="moda" />
+						<f:selectItem itemLabel="Deporte" itemValue="deporte" />
+						<f:selectItem itemLabel="Libros" itemValue="libros" />
+						<f:selectItem itemLabel="Joyas" itemValue="joyas" />
+					</b:selectOneMenu>
+				</b:formGroup>
+				<b:button outcome="/productos/ProductosUsuario.xhtm"
+					value="Regresar a mis productos"
+					style="background:#4EE565;width: 230px;">
+				</b:button>
+				<b:commandButton value="Registrarse" style="width: 230px;"
+					action="#{productoBean.registrarProducto}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
