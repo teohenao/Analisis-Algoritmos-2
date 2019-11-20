@@ -1,5 +1,6 @@
 package co.edu.uniquindio.hela.ejb;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -19,6 +20,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
+
 
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
@@ -447,20 +449,20 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		entityManager.remove(f);
 		return true;
 	}
-	
+
 	/**
 	 * Metodo que permite obtener la lista de los 3 mas vendidos de unimarket
 	 * @return list mas vendidos
 	 */
 	public List<Object[]> listaTopVendidos(){
-		
+
 		TypedQuery<Object[]> query = entityManager.createNamedQuery(DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, Object[].class);
 		query.setMaxResults(3);
 		List<Object[]> top = query.getResultList();
 
 		return top;
 	}
-	
+
 	static Properties mailServerProperties;
 	static Session getMailSession;
 	static MimeMessage generateMailMessage;
@@ -472,37 +474,37 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 */
 	public Boolean envioEmail(Persona p,String mensaje) throws AddressException, MessagingException {
 		try {
-		System.out.println("\n 1st ===> configurando propiedades de mailServer..");
-		mailServerProperties = System.getProperties();
-		mailServerProperties.put("mail.smtp.port", "587");
-		mailServerProperties.put("mail.smtp.auth", "true");
-		mailServerProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-		mailServerProperties.put("mail.smtp.starttls.enable", "true");
-		System.out.println("Propiedades de mailServer configuradas..");
- 
-		System.out.println("\n\n 2nd ===> enviando email Session..");
-		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
-		generateMailMessage = new MimeMessage(getMailSession);
-		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(p.getEmail()));
-		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(p.getEmail()));
-		generateMailMessage.setSubject("Ingreso UniMarket..");
-		String emailBody = mensaje;
-		generateMailMessage.setContent(emailBody, "text/html");
-		System.out.println("Mail Session creado satisfactoriamente..");
- 
-		System.out.println("\n\n 3rd ===> Obteniendo session y enviando email");
-		Transport transport = getMailSession.getTransport("smtp");
- 
-		transport.connect("smtp.gmail.com", "unimarkethela@gmail.com", "41925469");
-		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
-		transport.close();
-		return true;
+			System.out.println("\n 1st ===> configurando propiedades de mailServer..");
+			mailServerProperties = System.getProperties();
+			mailServerProperties.put("mail.smtp.port", "587");
+			mailServerProperties.put("mail.smtp.auth", "true");
+			mailServerProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+			mailServerProperties.put("mail.smtp.starttls.enable", "true");
+			System.out.println("Propiedades de mailServer configuradas..");
+
+			System.out.println("\n\n 2nd ===> enviando email Session..");
+			getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+			generateMailMessage = new MimeMessage(getMailSession);
+			generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(p.getEmail()));
+			generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(p.getEmail()));
+			generateMailMessage.setSubject("Ingreso UniMarket..");
+			String emailBody = mensaje;
+			generateMailMessage.setContent(emailBody, "text/html");
+			System.out.println("Mail Session creado satisfactoriamente..");
+
+			System.out.println("\n\n 3rd ===> Obteniendo session y enviando email");
+			Transport transport = getMailSession.getTransport("smtp");
+
+			transport.connect("smtp.gmail.com", "unimarkethela@gmail.com", "41925469");
+			transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+			transport.close();
+			return true;
 		}catch(Exception e) {
 			return false;
 		}
 	}
-	
-	
+
+
 	public Boolean registrarProducto(Producto producto){
 
 		try {
@@ -513,7 +515,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return false;
 		}
 	}
-	
+
 	public Boolean registrarDetalleCompra(DetalleCompra dc)
 	{
 		try {
@@ -522,9 +524,9 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}catch (Exception e) {
 			return false;
 		}
-	
+
 	}
-	
+
 	public Boolean registrarCompra(Compra c)
 	{
 		try {
@@ -539,8 +541,8 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		query.setParameter("cc",u.getCedula());
 		return query.getResultList();
 	}
-	
-	
+
+
 	public Calificacion obtenerCalificacionProductoUsuario(Producto p,Usuario u)
 	{
 		try {
@@ -556,7 +558,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return null;
 		}
 	}
-	
+
 	public void registrarCalificacion(Calificacion c)
 	{
 		try {
@@ -564,7 +566,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		} catch (Exception e) {			
 		}
 	}
-	
+
 	public Boolean actualizarCalificacion(Calificacion calificacion){
 		if ((entityManager.find(Calificacion.class, calificacion.getId())!=null)) {
 			entityManager.merge(calificacion);
@@ -572,6 +574,24 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}else {
 			return false;
 		}
+	}
+
+	public List<Producto> top3MasVendidos()
+	{
+		try {
+			TypedQuery<Object[]> query = entityManager.createNamedQuery(DetalleCompra.LISTAR_5PRODUCTOS_MAS_VENDIDOS, Object[].class);
+			query.setMaxResults(3);
+			List<Producto> productos = new ArrayList<Producto>();
+			Producto p;
+			for (int i = 0; i < query.getResultList().size(); i++) {
+				p = entityManager.find(Producto.class,query.getResultList().get(i)[0]);
+				productos.add(p);
+			}
+			return productos;
+		}catch (Exception e) {
+			return null;
+		}
+
 	}
 
 }

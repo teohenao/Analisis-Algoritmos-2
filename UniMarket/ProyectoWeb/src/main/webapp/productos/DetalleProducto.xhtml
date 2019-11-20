@@ -29,20 +29,17 @@
 
 			<div class="row" style="margin: 2%;">
 				<div class="col-8">
-					<p:galleria value="#{productoBean.listaProductos}" var="producto"
-						panelWidth="500" panelHeight="313" showCaption="true"
-						style="margin-left: 20%;">
-						<p:graphicImage value="../recursos/fondo1.jpg"
-							style="height: 100%;width: 100%;" alt="Image Description for"
-							title="#{producto.nombre}" />
-					</p:galleria>
+					<div class="img" style="padding-left:32%">
+					<p:graphicImage value="../../#{detalleProductoBean.p.imagenes[0]}"
+							style="height: 200px; width: 300px;"/>
+					</div>
 					<p:rating style="text-align: center;"
 						value="#{detalleProductoBean.estrellas}">
 					<p:ajax  event="rate" listener="#{detalleProductoBean.actualizarCalificacion()}" />
 					</p:rating>
-					<h:form>
+					<h:form style="margin-bottom: 2%;">
 						<p:outputPanel
-							style="margin-top: 5%;background: white;border-radius: 4px 4px 4px 4px;padding: 20px;
+							style="margin-top: 1%;background: white;border-radius: 4px 4px 4px 4px;padding: 20px;
 						    width: 61%;margin-left: 19%;">
 							<h:panelGrid columns="1" cellpadding="5">
 								<h:outputText

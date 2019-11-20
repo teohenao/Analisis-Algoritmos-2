@@ -177,13 +177,5 @@ public class MisProductosBean implements Serializable {
 
 	public void setProductoSeleccionado(Producto productoSeleccionado) {
 		this.productoSeleccionado = productoSeleccionado;
-	}
-
-
-	
-
-
-
-
-	
+	}	
 }

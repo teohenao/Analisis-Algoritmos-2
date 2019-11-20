@@ -33,7 +33,7 @@ public class InicioBean implements Serializable{
 	private AdministradorEJB adminEJB;
 	
 	private List<Producto>listaProductos;
-	private List<Producto>listaImagenesProducto;
+	private List<Producto>listaTop;
 	private List<Favorito>listaMisFavoritos;
 	private Producto producto;
 	private double precio;
@@ -49,11 +49,9 @@ public class InicioBean implements Serializable{
 		cantidad = "";
 		listaProductos=adminEJB.listarProductosActivos();
 		listaMisFavoritos=adminEJB.listarFavoritosUsuario(usuario.getCedula());
+		listaTop = adminEJB.top3MasVendidos();
 		productoSeleccionado = new Producto();
 	}
-	
-	
-	
 	/**
 	 * Metodo que permite buscar los productos activos de unimarket, para la pagina principal
 	 * @return Lista productos Activos por nombre
@@ -84,21 +82,6 @@ public class InicioBean implements Serializable{
 		return listaMisFavoritos = adminEJB.listarFavoritosUsuario(usuario.getCedula());
 	}
 
-	/**
-	 * Metodo para obtener una imagen y mostrarla por cada producto
-	 * @param idProducto
-	 * @return Imagen producto asociado
-	 */
-	public String imagenInicioProducto(String idProducto) {
-		int idProduct = Integer.parseInt(idProducto);
-		listaImagenesProducto = adminEJB.listarImageneProducto(idProduct);
-		if(listaImagenesProducto.get(0)==null) {
-			return "C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\hela.jpg";
-		}else {
-			return ""+listaImagenesProducto.get(0)+"";
-		}	
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -121,14 +104,6 @@ public class InicioBean implements Serializable{
 
 	public void setListaProductos(List<Producto> listaProductos) {
 		this.listaProductos = listaProductos;
-	}
-
-	public List<Producto> getListaImagenesProducto() {
-		return listaImagenesProducto;
-	}
-
-	public void setListaImagenesProducto(List<Producto> listaImagenesProducto) {
-		this.listaImagenesProducto = listaImagenesProducto;
 	}
 
 	public List<Favorito> getListaMisFavoritos() {
@@ -238,6 +213,12 @@ public class InicioBean implements Serializable{
 
 	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
+	}
+	public List<Producto> getListaTop() {
+		return listaTop;
+	}
+	public void setListaTop(List<Producto> listaTop) {
+		this.listaTop = listaTop;
 	}
 
 

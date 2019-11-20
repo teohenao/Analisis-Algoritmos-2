@@ -18,13 +18,13 @@
 							style="margin-left: 5%; color: white; font-family: serif; font-size: 54px;">Los
 							Mas Vendidos</h1>
 						<b:carousel id="carousel" style="max-width: 500px; height: 100%">
-							<c:forEach items="#{inicioBean.listaMisFavoritos}" var="producto">
+							<c:forEach items="#{inicioBean.listaTop}" var="producto">
 								<b:carouselItem>
-									<img src="../recursos/fondo1.jpg"
+									<img src="../../#{producto.imagenes[0]}"
 										style="width: 100%; max-height: 100%; opacity: 0.7;" />
 									<b:carouselCaption>
-										<h2 style="color: black; font-weight: bold;">#{producto.producto.id}</h2>
-										<p style="color: black;">#{producto.producto.id}</p>
+										<h2 style="color: black; font-weight: bold;">#{producto.nombre}</h2>
+										<p style="color: black;">#{producto.descripcion}</p>
 									</b:carouselCaption>
 								</b:carouselItem>
 							</c:forEach>
@@ -74,7 +74,7 @@
 								style="text-align:center;font-weight: bold;background:white;">
 								<h:panelGrid columns="1" style="width:100%">
 									<h:graphicImage height="180" width="100%"
-										value="../recursos/c8621d3f-77d8-46eb-a211-924c89d22687" />
+										value="../../#{producto.imagenes[0]}" />
 									<h:outputText value="#{producto.descripcion}"
 										style="font-size: 15px;font-family: unset;color:black;" />
 									<h:outputText value="#{producto.precio}"

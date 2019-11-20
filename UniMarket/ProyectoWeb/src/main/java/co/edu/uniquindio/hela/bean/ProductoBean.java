@@ -78,7 +78,7 @@ public class ProductoBean implements Serializable {
 	}
 
 	private Part uploadedFile;
-	private String folder = "/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoWeb/src/main/webapp/recursos/";
+	private String folder = "/home/mateo/eclipse/jee-2019-09/eclipse/server/glassfish5.1/glassfish/domains/domain1/docroot/";
 
 	public Part getUploadedFile() {
 		return uploadedFile;
@@ -103,24 +103,6 @@ public class ProductoBean implements Serializable {
 		}
 	}
 
-
-
-	/**
-	 * Metodo que permite actualizar el producto creado por un usuario
-	 */
-	public void actualizarProducto(){
-		Producto p = new Producto();
-		p.setId(productoSeleccionadoUsuario.getId());
-		p.setNombre(productoSeleccionadoUsuario.getNombre());
-		p.setDescripcion(productoSeleccionadoUsuario.getDescripcion());
-		p.setPrecio(productoSeleccionadoUsuario.getPrecio());
-		p.setDisponibilidad(productoSeleccionadoUsuario.getDisponibilidad());
-		p.setFechaLimite(productoSeleccionadoUsuario.getFechaLimite());
-		p.setCategoria(productoSeleccionadoUsuario.getCategoria());
-		p.setUsuario(productoSeleccionadoUsuario.getUsuario());
-
-		adminEJB.actualizarProducto(p);
-	}
 
 	public void limpiarCampos()
 	{

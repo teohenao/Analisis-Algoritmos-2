@@ -38,7 +38,7 @@ public class DetalleProductoBean implements Serializable{
 	private List<String> imagenesProducto;
 	private List<Comentario> comentariosProducto;
 	private Double calificacionFinalProducto;
-	private String comentario;
+	private String comentario,imagen;
 	private Boolean esFavorito;
 	private Calificacion calificacion;
 	private Integer estrellas;
@@ -61,6 +61,7 @@ public class DetalleProductoBean implements Serializable{
 		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		calificacionFinalProducto = adminEJB.calificacionFinalProducto(p.getId());
 		esFavorito = adminEJB.esFavorito(u.getCedula(), p.getId());
+		imagen = p.getImagenes().get(0);
 		return "/productos/DetalleProducto.xhtml";
 	}
 
@@ -158,6 +159,14 @@ public class DetalleProductoBean implements Serializable{
 
 	public void setEstrellas(Integer estrellas) {
 		this.estrellas = estrellas;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	

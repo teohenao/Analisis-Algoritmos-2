@@ -199,4 +199,5 @@ public interface AdministradorEJBRemote {
 	public List<Compra> listarComprasUsuario(Usuario u);
 	public Calificacion obtenerCalificacionProductoUsuario(Producto p,Usuario u);
 	public void registrarCalificacion(Calificacion c);
+	public List<Producto> top3MasVendidos();
 }
