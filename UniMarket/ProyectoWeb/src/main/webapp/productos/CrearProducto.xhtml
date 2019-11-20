@@ -10,7 +10,7 @@
 <ui:composition template="/template/TemplateUniMarket.xhtml">
 	<ui:define name="title">Registro Producto</ui:define>
 	<ui:define name="content">
-		<h:form>
+		<h:form enctype="multipart/form-data" prependId="false">
 			<p:panelGrid columns="2"
 				style="position: absolute;top: 27%;left: 31%;">
 				<h:outputText value="Nombre" />
@@ -21,17 +21,20 @@
 					value="#{productoBean.descripcion}" required="true"
 					requiredMessage="Por favor ingrese una descripcion" />
 				<h:outputText value="Fecha limite" />
-				<p:datePicker id="popup" value="#{productoBean.fechaLimite}" />
+				<p:datePicker id="popup" value="#{productoBean.fechaLimite}"
+					required="true"
+					requiredMessage="Por favor ingrese una fecha limite" />
 				<h:outputText value="Disponibilidad" />
-				<p:inputNumber styleClass="input"
-					value="#{productoBean.disponibilidad}" required="true"
-					decimalPlaces="0" requiredMessage="Por favor ingrese una cantidad" />
+				<p:inputNumber value="#{productoBean.disponibilidad}"
+					decimalPlaces="0" required="true"
+					requiredMessage="Por favor ingrese una cantidad" />
 				<h:outputText value="Precio" />
 				<p:inputNumber styleClass="input" value="#{productoBean.precio}"
 					required="true" requiredMessage="Por favor ingrese un precio" />
-				<h:outputText value="Categoria"/>
+				<h:outputText value="Categoria" />
 				<b:formGroup>
-					<b:selectOneMenu value="#{productoBean.categoria}" required="true" >
+					<b:selectOneMenu value="#{productoBean.categoria}" required="true"
+						requiredMessage="Por favor seleccione una categoria">
 						<f:selectItem itemLabel="(seleccione una categoria)" itemValue="" />
 						<f:selectItem itemLabel="Tecnologia" itemValue="tecnologia" />
 						<f:selectItem itemLabel="Moda" itemValue="moda" />
@@ -40,12 +43,14 @@
 						<f:selectItem itemLabel="Joyas" itemValue="joyas" />
 					</b:selectOneMenu>
 				</b:formGroup>
+				<h:outputText value="Imagenes" />
+				<h:inputFile value="#{productoBean.uploadedFile}" allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"/>
 				<b:button outcome="/productos/ProductosUsuario.xhtm"
 					value="Regresar a mis productos"
 					style="background:#4EE565;width: 230px;">
 				</b:button>
 				<b:commandButton value="Registrarse" style="width: 230px;"
-					action="#{productoBean.registrarProducto}" />
+					action="#{productoBean.registrarProducto(sessionBean.usuario)}" />
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

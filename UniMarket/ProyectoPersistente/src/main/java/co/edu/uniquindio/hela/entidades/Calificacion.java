@@ -21,7 +21,11 @@ import javax.persistence.*;
 	/**
 	 * Consulta que nos permite listar las calificaciones finales de los productos registrados en unimarket
 	 */
-	@NamedQuery(name = Calificacion.CALIFICACION_PROMEDIO_PRODUCTOS, query = "select AVG(c.valor),c.producto.id from Calificacion c GROUP BY c.producto.id")
+	@NamedQuery(name = Calificacion.CALIFICACION_PROMEDIO_PRODUCTOS, query = "select AVG(c.valor),c.producto.id from Calificacion c GROUP BY c.producto.id"),
+	/**
+	 * Consulta que nos permite obtener la calificacion de un producto por usuario y producto
+	 */
+	@NamedQuery(name = Calificacion.CALIFICACION_PRODUCTO_USUARIO,query = "select c from Calificacion c WHERE c.usuario.cedula = :cc AND c.producto.id = :id")
 
 })
 public class Calificacion implements Serializable {
@@ -36,6 +40,8 @@ public class Calificacion implements Serializable {
 	public static final String CALIFICACION_FINAL_PRODUCTO = "CalificacionFinalProducto";
 	//Constate que identifica la consulta que lista las calificaciones promedio de los productos 
 	public static final String CALIFICACION_PROMEDIO_PRODUCTOS = "CalificacionPromedioProductos";
+	//Constante que identifica la consulta que obtiene la calificacion de un producto por usuario
+	public static final String CALIFICACION_PRODUCTO_USUARIO = "CalificacionProductoUsuario";
 
 	
 	/**

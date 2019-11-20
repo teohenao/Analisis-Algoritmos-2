@@ -5,23 +5,25 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <ui:composition template="/template/TemplateInicio.xhtml">
 	<ui:define name="title">Login Usuario</ui:define>
 	<ui:define name="content">
-		<h:form>
+		<h:form id="login">
 			<p:panelGrid columns="1" styleClass="panel">
 				<f:facet style="text-aling:center" name="header">Inicio de Sesion</f:facet>
-
 				<h:outputText value="Cedula" />
-				<h:inputText styleClass="input" value="#{usuarioBean.cedula}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+				<h:inputText styleClass="input" value="#{sessionBean.cedula}"
+					required="true" requiredMessage="Por favor ingrese una cedula" />
 				<h:outputText value="Contraseña" />
-				<h:inputSecret styleClass="input" value="#{usuarioBean.clave}"
-					required="true" requiredMessage="Por favor ingrese la CONTRASEÑA" />
+				<h:inputSecret styleClass="input" value="#{sessionBean.clave}" />
+				<p:commandLink id="ajax" update="growl"
+					action="#{sessionBean.recuperarClave()}" style="margin-right:20px;">
+					<h:outputText value="Recuperar contraseña" />
+				</p:commandLink>
 				<p:commandButton value="Iniciar Sesion"
-					action="#{usuarioBean.loginUsuario}"/>
+					action="#{sessionBean.loginUsuario}" />
 				<p:button outcome="/usuario/Registro.xhtm"
 					value="no tengo una cuenta!" style="background:#4EE565;">
 				</p:button>

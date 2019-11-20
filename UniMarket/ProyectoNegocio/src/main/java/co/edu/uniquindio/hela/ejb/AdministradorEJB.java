@@ -19,11 +19,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Compra;
 import co.edu.uniquindio.hela.entidades.DetalleCompra;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
@@ -401,8 +401,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @param Comentario
 	 * @return Comentario
 	 */
-	public Comentario comentarProducto(Comentario c) {
-		Usuario u = entityManager.find(Usuario.class, "1");
+	public Comentario comentarProducto(Comentario c,Usuario u) {
 		c.setUsuario(u);
 		entityManager.persist(c);
 		return c;
@@ -427,8 +426,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @param favorito
 	 * @return favorito
 	 */
-	public Favorito registrarFavorito(Favorito f) {
-		Usuario u = entityManager.find(Usuario.class, "1");
+	public Favorito registrarFavorito(Favorito f,Usuario u) {
 		f.setUsuario(u);
 		entityManager.persist(f);
 		return f;
@@ -472,7 +470,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @throws AddressException
 	 * @throws MessagingException
 	 */
-	public Boolean envioEmail(Persona p) throws AddressException, MessagingException {
+	public Boolean envioEmail(Persona p,String mensaje) throws AddressException, MessagingException {
 		try {
 		System.out.println("\n 1st ===> configurando propiedades de mailServer..");
 		mailServerProperties = System.getProperties();
@@ -488,7 +486,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(p.getEmail()));
 		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(p.getEmail()));
 		generateMailMessage.setSubject("Ingreso UniMarket..");
-		String emailBody = "hola "+p.getNombreCompleto()+" se nos informo que perdio su contraseña no se asuste." + "<br><br> Su contraseña es: "+p.getClave() +"  <br>Feliz dia y no sea tan olvidadizo :D";
+		String emailBody = mensaje;
 		generateMailMessage.setContent(emailBody, "text/html");
 		System.out.println("Mail Session creado satisfactoriamente..");
  
@@ -516,5 +514,64 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 	
+	public Boolean registrarDetalleCompra(DetalleCompra dc)
+	{
+		try {
+			entityManager.persist(dc);
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+	
+	}
+	
+	public Boolean registrarCompra(Compra c)
+	{
+		try {
+			entityManager.persist(c);
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	public List<Compra> listarComprasUsuario(Usuario u) {
+		TypedQuery<Compra> query = entityManager.createNamedQuery(Compra.LISTAR_COMPRAS_USUARIO, Compra.class);
+		query.setParameter("cc",u.getCedula());
+		return query.getResultList();
+	}
+	
+	
+	public Calificacion obtenerCalificacionProductoUsuario(Producto p,Usuario u)
+	{
+		try {
+			Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_PRODUCTO_USUARIO);
+			query.setParameter("cc",u.getCedula());
+			query.setParameter("id",p.getId());
+			Object resultado = query.getSingleResult();
+			Calificacion c =(Calificacion)resultado;
+			System.out.println(c);
+			return c;
+
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	public void registrarCalificacion(Calificacion c)
+	{
+		try {
+			entityManager.persist(c);
+		} catch (Exception e) {			
+		}
+	}
+	
+	public Boolean actualizarCalificacion(Calificacion calificacion){
+		if ((entityManager.find(Calificacion.class, calificacion.getId())!=null)) {
+			entityManager.merge(calificacion);
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

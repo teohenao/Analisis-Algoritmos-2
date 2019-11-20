@@ -4,6 +4,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title><ui:insert name="title">Default title</ui:insert></title>
@@ -13,6 +14,14 @@
 <h:body>
 	<ui:debug hotkey="x"
 		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+	<b:growl id="growl"
+         global-only="false"
+         show-summary="true" allow-dismiss="true"
+         animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"
+         escape="true">
+		<p:autoUpdate />
+	</b:growl>
 	<div id="cabecera">
 		<div class="ui-g">
 			<div class="ui-g-12">UniMarket</div>

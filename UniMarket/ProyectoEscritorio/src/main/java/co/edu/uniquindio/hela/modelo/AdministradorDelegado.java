@@ -215,8 +215,8 @@ public static AdministradorDelegado administradorDelegado = instancia();
 	 * @throws AddressException
 	 * @throws MessagingException
 	 */
-	public Boolean envioEmail(Persona p) throws AddressException, MessagingException {
-		return administradorEJB.envioEmail(p);
+	public Boolean envioEmail(Persona p,String mensaje) throws AddressException, MessagingException {
+		return administradorEJB.envioEmail(p,mensaje);
 	}
 	
 	

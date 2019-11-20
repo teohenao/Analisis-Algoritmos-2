@@ -14,36 +14,32 @@
 			<p:panelGrid columns="2"
 				style="position: absolute;top: 27%;left: 31%;">
 				<f:facet style="text-aling:center" name="header">Registro UniMarket</f:facet>
-
 				<h:outputText value="Cedula" />
-				<h:inputText styleClass="input" value="#{usuarioBean.cedula}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
-
+				<h:inputText styleClass="input" value="#{sessionBean.cedula}"
+					required="true" requiredMessage="Por favor ingrese una cedula" />
 				<h:outputText value="Nombre Completo" />
 				<h:inputText styleClass="input"
-					value="#{usuarioBean.nombreCompleto}" required="true"
-					requiredMessage="Por favor ingrese un USUARIO" />
+					value="#{sessionBean.nombreCompleto}" required="true"
+					requiredMessage="Por favor ingrese un nombre" />
 				<h:outputText value="Direccion" />
-				<h:inputText styleClass="input" value="#{usuarioBean.direccion}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+				<h:inputText styleClass="input" value="#{sessionBean.direccion}"
+					required="true" requiredMessage="Por favor ingrese una direccion" />
 				<h:outputText value="Telefono" />
 				<h:inputText styleClass="input"
-					value="#{usuarioBean.numeroTelefonico}" required="true"
-					requiredMessage="Por favor ingrese un USUARIO" />
+					value="#{sessionBean.numeroTelefonico}" required="true"
+					requiredMessage="Por favor ingrese un telefono" />
 				<h:outputText value="E-Mail" />
-				<h:inputText styleClass="input" value="#{usuarioBean.email}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
+				<h:inputText styleClass="input" value="#{sessionBean.email}"
+					required="true" requiredMessage="Por favor ingrese un correo electronico" />
 				<h:outputText value="Contraseña" />
-				<h:inputText styleClass="input" value="#{usuarioBean.clave}"
-					required="true" requiredMessage="Por favor ingrese un USUARIO" />
-
+				<h:inputText styleClass="input" value="#{sessionBean.clave}"
+					required="true" requiredMessage="Por favor ingrese una clave" />
 				<p:button outcome="/usuario/Login.xhtm" value="ya tengo una cuenta!"
 					style="background:#4EE565;width: 230px;">
 				</p:button>
 				<p:commandButton value="Registrarse" style="width: 230px;"
-					action="#{usuarioBean.registrarUsuario}"/>
+					action="#{sessionBean.registrarUsuario}" />
 			</p:panelGrid>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -18,8 +18,7 @@
 							style="margin-left: 5%; color: white; font-family: serif; font-size: 54px;">Los
 							Mas Vendidos</h1>
 						<b:carousel id="carousel" style="max-width: 500px; height: 100%">
-							<c:forEach items="#{productoBean.listaMisFavoritos}"
-								var="producto">
+							<c:forEach items="#{inicioBean.listaMisFavoritos}" var="producto">
 								<b:carouselItem>
 									<img src="../recursos/fondo1.jpg"
 										style="width: 100%; max-height: 100%; opacity: 0.7;" />
@@ -41,32 +40,32 @@
 					<h:form id="form">
 						<b:dropButton look="primary" value=" CATEGORIAS ">
 							<b:navCommandLink value="TODOS LOS PRODUCTOS"
-								action="#{productoBean.productosActivos}" update="productos" />
+								action="#{inicioBean.productosActivos}" update="productos" />
 							<b:navLink></b:navLink>
 							<b:navLink header="----TIPOS----"></b:navLink>
 							<b:navCommandLink value="TECNOLOGIA"
-								action="#{productoBean.productosActivosCategoria('tecnologia')}"
+								action="#{inicioBean.productosActivosCategoria('tecnologia')}"
 								update="productos" />
 							<b:navCommandLink value="DEPORTE"
-								action="#{productoBean.productosActivosCategoria('deporte')}"
+								action="#{inicioBean.productosActivosCategoria('deporte')}"
 								update="productos" />
 							<b:navCommandLink value="MODA"
-								action="#{productoBean.productosActivosCategoria('moda')}"
+								action="#{inicioBean.productosActivosCategoria('moda')}"
 								update="productos" />
 							<b:navCommandLink value="LIBROS"
-								action="#{productoBean.productosActivosCategoria('libros')}"
+								action="#{inicioBean.productosActivosCategoria('libros')}"
 								update="productos" />
 							<b:navCommandLink value="JOYAS"
-								action="#{productoBean.productosActivosCategoria('joyas')}"
+								action="#{inicioBean.productosActivosCategoria('joyas')}"
 								update="productos" />
 						</b:dropButton>
-						<p:inputText value="#{productoBean.inputBuscar}"
+						<p:inputText value="#{inicioBean.inputBuscar}"
 							placeholder="Palabras o nombre del producto a buscar!"
 							style="width: 320px;height:42px;margin-left: 2%;margin-bottom: 8px;" />
 						<b:commandButton value="Buscar Productos" look="primary"
-							action="#{productoBean.buscarProductosNombreActivos}"
+							action="#{inicioBean.buscarProductosNombreActivos}"
 							update="productos" style="margin-left: 9px;height: 42px;" />
-						<p:dataGrid var="producto" value="#{productoBean.listaProductos}"
+						<p:dataGrid var="producto" value="#{inicioBean.listaProductos}"
 							columns="3" layout="grid" rows="12" paginator="true"
 							id="productos"
 							paginatorTemplate=" {FirstPageLink} {CurrentPageReport} {PageLinks} {NextPageLink} "
@@ -75,7 +74,7 @@
 								style="text-align:center;font-weight: bold;background:white;">
 								<h:panelGrid columns="1" style="width:100%">
 									<h:graphicImage height="180" width="100%"
-										value="../recursos/fondo1.jpg" />
+										value="../recursos/c8621d3f-77d8-46eb-a211-924c89d22687" />
 									<h:outputText value="#{producto.descripcion}"
 										style="font-size: 15px;font-family: unset;color:black;" />
 									<h:outputText value="#{producto.precio}"
@@ -84,14 +83,15 @@
 											maxIntegerDigits="6" maxFractionDigits="3" />
 									</h:outputText>
 									<b:commandButton value="Ver Productos"
-										action="#{detalleProductoBean.detalleProducto(producto)}"
+										action="#{detalleProductoBean.detalleProducto(producto,sessionBean.usuario)}"
 										iconAwesome="fa-angle-double-up" look="info" size="lg"
 										style="margin-right:20px;width: 100%;margin-bottom: 3px;">
 									</b:commandButton>
-										
 									<b:commandButton value="Comprar" iconAwesome="fa-cart-plus"
 										look="success" size="lg"
-										style="margin-right:20px;width: 100%;" />
+										style="margin-right:20px;width: 100%;"
+										action="#{sessionBean.agregarCarrito(producto)}">
+									</b:commandButton>
 								</h:panelGrid>
 							</p:panel>
 						</p:dataGrid>
@@ -100,8 +100,7 @@
 				<div class="col-4" style="padding-left: 75px;">
 					<h:form id="formFav"
 						style="width: 100%;background:white;color:black;">
-						<p:dataList value="#{productoBean.listaMisFavoritos}"
-							var="favorito">
+						<p:dataList value="#{inicioBean.listaMisFavoritos}" var="favorito">
 							<f:facet name="header">
 								<h4>
 									<b:iconAwesome name="thumbs-down" spin="true" size="lg" />

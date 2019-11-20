@@ -1,5 +1,6 @@
 package co.edu.uniquindio.hela.bean;
 
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,16 +9,27 @@ import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
+import org.primefaces.event.RateEvent;
+
+import javax.faces.annotation.FacesConfig;
+import javax.faces.annotation.FacesConfig.Version;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
+import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
+import co.edu.uniquindio.hela.entidades.Usuario;
 
-
-@Named
+@FacesConfig(version = Version.JSF_2_3)
+@Named("detalleProductoBean")
 @ApplicationScoped
 public class DetalleProductoBean implements Serializable{
+	
+	private Usuario usuario;
+
 
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -28,15 +40,27 @@ public class DetalleProductoBean implements Serializable{
 	private Double calificacionFinalProducto;
 	private String comentario;
 	private Boolean esFavorito;
+	private Calificacion calificacion;
+	private Integer estrellas;
 	
 	
 
 	
-	public String detalleProducto(Producto producto) {
+	public String detalleProducto(Producto producto,Usuario u) {
 		p = producto;
-		comentariosProducto = adminEJB.listarComentariosProducto(2);
+		usuario = u;
+		calificacion = adminEJB.obtenerCalificacionProductoUsuario(p,u);
+		if(calificacion == null){
+			calificacion = new Calificacion();
+			calificacion.setProducto(p);
+			calificacion.setUsuario(u);
+			calificacion.setValor(0);
+			adminEJB.registrarCalificacion(calificacion);
+		}
+		estrellas = 2;
+		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		calificacionFinalProducto = adminEJB.calificacionFinalProducto(p.getId());
-		esFavorito = adminEJB.esFavorito("1", p.getId());
+		esFavorito = adminEJB.esFavorito(u.getCedula(), p.getId());
 		return "/productos/DetalleProducto.xhtml";
 	}
 
@@ -44,7 +68,7 @@ public class DetalleProductoBean implements Serializable{
 		Comentario c = new Comentario();
 		c.setComentario(comentario);
 		c.setProducto(p);
-		adminEJB.comentarProducto(c);
+		adminEJB.comentarProducto(c,usuario);
 		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		comentario = "";
 	}
@@ -52,12 +76,25 @@ public class DetalleProductoBean implements Serializable{
 	public void registrarFavorito(){
 		Favorito f = new Favorito();
 		f.setProducto(p);
-		adminEJB.registrarFavorito(f);
+		adminEJB.registrarFavorito(f,usuario);
 		esFavorito = true;
 	}
 	public void eliminarFavorito(){
-		adminEJB.eliminarFavorito("1", p.getId());
+		adminEJB.eliminarFavorito(usuario.getCedula(), p.getId());
 		esFavorito = false;
+	}
+  
+	public void actualizarCalificacion()
+	{
+
+		System.out.println(estrellas);
+		if(adminEJB.actualizarCalificacion(calificacion)) {
+			FacesMessage mensaje = new FacesMessage("EXITO calificacion actualizada");
+			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		}else {
+			FacesMessage mensaje = new FacesMessage("La calificacion no se pudo actualizar");
+			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		}
 	}
 
 	@PostConstruct
@@ -115,5 +152,14 @@ public class DetalleProductoBean implements Serializable{
 		this.esFavorito = esFavorito;
 	}
 
+	public Integer getEstrellas() {
+		return estrellas;
+	}
+
+	public void setEstrellas(Integer estrellas) {
+		this.estrellas = estrellas;
+	}
+
+	
 
 }

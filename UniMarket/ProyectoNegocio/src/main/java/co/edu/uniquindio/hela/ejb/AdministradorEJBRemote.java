@@ -7,7 +7,10 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import co.edu.uniquindio.hela.entidades.Administrador;
+import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Compra;
+import co.edu.uniquindio.hela.entidades.DetalleCompra;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
@@ -174,7 +177,7 @@ public interface AdministradorEJBRemote {
 	 * @param c
 	 * @return Comentario
 	 */
-	public Comentario comentarProducto(Comentario c);
+	public Comentario comentarProducto(Comentario c,Usuario u);
 	/**
 	 * Metodo que permite listar los 3 productos mas vendidos de unimarket
 	 * @return List Object productos mas vendidos
@@ -184,7 +187,16 @@ public interface AdministradorEJBRemote {
 	 * Metodo que permite enviar correos a una persona
 	 * @return true si el correo se pudo enviar correctamente
 	 */
-	public Boolean envioEmail(Persona p) throws AddressException, MessagingException;
+	public Boolean envioEmail(Persona p,String mensaje) throws AddressException, MessagingException;
 	
 	public Boolean registrarProducto(Producto producto);
+	
+	public Boolean eliminarFavorito(String cedula,int id);
+	public Favorito registrarFavorito(Favorito f,Usuario u);
+	public Boolean esFavorito(String cedula, int id);
+	public Boolean registrarDetalleCompra(DetalleCompra dc);
+	public Boolean registrarCompra(Compra c);
+	public List<Compra> listarComprasUsuario(Usuario u);
+	public Calificacion obtenerCalificacionProductoUsuario(Producto p,Usuario u);
+	public void registrarCalificacion(Calificacion c);
 }

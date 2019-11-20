@@ -6,14 +6,20 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Producto;
+import co.edu.uniquindio.hela.entidades.Usuario;
 
+import javax.faces.annotation.FacesConfig;
+import javax.faces.annotation.ManagedProperty;
+import javax.faces.annotation.FacesConfig.Version;
 import javax.faces.view.ViewScoped;
 
-@Named
+@FacesConfig(version = Version.JSF_2_3)
+@Named("misProductosBean")
 @ViewScoped
 public class MisProductosBean implements Serializable {
 	
@@ -22,7 +28,9 @@ public class MisProductosBean implements Serializable {
 	@EJB
 	private AdministradorEJB adminEJB;
 
-	private String ccUsuario = "1";
+	@Inject
+	@ManagedProperty(value = "#{sessionBean.usuario}")
+	private Usuario usuario;
 	
 	
 	private List<Producto>listaImagenesProducto;
@@ -54,7 +62,7 @@ public class MisProductosBean implements Serializable {
 	 * @return lista productos  usuario
 	 */
 	public List<Producto> productosUsuario(){
-		return listaProductosUsuario = adminEJB.listarProductosUsuario(ccUsuario);
+		return listaProductosUsuario = adminEJB.listarProductosUsuario(usuario.getCedula());
 	}
 	
 	public String CrearProducto()
@@ -67,9 +75,7 @@ public class MisProductosBean implements Serializable {
 
 	@PostConstruct
     public void init(){
-		listaProductosUsuario=null;
-		listaProductosUsuario = adminEJB.listarProductosUsuario(ccUsuario);
-
+		listaProductosUsuario = adminEJB.listarProductosUsuario(usuario.getCedula());
     }
 
 
@@ -148,13 +154,6 @@ public class MisProductosBean implements Serializable {
 	}
 	public void setImagenInicio(String imagenInicio) {
 		this.imagenInicio = imagenInicio;
-	}
-
-	public String getCcUsuario() {
-		return ccUsuario;
-	}
-	public void setCcUsuario(String ccUsuario) {
-		this.ccUsuario = ccUsuario;
 	}
 	
 	public List<Producto> getListaProductosUsuario() {

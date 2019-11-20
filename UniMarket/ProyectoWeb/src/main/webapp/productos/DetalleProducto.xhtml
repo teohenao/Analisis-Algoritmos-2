@@ -20,7 +20,7 @@
 						action="#{detalleProductoBean.registrarFavorito}"
 						rendered="#{!detalleProductoBean.esFavorito}"
 						iconAwesome="thumbs-up" update="favorito" />
-					<b:commandButton  style="background: skyblue;"
+					<b:commandButton style="background: skyblue;"
 						action="#{detalleProductoBean.eliminarFavorito}"
 						rendered="#{detalleProductoBean.esFavorito}"
 						iconAwesome="thumbs-down" update="favorito" />
@@ -36,43 +36,49 @@
 							style="height: 100%;width: 100%;" alt="Image Description for"
 							title="#{producto.nombre}" />
 					</p:galleria>
-					<p:rating style="text-align: center;" value="3" stars="5"
-						cancel="false" onRate="alert('You rated ' + value)" />
-					<p:outputPanel
-						style="margin-top: 5%;background: white;border-radius: 4px 4px 4px 4px;padding: 20px;
+					<p:rating style="text-align: center;"
+						value="#{detalleProductoBean.estrellas}">
+					<p:ajax  event="rate" listener="#{detalleProductoBean.actualizarCalificacion()}" />
+					</p:rating>
+					<h:form>
+						<p:outputPanel
+							style="margin-top: 5%;background: white;border-radius: 4px 4px 4px 4px;padding: 20px;
 						    width: 61%;margin-left: 19%;">
-						<h:panelGrid columns="1" cellpadding="5">
-							<h:outputText
-								value="Calificacion de #{detalleProductoBean.calificacionFinalProducto} estrellas"
-								style="font-size: 120%;font-family: sans-serif;color:black;" />
-							<h:outputText value="#{detalleProductoBean.p.categoria}"
-								style="font-size: 120%;font-family: sans-serif;color:#F811D5;" />
-							<h:outputText value="#{detalleProductoBean.p.descripcion}"
-								style="font-size: 120%;font-family: sans-serif;" />
-							<h:outputText
-								value="#{detalleProductoBean.p.disponibilidad} Disponibles"
-								style="font-size: 120%;font-family: sans-serif;color:red;" />
-							<h:outputText value="#{detalleProductoBean.p.precio}"
-								style="font-size: 120%;font-family: sans-serif;color:green;font-weight: bold;">
-								<f:convertNumber type="currency" currencySymbol="$"
-									maxIntegerDigits="6" maxFractionDigits="3" />
-							</h:outputText>
-							<h:outputText
-								value="en venta por el usuario #{detalleProductoBean.p.usuario.nombreCompleto}"
-								style="font-size: 120%;font-family: sans-serif;" />
-							<h:outputText value="Con fecha de disponibilidad hasta:"
-								style="font-size: 80%;font-family: sans-serif;" />
-							<h:outputText
-								style="font-size: 120%;font-family: sans-serif;color:purple;"
-								value="#{detalleProductoBean.p.fechaLimite}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</h:panelGrid>
-						<b:button value="Comprar producto" iconAwesome="fa-cart-plus"
-							look="success" style="width: 100%;margin-top:2%;" />
-					</p:outputPanel>
-
+							<h:panelGrid columns="1" cellpadding="5">
+								<h:outputText
+									value="Calificacion de #{detalleProductoBean.calificacionFinalProducto} estrellas"
+									style="font-size: 120%;font-family: sans-serif;color:black;" />
+								<h:outputText value="#{detalleProductoBean.p.categoria}"
+									style="font-size: 120%;font-family: sans-serif;color:#F811D5;" />
+								<h:outputText value="#{detalleProductoBean.p.descripcion}"
+									style="font-size: 120%;font-family: sans-serif;" />
+								<h:outputText
+									value="#{detalleProductoBean.p.disponibilidad} Disponibles"
+									style="font-size: 120%;font-family: sans-serif;color:red;" />
+								<h:outputText value="#{detalleProductoBean.p.precio}"
+									style="font-size: 120%;font-family: sans-serif;color:green;font-weight: bold;">
+									<f:convertNumber type="currency" currencySymbol="$"
+										maxIntegerDigits="6" maxFractionDigits="3" />
+								</h:outputText>
+								<h:outputText
+									value="en venta por el usuario #{detalleProductoBean.p.usuario.nombreCompleto}"
+									style="font-size: 120%;font-family: sans-serif;" />
+								<h:outputText value="Con fecha de disponibilidad hasta:"
+									style="font-size: 80%;font-family: sans-serif;" />
+								<h:outputText
+									style="font-size: 120%;font-family: sans-serif;color:purple;"
+									value="#{detalleProductoBean.p.fechaLimite}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</h:panelGrid>
+							<b:commandButton value="Comprar producto"
+								iconAwesome="fa-cart-plus" look="success"
+								style="width: 100%;margin-top:2%;"
+								action="#{sessionBean.agregarCarrito(detalleProductoBean.p)}" />
+						</p:outputPanel>
+					</h:form>
 				</div>
+
 				<div class="col-4">
 					<h:form id="comentarios">
 						<p:repeat value="#{detalleProductoBean.comentariosProducto}"

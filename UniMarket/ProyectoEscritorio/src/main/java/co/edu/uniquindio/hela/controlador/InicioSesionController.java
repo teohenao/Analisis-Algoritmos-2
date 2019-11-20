@@ -78,13 +78,14 @@ public class InicioSesionController implements Initializable {
 	 */
 	@FXML
 	void RecuperarContrasena(ActionEvent event) throws MessagingException, InformacionInexistenteExcepcion {
-		Administrador admin = delegado.buscarAdministradorPorCedula(txtAdministrador.getText());
+		Administrador p = delegado.buscarAdministradorPorCedula(txtAdministrador.getText());
 		if(txtAdministrador.getText().trim()=="") {
 			JOptionPane.showMessageDialog(null,"El campo de cedula no puede ser vacio");
-		}else if(admin == null) {
+		}else if(p == null) {
 			JOptionPane.showMessageDialog(null,"la cedula no coincide con un administrador");
 		}else {
-			if(delegado.envioEmail(admin)) {
+			String mensaje = "hola "+p.getNombreCompleto()+" se nos informo que perdio su contraseña no se asuste." + "<br><br> Su contraseña es: "+p.getClave() +"  <br>Feliz dia y no sea tan olvidadizo :D";
+			if(delegado.envioEmail(p,mensaje)) {
 				Utilidades.mostrarMensaje("Envio del correo exitoso", "por favor ingrese a su correo electronico para recuperar la clave");
 			}else{
 				Utilidades.mostrarMensaje("Fallo el envio de correo", "por favor despida el programador");

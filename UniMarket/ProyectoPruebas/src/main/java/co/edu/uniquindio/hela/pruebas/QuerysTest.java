@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -552,6 +553,22 @@ public class QuerysTest {
 		List<Producto> productos = query.getResultList();
 
 		Assert.assertEquals(productos.size(), 2);	
+
+	}
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"producto.json","persona.json","calificacion.json"})
+	public void obtenerCalificacionProductoUsuario()
+	{
+
+		Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_PRODUCTO_USUARIO);
+		query.setParameter("cc", "20");
+		query.setParameter("id", 1);
+		Object registrado = query.getSingleResult();
+		System.out.println(registrado);
+		Calificacion c= (Calificacion)registrado;
+		System.out.println(c);
+		Assert.assertNotNull(registrado);
 
 	}
 

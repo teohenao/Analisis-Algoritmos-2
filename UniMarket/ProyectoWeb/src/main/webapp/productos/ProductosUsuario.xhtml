@@ -40,52 +40,10 @@
 									</h:outputText>
 								</b:dataTableColumn>
 								<b:dataTableColumn label="#" style="text-align:center;">
-									<b:commandButton value="Editar" icon="edit" look="warning"
-										update=":form:productoEdit"
-										oncomplete="PF('editDialog').show()">
-										<f:setPropertyActionListener value="#{producto}"
-											target="#{productoBean.productoSeleccionadoUsuario}" />
-									</b:commandButton>
-								</b:dataTableColumn>
-								<b:dataTableColumn label="#" style="text-align:center;">
 									<b:commandButton value="Elimiar" iconAwesome="trash"
 										look="danger" />
 								</b:dataTableColumn>
 							</b:dataTable>
-							<p:dialog header="Editar Producto " widgetVar="editDialog"
-								modal="true" showEffect="fade" hideEffect="fade" 
-								resizable="false">
-								<p:outputPanel id="productoEdit" style="text-align:center;" >
-								<h:outputText value="#{productoBean.productoSeleccionadoUsuario.id}"/>
-									<p:panelGrid columns="2">
-										<b:label style="font-size: 17px;" text="nombre"
-											severity="success" />
-										<h:inputText
-											value="#{productoBean.productoSeleccionadoUsuario.nombre}" />
-										<b:label style="font-size: 17px;" text="fecha limite"
-											severity="success" />
-										<p:datePicker id="popup"
-											value="#{productoBean.productoSeleccionadoUsuario.fechaLimite}" />
-										<b:label style="font-size: 17px;" text="descripcion"
-											severity="success" />
-										<h:inputTextarea style="padding-left: 13px;"
-											value="#{productoBean.productoSeleccionadoUsuario.descripcion}" />
-										<b:label style="font-size: 17px;" text="precio"
-											severity="success" />
-										<p:inputNumber
-											value="#{productoBean.productoSeleccionadoUsuario.precio}" />
-										<b:label style="font-size: 17px;" text="disponibles"
-											severity="success" />
-										<p:inputNumber
-											value="#{productoBean.productoSeleccionadoUsuario.disponibilidad}"
-											decimalPlaces="0" />
-										<b:label style="font-size: 17px;" text="precio"
-											severity="success" />
-									</p:panelGrid>
-									<b:commandButton action="#{productoBean.actualizarProducto}" style="width: 100%;" value="Editar Producto" icon="edit"
-										look="warning"/>
-								</p:outputPanel>
-							</p:dialog>
 						</h:form>
 					</div>
 				</div>

@@ -1,84 +1,110 @@
 package co.edu.uniquindio.hela.bean;
 
+import javax.faces.annotation.FacesConfig;
+import javax.faces.annotation.FacesConfig.Version;
+
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-
+import org.primefaces.model.UploadedFile;
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Categoria;
 import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import javax.servlet.http.Part;
 
 /**
  * Bean principal de la aplicacion unimarket
  * @author mateo
  */
-@Named
+@FacesConfig(version = Version.JSF_2_3)
+@Named("productoBean")
 @ApplicationScoped
 public class ProductoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instancia de la capa negocio en el bean para utilizar sus metodos
-	 */
 	@EJB
 	private AdministradorEJB adminEJB;
 
-	private String ccUsuario = "1";
-	
+
 	private List<Producto>listaProductos;
 	private List<Producto>listaImagenesProducto;
 	private List<Favorito>listaMisFavoritos;
 	private Producto producto;
-	private double precio;
-	private int id,disponibilidad;
-	private String nombre,categoria,descripcion,imagenInicio,inputBuscar;
+	private int id;
+	private String nombre,categoria,descripcion,imagenInicio,inputBuscar,metodoPago,disponibilidad,precio;
 	private Date fechaLimite;
-
-	
 	private Producto productoSeleccionadoUsuario;
-	
-	
+	private UploadedFile file;
 
 	@PostConstruct 
 	public void Inicializar() {
-		inputBuscar = "";
-		listaProductos=adminEJB.listarProductosActivos();
-		listaMisFavoritos=adminEJB.listarFavoritosUsuario(ccUsuario);
-		productoSeleccionadoUsuario = new Producto();
-		
+
 	}
-	
-	public String registrarProducto() 
+
+	public String registrarProducto(Usuario u) 
 	{
-		
 		Producto p = new Producto();
 		p.setNombre(nombre);
-		p.setDisponibilidad(disponibilidad);
+		p.setDisponibilidad(Integer.parseInt(disponibilidad));
 		p.setCategoria(Categoria.valueOf(Categoria.class,categoria));
-		p.setPrecio(precio);
+		p.setPrecio(Double.parseDouble(precio));
 		p.setDescripcion(descripcion);
 		p.setFechaLimite(fechaLimite);
-		Usuario u = adminEJB.buscarUsuarioPorCedula("1");
 		p.setUsuario(u);
-		
+		String imagen = saveFile();
+		if(imagen != null) {
+			p.getImagenes().add(imagen);
+		}
 		if(adminEJB.registrarProducto(p)) {
-			 return "/productos/Inicio";
+			limpiarCampos();
+			return "/productos/Inicio?faces-redirect=true";
 		}else
 		{
-			System.out.println("llorela");
 			return null;
 		}
 	}
-	
+
+	private Part uploadedFile;
+	private String folder = "/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoWeb/src/main/webapp/recursos/";
+
+	public Part getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(Part uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+
+	public String saveFile(){
+	    UUID idImg = UUID.randomUUID();
+
+		try (InputStream input = uploadedFile.getInputStream()) {
+			String fileName = ""+idImg;
+			Files.copy(input, new File(folder, fileName).toPath());
+			return fileName;
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+
 	/**
 	 * Metodo que permite actualizar el producto creado por un usuario
 	 */
@@ -92,53 +118,18 @@ public class ProductoBean implements Serializable {
 		p.setFechaLimite(productoSeleccionadoUsuario.getFechaLimite());
 		p.setCategoria(productoSeleccionadoUsuario.getCategoria());
 		p.setUsuario(productoSeleccionadoUsuario.getUsuario());
-		
+
 		adminEJB.actualizarProducto(p);
 	}
 
-	/**
-	 * Metodo que permite buscar los productos activos de unimarket, para la pagina principal
-	 * @return Lista productos Activos por nombre
-	 */
-	public List<Producto> buscarProductosNombreActivos(){
-		return listaProductos = adminEJB.listarProductosNombreActivos(inputBuscar);
-	}
-	/**
-	 * Metodo que permite listar productos por categoria que se encuentren activos para la pagina principal
-	 * @param categoriaProducto
-	 * @return List productos activos por categoria
-	 */
-	public List<Producto> productosActivosCategoria(String categoriaProducto){
-		return listaProductos = adminEJB.listarProductosActivosCategoria(categoriaProducto);
-	}
-	/**
-	 * Metodo que permite listar productos activos de unimarket, para la pagina principal
-	 * @return list productos activos de unimarket
-	 */
-	public List<Producto> productosActivos(){
-		return listaProductos = adminEJB.listarProductosActivos();
-	}
-	/**
-	 * Metodo que permite listar los favoritos de un usuario que se encuentren activos
-	 * @return lista favoritos usuario
-	 */
-	public List<Favorito> misFavoritos(){
-		return listaMisFavoritos = adminEJB.listarFavoritosUsuario(ccUsuario);
-	}
-
-	/**
-	 * Metodo para obtener una imagen y mostrarla por cada producto
-	 * @param idProducto
-	 * @return Imagen producto asociado
-	 */
-	public String imagenInicioProducto(String idProducto) {
-		int idProduct = Integer.parseInt(idProducto);
-		listaImagenesProducto = adminEJB.listarImageneProducto(idProduct);
-		if(listaImagenesProducto.get(0)==null) {
-			return "C:\\Users\\Mateo Henao R\\eclipse-workspace\\UniMarket\\ProyectoEscritorio\\src\\main\\java\\co\\edu\\uniquindio\\hela\\utilidades\\hela.jpg";
-		}else {
-			return ""+listaImagenesProducto.get(0)+"";
-		}	
+	public void limpiarCampos()
+	{
+		nombre = "";
+		disponibilidad = "";
+		categoria = "";
+		precio = "";
+		descripcion = "";
+		fechaLimite = null;
 	}
 
 	public List<Producto> getListaProductos() {
@@ -157,11 +148,13 @@ public class ProductoBean implements Serializable {
 		this.producto = producto;
 	}
 
-	public double getPrecio() {
+
+
+	public String getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 
@@ -171,14 +164,6 @@ public class ProductoBean implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getDisponibilidad() {
-		return disponibilidad;
-	}
-
-	public void setDisponibilidad(int disponibilidad) {
-		this.disponibilidad = disponibilidad;
 	}
 
 	public String getNombre() {
@@ -230,12 +215,7 @@ public class ProductoBean implements Serializable {
 	public void setInputBuscar(String inputBuscar) {
 		this.inputBuscar = inputBuscar;
 	}
-	public String getCcUsuario() {
-		return ccUsuario;
-	}
-	public void setCcUsuario(String ccUsuario) {
-		this.ccUsuario = ccUsuario;
-	}
+
 	public List<Favorito> getListaMisFavoritos() {
 		return listaMisFavoritos;
 	}
@@ -249,7 +229,36 @@ public class ProductoBean implements Serializable {
 		this.productoSeleccionadoUsuario = productoSeleccionadoUsuario;
 	}
 
+	public String getMetodoPago() {
+		return metodoPago;
+	}
+
+	public void setMetodoPago(String metodoPago) {
+		this.metodoPago = metodoPago;
+	}
+
+	public String getDisponibilidad() {
+		return disponibilidad;
+	}
+
+	public void setDisponibilidad(String disponibilidad) {
+		this.disponibilidad = disponibilidad;
+	}
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
+	public String getFolder() {
+		return folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
 
 
-	
 }

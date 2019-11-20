@@ -12,18 +12,23 @@
 <h:body>
 	<ui:debug hotkey="x"
 		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+	<b:growl id="growl" global-only="false" show-summary="true"
+		allow-dismiss="true" animation-enter="animated bounceInDown"
+		animation-exit="animated flipOutX" escape="true">
+		<p:autoUpdate />
+	</b:growl>
 	<div id="header">
 		<ui:insert name="header">
 			<b:navBar brand="UniMarket" inverse="true">
 				<b:navbarLinks>
-					<b:navLink value="Inicio"
-						outcome="/productos/Inicio.xhtm"></b:navLink>
+					<b:navLink value="Inicio" outcome="/productos/Inicio.xhtm"></b:navLink>
 					<b:navLink value="MisProductos"
 						outcome="/productos/ProductosUsuario.xhtm"></b:navLink>
 					<b:navLink value="MisCompras"
 						outcome="/compras/ComprasUsuario.xhtm"></b:navLink>
 					<b:navLink value="Carrito" outcome="/compras/Carrito.xhtm"></b:navLink>
-					<b:dropMenu value="MiPerfil">
+					<b:dropMenu value="#{sessionBean.usuario.nombreCompleto}"
+						style="color:yellow;">
 						<b:navLink value="Editar" href="#"></b:navLink>
 						<b:navLink value="cerrar sesion" href="#"></b:navLink>
 					</b:dropMenu>
