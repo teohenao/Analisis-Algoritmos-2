@@ -22,7 +22,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar los productos por medio del nombre que se encuentren activos
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, query = "select producto from Producto producto where producto.nombre LIKE :nombre AND  producto.fechaLimite >=  :fechaActual"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_NOMBRE_ACTIVOS, query = "select producto from Producto producto where producto.nombre LIKE :nombre AND  producto.fechaLimite >=  :fechaActual AND producto.disponibilidad > 0"),
 	
 	/**
 	 * Consulta la cual permite listar todos los productos registrados en la base de datos
@@ -31,11 +31,11 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran con fecha activa en la base de datos
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS, query = "select p from Producto p where p.fechaLimite >=  :fechaActual"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS, query = "select p from Producto p where p.fechaLimite >=  :fechaActual AND p.disponibilidad > 0"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por categoria
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  :fechaActual ) AND (p.categoria =CONCAT ('',:c,''))"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_CATEGORIA, query = "select p from Producto p where (p.fechaLimite >=  :fechaActual ) AND (p.categoria =CONCAT ('',:c,'') AND (p.disponibilidad > 0))"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos "su fecha ya paso" registrados en la base de datos
 	 */
@@ -55,7 +55,7 @@ import javax.persistence.*;
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran activos en la base de datos, y filtrarlos por el usuario creador
 	 */
-	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_USUARIO, query = "select p from Producto p where (p.fechaLimite >=:fechaActual ) AND (p.usuario.cedula =:cc)"),
+	@NamedQuery(name = Producto.LISTAR_PRODUCTOS_ACTIVOS_USUARIO, query = "select p from Producto p where (p.fechaLimite >=:fechaActual ) AND (p.usuario.cedula =:cc) AND p.disponibilidad > 0"),
 	/**
 	 * Consulta la cual permite listar todos los productos que se encuentran vencidos en la base de datos, y filtrarlos por usuario creador
 	 */

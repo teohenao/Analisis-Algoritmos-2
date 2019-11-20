@@ -9,7 +9,7 @@
 	<title><ui:insert name="title">Titulo default templateUnimarket</ui:insert></title>
 	<link type="text/css" rel="stylesheet" href="../css/UniMarket.css" />
 </h:head>
-<h:body>
+<h:body rendered="#{sessionBean.autenticado}">
 	<ui:debug hotkey="x"
 		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 	<b:growl id="growl" global-only="false" show-summary="true"
@@ -27,10 +27,15 @@
 					<b:navLink value="MisCompras"
 						outcome="/compras/ComprasUsuario.xhtm"></b:navLink>
 					<b:navLink value="Carrito" outcome="/compras/Carrito.xhtm"></b:navLink>
+					<b:navLink value="Iniciar Session"
+						rendered="#{!sessionBean.autenticado}"
+						outcome="/usuario/Login.xhtm"></b:navLink>
 					<b:dropMenu value="#{sessionBean.usuario.nombreCompleto}"
-						style="color:yellow;">
-						<b:navLink value="Editar" href="#"></b:navLink>
-						<b:navLink value="cerrar sesion" href="#"></b:navLink>
+						rendered="#{sessionBean.autenticado}" style="color:yellow;">
+						<h:form>
+							<b:navCommandLink value="Cerrar Session"
+								action="#{sessionBean.cerrarSession()}" />
+						</h:form>
 					</b:dropMenu>
 				</b:navbarLinks>
 			</b:navBar>

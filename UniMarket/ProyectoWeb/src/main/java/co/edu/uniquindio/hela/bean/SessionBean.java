@@ -172,6 +172,12 @@ public class SessionBean  implements Serializable{
 		return false;
 	}
 	
+	public String cerrarSession()
+	{
+		autenticado = false;
+		return "/inicio/UniMarket?faces-redirect=true";
+	}
+	
 
 	public Usuario getUsuario() {
 		return usuario;
