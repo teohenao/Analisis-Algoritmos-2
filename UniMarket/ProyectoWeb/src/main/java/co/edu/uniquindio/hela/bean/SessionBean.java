@@ -70,6 +70,7 @@ public class SessionBean  implements Serializable{
 
 	public String agregarCarrito(Producto p)
 	{
+		if(productoRepetido(p)==false) {
 		DetalleCompra dc = new DetalleCompra();
 		dc.setPrecio(p.getPrecio());
 		dc.setCantidad(1);
@@ -77,6 +78,11 @@ public class SessionBean  implements Serializable{
 		carrito.add(dc);
 		actualizarPedido();
 		return "/compras/Carrito?faces-redirect=true";
+		}else {
+			FacesMessage mensaje = new FacesMessage("el producto "+p.getNombre()+" ya esta en el carrito");
+			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+			return null;
+		}
 	}
 	/**
 	 * Metodo que permite registrar un usuario en la base de datos
@@ -156,6 +162,16 @@ public class SessionBean  implements Serializable{
 		cantidadProductosCarrito = 0;
 		totalCompra = 0;
 	}
+	public boolean productoRepetido(Producto p)
+	{
+		for (DetalleCompra detalleCompra : carrito) {
+			if(detalleCompra.getProducto().getNombre()==p.getNombre()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 	public Usuario getUsuario() {
 		return usuario;

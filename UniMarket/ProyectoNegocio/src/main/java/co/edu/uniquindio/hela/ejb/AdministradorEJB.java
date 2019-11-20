@@ -520,11 +520,14 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	{
 		try {
 			entityManager.persist(dc);
+			Producto p = entityManager.find(Producto.class,dc.getProducto().getId());
+			int cantidadActualizada = p.getDisponibilidad() - dc.getCantidad();
+			p.setDisponibilidad(cantidadActualizada);
+			entityManager.merge(p);
 			return true;
 		}catch (Exception e) {
 			return false;
 		}
-
 	}
 
 	public Boolean registrarCompra(Compra c)

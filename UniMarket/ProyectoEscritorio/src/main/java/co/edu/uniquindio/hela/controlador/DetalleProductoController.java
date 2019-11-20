@@ -209,14 +209,14 @@ public class DetalleProductoController implements Initializable{
 		List<Producto> imagenes = delegado.listarImageneProducto(idProductoMostrar);
 		for (int i = 0; i < imagenes.size(); i++) {
 			if(imagenes.get(0)==null) {
-				FileInputStream imageStream = new FileInputStream("/home/mateo/Documentos/Analisis-Algoritmos-2/UniMarket/ProyectoEscritorio/src/main/java/co/edu/uniquindio/hela/utilidades/hela.jpg");
+				FileInputStream imageStream = new FileInputStream("/home/mateo/eclipse/jee-2019-09/eclipse/server/glassfish5.1/glassfish/domains/domain1/docroot/hela.jpg");
 				Image image = new Image (imageStream );
 				ImageView img = new ImageView(image);
 				img.setFitWidth(150);
 				img.setFitHeight(150);
 				listaImagenes.add(img);
 			}else {
-				String rutaImg = ""+imagenes.get(i)+"";
+				String rutaImg = "/home/mateo/eclipse/jee-2019-09/eclipse/server/glassfish5.1/glassfish/domains/domain1/docroot/"+imagenes.get(i)+"";
 				FileInputStream imageStream = new FileInputStream(rutaImg);
 				Image image = new Image (imageStream );
 				ImageView img = new ImageView(image);
