@@ -19,9 +19,9 @@ import co.edu.uniquindio.hela.excepciones.InformacionInexistenteExcepcion;
 import co.edu.uniquindio.hela.excepciones.InformacionRepetidaExcepcion;
 
 /**
- * 
- * @author mateo
- *
+ * EJB REMOTE el cual permite acceder a los metodos de negocio desde otras capas de la aplicacion
+ * @author mateo,AnaMaria
+ * @version 1.0
  */
 @Remote
 public interface AdministradorEJBRemote {
@@ -177,7 +177,7 @@ public interface AdministradorEJBRemote {
 	 * @param c
 	 * @return Comentario
 	 */
-	public Comentario comentarProducto(Comentario c,Usuario u);
+	public Comentario comentarProducto(Comentario c);
 	/**
 	 * Metodo que permite listar los 3 productos mas vendidos de unimarket
 	 * @return List Object productos mas vendidos
@@ -189,15 +189,67 @@ public interface AdministradorEJBRemote {
 	 */
 	public Boolean envioEmail(Persona p,String mensaje) throws AddressException, MessagingException;
 	
+	/**
+	 * Metodo que permite registrar un producto en unimarket
+	 * @param producto
+	 * @return true si el producto se registro
+	 */
 	public Boolean registrarProducto(Producto producto);
 	
+	/**
+	 * Metodo que permite eliminar un favorito de un usuario
+	 * @param cedula
+	 * @param id
+	 * @return true, si el favorito se elimino
+	 */
 	public Boolean eliminarFavorito(String cedula,int id);
-	public Favorito registrarFavorito(Favorito f,Usuario u);
+	
+	/**
+	 * Metodo que permite registrar el favorito de un usuario
+	 * @param Favorito
+	 * @return favorito
+	 */
+	public Favorito registrarFavorito(Favorito f);
+	/**
+	 * Metodo que permite verificar si un profucto es favorito de un usuario
+	 * @param cedula
+	 * @param id
+	 * @return true, si es favorito
+	 */
 	public Boolean esFavorito(String cedula, int id);
+	/**
+	 * Metodo que permite registrar el detalle de una compra
+	 * @param DetalleCompra
+	 * @return true, si se pudo registrar
+	 */
 	public Boolean registrarDetalleCompra(DetalleCompra dc);
+	/**
+	 * Metodo que permite registrar una compra
+	 * @param Compra
+	 * @return true, si se registro la compra
+	 */
 	public Boolean registrarCompra(Compra c);
+	/**
+	 * Metodo que permite listar las compras realizadas por un usuario
+	 * @param Usuario
+	 * @return List Compras
+	 */
 	public List<Compra> listarComprasUsuario(Usuario u);
+	/**
+	 * Metodo que permite obtener la calificacion de un producto por determinado usuario
+	 * @param Producto
+	 * @param Usuario
+	 * @return Calificacion
+	 */
 	public Calificacion obtenerCalificacionProductoUsuario(Producto p,Usuario u);
+	/**
+	 * Metodo que permite registrar una Calificacion 
+	 * @param Calificacion
+	 */
 	public void registrarCalificacion(Calificacion c);
+	/**
+	 * Metodo que permite obtener la lista de los productos mas vendidos de unimarket
+	 * @return List Productos
+	 */
 	public List<Producto> top3MasVendidos();
 }

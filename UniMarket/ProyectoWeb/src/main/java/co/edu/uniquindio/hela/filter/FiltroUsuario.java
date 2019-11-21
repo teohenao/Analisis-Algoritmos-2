@@ -12,7 +12,11 @@ import javax.servlet.http.*;
 
 import co.edu.uniquindio.hela.bean.SessionBean;
 
-
+/**
+ * Filtro de lo relacionado al login y registro
+ * @author mateo,AnaMaria
+ * @version 1.0
+ */
 @WebFilter("/usuario/*")
 public class FiltroUsuario implements Filter {
 	

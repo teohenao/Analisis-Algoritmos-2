@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Entidad calificacion que contiene las calificaciones que le dan los usuarios a cierto producto
  * @version 1.0
  */

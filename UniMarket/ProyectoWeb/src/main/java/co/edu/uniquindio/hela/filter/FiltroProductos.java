@@ -12,7 +12,11 @@ import javax.servlet.http.*;
 
 import co.edu.uniquindio.hela.bean.SessionBean;
 
-
+/**
+ * Filtro de lo relacionado a productos
+ * @author mateo,AnaMaria
+ * @version 1.0
+ */
 @WebFilter("/productos/*")
 public class FiltroProductos implements Filter {
 	

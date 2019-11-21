@@ -6,7 +6,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Entidad Favorito la cual contiene todo lo relevante a los productos favoritos de un usuario
  * @version 1.0
  */

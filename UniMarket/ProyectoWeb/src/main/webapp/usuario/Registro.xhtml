@@ -15,24 +15,24 @@
 				style="position: absolute;top: 27%;left: 31%;">
 				<f:facet style="text-aling:center" name="header">Registro UniMarket</f:facet>
 				<h:outputText value="Cedula" />
-				<h:inputText styleClass="input" value="#{sessionBean.cedula}"
+				<h:inputText styleClass="input" value="#{sessionBean.cedula}" autocomplete="off"
 					required="true" requiredMessage="Por favor ingrese una cedula" />
 				<h:outputText value="Nombre Completo" />
-				<h:inputText styleClass="input"
+				<h:inputText styleClass="input" autocomplete="off"
 					value="#{sessionBean.nombreCompleto}" required="true"
 					requiredMessage="Por favor ingrese un nombre" />
 				<h:outputText value="Direccion" />
-				<h:inputText styleClass="input" value="#{sessionBean.direccion}"
+				<h:inputText styleClass="input" value="#{sessionBean.direccion}" autocomplete="off"
 					required="true" requiredMessage="Por favor ingrese una direccion" />
 				<h:outputText value="Telefono" />
-				<h:inputText styleClass="input"
+				<h:inputText styleClass="input" autocomplete="off"
 					value="#{sessionBean.numeroTelefonico}" required="true"
 					requiredMessage="Por favor ingrese un telefono" />
 				<h:outputText value="E-Mail" />
-				<h:inputText styleClass="input" value="#{sessionBean.email}"
+				<h:inputText styleClass="input" value="#{sessionBean.email}" autocomplete="off"
 					required="true" requiredMessage="Por favor ingrese un correo electronico" />
 				<h:outputText value="Contraseña" />
-				<h:inputText styleClass="input" value="#{sessionBean.clave}"
+				<h:inputText styleClass="input" value="#{sessionBean.clave}" autocomplete="off"
 					required="true" requiredMessage="Por favor ingrese una clave" />
 				<p:button outcome="/usuario/Login.xhtm" value="ya tengo una cuenta!"
 					style="background:#4EE565;width: 230px;">

@@ -15,6 +15,7 @@
 				style="position: absolute;top: 27%;left: 31%;">
 				<h:outputText value="Nombre" />
 				<h:inputText styleClass="input" value="#{productoBean.nombre}" style="width:100%;"
+				autocomplete="off"
 					required="true" requiredMessage="Por favor ingrese un nombre" />
 				<h:outputText value="Descripcion" />
 				<h:inputTextarea styleClass="input" style="width:100%;"
@@ -22,15 +23,15 @@
 					requiredMessage="Por favor ingrese una descripcion" />
 				<h:outputText value="Fecha limite" />
 				<p:datePicker id="popup" value="#{productoBean.fechaLimite}"
-					required="true" 
+					required="true" autocomplete="off"
 					requiredMessage="Por favor ingrese una fecha limite" />
 				<h:outputText value="Disponibilidad" />
 				<p:inputNumber value="#{productoBean.disponibilidad}"
-					decimalPlaces="0" required="true"
+					decimalPlaces="0" required="true" autocomplete="off"
 					requiredMessage="Por favor ingrese una cantidad" />
 				<h:outputText value="Precio" />
 				<p:inputNumber styleClass="input" value="#{productoBean.precio}" 
-					required="true" requiredMessage="Por favor ingrese un precio" />
+					required="true" requiredMessage="Por favor ingrese un precio" autocomplete="off"/>
 				<h:outputText value="Categoria" />
 				<b:formGroup>
 					<b:selectOneMenu value="#{productoBean.categoria}" required="true"
@@ -44,7 +45,7 @@
 					</b:selectOneMenu>
 				</b:formGroup>
 				<h:outputText value="Imagenes" />
-				<h:inputFile value="#{productoBean.uploadedFile}" allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"/>
+				<h:inputFile value="#{productoBean.uploadedFile}" required="true" requiredMessage="Por favor ingrese una imagen"/>
 				<b:button outcome="/productos/ProductosUsuario.xhtm"
 					value="Regresar a mis productos"
 					style="background:#4EE565;width: 230px;">

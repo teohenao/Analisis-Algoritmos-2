@@ -2,11 +2,8 @@ package co.edu.uniquindio.hela.bean;
 
 import javax.faces.annotation.FacesConfig;
 import javax.faces.annotation.FacesConfig.Version;
-
-
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,7 +12,6 @@ import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Categoria;
-import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 import java.io.File;
@@ -25,8 +21,9 @@ import java.nio.file.Files;
 import javax.servlet.http.Part;
 
 /**
- * Bean principal de la aplicacion unimarket
- * @author mateo
+ * Bean principal de la aplicacion unimarket, pagina inicio, crearProducto
+ * @author mateo,AnaMaria
+ * @version 1.0
  */
 @FacesConfig(version = Version.JSF_2_3)
 @Named("productoBean")
@@ -38,15 +35,8 @@ public class ProductoBean implements Serializable {
 	@EJB
 	private AdministradorEJB adminEJB;
 
-
-	private List<Producto>listaProductos;
-	private List<Producto>listaImagenesProducto;
-	private List<Favorito>listaMisFavoritos;
-	private Producto producto;
-	private int id;
 	private String nombre,categoria,descripcion,imagenInicio,inputBuscar,metodoPago,disponibilidad,precio;
 	private Date fechaLimite;
-	private Producto productoSeleccionadoUsuario;
 	private UploadedFile file;
 
 	@PostConstruct 
@@ -54,6 +44,11 @@ public class ProductoBean implements Serializable {
 
 	}
 
+	/**
+	 * Metodo que permite registrar un producto en unimarket
+	 * @param usuario
+	 * @return vista inicio
+	 */
 	public String registrarProducto(Usuario u) 
 	{
 		Producto p = new Producto();
@@ -79,16 +74,11 @@ public class ProductoBean implements Serializable {
 
 	private Part uploadedFile;
 	private String folder = "/home/mateo/eclipse/jee-2019-09/eclipse/server/glassfish5.1/glassfish/domains/domain1/docroot/";
-
-	public Part getUploadedFile() {
-		return uploadedFile;
-	}
-
-	public void setUploadedFile(Part uploadedFile) {
-		this.uploadedFile = uploadedFile;
-	}
-
-
+	
+	/**
+	 * Metodo que se encarga de obtener una imagen, cambiar su nombre y copiarla al servidor
+	 * @return nombre imagen copiada
+	 */
 	public String saveFile(){
 	    UUID idImg = UUID.randomUUID();
 
@@ -103,6 +93,10 @@ public class ProductoBean implements Serializable {
 		}
 	}
 	
+	/**
+	 * Metodo que elimina un producto seleccionado
+	 * @param producto
+	 */
 	public void eliminarProducto(Producto p)
 	{
 		if(adminEJB.eliminarProducto(p)!=false)
@@ -113,7 +107,9 @@ public class ProductoBean implements Serializable {
 		}
 	}
 	
-
+	/**
+	 * Metodo que se encarga de limpiar los campos despues de registrarlo
+	 */
 	public void limpiarCampos()
 	{
 		nombre = "";
@@ -124,38 +120,14 @@ public class ProductoBean implements Serializable {
 		fechaLimite = null;
 	}
 
-	public List<Producto> getListaProductos() {
-		return listaProductos;
-	}
 
-	public void setListaProductos(List<Producto> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
-
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
-
-
+	
 	public String getPrecio() {
 		return precio;
 	}
 
 	public void setPrecio(String precio) {
 		this.precio = precio;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNombre() {
@@ -189,12 +161,6 @@ public class ProductoBean implements Serializable {
 	public void setFechaLimite(Date fechaLimite) {
 		this.fechaLimite = fechaLimite;
 	}
-	public List<Producto> getListaImagenesProducto() {
-		return listaImagenesProducto;
-	}
-	public void setListaImagenesProducto(List<Producto> listaImagenesProducto) {
-		this.listaImagenesProducto = listaImagenesProducto;
-	}
 	public String getImagenInicio() {
 		return imagenInicio;
 	}
@@ -208,18 +174,6 @@ public class ProductoBean implements Serializable {
 		this.inputBuscar = inputBuscar;
 	}
 
-	public List<Favorito> getListaMisFavoritos() {
-		return listaMisFavoritos;
-	}
-	public void setListaMisFavoritos(List<Favorito> listaMisFavoritos) {
-		this.listaMisFavoritos = listaMisFavoritos;
-	}
-	public Producto getProductoSeleccionadoUsuario() {
-		return productoSeleccionadoUsuario;
-	}
-	public void setProductoSeleccionadoUsuario(Producto productoSeleccionadoUsuario) {
-		this.productoSeleccionadoUsuario = productoSeleccionadoUsuario;
-	}
 
 	public String getMetodoPago() {
 		return metodoPago;
@@ -250,6 +204,13 @@ public class ProductoBean implements Serializable {
 
 	public void setFolder(String folder) {
 		this.folder = folder;
+	}
+	public Part getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(Part uploadedFile) {
+		this.uploadedFile = uploadedFile;
 	}
 
 

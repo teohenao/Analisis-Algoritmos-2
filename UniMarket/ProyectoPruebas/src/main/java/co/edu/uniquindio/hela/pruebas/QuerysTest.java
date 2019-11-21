@@ -287,7 +287,7 @@ public class QuerysTest {
 		query.setParameter("fechaActual", new Date());
 		List<Favorito> favoritos = query.getResultList();
 
-		Assert.assertEquals(favoritos.size(), 4);
+		Assert.assertEquals(favoritos.size(), 1);
 
 	}
 	/**
@@ -303,7 +303,7 @@ public class QuerysTest {
 		query.setParameter("fechaActual", new Date());
 		List<Favorito> favoritos = query.getResultList();
 
-		Assert.assertEquals(favoritos.size(), 1);
+		Assert.assertEquals(favoritos.size(), 4);
 
 	}
 
@@ -319,7 +319,7 @@ public class QuerysTest {
 		query.setParameter("fechaActual", new Date());
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 10);
+		Assert.assertEquals(productos.size(), 2);
 
 
 	}
@@ -337,7 +337,7 @@ public class QuerysTest {
 		query.setParameter("fechaActual",new Date());
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 5);
+		Assert.assertEquals(productos.size(), 13);
 
 	}
 
@@ -356,7 +356,7 @@ public class QuerysTest {
 		query.setParameter("c", "moda");
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 2);
+		Assert.assertEquals(productos.size(), 1);
 
 	}
 
@@ -409,7 +409,7 @@ public class QuerysTest {
 		query.setParameter("cc", "7");
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 2);
+		Assert.assertEquals(productos.size(), 0);
 
 	}
 	/**
@@ -426,7 +426,7 @@ public class QuerysTest {
 		query.setParameter("cc", "7");
 		List<Producto> productos = query.getResultList();
 
-		Assert.assertEquals(productos.size(), 2);
+		Assert.assertEquals(productos.size(), 4);
 
 	}
 
@@ -554,22 +554,7 @@ public class QuerysTest {
 		Assert.assertEquals(productos.size(), 2);	
 
 	}
-	@Test
-	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"producto.json","persona.json","calificacion.json"})
-	public void obtenerCalificacionProductoUsuario()
-	{
-
-		Query query = entityManager.createNamedQuery(Calificacion.CALIFICACION_PRODUCTO_USUARIO);
-		query.setParameter("cc", "20");
-		query.setParameter("id", 1);
-		Object registrado = query.getSingleResult();
-		System.out.println(registrado);
-		Calificacion c= (Calificacion)registrado;
-		System.out.println(c);
-		Assert.assertNotNull(registrado);
-
-	}
+	
 
 
 

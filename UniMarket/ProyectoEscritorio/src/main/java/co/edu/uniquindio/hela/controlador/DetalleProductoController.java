@@ -41,12 +41,6 @@ import javafx.util.Callback;
  */
 public class DetalleProductoController implements Initializable{
 
-	private ManejadorEscenarios manejador = new ManejadorEscenarios();
-	public int idProductoMostrar;
-	private AdministradorDelegado delegado = manejador.getDelegado();
-	private ObservableList<Comentario> listaComentarios;
-
-
 	@FXML
 	private TableView<Comentario> tablaComentarios;
 
@@ -96,9 +90,13 @@ public class DetalleProductoController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
-	private ObservableList<ImageView> listaImagenes;
-
+	private ManejadorEscenarios manejador = new ManejadorEscenarios();
+	private AdministradorDelegado delegado = manejador.getDelegado();
 	ObservableList<Path> imageFiles;
+	public int idProductoMostrar;
+	private ObservableList<Comentario> listaComentarios;
+	private ObservableList<ImageView> listaImagenes;
+	
 
 	/**
 	 * Metodo que se ejecuta desde la vista de productos, efectuando la carga de los detalles del producto seleccionado

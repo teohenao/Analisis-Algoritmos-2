@@ -11,6 +11,8 @@ import co.edu.uniquindio.hela.entidades.Administrador;
 
 /**
  * Session Bean implementation class SetupEJB
+ * @author mateo,AnaMaria
+ * @version 1.0
  */
 @Singleton
 @LocalBean

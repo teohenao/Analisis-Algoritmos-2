@@ -14,7 +14,7 @@
 			<p:panelGrid columns="1" styleClass="panel">
 				<f:facet style="text-aling:center" name="header">Inicio de Sesion</f:facet>
 				<h:outputText value="Cedula" />
-				<h:inputText styleClass="input" value="#{sessionBean.cedula}"
+				<h:inputText styleClass="input" value="#{sessionBean.cedula}" autocomplete="off"
 					required="true" requiredMessage="Por favor ingrese una cedula" />
 				<h:outputText value="Contraseña" />
 				<h:inputSecret styleClass="input" value="#{sessionBean.clave}" />

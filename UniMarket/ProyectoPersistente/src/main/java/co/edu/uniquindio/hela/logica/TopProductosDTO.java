@@ -1,7 +1,7 @@
 package co.edu.uniquindio.hela.logica;
 /**
  * Clase DTO que nos permite trabajar con consultas que arrojan objetos
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  *
  */
 public class TopProductosDTO {

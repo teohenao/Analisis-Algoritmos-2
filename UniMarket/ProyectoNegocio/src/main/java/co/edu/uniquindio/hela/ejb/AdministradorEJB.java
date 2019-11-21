@@ -340,7 +340,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * usuario registrado para realizar el login a unimarket
 	 * @param cedula
 	 * @param clave
-	 * @return
+	 * @return true, si el usuario se loggeo
 	 */
 	public boolean aprobarIngresoUser(String cedula, String clave) {
 		Usuario user = buscarUsuarioPorCedula(cedula);
@@ -403,8 +403,7 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @param Comentario
 	 * @return Comentario
 	 */
-	public Comentario comentarProducto(Comentario c,Usuario u) {
-		c.setUsuario(u);
+	public Comentario comentarProducto(Comentario c) {
 		entityManager.persist(c);
 		return c;
 	}
@@ -428,11 +427,9 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 * @param favorito
 	 * @return favorito
 	 */
-	public Favorito registrarFavorito(Favorito f,Usuario u) {
-		f.setUsuario(u);
+	public Favorito registrarFavorito(Favorito f) {
 		entityManager.persist(f);
 		return f;
-
 	}
 
 	/**
@@ -504,7 +501,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
-
+	/**
+	 * Metodo que permite registrar un producto en unimarket
+	 * @param Producto, que se va aregistrar
+	 * @return true, si el producto fue registrado
+	 */
 	public Boolean registrarProducto(Producto producto){
 
 		try {
@@ -515,7 +516,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return false;
 		}
 	}
-
+	/**
+	 * Metodo que permite registrar el detalle de una compra en unimarket y descontar lo vendido
+	 * @param DetalleCompra
+	 * @return true, si se registro
+	 */
 	public Boolean registrarDetalleCompra(DetalleCompra dc)
 	{
 		try {
@@ -529,7 +534,12 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Metodo que permite resgistar una compra en unimarket
+	 * @param Compra
+	 * @return true, si la compra se pudo registrar  
+	 */
 	public Boolean registrarCompra(Compra c)
 	{
 		try {
@@ -539,13 +549,23 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return false;
 		}
 	}
+	
+	/**
+	 * Metodo que permite listar las compras de un usuario
+	 * @param Usuario
+	 * @return List de compras
+	 */
 	public List<Compra> listarComprasUsuario(Usuario u) {
 		TypedQuery<Compra> query = entityManager.createNamedQuery(Compra.LISTAR_COMPRAS_USUARIO, Compra.class);
 		query.setParameter("cc",u.getCedula());
 		return query.getResultList();
 	}
 
-
+	/**
+	 * Metodo que permite obtener la calificacion que un usuario le dio a un producto
+	 * @params Producto , Usuario
+	 * @return Calificacion
+	 */
 	public Calificacion obtenerCalificacionProductoUsuario(Producto p,Usuario u)
 	{
 		try {
@@ -561,7 +581,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return null;
 		}
 	}
-
+	
+	/**
+	 * Metodo que permite registrar una calificacion para un producto en unimarket
+	 * @param Calificacion
+	 */
 	public void registrarCalificacion(Calificacion c)
 	{
 		try {
@@ -570,6 +594,12 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
+	/**
+	 * Metodo que permite actualizar una calificacion
+	 * @param calificacion
+	 * @param estrellas
+	 * @return true, si se actualizos
+	 */
 	public Boolean actualizarCalificacion(Calificacion calificacion,int estrellas){
 			try{
 				calificacion.setValor(estrellas);
@@ -581,6 +611,10 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		
 	}
 
+	/**
+	 * Metodo que permite obtener los 3 productos mas vendidos de unimarket
+	 * @return List Productos
+	 */
 	public List<Producto> top3MasVendidos()
 	{
 		try {
@@ -599,6 +633,11 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 
 	}
 
+	/**
+	 * Metodoq ue permite eliminar un producto de unimarket
+	 * @param p
+	 * @return true, si el producto se elimino correctamente
+	 */
 	public boolean eliminarProducto(Producto p){
 		try {
 			entityManager.remove(p);

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Entidad producto la cual contiene todo lo relevante a los productos de la plataforma
  * @version 1.0
  */

@@ -32,7 +32,7 @@ import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Clase de pruebas para el CRUD de entidades identificacdas en el proyecto unimarket
  * @version 1.0
  */

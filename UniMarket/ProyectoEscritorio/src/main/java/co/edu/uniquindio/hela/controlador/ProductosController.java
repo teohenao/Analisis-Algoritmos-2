@@ -79,6 +79,15 @@ public class ProductosController implements Initializable{
 
 	@FXML
 	private ComboBox<String> comboEstado;
+	
+	private ManejadorEscenarios manejador = new ManejadorEscenarios();
+	private AdministradorDelegado delegado = manejador.getDelegado();
+	private Producto ProductoSeleccionado;
+	private ObservableList<Producto> listaProductos;
+	private String categoriaSeleccionada = "";
+	private String estadoSeleccionado = "";
+	ProductosController productosController;
+	public Producto idSeleccionado;
 
 	/**
 	 * Evento del boton regresar que carga el escenario principal
@@ -118,8 +127,7 @@ public class ProductosController implements Initializable{
 			llenarTablaProductos(listaProductos);
 		}
 	}
-	ProductosController productosController;
-	public Producto idSeleccionado;
+	
 
 	/**
 	 * Metodo que llena el combo de categorias
@@ -146,12 +154,7 @@ public class ProductosController implements Initializable{
 				);
 	}
 
-	private ManejadorEscenarios manejador = new ManejadorEscenarios();
-	private AdministradorDelegado delegado = manejador.getDelegado();
-	private Producto ProductoSeleccionado;
-	private ObservableList<Producto> listaProductos;
-	private String categoriaSeleccionada = "";
-	private String estadoSeleccionado = "";
+
 
 	/**
 	 * Metodo que se inicializa al cargar el escenario de productos

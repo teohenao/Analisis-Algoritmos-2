@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Administrador;
 import co.edu.uniquindio.hela.entidades.Comentario;
+import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Persona;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
@@ -158,7 +159,7 @@ public class AdminEJBTest {
 	@UsingDataSet({"producto.json"})
 	public void listarProductosVencidos() {
 		List<Producto> productos = administradorEJB.listarProductosVencidos();
-		Assert.assertEquals(productos.size(), 5);	
+		Assert.assertEquals(productos.size(), 13);	
 	}
 
 	/**
@@ -270,14 +271,23 @@ public class AdminEJBTest {
 		List<Object[]> top = administradorEJB.listaTopVendidos();
 		Assert.assertEquals(5,top.get(0)[0]);
 	}
-
-
-
-
-
-
-
-
-
-
+	
+	/**
+	 * Prueba unitaria que permite loggear un usuario
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"persona.json"})
+	public void aprobarIngresoUser() {
+		Boolean ingreso = administradorEJB.aprobarIngresoUser("6","12345");
+		Assert.assertEquals(ingreso,true);
+	}
+	
+	/**
+	 * Prueba unitaria que permite listar los favoritos de un usuario
+	 */
+	public void listarFavoritosUsuario(){
+		List<Favorito> lista = administradorEJB.listarFavoritosUsuario("7");
+		Assert.assertEquals(lista.size(), 2);	
+	}
 }

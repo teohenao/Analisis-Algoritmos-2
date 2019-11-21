@@ -3,21 +3,14 @@ package co.edu.uniquindio.hela.bean;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.event.RateEvent;
-
 import javax.faces.annotation.FacesConfig;
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.annotation.FacesConfig.Version;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import co.edu.uniquindio.hela.ejb.AdministradorEJB;
 import co.edu.uniquindio.hela.entidades.Calificacion;
 import co.edu.uniquindio.hela.entidades.Comentario;
@@ -25,13 +18,15 @@ import co.edu.uniquindio.hela.entidades.Favorito;
 import co.edu.uniquindio.hela.entidades.Producto;
 import co.edu.uniquindio.hela.entidades.Usuario;
 
+/**
+ * Bean que permite cargar el detalle de un producto e iteractuar con el
+ * @author mateo,AnaMaria
+ * @version 1.0
+ */
 @FacesConfig(version = Version.JSF_2_3)
 @Named("detalleProductoBean")
 @ApplicationScoped
 public class DetalleProductoBean implements Serializable{
-
-	private Usuario usuario;
-
 
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -39,12 +34,19 @@ public class DetalleProductoBean implements Serializable{
 	private Producto p;
 	private List<Comentario> comentariosProducto;
 	private Double calificacionFinalProducto;
-	private String comentario,imagen;
+	private String comentario;
 	private Boolean esFavorito;
 	private Calificacion calificacion;
 	private Integer estrellas;
+	private Usuario usuario;
 
 
+	/**
+	 * Metodo que inicializa la vista con todos los detalles de determinado producto
+	 * @param producto
+	 * @param u
+	 * @return
+	 */
 	public String detalleProducto(Producto producto,Usuario u) {
 		p = producto;
 		usuario = u;
@@ -59,43 +61,54 @@ public class DetalleProductoBean implements Serializable{
 		return "/productos/DetalleProducto.xhtml";
 	}
 
+	/**
+	 * Metodo que permite realizar comentarios de un producto
+	 */
 	public void comentarProducto() {
 		Comentario c = new Comentario();
 		c.setComentario(comentario);
 		c.setProducto(p);
-		adminEJB.comentarProducto(c,usuario);
+		c.setUsuario(usuario);
+		adminEJB.comentarProducto(c);
 		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		comentario = "";
 	}
 
+	/**
+	 * Metodo que permite registrar un producto como favorito
+	 */
 	public void registrarFavorito(){
 		Favorito f = new Favorito();
 		f.setProducto(p);
-		adminEJB.registrarFavorito(f,usuario);
+		f.setUsuario(usuario);
+		adminEJB.registrarFavorito(f);
 		esFavorito = true;
 	}
+	
+	/**
+	 * Metodo que permite eliminar un producto de los favoritos
+	 */
 	public void eliminarFavorito(){
 		adminEJB.eliminarFavorito(usuario.getCedula(), p.getId());
 		esFavorito = false;
 	}
 
+	/**
+	 * Metodo que permite actualizar la calificacion de un producto
+	 */
 	public void actualizarCalificacion(RateEvent rateEvent)
 	{
-		System.out.println( estrellas );
 		if(calificacion == null) {
 			calificacion = new Calificacion();
 			calificacion.setProducto(p);
 			calificacion.setUsuario(usuario);
 			calificacion.setValor(estrellas);
 			adminEJB.registrarCalificacion(calificacion);
-			FacesMessage mensaje = new FacesMessage("EXITO calificacion registrada");
-			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+			Util.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Calificacion Registrada");
 		}else if (adminEJB.actualizarCalificacion(calificacion,estrellas)) {
-			FacesMessage mensaje = new FacesMessage("EXITO calificacion actualizada");
-			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+			Util.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Calificacion Actualizada");
 		}else {
-			FacesMessage mensaje = new FacesMessage("La calificacion no se pudo actualizar");
-			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+			Util.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "no se pudo actualizar la calificacion");
 		}
 		calificacionFinalProducto = adminEJB.calificacionFinalProducto(p.getId());
 	}
@@ -103,13 +116,10 @@ public class DetalleProductoBean implements Serializable{
 	@PostConstruct
 	public void init(){
 
-
 	}
+
 	
-	public void mostrarEstrella( int value) {
-		System.out.println("Estrellas: "+value);
-	}
-
+	
 	public Producto getP() {
 		return p;
 	}
@@ -156,15 +166,6 @@ public class DetalleProductoBean implements Serializable{
 	public void setEstrellas(Integer estrellas) {
 		this.estrellas = estrellas;
 	}
-
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
 
 
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Entidad DetalleCompra la cual contiene todo lo relevante a los datalles con productos que puede tener una compra realizada por un usuario
  * @version 1.0
  */

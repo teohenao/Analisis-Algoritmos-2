@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Entidad Usuario, Clase hija de Persona
  * @version 1.0
  */

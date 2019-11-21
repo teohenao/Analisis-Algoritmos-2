@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author Mateo Henao R
+ * @author Mateo Henao R, Ana Maria Latorre
  * Entidad Compra la cual contiene todo lo relevante a las compras realizadas por los usuarios
  * @version 1.0
  */
