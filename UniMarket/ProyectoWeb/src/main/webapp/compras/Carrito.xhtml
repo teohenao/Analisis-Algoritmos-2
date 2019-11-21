@@ -20,7 +20,9 @@
 								columnClasses="nameProduct">
 								<p:outputPanel
 									style="margin-right:10%;margin-left: 10%;margin-bottom: 2%;background: white;border-radius: 4px 4px 4px 4px;padding: 5px;">
-									<h:panelGrid columns="1" cellpadding="5">
+									<h:panelGrid columns="2" cellpadding="5">
+										<b:commandButton iconAwesome="times-circle" look="danger"
+											action="#{sessionBean.eliminarCarrito(itemCar)}" update="detallePedido,carrito" />
 										<h:outputText value="#{itemCar.producto.nombre}"
 											style="font-size: 170%;font-weight: bold;font-family: serif;" />
 									</h:panelGrid>
@@ -54,18 +56,17 @@
 							style="margin-right:32%;margin-left: 25%;margin-bottom: 2%;background: white;border-radius: 4px 4px 4px 4px;padding: 5px;">
 							<h:panelGrid columns="2" cellpadding="5">
 								<h:outputText value="Cantidad Productos :" />
-								<h:outputText value="#{sessionBean.cantidadProductosCarrito}"/>
+								<h:outputText value="#{sessionBean.cantidadProductosCarrito}" />
 								<h:outputText value="Total Pagar :" />
 								<h:outputText value="#{sessionBean.totalCompra}">
-								<f:convertNumber type="currency" currencySymbol="$"
-											maxIntegerDigits="20" maxFractionDigits="3" />
+									<f:convertNumber type="currency" currencySymbol="$"
+										maxIntegerDigits="20" maxFractionDigits="3" />
 								</h:outputText>
 								<h:outputText value="Categoria" />
 								<b:formGroup>
 									<b:selectOneMenu value="#{productoBean.metodoPago}"
 										required="true" requiredMessage="Seleccione un metodo de pago">
-										<f:selectItem itemLabel="(metodo de pago)"
-											itemValue="" />
+										<f:selectItem itemLabel="(metodo de pago)" itemValue="" />
 										<f:selectItem itemLabel="Efectivo" itemValue="efectivo" />
 										<f:selectItem itemLabel="Tarjeta" itemValue="tarjeta" />
 										<f:selectItem itemLabel="PayPal" itemValue="paypal" />

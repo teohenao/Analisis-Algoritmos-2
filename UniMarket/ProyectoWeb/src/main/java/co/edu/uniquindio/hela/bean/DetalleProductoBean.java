@@ -7,12 +7,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.RateEvent;
 
 import javax.faces.annotation.FacesConfig;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.annotation.FacesConfig.Version;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -36,7 +37,6 @@ public class DetalleProductoBean implements Serializable{
 	@EJB
 	private AdministradorEJB adminEJB;
 	private Producto p;
-	private List<String> imagenesProducto;
 	private List<Comentario> comentariosProducto;
 	private Double calificacionFinalProducto;
 	private String comentario,imagen;
@@ -45,19 +45,17 @@ public class DetalleProductoBean implements Serializable{
 	private Integer estrellas;
 
 
-
-
 	public String detalleProducto(Producto producto,Usuario u) {
 		p = producto;
 		usuario = u;
-		calificacion = adminEJB.obtenerCalificacionProductoUsuario(p,u);
+		calificacion = adminEJB.obtenerCalificacionProductoUsuario(p,usuario);
 		estrellas = 0;
 		if(calificacion != null){
 			estrellas = calificacion.getValor();
 		}
 		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		calificacionFinalProducto = adminEJB.calificacionFinalProducto(p.getId());
-		esFavorito = adminEJB.esFavorito(u.getCedula(), p.getId());
+		esFavorito = adminEJB.esFavorito(usuario.getCedula(), p.getId());
 		return "/productos/DetalleProducto.xhtml";
 	}
 
@@ -99,7 +97,7 @@ public class DetalleProductoBean implements Serializable{
 			FacesMessage mensaje = new FacesMessage("La calificacion no se pudo actualizar");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 		}
-
+		calificacionFinalProducto = adminEJB.calificacionFinalProducto(p.getId());
 	}
 
 	@PostConstruct
@@ -117,16 +115,6 @@ public class DetalleProductoBean implements Serializable{
 	}
 	public void setP(Producto p) {
 		this.p = p;
-	}
-
-
-	public List<String> getImagenesProducto() {
-		return imagenesProducto;
-	}
-
-
-	public void setImagenesProducto(List<String> imagenesProducto) {
-		this.imagenesProducto = imagenesProducto;
 	}
 
 

@@ -36,11 +36,11 @@
 					<h:form>
 					<p:rating id="calificacion" style="text-align: center;"
 						value="#{detalleProductoBean.estrellas}" >
-					<p:ajax  event="rate" listener="#{detalleProductoBean.actualizarCalificacion}" />
+					<p:ajax  event="rate" listener="#{detalleProductoBean.actualizarCalificacion}" update="detalles" />
 					</p:rating> 
 					</h:form>
 					
-					<h:form style="margin-bottom: 2%;">
+					<h:form style="margin-bottom: 2%;" id="detalles">
 						<p:outputPanel
 							style="margin-top: 1%;background: white;border-radius: 4px 4px 4px 4px;padding: 20px;
 						    width: 61%;margin-left: 19%;">

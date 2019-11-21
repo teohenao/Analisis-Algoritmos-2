@@ -38,7 +38,6 @@ public class SessionBean  implements Serializable{
 	 * Variable centinela para validar el ingreso
 	 */
 	private boolean autenticado;
-
 	private String cedula,nombreCompleto,direccion,numeroTelefonico,email,clave;
 	private double totalCompra;
 	private int cantidadProductosCarrito;
@@ -67,17 +66,30 @@ public class SessionBean  implements Serializable{
 			return null;
 		}
 	}
+	public void eliminarCarrito(DetalleCompra dc)
+	{
+		if(carrito.size()==1) {
+			reiniciarCarrito();
+		}else {
+			for (int i = 0; i < carrito.size(); i++) {
+				if(carrito.get(i).getProducto().getNombre()==dc.getProducto().getNombre()) {
+					carrito.remove(i);
+				}
+			}
+			actualizarPedido();
+		}
+	}
 
 	public String agregarCarrito(Producto p)
 	{
 		if(productoRepetido(p)==false) {
-		DetalleCompra dc = new DetalleCompra();
-		dc.setPrecio(p.getPrecio());
-		dc.setCantidad(1);
-		dc.setProducto(p);
-		carrito.add(dc);
-		actualizarPedido();
-		return "/compras/Carrito?faces-redirect=true";
+			DetalleCompra dc = new DetalleCompra();
+			dc.setPrecio(p.getPrecio());
+			dc.setCantidad(1);
+			dc.setProducto(p);
+			carrito.add(dc);
+			actualizarPedido();
+			return "/compras/Carrito?faces-redirect=true";
 		}else {
 			FacesMessage mensaje = new FacesMessage("el producto "+p.getNombre()+" ya esta en el carrito");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
@@ -102,6 +114,7 @@ public class SessionBean  implements Serializable{
 			FacesMessage mensaje = new FacesMessage("EXITO"+"\n"+"El usuario "+cedula+" Se registro con exito");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 			this.usuario = usuario;
+			autenticado = true;
 			reiniciarCampos();
 			return "/productos/Inicio?faces-redirect=true";
 		} catch (Exception e) {
@@ -109,7 +122,7 @@ public class SessionBean  implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 			return null;
 		}
-	
+
 	}
 
 	public void recuperarClave() throws AddressException, MessagingException 
@@ -171,13 +184,13 @@ public class SessionBean  implements Serializable{
 		}
 		return false;
 	}
-	
+
 	public String cerrarSession()
 	{
 		autenticado = false;
 		return "/inicio/UniMarket?faces-redirect=true";
 	}
-	
+
 
 	public Usuario getUsuario() {
 		return usuario;
