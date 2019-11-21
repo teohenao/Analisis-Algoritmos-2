@@ -21,10 +21,15 @@ body {
 #footer {
 	width: 100%;
 	height: 40px;
+	position: fixed;
+	bottom: 0;
 	color: white;
-	font-weight: bold;
 }
 
+.ui-g-footer div {
+	background-color: rgba(50, 115, 220, 0.3);
+	text-align: center;
+}
 .containerInicio {
 	padding-left: 78px;
 	padding-top: 10px;

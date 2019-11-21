@@ -640,7 +640,8 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 	 */
 	public boolean eliminarProducto(Producto p){
 		try {
-			entityManager.remove(p);
+			Producto toBeRemoved = entityManager.merge(p);
+			entityManager.remove(toBeRemoved);
 			return true;
 		} catch (NoResultException e) {
 			return false;

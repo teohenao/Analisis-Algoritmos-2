@@ -46,7 +46,6 @@ public class MisProductosBean implements Serializable {
 	public List<Producto> productosUsuario(){
 		return listaProductosUsuario = adminEJB.listarProductosUsuario(usuario.getCedula());
 	}
-	
 
 	@PostConstruct
     public void init(){

@@ -97,13 +97,14 @@ public class ProductoBean implements Serializable {
 	 * Metodo que elimina un producto seleccionado
 	 * @param producto
 	 */
-	public void eliminarProducto(Producto p)
+	public String eliminarProducto(Producto p)
 	{
+		
 		if(adminEJB.eliminarProducto(p)!=false)
 		{
-			System.out.println("se elimino");
+			return "/productos/ProductosUsuario";
 		}else {
-			System.out.println("nada :( ");
+			return null;
 		}
 	}
 	
