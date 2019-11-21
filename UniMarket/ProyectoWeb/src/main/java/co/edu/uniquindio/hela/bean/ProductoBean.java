@@ -102,7 +102,17 @@ public class ProductoBean implements Serializable {
 			return null;
 		}
 	}
-
+	
+	public void eliminarProducto(Producto p)
+	{
+		if(adminEJB.eliminarProducto(p)!=false)
+		{
+			System.out.println("se elimino");
+		}else {
+			System.out.println("nada :( ");
+		}
+	}
+	
 
 	public void limpiarCampos()
 	{

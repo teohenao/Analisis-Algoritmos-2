@@ -97,17 +97,21 @@
 						</p:dataGrid>
 					</h:form>
 				</div>
-				<div class="col-4" style="padding-left: 75px;">
-					<h:form id="formFav"
-						style="width: 100%;background:white;color:black;">
-						<p:dataList value="#{inicioBean.listaMisFavoritos}" var="favorito">
-							<f:facet name="header">
-								<h4>
-									<b:iconAwesome name="thumbs-down" spin="true" size="lg" />
-									Mis Favoritos
-								</h4>
-							</f:facet> #{favorito.producto.nombre}
- 						</p:dataList>
+				<div class="col-4" style="margin-left: 1%;">
+					<h:form id="carrito">
+						<h1 style="color: white; margin-left: 27%;">Mis Favoritos</h1>
+						<p:repeat value="#{inicioBean.listaMisFavoritos}" var="favorito">
+							<h:panelGrid columns="1" style="width:100%"
+								columnClasses="nameProduct">
+								<p:outputPanel
+									style="margin-right:10%;margin-left: 10%;margin-bottom: 2%;background: white;border-radius: 4px 4px 4px 4px;padding: 5px;">
+									<h:panelGrid columns="1" cellpadding="5">
+										<h:outputText value="#{favorito.producto.nombre}"
+											style="font-size: 170%;font-weight: bold;font-family: serif;" />
+									</h:panelGrid>
+								</p:outputPanel>
+							</h:panelGrid>
+						</p:repeat>
 					</h:form>
 				</div>
 			</div>

@@ -570,13 +570,15 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 		}
 	}
 
-	public Boolean actualizarCalificacion(Calificacion calificacion){
-		if ((entityManager.find(Calificacion.class, calificacion.getId())!=null)) {
-			entityManager.merge(calificacion);
-			return true;
-		}else {
-			return false;
-		}
+	public Boolean actualizarCalificacion(Calificacion calificacion,int estrellas){
+			try{
+				calificacion.setValor(estrellas);
+				entityManager.merge(calificacion);
+				return true;
+			}catch (Exception e) {
+				return null;
+			}
+		
 	}
 
 	public List<Producto> top3MasVendidos()
@@ -595,6 +597,15 @@ public class AdministradorEJB implements AdministradorEJBRemote {
 			return null;
 		}
 
+	}
+
+	public boolean eliminarProducto(Producto p){
+		try {
+			entityManager.remove(p);
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
 	}
 
 }

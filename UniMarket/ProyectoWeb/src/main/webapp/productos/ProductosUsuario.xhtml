@@ -13,18 +13,17 @@
 	<ui:define name="content">
 		<h1
 			style="text-align: center; color: white; margin-top: 5%; margin-bottom: 6%; font-family: serif; font-size: 54px;">Tus
-			Productos Registrados
-			</h1>
+			Productos Registrados</h1>
 		<div class="containerMisProductos" style="margin: 3%">
 			<div class="row" style="background: white">
 				<div class="col-12">
 					<div class="tableMisProductos">
-					<b:button outcome="/productos/CrearProducto.xhtm"
-					value="CREAR PRODUCTO" style="background:#4EE565;"/>
+						<b:button outcome="/productos/CrearProducto.xhtm"
+							value="CREAR PRODUCTO" style="background:#4EE565;" />
 						<h:form id="form">
 							<b:dataTable id="tableProductosUsuario"
 								style="background:#E0D99F"
-								value="#{misProductosBean.listaProductosUsuario}" var="producto" >
+								value="#{misProductosBean.listaProductosUsuario}" var="producto">
 								<b:dataTableColumn value="#{producto.nombre}" />
 								<b:dataTableColumn label="FechaLimite" dataType="date">
 									<h:outputText value="#{producto.fechaLimite}">
@@ -41,7 +40,8 @@
 								</b:dataTableColumn>
 								<b:dataTableColumn label="#" style="text-align:center;">
 									<b:commandButton value="Elimiar" iconAwesome="trash"
-										look="danger" />
+										look="danger"
+										action="#{productoBean.eliminarProducto(producto)}" />
 								</b:dataTableColumn>
 							</b:dataTable>
 						</h:form>

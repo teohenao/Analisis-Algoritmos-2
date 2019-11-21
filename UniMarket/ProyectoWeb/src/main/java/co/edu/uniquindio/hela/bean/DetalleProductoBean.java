@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.RateEvent;
@@ -27,7 +28,7 @@ import co.edu.uniquindio.hela.entidades.Usuario;
 @Named("detalleProductoBean")
 @ApplicationScoped
 public class DetalleProductoBean implements Serializable{
-	
+
 	private Usuario usuario;
 
 
@@ -42,26 +43,21 @@ public class DetalleProductoBean implements Serializable{
 	private Boolean esFavorito;
 	private Calificacion calificacion;
 	private Integer estrellas;
-	
-	
 
-	
+
+
+
 	public String detalleProducto(Producto producto,Usuario u) {
 		p = producto;
 		usuario = u;
 		calificacion = adminEJB.obtenerCalificacionProductoUsuario(p,u);
-		if(calificacion == null){
-			calificacion = new Calificacion();
-			calificacion.setProducto(p);
-			calificacion.setUsuario(u);
-			calificacion.setValor(0);
-			adminEJB.registrarCalificacion(calificacion);
+		estrellas = 0;
+		if(calificacion != null){
+			estrellas = calificacion.getValor();
 		}
-		estrellas = 2;
 		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		calificacionFinalProducto = adminEJB.calificacionFinalProducto(p.getId());
 		esFavorito = adminEJB.esFavorito(u.getCedula(), p.getId());
-		imagen = p.getImagenes().get(0);
 		return "/productos/DetalleProducto.xhtml";
 	}
 
@@ -73,7 +69,7 @@ public class DetalleProductoBean implements Serializable{
 		comentariosProducto = adminEJB.listarComentariosProducto(p.getId());
 		comentario = "";
 	}
-	
+
 	public void registrarFavorito(){
 		Favorito f = new Favorito();
 		f.setProducto(p);
@@ -84,24 +80,36 @@ public class DetalleProductoBean implements Serializable{
 		adminEJB.eliminarFavorito(usuario.getCedula(), p.getId());
 		esFavorito = false;
 	}
-  
-	public void actualizarCalificacion()
-	{
 
-		System.out.println(estrellas);
-		if(adminEJB.actualizarCalificacion(calificacion)) {
+	public void actualizarCalificacion(RateEvent rateEvent)
+	{
+		System.out.println( estrellas );
+		if(calificacion == null) {
+			calificacion = new Calificacion();
+			calificacion.setProducto(p);
+			calificacion.setUsuario(usuario);
+			calificacion.setValor(estrellas);
+			adminEJB.registrarCalificacion(calificacion);
+			FacesMessage mensaje = new FacesMessage("EXITO calificacion registrada");
+			FacesContext.getCurrentInstance().addMessage(null, mensaje);
+		}else if (adminEJB.actualizarCalificacion(calificacion,estrellas)) {
 			FacesMessage mensaje = new FacesMessage("EXITO calificacion actualizada");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 		}else {
 			FacesMessage mensaje = new FacesMessage("La calificacion no se pudo actualizar");
 			FacesContext.getCurrentInstance().addMessage(null, mensaje);
 		}
+
 	}
 
 	@PostConstruct
 	public void init(){
-		
 
+
+	}
+	
+	public void mostrarEstrella( int value) {
+		System.out.println("Estrellas: "+value);
 	}
 
 	public Producto getP() {
@@ -169,6 +177,6 @@ public class DetalleProductoBean implements Serializable{
 		this.imagen = imagen;
 	}
 
-	
+
 
 }

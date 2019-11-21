@@ -37,10 +37,10 @@ public class SetupEJB {
         if(conteoAdmin == 0) {
     		
     		Administrador administrador=new Administrador();
-    		administrador.setCedula("123");
+    		administrador.setCedula("122333");
     		administrador.setClave("12345");
     		administrador.setDireccion("calarca casa 100");
-    		administrador.setEmail("mateohr880@gmail.com");
+    		administrador.setEmail("m-teo770@hotmail.com");
     		administrador.setNumeroTelefonico("1231111211");
     		administrador.setNombreCompleto("Mateo Henao");
     		entityManager.persist(administrador);
